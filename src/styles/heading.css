@@ -1,0 +1,51 @@
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  @apply tw-mt-0;
+  @apply tw-font-bold;
+}
+
+h1,
+.h1 {
+  @apply tw-text-4xl;
+  @apply tw-mb-12;
+}
+
+h2,
+.h2 {
+  @apply tw-text-3xl;
+  @apply tw-mb-10;
+}
+
+h3,
+.h3 {
+  @apply tw-text-2xl;
+  @apply tw-mb-8;
+}
+
+h4,
+.h4 {
+  @apply tw-text-xl;
+  @apply tw-mb-6;
+}
+
+h5,
+.h5 {
+  @apply tw-text-lg;
+  @apply tw-mb-4;
+}
+
+h6,
+.h6 {
+  @apply tw-text-sm;
+  @apply tw-mb-2;
+}

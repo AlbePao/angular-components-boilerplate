@@ -1,0 +1,5 @@
+a:focus-visible:not([cdkMenuItem]),
+[app-button]:focus,
+[app-rounded-button]:focus {
+  @apply tw-outline-0 tw-ring-4 tw-ring-primary/40 tw-ring-offset-0;
+}

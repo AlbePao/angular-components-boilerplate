@@ -1,0 +1,9 @@
+a.link {
+  @apply tw-text-black;
+  @apply tw-underline;
+}
+
+a.link:hover {
+  @apply tw-underline;
+  @apply tw-text-primary;
+}
