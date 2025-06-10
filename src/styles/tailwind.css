@@ -1,14 +1,12 @@
 /* Tailwind directives */
-@import "tailwindcss";
-@plugin "@tailwindcss/forms";
-
-@theme {
-  --font-sans: "Sofia Sans Variable", sans-serif;
-}
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --font-display: 'Sofia Sans Variable', 'sans-serif';
+
   --color-transparent: transparent;
   --color-current: currentColor;
   --color-white: #ffffff;
@@ -46,20 +44,7 @@
   --color-info-dark: #f2ae2a;
 }
 
-html {
-  @apply font-normal;
-  @apply tracking-wide;
-  @apply bg-slate-100;
-}
-
-html:has(body.dark) {
-  @apply bg-zinc-900;
-}
-
-body {
-  @apply text-slate-900;
-}
-
-body.dark {
-  @apply text-zinc-200;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
 }

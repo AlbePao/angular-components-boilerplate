@@ -1,9 +1,9 @@
 a.link {
-  @apply tw-text-black;
-  @apply tw-underline;
+  @apply text-black;
+  @apply underline;
 }
 
 a.link:hover {
-  @apply tw-underline;
-  @apply tw-text-primary;
+  @apply underline;
+  @apply text-primary;
 }
