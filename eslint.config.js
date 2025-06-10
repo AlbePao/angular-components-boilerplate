@@ -21,6 +21,11 @@ export default tseslint.config(
       },
     },
     rules: {
+      '@angular-eslint/sort-lifecycle-methods': 'error',
+      '@angular-eslint/no-async-lifecycle-method': 'error',
+      '@angular-eslint/no-lifecycle-call': 'error',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+      '@angular-eslint/prefer-output-readonly': 'warn',
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -67,6 +72,7 @@ export default tseslint.config(
         },
       ],
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   {
