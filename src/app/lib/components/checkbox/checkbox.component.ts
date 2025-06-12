@@ -1,0 +1,214 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ENTER } from '@angular/cdk/keycodes';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  inject,
+} from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
+import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
+import { injectDestroy } from '@lib/utils/inject-destroy';
+import { filter, fromEvent, merge, takeUntil } from 'rxjs';
+
+let nextUniqueId = 0;
+
+@Component({
+  selector: 'app-checkbox',
+  standalone: true,
+  templateUrl: './checkbox.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideFocusableItem(CheckboxComponent), provideNgValueAccessor(CheckboxComponent)],
+})
+export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, FocusableItem {
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly _destroy$ = injectDestroy();
+
+  private _hasInnerFocus = false;
+
+  @ViewChild('inputCheckbox') inputCheckbox?: ElementRef<HTMLInputElement>;
+
+  @Input() labelPosition: 'before' | 'after' = 'after';
+
+  @Input()
+  get id(): string {
+    return this._id;
+  }
+  set id(value: string) {
+    this._id = value;
+  }
+  private _id = `app-checkbox-${nextUniqueId++}`;
+
+  @Input()
+  get value(): T | null {
+    return this._value;
+  }
+  set value(value: T | null) {
+    this._value = value;
+  }
+  private _value: T | null = null;
+
+  @Input()
+  get checked(): boolean {
+    return this._checked;
+  }
+  set checked(checked: BooleanInput) {
+    const isChecked = coerceBooleanProperty(checked);
+
+    if (isChecked !== this.checked) {
+      this._checked = isChecked;
+      this._changeDetectorRef.markForCheck();
+    }
+  }
+  private _checked = false;
+
+  @Input()
+  get indeterminate(): boolean {
+    return this._indeterminate;
+  }
+  set indeterminate(indeterminate: BooleanInput) {
+    this._indeterminate = coerceBooleanProperty(indeterminate);
+    this._syncIndeterminate(this._indeterminate);
+  }
+  private _indeterminate = false;
+
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(disabled: BooleanInput) {
+    const disabledNewValue = coerceBooleanProperty(disabled);
+
+    if (disabledNewValue !== this.disabled) {
+      this._disabled = disabledNewValue;
+      this._changeDetectorRef.markForCheck();
+    }
+
+    if (this._hasInnerFocus) {
+      this._hasInnerFocus = false;
+      this.elementBlur.emit();
+    }
+  }
+  private _disabled = false;
+
+  @Output() readonly valueChange = new EventEmitter<boolean | null>();
+  @Output() readonly elementFocus = new EventEmitter<void>();
+  @Output() readonly elementBlur = new EventEmitter<void>();
+
+  @HostBinding('class')
+  get classes(): string {
+    const flexRowClass = this.labelPosition === 'after' ? 'flex-row' : 'flex-row-reverse';
+    const disabledClass = this.disabled ? 'opacity-50' : 'cursor-pointer';
+
+    return `inline-flex min-h-[40px] items-center gap-3 text-base/5 font-semibold ${flexRowClass} ${disabledClass}`;
+  }
+
+  @HostBinding('attr.appFocusable') appFocusable = true;
+
+  onChange = (value: boolean | null): void => {};
+  onTouched = (): void => {};
+
+  required = true;
+  touched = false;
+  readonly shouldPreventNextItemFocus = true;
+
+  get hostElement(): HTMLElement {
+    return this._elementRef.nativeElement;
+  }
+
+  ngOnInit(): void {
+    merge(
+      fromEvent<KeyboardEvent>(this.hostElement, 'keydown').pipe(filter(({ keyCode }) => keyCode === ENTER)),
+      fromEvent<PointerEvent>(this.hostElement, 'click').pipe(
+        filter(({ target }) => {
+          // If user clicks on checkbox, this observable (which is bound to host element) is triggered twice, so
+          // we must prevent its emission and consequent double toggle by checking if user has clicked on checkbox
+          const inputCheckbox = this.inputCheckbox?.nativeElement;
+          const clickTarget = target as HTMLElement;
+          const isNotOrigin = clickTarget !== inputCheckbox;
+
+          return isNotOrigin;
+        }),
+      ),
+    )
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(() => {
+        this.toggleChange();
+      });
+  }
+
+  focusItem(): void {
+    if (!this.disabled && !!this.inputCheckbox) {
+      this.inputCheckbox.nativeElement.focus();
+    }
+  }
+
+  protected changeInnerFocus(isFocused: boolean): void {
+    if (isFocused !== this._hasInnerFocus) {
+      this._hasInnerFocus = isFocused;
+
+      if (this._hasInnerFocus) {
+        this.elementFocus.emit();
+      } else {
+        this.markAsTouched();
+        this.elementBlur.emit();
+      }
+    }
+  }
+
+  writeValue(value: boolean | null): void {
+    this.checked = value;
+  }
+
+  registerOnChange(fn: (value: boolean | null) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  markAsTouched(): void {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
+  }
+
+  setDisabledState(disabled: boolean): void {
+    this.disabled = disabled;
+  }
+
+  onChangeEvent(event: Event): void {
+    event.stopPropagation();
+    this.toggleChange();
+  }
+
+  toggleChange(): void {
+    this.markAsTouched();
+
+    if (!this.disabled) {
+      this.checked = !this.checked;
+      this.focusItem();
+      this.onChange(this.checked);
+      this.valueChange.emit(this.checked);
+    }
+  }
+
+  private _syncIndeterminate(value: boolean): void {
+    const nativeCheckbox = this.inputCheckbox;
+
+    if (nativeCheckbox) {
+      nativeCheckbox.nativeElement.indeterminate = value;
+    }
+  }
+}
