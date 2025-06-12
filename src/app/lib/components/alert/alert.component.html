@@ -1,0 +1,15 @@
+<div class="mr-3 flex empty:hidden" [ngClass]="iconColorClass">
+  <ng-content select="app-icon" />
+</div>
+
+<div class="flex-grow">
+  <ng-content />
+</div>
+
+@if (dismissable) {
+  <div class="-my-5 -mr-5 ml-3">
+    <button app-icon-button (click)="dismiss()" size="lg" class="h-16 w-16 p-5">
+      <app-icon>close</app-icon>
+    </button>
+  </div>
+}
