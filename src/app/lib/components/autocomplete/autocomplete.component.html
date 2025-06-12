@@ -1,0 +1,29 @@
+<ng-template>
+  @if (options.length > 0) {
+    <div class="border-gray-light block w-full overflow-auto rounded border bg-white" role="listbox" [id]="id">
+      @for (option of filteredOptions; track option.value; let index = $index) {
+        <div
+          role="option"
+          [attr.aria-selected]="optionIndex === index"
+          class="border-b-gray-light hover:bg-gray-lighter flex h-12 cursor-pointer items-center border-b px-4 uppercase select-none last:border-b-0"
+          [ngClass]="{
+            'bg-gray-lighter': optionIndex === index,
+            'pointer-events-none opacity-50': option.disabled,
+          }"
+          (click)="selectOption(option)"
+          (keydown.enter)="selectOption(option)"
+          [tabindex]="option.disabled ? -1 : 0"
+        >
+          @if (option.icon) {
+            <app-icon>{{ option.icon }}</app-icon>
+          }
+          <span class="text-sm font-normal">
+            {{ option.label }}
+          </span>
+        </div>
+      } @empty {
+        <div class="box-border block p-4 text-sm font-normal text-black select-none">Nessun risultato trovato</div>
+      }
+    </div>
+  }
+</ng-template>
