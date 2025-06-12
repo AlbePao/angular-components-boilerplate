@@ -1,0 +1,60 @@
+<ng-template>
+  <div
+    class="border-gray inline-flex max-w-[280px] min-w-[180px] flex-col rounded border border-solid bg-white py-2 shadow-sm"
+    cdkMenu
+  >
+    @for (item of items; track $index) {
+      @if (!!item.children && !item.hide) {
+        <button
+          type="button"
+          class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded px-2 text-sm font-normal text-black no-underline enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
+          [ngClass]="getMenuItemTextColor(item.color)"
+          cdkMenuItem
+          [cdkMenuTriggerFor]="menuComponent.menu"
+          [cdkMenuItemDisabled]="item.disabled"
+          [disabled]="item.disabled"
+        >
+          @if (!!item.icon) {
+            <app-icon class="icon-16 mr-2">{{ item.icon }}</app-icon>
+          }
+          {{ item.label }}
+          <app-icon class="ml-auto">arrow_right</app-icon>
+        </button>
+        <app-menu #menuComponent [items]="item.children" />
+      }
+      @if (!!item.action && !item.hide) {
+        <button
+          type="button"
+          (click)="$event.stopPropagation(); dispatchAction(item.action)"
+          class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded px-2 text-sm font-normal no-underline enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
+          [ngClass]="getMenuItemTextColor(item.color)"
+          cdkMenuItem
+          [cdkMenuItemDisabled]="item.disabled"
+          [disabled]="item.disabled"
+        >
+          @if (!!item.icon) {
+            <app-icon class="icon-16 mr-2">{{ item.icon }}</app-icon>
+          }
+          {{ item.label }}
+        </button>
+      }
+      @if (!!item.link && !item.hide) {
+        <a
+          [routerLink]="item.link"
+          class="mx-2 flex h-8 items-center rounded px-2 text-sm font-normal text-black no-underline"
+          [ngClass]="getAnchorTagClasses(item)"
+          cdkMenuItem
+          [cdkMenuItemDisabled]="item.disabled"
+        >
+          @if (!!item.icon) {
+            <app-icon class="icon-16 mr-2">{{ item.icon }}</app-icon>
+          }
+          {{ item.label }}
+        </a>
+      }
+      @if (item.divider) {
+        <div class="bg-gray my-2 h-px border-0"></div>
+      }
+    }
+  </div>
+</ng-template>
