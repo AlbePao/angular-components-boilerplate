@@ -1,0 +1,46 @@
+<div
+  class="flex items-center justify-between gap-4"
+  [ngClass]="{
+    'flex-row': labelPosition === 'before',
+    'flex-row-reverse': labelPosition === 'after',
+  }"
+>
+  <div class="cursor-pointer text-base font-normal text-black empty:hidden dark:text-white">
+    <ng-content />
+  </div>
+  <div
+    class="border-gray focus:border-primary-light focus:ring-primary/40 box-border flex min-h-[40px] rounded border bg-white p-1 outline-none select-none focus:ring-4 focus:ring-offset-0"
+    [tabindex]="disabled ? -1 : 0"
+    (focus)="changeInnerFocus(true)"
+    (blur)="changeInnerFocus(false)"
+    #appToggle
+  >
+    @for (option of options; track option.value) {
+      <label
+        class="h-auto w-full rounded px-2 text-center text-sm font-bold whitespace-nowrap text-black uppercase"
+        [ngClass]="{
+          'bg-primary text-white': option.value === value,
+          'pointer-events-none cursor-not-allowed opacity-50': option.disabled,
+          'cursor-pointer': !option.disabled,
+        }"
+      >
+        <input
+          type="radio"
+          class="hidden"
+          [value]="option.value"
+          [checked]="option.value === value"
+          [disabled]="option.disabled"
+          (change)="setValue(option.value)"
+        />
+        <div class="flex h-full flex-row items-center justify-center gap-2">
+          @if (!!option.icon) {
+            <app-icon class="icon-18">{{ option.icon }}</app-icon>
+          }
+          @if (!!option.label) {
+            {{ option.label }}
+          }
+        </div>
+      </label>
+    }
+  </div>
+</div>
