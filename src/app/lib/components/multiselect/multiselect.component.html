@@ -1,0 +1,32 @@
+<ng-template>
+  <div class="border-gray-light flex w-full flex-col overflow-auto rounded border bg-white" role="listbox" [id]="id">
+    @for (option of options; track index; let index = $index) {
+      <app-checkbox
+        (valueChange)="toggleSelection(option, index)"
+        [checked]="selection.isSelected(option)"
+        labelPosition="before"
+        role="option"
+        [attr.aria-selected]="optionIndex === index"
+        class="hover:bg-gray-lighter h-12 w-full items-center px-4 select-none"
+        [ngClass]="{
+          'bg-gray-lighter': optionIndex === index,
+          'pointer-events-none opacity-50': checkIfDisabled(option),
+        }"
+      >
+        <div class="mr-auto flex w-full items-center gap-3">
+          @if (option.parent && option.parent >= 0) {
+            <div class="h-10 w-6"></div>
+          }
+          @if (option.icon) {
+            <app-icon>{{ option.icon }}</app-icon>
+          }
+          <span class="text-sm font-normal uppercase">
+            {{ option.label }}
+          </span>
+        </div>
+      </app-checkbox>
+    } @empty {
+      <div class="box-border block p-4 text-sm font-normal text-black select-none">Nessuna opzione presente</div>
+    }
+  </div>
+</ng-template>
