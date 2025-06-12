@@ -1,0 +1,273 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import {
+  AfterContentInit,
+  ChangeDetectorRef,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  InjectionToken,
+  Input,
+  Output,
+  QueryList,
+  forwardRef,
+  inject,
+} from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
+import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
+import { injectDestroy } from '@lib/utils/inject-destroy';
+import { Subject, merge, startWith, switchMap, takeUntil } from 'rxjs';
+import { APP_RADIO, RadioBase } from './radio-base';
+
+let nextUniqueId = 0;
+
+export const APP_RADIO_GROUP = new InjectionToken<RadioGroupDirective>('RadioGroupDirective');
+
+@Directive({
+  selector: 'app-radio-group',
+  standalone: true,
+  providers: [
+    provideFocusableItem(RadioGroupDirective),
+    provideNgValueAccessor(RadioGroupDirective),
+    {
+      provide: APP_RADIO_GROUP,
+      useExisting: RadioGroupDirective,
+    },
+  ],
+})
+export class RadioGroupDirective implements ControlValueAccessor, FocusableItem, AfterContentInit {
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly _destroy$ = injectDestroy();
+
+  private _focusableRadios: RadioBase[] = [];
+  private _focusableRadios$ = new Subject<RadioBase[]>();
+
+  /** Whether the `value` has been set to its initial value. */
+  private _isInitialized = false;
+
+  // Child radio buttons
+  @ContentChildren(forwardRef(() => APP_RADIO), { descendants: true })
+  radioButtons = new QueryList<RadioBase>();
+
+  @Input()
+  get id(): string {
+    return this._id;
+  }
+  set id(value: string) {
+    this._id = value;
+  }
+  private _id = `app-radio-group-${nextUniqueId++}`;
+
+  /** Name of the radio button group. All radio buttons inside this group will use this name. */
+  @Input()
+  get name(): string {
+    return this._name;
+  }
+  set name(value: string) {
+    this._name = value;
+    this._updateRadioButtonNames();
+  }
+  private _name = `app-radio-group-${nextUniqueId++}`;
+
+  /**
+   * Value for the radio-group. Should equal the value of the selected radio button if there is
+   * a corresponding radio button with a matching value. If there is not such a corresponding
+   * radio button, this value persists to be applied in case a new radio button is added with a
+   * matching value.
+   */
+  @Input()
+  get value(): unknown {
+    return this._value;
+  }
+  set value(newValue: unknown) {
+    if (this._value !== newValue) {
+      // Set this before proceeding to ensure no circular loop occurs with selection.
+      this._value = newValue;
+
+      this._updateSelectedRadioFromValue();
+      this._checkSelectedRadioButton();
+    }
+  }
+  private _value: unknown = null;
+
+  /**
+   * The currently selected radio button. If set to a new radio button, the radio group value
+   * will be updated to match the new selected button.
+   */
+  @Input()
+  get selected(): RadioBase | null {
+    return this._selected;
+  }
+  set selected(selected: RadioBase | null) {
+    this._selected = selected;
+    this.value = selected ? selected.value : null;
+    this._checkSelectedRadioButton();
+  }
+  private _selected: RadioBase | null = null;
+
+  /** Whether the radio group is disabled */
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: BooleanInput) {
+    this._disabled = coerceBooleanProperty(value);
+    this._markRadiosForCheck();
+  }
+  private _disabled = false;
+
+  /** Whether the radio group is required */
+  @Input()
+  get required(): boolean {
+    return this._required;
+  }
+  set required(value: BooleanInput) {
+    this._required = coerceBooleanProperty(value);
+    this._markRadiosForCheck();
+  }
+  private _required = false;
+
+  @Output() readonly valueChange = new EventEmitter<unknown>();
+  @Output() readonly elementFocus = new EventEmitter<void>();
+  @Output() readonly elementBlur = new EventEmitter<void>();
+
+  @HostBinding('class') classes = 'flex gap-4';
+  @HostBinding('attr.appFocusable') appFocusable = true;
+
+  onChange = (value: unknown): void => {};
+  onTouched = (): void => {};
+
+  touched = false;
+
+  get hostElement(): HTMLElement {
+    return this._elementRef.nativeElement;
+  }
+
+  ngAfterContentInit(): void {
+    // Mark this component as initialized in AfterContentInit because the initial value can
+    // possibly be set by NgModel on AppRadioGroup, and it is possible that the OnInit of the
+    // NgModel occurs *after* the OnInit of the AppRadioGroup.
+    this._isInitialized = true;
+
+    this._focusableRadios$
+      .pipe(
+        switchMap((radioButtons) => merge(...radioButtons.map((radioButton) => radioButton.focused))),
+        takeUntil(this._destroy$),
+      )
+      .subscribe(() => {
+        this.elementFocus.emit();
+      });
+
+    this._focusableRadios$
+      .pipe(
+        switchMap((radioButtons) => merge(...radioButtons.map((radioButton) => radioButton.blurred))),
+        takeUntil(this._destroy$),
+      )
+      .subscribe(() => {
+        const areAllRadiosNotFocused = this._focusableRadios.every((radioButton) => !radioButton.isFocused);
+
+        if (areAllRadiosNotFocused) {
+          this.elementBlur.emit();
+        }
+      });
+
+    // Clear the `selected` button when it's destroyed since the tabindex of the rest of the
+    // buttons depends on it. Note that we don't clear the `value`, because the radio button
+    // may be swapped out with a similar one and there are some internal apps that depend on
+    // that behavior.
+    this.radioButtons.changes.pipe(startWith(null), takeUntil(this._destroy$)).subscribe(() => {
+      this._setFocusableRadios();
+
+      if (this.selected && !this.radioButtons.find((radio) => radio === this.selected)) {
+        this._selected = null;
+      }
+    });
+  }
+
+  private _setFocusableRadios(): void {
+    this._focusableRadios = this.radioButtons.toArray();
+    this._focusableRadios$.next(this._focusableRadios);
+  }
+
+  focusItem(): void {
+    const { disabled, radioButtons, value } = this;
+
+    if (!disabled && !!radioButtons.length) {
+      if (value) {
+        radioButtons.find((radioButton) => radioButton.value === value)?.inputRadio?.nativeElement.focus();
+      } else {
+        radioButtons.first.inputRadio?.nativeElement.focus();
+      }
+    }
+  }
+
+  writeValue(value: unknown): void {
+    this.value = value;
+    this._changeDetectorRef.markForCheck();
+  }
+
+  registerOnChange(fn: (value: unknown) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  markAsTouched(): void {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
+  }
+
+  setDisabledState(disabled: boolean): void {
+    this.disabled = disabled;
+    this._changeDetectorRef.markForCheck();
+  }
+
+  emitChangeEvent(): void {
+    if (this._isInitialized) {
+      this.valueChange.emit(this._value);
+    }
+  }
+
+  private _updateSelectedRadioFromValue(): void {
+    // If the value already matches the selected radio, do nothing.
+    const isAlreadySelected = this._selected !== null && this._selected.value === this._value;
+
+    if (this.radioButtons && !isAlreadySelected) {
+      this._selected = null;
+      this.radioButtons.forEach((radio) => {
+        radio.checked = this.value === radio.value;
+        if (radio.checked) {
+          this._selected = radio;
+        }
+      });
+    }
+  }
+
+  private _checkSelectedRadioButton(): void {
+    if (this._selected && !this._selected.checked) {
+      this._selected.checked = true;
+    }
+  }
+
+  private _markRadiosForCheck(): void {
+    if (this.radioButtons) {
+      this.radioButtons.forEach((radio) => radio.markForCheck());
+    }
+  }
+
+  private _updateRadioButtonNames(): void {
+    if (this.radioButtons) {
+      this.radioButtons.forEach((radio) => {
+        radio.name = this.name;
+        radio.markForCheck();
+      });
+    }
+  }
+}
