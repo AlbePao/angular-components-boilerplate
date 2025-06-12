@@ -1,0 +1,59 @@
+<div class="flex flex-row flex-wrap items-center gap-8">
+  <div class="h-10 text-base/10 font-semibold text-black">
+    <span class="font-bold">{{ paginationRange.rangeStart }}</span> di
+    <span class="font-bold"> {{ paginationRange.rangeEnd }}</span> su
+    <span class="font-bold"> {{ paginationRange.length }}</span> totali
+  </div>
+  <div class="ml-auto flex flex-row gap-4">
+    <label for="pageSize" class="h-10 cursor-pointer text-base/10 font-semibold whitespace-nowrap text-black">
+      Elementi per pagina
+    </label>
+    <app-form-field hideBottom>
+      <select id="pageSize" appSelect class="h-10" [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">
+        @for (option of pageSizeOptions; track option) {
+          <option [value]="option" [selected]="option === pageSize">
+            {{ option }}
+          </option>
+        }
+      </select>
+    </app-form-field>
+  </div>
+  @if (pageCounter.length > 1) {
+    <div class="flex flex-row flex-wrap gap-4">
+      <button
+        class="border-gray text-gray-darker focus:border-primary flex h-10 w-10 items-center justify-center rounded border border-solid bg-white font-medium select-none disabled:opacity-50"
+        (click)="setPage(currentPage - 1)"
+        [disabled]="currentPage <= 1"
+      >
+        <app-icon>chevron_left</app-icon>
+      </button>
+      @for (page of pageCounter; track page; let index = $index; let first = $first; let last = $last) {
+        @if (first || last || isPageInRange(index)) {
+          <button
+            (click)="setPage(page)"
+            class="focus:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded border border-solid font-medium select-none"
+            [ngClass]="{
+              'border-primary bg-primary-lighter font-bold text-black': page === currentPage,
+              'border-gray text-gray-darker bg-white font-medium': page !== currentPage,
+            }"
+          >
+            {{ page }}
+          </button>
+        } @else if (canShowEllipsis(index)) {
+          <span
+            class="border-gray text-gray-darker pointer-events-none flex h-10 w-10 cursor-none items-center justify-center rounded border border-solid bg-white font-medium select-none"
+          >
+            <app-icon>more_horiz</app-icon>
+          </span>
+        }
+      }
+      <button
+        class="border-gray text-gray-darker focus:border-primary flex h-10 w-10 items-center justify-center rounded border border-solid bg-white font-medium select-none disabled:opacity-50"
+        (click)="setPage(currentPage + 1)"
+        [disabled]="currentPage >= pageCounter.length"
+      >
+        <app-icon>chevron_right</app-icon>
+      </button>
+    </div>
+  }
+</div>
