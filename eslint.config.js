@@ -8,8 +8,8 @@ export default tseslint.config(
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
       ...angular.configs.tsRecommended,
       eslintPluginPrettierRecommended,
     ],
@@ -72,7 +72,17 @@ export default tseslint.config(
         },
       ],
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/unbound-method': [
+        'error',
+        {
+          ignoreStatic: true,
+        },
+      ],
+      'no-unused-expressions': 'error',
+      'sort-imports': 'off',
+      eqeqeq: 'error',
+      curly: 'error',
     },
   },
   {
