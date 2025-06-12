@@ -1,0 +1,6 @@
+<button class="flex flex-row items-center gap-4 rounded" type="button" (click)="toggleFullscreen()">
+  <app-icon class="icon-20">{{ isFullscreenActive ? 'fullscreen_exit' : 'fullscreen' }}</app-icon>
+  @if (showLabel) {
+    {{ isFullscreenActive ? 'Esci da fullscreen' : 'Full screen' }}
+  }
+</button>
