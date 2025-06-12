@@ -1,1 +1,9 @@
-<router-outlet />
+@if (isAuthenticated$ | async) {
+  <app-main-layout>
+    <router-outlet />
+  </app-main-layout>
+} @else {
+  <app-welcome-layout>
+    <router-outlet />
+  </app-welcome-layout>
+}
