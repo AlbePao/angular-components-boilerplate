@@ -5,7 +5,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-display: 'Sofia Sans Variable', 'sans-serif';
+  --font-display: 'Poppins', sans-serif;
+  --font-icons: 'Material Icons';
+  --font-icons-outlined: 'Material Icons Outlined';
 
   --color-transparent: transparent;
   --color-current: currentColor;
