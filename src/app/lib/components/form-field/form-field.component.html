@@ -1,0 +1,61 @@
+<div class="relative flex">
+  @if (hasContentPrefix) {
+    <div
+      class="absolute inset-y-0 left-0 flex items-center"
+      [ngClass]="{ 'pointer-events-none opacity-50': isControlDisabled }"
+    >
+      <ng-content select="[appPrefix], [appIconPrefix]" />
+    </div>
+  }
+  @if (hasTextPrefix) {
+    <div
+      class="bg-gray-light absolute inset-y-0 left-0 flex items-center rounded-s border border-e-0 p-3 text-xs/5 font-semibold text-black select-none"
+      [ngClass]="{
+        'border-opacity-50 opacity-50': isControlDisabled,
+        'border-danger': isControlInvalid,
+        'border-gray-darker peer-placeholder-shown:border-gray peer-focus:border-primary': !isControlInvalid,
+      }"
+    >
+      <ng-content select="[appTextPrefix]" />
+    </div>
+  }
+  <ng-content />
+  <label
+    [attr.for]="id"
+    class="absolute top-2 left-1 z-10 origin-[0] -translate-y-2 scale-75 transform px-2 text-sm font-normal whitespace-pre duration-300 select-none peer-placeholder-shown:top-5 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:whitespace-normal peer-focus:top-2 peer-focus:-translate-y-2 peer-focus:scale-75 peer-focus:px-2"
+    [ngClass]="{
+      'text-opacity-50': isControlDisabled,
+      'text-danger peer-focus:text-danger': isControlInvalid,
+      'text-gray-darker peer-focus:text-primary': !isControlInvalid,
+      'ml-8': hasContentPrefix || hasTextPrefix,
+      'mr-8': hasContentSuffix || hasTextSuffix,
+    }"
+  >
+    <ng-content select="app-label, [appLabel]" />
+  </label>
+  @if (hasContentSuffix) {
+    <div
+      class="absolute inset-y-0 right-0 flex items-center"
+      [ngClass]="{ 'pointer-events-none opacity-50': isControlDisabled }"
+    >
+      <ng-content select="[appSuffix], [appIconSuffix]" />
+    </div>
+  }
+  @if (hasTextSuffix) {
+    <div
+      class="bg-gray-light absolute inset-y-0 right-0 flex items-center rounded-e border border-s-0 p-3 text-xs/5 font-semibold text-black select-none"
+      [ngClass]="{
+        'border-opacity-50 opacity-50': isControlDisabled,
+        'border-danger': isControlInvalid,
+        'border-gray-darker peer-placeholder-shown:border-gray peer-focus:border-primary': !isControlInvalid,
+      }"
+    >
+      <ng-content select="[appTextSuffix]" />
+    </div>
+  }
+</div>
+@if (!hideBottom) {
+  <div class="flex min-h-5 flex-col items-start py-1 text-[10px]/none">
+    <ng-content select="app-error, [appError]" />
+  </div>
+}
