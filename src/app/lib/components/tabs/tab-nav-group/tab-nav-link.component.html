@@ -1,0 +1,18 @@
+<div
+  class="flex items-end border-b-4 py-2"
+  tabindex="0"
+  [ngClass]="{
+    'border-b-primary': isActive,
+    'border-b-transparent': !isActive,
+  }"
+>
+  <span
+    class="cursor-pointer items-end py-2 text-lg/5 no-underline before:invisible before:block before:h-0 before:overflow-hidden before:font-bold before:content-[attr(title)] hover:font-medium hover:text-current"
+    [ngClass]="{
+      'font-medium text-black': isActive,
+      'text-gray-darker font-normal': !isActive,
+    }"
+  >
+    <ng-content />
+  </span>
+</div>

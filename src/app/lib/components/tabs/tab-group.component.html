@@ -1,0 +1,63 @@
+<ul
+  class="mb-0 flex list-none flex-row flex-wrap pl-0"
+  [ngClass]="{
+    'gap-3': appearance === 'labels',
+    'gap-1': appearance === 'pills',
+  }"
+>
+  <div class="mb-2 empty:hidden">
+    <ng-content select="[appTabsPrefixContent]" />
+  </div>
+  @for (tab of tabs; track tab.id) {
+    @if (appearance === 'labels') {
+      <li
+        class="flex items-end border-b-4 py-2"
+        (click)="selectTab(tab)"
+        (keydown.enter)="selectTab(tab)"
+        tabindex="0"
+        [ngClass]="{
+          'border-b-primary': tab.active,
+          'border-b-transparent': !tab.active,
+        }"
+      >
+        <span
+          class="cursor-pointer items-end py-2 text-lg/5 no-underline before:invisible before:block before:h-0 before:overflow-hidden before:font-bold before:content-[attr(title)] hover:font-medium hover:text-current"
+          [ngClass]="{
+            'font-medium text-black': tab.active,
+            'text-gray-darker font-normal': !tab.active,
+          }"
+        >
+          {{ tab.label }}
+        </span>
+      </li>
+    } @else if (appearance === 'pills') {
+      <li
+        class="border-gray flex cursor-pointer items-end rounded-full border px-4"
+        (click)="selectTab(tab)"
+        (keydown.enter)="selectTab(tab)"
+        tabindex="0"
+        [ngClass]="{
+          'bg-black': tab.active,
+          'bg-transparent': !tab.active,
+        }"
+      >
+        <span
+          class="py-2 text-sm font-medium"
+          [ngClass]="{
+            'text-white': tab.active,
+            'text-black': !tab.active,
+          }"
+        >
+          {{ tab.label }}
+        </span>
+      </li>
+    }
+  }
+  <div class="mb-2 ml-auto flex items-center empty:hidden">
+    <ng-content select="[appTabsSuffixContent]" />
+  </div>
+</ul>
+@if (appearance === 'labels') {
+  <hr class="text-gray mt-0" />
+}
+<ng-content />
