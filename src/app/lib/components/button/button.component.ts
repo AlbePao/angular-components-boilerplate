@@ -8,7 +8,7 @@ export type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'link' | 'd
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[app-button], a[app-button]',
   standalone: true,
-  templateUrl: './button-base.html',
+  templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent extends ButtonBase {

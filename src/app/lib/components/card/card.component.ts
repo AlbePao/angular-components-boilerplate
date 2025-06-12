@@ -5,7 +5,7 @@ import { Colors } from '@lib/types/colors';
 @Component({
   selector: 'app-card',
   standalone: true,
-  template: '<ng-content/>',
+  template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {

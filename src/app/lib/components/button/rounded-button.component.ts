@@ -11,7 +11,7 @@ export type RoundedButtonColor = Colors | 'base';
   selector: 'button[app-rounded-button], a[app-rounded-button]',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './button-base.html',
+  templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoundedButtonComponent extends ButtonBase {
