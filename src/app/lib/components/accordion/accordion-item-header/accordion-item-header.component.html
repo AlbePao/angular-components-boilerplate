@@ -1,0 +1,12 @@
+<div
+  class="flex h-16 items-center px-5"
+  (click)="isDisabled ? null : accordionItem.toggle()"
+  (keydown.enter)="isDisabled ? null : accordionItem.toggle()"
+  [tabindex]="isDisabled ? -1 : 0"
+  [ngClass]="{ 'cursor-default opacity-50': isDisabled }"
+>
+  <div class="text-gray-darker text-sm font-semibold uppercase select-none empty:hidden">
+    <ng-content select="app-accordion-item-title" />
+  </div>
+  <app-icon class="icon-20 ml-auto">{{ isExpanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</app-icon>
+</div>
