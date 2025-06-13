@@ -7,7 +7,40 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "skipTests": true,
+          "type": "component",
+          "style": "none",
           "changeDetection": "OnPush"
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true,
+          "type": "directive"
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true,
+          "functional": true,
+          "typeSeparator": "."
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true,
+          "functional": true,
+          "typeSeparator": "."
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true,
+          "functional": true,
+          "typeSeparator": "."
+        },
+        "@schematics/angular:interface": {
+          "type": "interface"
+        },
+        "@schematics/angular:service": {
+          "skipTests": true,
+          "type": "service"
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true,
+          "typeSeparator": "."
         }
       },
       "root": "",
