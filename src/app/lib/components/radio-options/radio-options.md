@@ -23,7 +23,7 @@ The `<app-radio-options>` provides the same functionality as a native input radi
 
 ### `RadioOption<T>`
 
-Used to describe a single option. It extends [`Option` interface](../../../interfaces/option.md)
+Used to describe a single option. It extends [`Option` interface](../../../types/option.md)
 
 - `value` value of the option
 - `label` label of the option

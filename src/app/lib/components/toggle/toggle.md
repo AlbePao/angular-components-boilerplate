@@ -30,7 +30,7 @@ The `<app-rounded-toggle>` component provides same functionality of `<app-toggle
 
 ### `ToggleOption<T>`
 
-Used to describe a single option. It extends [`Option` interface](../../../interfaces/option.md)
+Used to describe a single option. It extends [`Option` interface](../../../types/option.md)
 
 - `value` value of the option
 - `label` (optional) label of the option

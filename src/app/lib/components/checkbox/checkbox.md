@@ -52,7 +52,7 @@ export class ExampleComponent implements OnInit {
 ```html
 <!-- example.component.html -->
 <form [formGroup]="form">
-  <app-checkbox formControlName="inputCheckboxControlExample"> Checkbox Control Example </app-checkbox>
+  <app-checkbox formControlName="inputCheckboxControlExample">Checkbox Control Example</app-checkbox>
 </form>
 ```
 
@@ -78,5 +78,5 @@ export class ExampleComponent {
 
 ```html
 <!-- example.component.html -->
-<app-checkbox (valueChange)="logCheckboxChange($event)"> Checkbox Example </app-checkbox>
+<app-checkbox (valueChange)="logCheckboxChange($event)" data-test="inputCheckboxExample">Checkbox Example</app-checkbox>
 ```

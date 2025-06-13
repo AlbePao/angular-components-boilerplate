@@ -131,7 +131,7 @@ export class ExampleComponent implements OnInit {
     </button>
     <app-autocomplete #autocompleteExample="appAutocomplete" [options]="autocompleteOptions" />
     @if (form.controls.autocompleteControlExample | showControlError: 'autocompleteInputInvalid') {
-    <app-error> Inserisci un valore valido </app-error>
+    <app-error>Inserisci un valore valido</app-error>
     }
   </app-form-field>
 </form>
@@ -193,7 +193,7 @@ export class ExampleComponent {
   </button>
   <app-autocomplete #autocompleteExample="appAutocomplete" [options]="autocompleteOptions" />
   @if (autocompleteExampleModel | showControlError: 'autocompleteInputInvalid') {
-  <app-error> Inserisci un valore valido </app-error>
+  <app-error>Inserisci un valore valido</app-error>
   }
 </app-form-field>
 ```
