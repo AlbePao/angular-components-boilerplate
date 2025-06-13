@@ -221,15 +221,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   _listenToUpdatedOptions(): void {
     this.appAutocomplete.optionsUpdated$.pipe(takeUntil(this._destroy$)).subscribe((options) => {
-      if (options.length === 1 && options[0]) {
-        // Set option value automatically if there is only one option
-        const { value, label, extra } = options[0];
-        this._inputValue = label;
-        this.onChange(value);
-        this.valueChange.emit(value);
-        this.extrasChange.emit(extra);
-        this.elementBlur.emit();
-      } else if (this.value) {
+      if (this.value) {
         // Sync updated autocomplete options with current value
         const optionValue = this._findOptionValue(this.value, 'value');
         this._inputValue = optionValue?.label ?? '';
