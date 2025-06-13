@@ -3,7 +3,6 @@ import { Colors } from '@lib/types/colors';
 
 @Component({
   selector: 'app-progress-bar',
-  standalone: true,
   templateUrl: './progress-bar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

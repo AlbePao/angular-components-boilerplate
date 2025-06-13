@@ -13,7 +13,6 @@ import { IconComponent } from '@lib/components/icon';
 
 @Component({
   selector: 'app-chip',
-  standalone: true,
   imports: [ButtonModule, IconComponent],
   templateUrl: './chip.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -9,7 +9,6 @@ import { takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'app-toast',
-  standalone: true,
   imports: [ButtonModule, IconComponent, TranslatePipe],
   templateUrl: './toast.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

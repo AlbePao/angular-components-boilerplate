@@ -4,7 +4,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main-layout',
-  standalone: true,
   imports: [SidebarComponent, HeaderComponent],
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css'],

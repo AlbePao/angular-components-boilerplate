@@ -4,7 +4,6 @@ export const APP_SUFFIX = new InjectionToken<SuffixDirective>('AppSuffix');
 
 @Directive({
   selector: '[appSuffix], [appIconSuffix], [appTextSuffix]',
-  standalone: true,
   providers: [{ provide: APP_SUFFIX, useExisting: SuffixDirective }],
 })
 export class SuffixDirective {

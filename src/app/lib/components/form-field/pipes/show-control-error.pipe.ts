@@ -6,7 +6,6 @@ import { ControlErrors } from './control-errors';
 @Pipe({
   name: 'showControlError',
   pure: false,
-  standalone: true,
 })
 export class ShowControlErrorPipe implements PipeTransform {
   transform(control: AbstractControl | NgModel, errorTypes: ControlErrors | ControlErrors[]): boolean {

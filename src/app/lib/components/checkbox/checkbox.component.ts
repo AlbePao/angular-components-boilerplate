@@ -23,7 +23,6 @@ let nextUniqueId = 0;
 
 @Component({
   selector: 'app-checkbox',
-  standalone: true,
   templateUrl: './checkbox.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(CheckboxComponent), provideNgValueAccessor(CheckboxComponent)],

@@ -7,7 +7,6 @@ let nextUniqueId = 0;
 
 @Directive({
   selector: '[appFocus]',
-  standalone: true,
   providers: [provideFocusableItem(FocusTriggerDirective)],
 })
 export class FocusTriggerDirective implements FocusableItem, OnInit {

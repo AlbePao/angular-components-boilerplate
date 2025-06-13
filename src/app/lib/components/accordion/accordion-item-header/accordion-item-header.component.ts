@@ -4,7 +4,6 @@ import { IconComponent } from '@lib/components/icon';
 
 @Component({
   selector: 'app-accordion-item-header',
-  standalone: true,
   imports: [IconComponent],
   templateUrl: './accordion-item-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

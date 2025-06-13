@@ -30,7 +30,6 @@ const ELLIPSIS_RANGE = 3;
 
 @Component({
   selector: 'app-paginator',
-  standalone: true,
   imports: [IconComponent, FormsModule, FormFieldModule, SelectDirective, TranslatePipe],
   templateUrl: './paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

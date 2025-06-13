@@ -21,7 +21,6 @@ export const APP_TAB_GROUP = new InjectionToken<TabGroupComponent>('TabGroupComp
 
 @Component({
   selector: 'app-tab-group',
-  standalone: true,
   imports: [TranslatePipe],
   templateUrl: './tab-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,7 +5,6 @@ import { DialogRef } from './dialog-ref';
 
 @Component({
   selector: 'app-dialog',
-  standalone: true,
   imports: [ButtonModule, IconComponent],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css'],

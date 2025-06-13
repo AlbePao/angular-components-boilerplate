@@ -8,7 +8,6 @@ import { AlertPopupRef } from './alert-popup-ref';
 
 @Component({
   selector: 'app-alert-popup',
-  standalone: true,
   imports: [IconComponent, TranslatePipe],
   templateUrl: './alert-popup.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

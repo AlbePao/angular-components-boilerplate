@@ -37,7 +37,6 @@ const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];
 
 @Directive({
   selector: 'input[appMultiselect]',
-  standalone: true,
   providers: [provideFocusableItem(MultiselectTriggerDirective), provideNgValueAccessor(MultiselectTriggerDirective)],
 })
 export class MultiselectTriggerDirective<T> implements ControlValueAccessor, FocusableItem, OnInit {

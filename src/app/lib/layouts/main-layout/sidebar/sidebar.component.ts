@@ -14,7 +14,6 @@ interface SidebarMenuOptions {
 
 @Component({
   selector: 'app-sidebar',
-  standalone: true,
   imports: [RouterModule, ButtonModule, IconComponent, ToggleThemeComponent, ToggleFullscreenComponent],
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

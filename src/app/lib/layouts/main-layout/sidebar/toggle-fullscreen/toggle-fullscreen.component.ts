@@ -4,7 +4,6 @@ import { IconComponent } from '@lib/components/icon';
 
 @Component({
   selector: 'app-toggle-fullscreen',
-  standalone: true,
   imports: [IconComponent],
   templateUrl: './toggle-fullscreen.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

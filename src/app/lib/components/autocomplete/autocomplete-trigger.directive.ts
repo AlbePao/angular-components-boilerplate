@@ -44,7 +44,6 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
 
 @Directive({
   selector: 'input[appAutocomplete]',
-  standalone: true,
   providers: [
     provideFocusableItem(AutocompleteTriggerDirective),
     provideNgValueAccessor(AutocompleteTriggerDirective),

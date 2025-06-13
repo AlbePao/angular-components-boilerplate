@@ -4,7 +4,6 @@ import { Colors } from '@lib/types/colors';
 // TODO: add app-card-header, app-card-content and app-card-actions directives and related styles
 @Component({
   selector: 'app-card',
-  standalone: true,
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

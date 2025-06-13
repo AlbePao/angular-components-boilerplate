@@ -8,7 +8,6 @@ import { AuthService } from '@lib/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [RouterModule, ButtonModule, IconComponent, MenuModule, AsyncPipe],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -6,7 +6,6 @@ import { AppTheme } from '@lib/types/theme';
 
 @Component({
   selector: 'app-toggle-theme',
-  standalone: true,
   imports: [AsyncPipe, IconComponent],
   templateUrl: './toggle-theme.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

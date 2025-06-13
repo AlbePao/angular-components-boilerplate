@@ -8,7 +8,6 @@ let nextUniqueId = 0;
   // We disable the eslint rule because of https://angular.io/guide/styleguide#style-05-03
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[app-tab-nav-link], [appTabNavLink]',
-  standalone: true,
   templateUrl: './tab-nav-link.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [RouterLinkActive],

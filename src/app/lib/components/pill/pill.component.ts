@@ -7,7 +7,6 @@ export type PillAppearance = 'fill' | 'outline';
 
 @Component({
   selector: 'app-pill',
-  standalone: true,
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

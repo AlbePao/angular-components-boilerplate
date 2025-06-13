@@ -21,7 +21,6 @@ import { APP_SUFFIX, SuffixDirective } from './directives/suffix.directive';
 
 @Component({
   selector: 'app-form-field',
-  standalone: true,
   templateUrl: './form-field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

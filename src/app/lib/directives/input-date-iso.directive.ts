@@ -5,7 +5,6 @@ import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 // Based on https://github.com/shhdharmen/angular-date-input-directive
 @Directive({
   selector: 'input[type=date][formControlName], input[type=date][formControl], input[type=date][ngModel]',
-  standalone: true,
   providers: [provideNgValueAccessor(InputDateIsoDirective)],
 })
 export class InputDateIsoDirective implements ControlValueAccessor {

@@ -49,7 +49,6 @@ function optionsFlattener<T>(options: MultiselectOption<T>[], parentIndex?: numb
 
 @Component({
   selector: 'app-multiselect',
-  standalone: true,
   imports: [IconComponent, TranslatePipe, CheckboxComponent],
   exportAs: 'appMultiselect',
   templateUrl: './multiselect.component.html',

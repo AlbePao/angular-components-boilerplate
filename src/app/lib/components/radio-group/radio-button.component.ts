@@ -3,7 +3,6 @@ import { APP_RADIO, RadioBase } from './radio-base';
 
 @Component({
   selector: 'app-radio-button',
-  standalone: true,
   templateUrl: './radio-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

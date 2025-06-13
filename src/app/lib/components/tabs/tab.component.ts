@@ -14,7 +14,6 @@ let nextUniqueId = 0;
 
 @Component({
   selector: 'app-tab',
-  standalone: true,
   templateUrl: './tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

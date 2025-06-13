@@ -7,7 +7,6 @@ export type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'link' | 'd
   // We disable the eslint rule because of https://angular.io/guide/styleguide#style-05-03
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[app-button], a[app-button]',
-  standalone: true,
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

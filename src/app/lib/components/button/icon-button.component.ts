@@ -7,7 +7,6 @@ export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
   // We disable the eslint rule because of https://angular.io/guide/styleguide#style-05-03
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[app-icon-button], a[app-icon-button]',
-  standalone: true,
   template: `<ng-content select="app-icon" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -20,7 +20,6 @@ const NO_ITEMS_INDEX = -1;
 
 @Directive({
   selector: 'form[focusHandler]',
-  standalone: true,
 })
 export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   private readonly _document = inject(DOCUMENT);

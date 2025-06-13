@@ -161,7 +161,6 @@ let nextUniqueId = 0;
 
 @Component({
   selector: 'app-table',
-  standalone: true,
   imports: [
     CdkTableModule,
     RouterModule,

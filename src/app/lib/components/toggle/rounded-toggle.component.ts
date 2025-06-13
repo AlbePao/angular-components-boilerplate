@@ -10,7 +10,6 @@ export type RoundedToggleSize = 'md' | 'lg';
 
 @Component({
   selector: 'app-rounded-toggle',
-  standalone: true,
   imports: [IconComponent, TranslatePipe],
   templateUrl: './rounded-toggle.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

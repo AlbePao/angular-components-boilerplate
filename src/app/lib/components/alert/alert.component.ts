@@ -15,7 +15,6 @@ import { Colors } from '@lib/types/colors';
 
 @Component({
   selector: 'app-alert',
-  standalone: true,
   imports: [ButtonModule, IconComponent],
   templateUrl: './alert.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

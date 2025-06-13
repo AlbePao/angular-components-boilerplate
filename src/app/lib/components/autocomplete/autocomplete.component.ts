@@ -19,7 +19,6 @@ let uniqueAutocompleteIdCounter = 0;
 
 @Component({
   selector: 'app-autocomplete',
-  standalone: true,
   imports: [TranslatePipe, IconComponent],
   exportAs: 'appAutocomplete',
   templateUrl: './autocomplete.component.html',

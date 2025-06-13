@@ -3,7 +3,6 @@ import { Directive } from '@angular/core';
 
 @Directive({
   selector: 'app-accordion',
-  standalone: true,
   host: {
     '[class]': 'classes',
   },

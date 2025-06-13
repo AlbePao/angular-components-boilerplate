@@ -8,7 +8,6 @@ export type RoundedButtonColor = Colors | 'base';
   // We disable the eslint rule because of https://angular.io/guide/styleguide#style-05-03
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[app-rounded-button], a[app-rounded-button]',
-  standalone: true,
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

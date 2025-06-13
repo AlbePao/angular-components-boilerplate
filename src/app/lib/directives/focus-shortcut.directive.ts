@@ -5,7 +5,6 @@ import { takeUntil } from 'rxjs';
 
 @Directive({
   selector: '[appFocusShortcut]',
-  standalone: true,
 })
 export class FocusShortcutDirective implements OnInit {
   private readonly _destroy$ = injectDestroy();

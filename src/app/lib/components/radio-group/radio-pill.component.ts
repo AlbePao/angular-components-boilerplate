@@ -7,7 +7,6 @@ type RadioPillIcon = 'radio_button_unchecked' | 'radio_button_checked' | 'check_
 
 @Component({
   selector: 'app-radio-pill',
-  standalone: true,
   imports: [IconComponent],
   templateUrl: './radio-pill.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

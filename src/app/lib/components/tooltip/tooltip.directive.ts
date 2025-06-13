@@ -28,7 +28,6 @@ export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
 
 @Directive({
   selector: '[appTooltip]',
-  standalone: true,
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   private readonly _overlay = inject(Overlay);

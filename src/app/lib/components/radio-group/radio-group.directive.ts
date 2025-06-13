@@ -27,7 +27,6 @@ export const APP_RADIO_GROUP = new InjectionToken<RadioGroupDirective>('RadioGro
 
 @Directive({
   selector: 'app-radio-group',
-  standalone: true,
   providers: [
     provideFocusableItem(RadioGroupDirective),
     provideNgValueAccessor(RadioGroupDirective),

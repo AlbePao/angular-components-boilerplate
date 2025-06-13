@@ -19,7 +19,6 @@ let nextUniqueId = 0;
 
 @Directive({
   selector: 'select[appSelect]',
-  standalone: true,
   providers: [provideFocusableItem(SelectDirective)],
 })
 export class SelectDirective implements FocusableItem, OnInit, DoCheck {

@@ -6,7 +6,6 @@ import { take } from 'rxjs';
 
 @Directive({
   selector: '[appIfUserRoles]',
-  standalone: true,
   hostDirectives: [
     {
       directive: NgIf, // TODO: convert into a pipe

@@ -90,7 +90,6 @@ const INPUT_NUMBER_ALLOWED_KEYS = [
 
 @Directive({
   selector: 'input[appInput], textarea[appInput]',
-  standalone: true,
   providers: [provideFocusableItem(InputDirective)],
 })
 export class InputDirective implements FocusableItem, OnInit, DoCheck {

@@ -3,7 +3,6 @@ import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[appMenuTriggerFor]',
-  standalone: true,
   hostDirectives: [
     {
       directive: CdkMenuTrigger,

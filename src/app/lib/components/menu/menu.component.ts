@@ -42,7 +42,6 @@ export type MenuItem<T> = {
 
 @Component({
   selector: 'app-menu',
-  standalone: true,
   imports: [IconComponent, RouterLink, TranslatePipe, CdkMenuModule],
   templateUrl: './menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

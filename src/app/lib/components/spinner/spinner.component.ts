@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, numberAttribute
 
 @Component({
   selector: 'app-spinner',
-  standalone: true,
   templateUrl: './spinner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

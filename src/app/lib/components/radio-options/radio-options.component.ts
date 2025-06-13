@@ -25,7 +25,6 @@ let nextUniqueId = 0;
 
 @Component({
   selector: 'app-radio-options',
-  standalone: true,
   imports: [TranslatePipe],
   templateUrl: './radio-options.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

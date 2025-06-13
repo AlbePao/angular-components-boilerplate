@@ -10,7 +10,6 @@ export const APP_TAB_NAV_GROUP = new InjectionToken<TabNavGroupComponent>('TabNa
 
 @Component({
   selector: 'app-tab-nav-group',
-  standalone: true,
   templateUrl: './tab-nav-group.component.html',
   providers: [
     {

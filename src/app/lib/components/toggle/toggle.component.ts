@@ -8,7 +8,6 @@ import { ToggleBase } from './toggle-base';
 
 @Component({
   selector: 'app-toggle',
-  standalone: true,
   imports: [IconComponent, TranslatePipe],
   templateUrl: './toggle.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
