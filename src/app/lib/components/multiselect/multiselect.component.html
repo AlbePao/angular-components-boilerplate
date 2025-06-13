@@ -8,7 +8,7 @@
         role="option"
         [attr.aria-selected]="optionIndex === index"
         class="hover:bg-gray-lighter h-12 w-full items-center px-4 select-none"
-        [ngClass]="{
+        [class]="{
           'bg-gray-lighter': optionIndex === index,
           'pointer-events-none opacity-50': checkIfDisabled(option),
         }"

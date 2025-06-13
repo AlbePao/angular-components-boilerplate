@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -23,7 +22,6 @@ import { APP_SUFFIX, SuffixDirective } from './directives/suffix.directive';
 @Component({
   selector: 'app-form-field',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './form-field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

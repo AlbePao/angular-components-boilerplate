@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
 import { APP_TAB_NAV_GROUP } from './tab-nav-group.component';
@@ -10,7 +9,6 @@ let nextUniqueId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[app-tab-nav-link], [appTabNavLink]',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './tab-nav-link.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [RouterLinkActive],

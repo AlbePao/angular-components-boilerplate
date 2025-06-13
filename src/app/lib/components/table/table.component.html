@@ -52,7 +52,7 @@
         class="border-gray bg-gray-lighter/80 border-b border-solid px-2 font-normal whitespace-nowrap backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
         *cdkHeaderCellDef
         (click)="column.sortable ? toggleSort(column.key) : null"
-        [ngClass]="{
+        [class]="{
           'cursor-pointer': column.sortable,
           'border-r': column.divider,
         }"
@@ -73,7 +73,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           {{ row[column.key] | number: '1.3-3' }}
         </td>
@@ -82,7 +82,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           {{ row[column.key] | translate }}
         </td>
@@ -91,7 +91,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment, row[column.key])"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment, row[column.key])"
         >
           {{ row[column.key].text | translate }}
         </td>
@@ -100,7 +100,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           <div class="flex items-center gap-2">
             @if (!!row[column.key].icon) {
@@ -123,7 +123,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           {{ row[column.key] | date: 'dd.MM.yyyy' }}
         </td>
@@ -132,7 +132,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           <app-icon [color]="row[column.key].color" [appTooltip]="row[column.key].tooltip">
             {{ row[column.key].icon }}
@@ -143,7 +143,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           <a
             (click)="stopPropagation($event)"
@@ -158,7 +158,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           {{ row[column.key][0] | translate }}
           @if (row[column.key].length > 1) {
@@ -178,7 +178,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           @if (!!row[column.key]) {
             <app-pill
@@ -204,7 +204,7 @@
           cdk-cell
           *cdkCellDef="let row; let index = index"
         >
-          <div class="gap-2" [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)">
+          <div class="gap-2" [class]="getCellTextAlignmentClass(column.divider, column.alignment)">
             @for (pill of row[column.key]; track $index) {
               <app-pill
                 [color]="pill.color"
@@ -225,7 +225,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           {{ row[column.key] | currency: 'EUR' }}
         </td>
@@ -234,7 +234,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           @if (!!row[column.key].action) {
             <button
@@ -268,7 +268,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           @if (!!row[column.key].action) {
             <button
@@ -296,7 +296,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           @if (!!row[column.key].action) {
             <button
@@ -330,7 +330,7 @@
           class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 px-2 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
-          [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           @if (!!row[column.key]) {
             <button app-icon-button (click)="stopPropagation($event)" [appMenuTriggerFor]="tableMenu.menu">
@@ -399,6 +399,6 @@
     cdk-row
     *cdkRowDef="let row; columns: displayedColumns; let index = index"
     (click)="clickableRows ? dispatchRowData(row) : null"
-    [ngClass]="{ 'cursor-pointer': clickableRows }"
+    [class]="{ 'cursor-pointer': clickableRows }"
   ></tr>
 </table>

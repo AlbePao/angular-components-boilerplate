@@ -8,7 +8,7 @@
         <button
           type="button"
           class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded px-2 text-sm font-normal text-black no-underline enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
-          [ngClass]="getMenuItemTextColor(item.color)"
+          [class]="getMenuItemTextColor(item.color)"
           cdkMenuItem
           [cdkMenuTriggerFor]="menuComponent.menu"
           [cdkMenuItemDisabled]="item.disabled"
@@ -27,7 +27,7 @@
           type="button"
           (click)="$event.stopPropagation(); dispatchAction(item.action)"
           class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded px-2 text-sm font-normal no-underline enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
-          [ngClass]="getMenuItemTextColor(item.color)"
+          [class]="getMenuItemTextColor(item.color)"
           cdkMenuItem
           [cdkMenuItemDisabled]="item.disabled"
           [disabled]="item.disabled"
@@ -42,7 +42,7 @@
         <a
           [routerLink]="item.link"
           class="mx-2 flex h-8 items-center rounded px-2 text-sm font-normal text-black no-underline"
-          [ngClass]="getAnchorTagClasses(item)"
+          [class]="getAnchorTagClasses(item)"
           cdkMenuItem
           [cdkMenuItemDisabled]="item.disabled"
         >

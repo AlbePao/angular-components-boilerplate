@@ -1,14 +1,14 @@
 <!-- TODO: add overflow auto to content -->
 <div
   class="flex h-full flex-col bg-black text-white"
-  [ngClass]="{
+  [class]="{
     'w-64': isOpen,
     'w-20': !isOpen,
   }"
 >
   <div
     class="flex h-20 items-center"
-    [ngClass]="{
+    [class]="{
       'justify-start pl-5': isOpen,
       'justify-center': !isOpen,
     }"

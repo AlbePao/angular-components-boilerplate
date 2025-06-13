@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit, inject } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
@@ -11,7 +10,7 @@ import { takeUntil, timer } from 'rxjs';
 @Component({
   selector: 'app-toast',
   standalone: true,
-  imports: [CommonModule, ButtonModule, IconComponent, TranslatePipe],
+  imports: [ButtonModule, IconComponent, TranslatePipe],
   templateUrl: './toast.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

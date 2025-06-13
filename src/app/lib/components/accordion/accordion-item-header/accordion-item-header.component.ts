@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { AccordionItemComponent } from '@lib/components/accordion/accordion-item/accordion-item.component';
 import { IconComponent } from '@lib/components/icon';
@@ -6,7 +5,7 @@ import { IconComponent } from '@lib/components/icon';
 @Component({
   selector: 'app-accordion-item-header',
   standalone: true,
-  imports: [CommonModule, IconComponent],
+  imports: [IconComponent],
   templateUrl: './accordion-item-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

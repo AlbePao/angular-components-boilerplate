@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
-import { CommonModule } from '@angular/common';
+import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -163,7 +163,6 @@ let nextUniqueId = 0;
   selector: 'app-table',
   standalone: true,
   imports: [
-    CommonModule,
     CdkTableModule,
     RouterModule,
     PillComponent,
@@ -174,6 +173,9 @@ let nextUniqueId = 0;
     CheckboxComponent,
     RadioButtonComponent,
     TranslatePipe,
+    DecimalPipe,
+    CurrencyPipe,
+    DatePipe,
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
@@ -9,7 +8,7 @@ type RadioPillIcon = 'radio_button_unchecked' | 'radio_button_checked' | 'check_
 @Component({
   selector: 'app-radio-pill',
   standalone: true,
-  imports: [CommonModule, IconComponent],
+  imports: [IconComponent],
   templateUrl: './radio-pill.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

@@ -31,7 +31,7 @@
           <button
             (click)="setPage(page)"
             class="focus:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded border border-solid font-medium select-none"
-            [ngClass]="{
+            [class]="{
               'border-primary bg-primary-lighter font-bold text-black': page === currentPage,
               'border-gray text-gray-darker bg-white font-medium': page !== currentPage,
             }"

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
@@ -9,7 +9,7 @@ import { AuthService } from '@lib/services/auth.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, ButtonModule, IconComponent, MenuModule],
+  imports: [RouterModule, ButtonModule, IconComponent, MenuModule, AsyncPipe],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

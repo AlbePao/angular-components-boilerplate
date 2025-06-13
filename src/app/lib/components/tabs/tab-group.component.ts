@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -23,7 +22,7 @@ export const APP_TAB_GROUP = new InjectionToken<TabGroupComponent>('TabGroupComp
 @Component({
   selector: 'app-tab-group',
   standalone: true,
-  imports: [CommonModule, TranslatePipe],
+  imports: [TranslatePipe],
   templateUrl: './tab-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

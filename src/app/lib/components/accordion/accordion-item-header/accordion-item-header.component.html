@@ -3,7 +3,7 @@
   (click)="isDisabled ? null : accordionItem.toggle()"
   (keydown.enter)="isDisabled ? null : accordionItem.toggle()"
   [tabindex]="isDisabled ? -1 : 0"
-  [ngClass]="{ 'cursor-default opacity-50': isDisabled }"
+  [class]="{ 'cursor-default opacity-50': isDisabled }"
 >
   <div class="text-gray-darker text-sm font-semibold uppercase select-none empty:hidden">
     <ng-content select="app-accordion-item-title" />

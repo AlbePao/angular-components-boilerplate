@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
@@ -16,7 +15,7 @@ interface SidebarMenuOptions {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, ButtonModule, IconComponent, ToggleThemeComponent, ToggleFullscreenComponent],
+  imports: [RouterModule, ButtonModule, IconComponent, ToggleThemeComponent, ToggleFullscreenComponent],
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

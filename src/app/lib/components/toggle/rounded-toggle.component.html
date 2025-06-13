@@ -1,6 +1,6 @@
 <div
   class="bg-gray-lighter focus:border-primary-light focus:ring-primary/40 box-border flex rounded-full outline-none select-none focus:ring-4 focus:ring-offset-0"
-  [ngClass]="{
+  [class]="{
     'p-0.5': size === 'md',
     'p-1': size === 'lg',
   }"
@@ -12,7 +12,7 @@
   @for (option of options; track option.value) {
     <label
       class="w-full rounded-full text-center font-medium whitespace-nowrap text-black"
-      [ngClass]="{
+      [class]="{
         'bg-black text-white': option.value === value,
         'pointer-events-none cursor-not-allowed opacity-50': option.disabled,
         'cursor-pointer': !option.disabled,

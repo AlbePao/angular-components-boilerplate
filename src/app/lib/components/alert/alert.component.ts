@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +16,7 @@ import { Colors } from '@lib/types/colors';
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, ButtonModule, IconComponent],
+  imports: [ButtonModule, IconComponent],
   templateUrl: './alert.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

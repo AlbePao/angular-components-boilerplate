@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { IconComponent } from '@lib/components/icon';
@@ -12,7 +11,7 @@ export type RoundedToggleSize = 'md' | 'lg';
 @Component({
   selector: 'app-rounded-toggle',
   standalone: true,
-  imports: [CommonModule, IconComponent, TranslatePipe],
+  imports: [IconComponent, TranslatePipe],
   templateUrl: './rounded-toggle.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(RoundedToggleComponent), provideNgValueAccessor(RoundedToggleComponent)],

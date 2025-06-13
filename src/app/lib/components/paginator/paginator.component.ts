@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +31,7 @@ const ELLIPSIS_RANGE = 3;
 @Component({
   selector: 'app-paginator',
   standalone: true,
-  imports: [CommonModule, IconComponent, FormsModule, FormFieldModule, SelectDirective, TranslatePipe],
+  imports: [IconComponent, FormsModule, FormFieldModule, SelectDirective, TranslatePipe],
   templateUrl: './paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

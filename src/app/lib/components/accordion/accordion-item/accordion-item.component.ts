@@ -1,11 +1,9 @@
 import { CdkAccordionItem } from '@angular/cdk/accordion';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-accordion-item',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './accordion-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

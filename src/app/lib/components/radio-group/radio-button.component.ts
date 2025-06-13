@@ -1,11 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { APP_RADIO, RadioBase } from './radio-base';
 
 @Component({
   selector: 'app-radio-button',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './radio-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

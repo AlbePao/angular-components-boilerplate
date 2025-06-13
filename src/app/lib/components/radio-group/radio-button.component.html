@@ -1,6 +1,6 @@
 <div
   class="flex gap-4"
-  [ngClass]="{
+  [class]="{
     'flex-row': labelPosition === 'after',
     'flex-row-reverse': labelPosition === 'before',
     'opacity-50': disabled,
@@ -10,7 +10,7 @@
     <input
       #inputRadio
       class="border-gray-darker focus:border-primary-light focus:ring-primary/40 my-2 box-border block h-5 w-5 rounded-full focus:ring-4 focus:ring-offset-0"
-      [ngClass]="{ 'cursor-pointer': !disabled }"
+      [class]="{ 'cursor-pointer': !disabled }"
       type="radio"
       [id]="inputId"
       [checked]="checked"

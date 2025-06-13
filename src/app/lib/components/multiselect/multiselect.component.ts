@@ -1,5 +1,4 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -51,7 +50,7 @@ function optionsFlattener<T>(options: MultiselectOption<T>[], parentIndex?: numb
 @Component({
   selector: 'app-multiselect',
   standalone: true,
-  imports: [CommonModule, IconComponent, TranslatePipe, CheckboxComponent],
+  imports: [IconComponent, TranslatePipe, CheckboxComponent],
   exportAs: 'appMultiselect',
   templateUrl: './multiselect.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

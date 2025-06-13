@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 import { ButtonBase } from './button-base';
@@ -10,7 +9,6 @@ export type RoundedButtonColor = Colors | 'base';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[app-rounded-button], a[app-rounded-button]',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

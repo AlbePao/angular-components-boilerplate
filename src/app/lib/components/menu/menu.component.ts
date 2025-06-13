@@ -1,5 +1,4 @@
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
@@ -44,7 +43,7 @@ export type MenuItem<T> = {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, IconComponent, RouterLink, TranslatePipe, CdkMenuModule],
+  imports: [IconComponent, RouterLink, TranslatePipe, CdkMenuModule],
   templateUrl: './menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

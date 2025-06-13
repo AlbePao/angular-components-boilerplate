@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { IconComponent } from '@lib/components/icon';
@@ -10,7 +9,7 @@ import { ToggleBase } from './toggle-base';
 @Component({
   selector: 'app-toggle',
   standalone: true,
-  imports: [CommonModule, IconComponent, TranslatePipe],
+  imports: [IconComponent, TranslatePipe],
   templateUrl: './toggle.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(ToggleComponent), provideNgValueAccessor(ToggleComponent)],

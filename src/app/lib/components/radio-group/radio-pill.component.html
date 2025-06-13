@@ -15,7 +15,7 @@
 />
 <div
   class="peer-focus:border-primary-light peer-focus:ring-primary/40 box-border h-10 rounded-full px-3 peer-focus:ring-4 peer-focus:ring-offset-0"
-  [ngClass]="{
+  [class]="{
     'bg-primary-lighter text-primary-dark': checked && color === 'primary',
     'bg-secondary-lighter text-secondary-dark': checked && color === 'secondary',
     'bg-success-lighter text-success-dark': checked && color === 'success',
@@ -30,7 +30,7 @@
   <label
     [for]="inputId"
     class="flex h-10 items-center gap-1"
-    [ngClass]="{
+    [class]="{
       'flex-row': labelPosition === 'after',
       'flex-row-reverse': labelPosition === 'before',
       'cursor-pointer': !disabled,

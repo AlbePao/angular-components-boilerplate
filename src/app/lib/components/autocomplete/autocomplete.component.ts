@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -21,7 +20,7 @@ let uniqueAutocompleteIdCounter = 0;
 @Component({
   selector: 'app-autocomplete',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, IconComponent],
+  imports: [TranslatePipe, IconComponent],
   exportAs: 'appAutocomplete',
   templateUrl: './autocomplete.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

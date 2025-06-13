@@ -1,6 +1,6 @@
 <ul
   class="mb-0 flex list-none flex-row flex-wrap pl-0"
-  [ngClass]="{
+  [class]="{
     'gap-3': appearance === 'labels',
     'gap-1': appearance === 'pills',
   }"
@@ -15,14 +15,14 @@
         (click)="selectTab(tab)"
         (keydown.enter)="selectTab(tab)"
         tabindex="0"
-        [ngClass]="{
+        [class]="{
           'border-b-primary': tab.active,
           'border-b-transparent': !tab.active,
         }"
       >
         <span
           class="cursor-pointer items-end py-2 text-lg/5 no-underline before:invisible before:block before:h-0 before:overflow-hidden before:font-bold before:content-[attr(title)] hover:font-medium hover:text-current"
-          [ngClass]="{
+          [class]="{
             'font-medium text-black': tab.active,
             'text-gray-darker font-normal': !tab.active,
           }"
@@ -36,14 +36,14 @@
         (click)="selectTab(tab)"
         (keydown.enter)="selectTab(tab)"
         tabindex="0"
-        [ngClass]="{
+        [class]="{
           'bg-black': tab.active,
           'bg-transparent': !tab.active,
         }"
       >
         <span
           class="py-2 text-sm font-medium"
-          [ngClass]="{
+          [class]="{
             'text-white': tab.active,
             'text-black': !tab.active,
           }"
