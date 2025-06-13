@@ -23,6 +23,7 @@ import { MenuItem, MenuModule } from '@lib/components/menu';
 import { PillAppearance, PillComponent, PillSize } from '@lib/components/pill';
 import { Colors } from '@lib/types/colors';
 import { isArray, isNumber, isString } from '@lib/utils/value-checking';
+import { TranslatePipe } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import { CheckboxComponent } from '../checkbox';
 import { IconComponent } from '../icon';
@@ -172,6 +173,7 @@ let nextUniqueId = 0;
     TooltipDirective,
     CheckboxComponent,
     RadioButtonComponent,
+    TranslatePipe,
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

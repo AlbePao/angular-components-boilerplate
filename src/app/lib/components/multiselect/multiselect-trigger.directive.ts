@@ -29,6 +29,7 @@ import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 import { injectDestroy } from '@lib/utils/inject-destroy';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, filter, fromEvent, merge, of, take, takeUntil, tap } from 'rxjs';
 import { FlatMultiselectOption, MultiselectComponent } from './multiselect.component';
 
@@ -44,6 +45,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
   private readonly _viewContainerRef = inject(ViewContainerRef);
   private readonly _overlay = inject(Overlay);
   private readonly _document = inject(DOCUMENT);
+  private readonly _translateService = inject(TranslateService);
   private readonly _destroy$ = injectDestroy();
 
   private _overlayRef: OverlayRef | null = null;
@@ -191,7 +193,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
 
     this._value = value;
     this.appMultiselect.selectValues(selectedOptions);
-    this._inputValue = this._getOptionsLabel(selectedOptions);
+    this._inputValue = this._getOptionsTranslations(selectedOptions);
 
     if (!value) {
       this.appMultiselect.clearSelection();
@@ -237,7 +239,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
 
     if (!this.disabled) {
       this._value = selectedValues.map((option) => option.value);
-      this._inputValue = this._getOptionsLabel(selectedValues);
+      this._inputValue = this._getOptionsTranslations(selectedValues);
 
       this.onChange(this.value);
       this.valueChange.emit(this.value);
@@ -366,7 +368,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     );
   }
 
-  private _getOptionsLabel(options: FlatMultiselectOption<T>[]): string {
-    return options.map((option) => option.label).join(', ');
+  private _getOptionsTranslations(options: FlatMultiselectOption<T>[]): string {
+    return options.map((option) => this._translateService.instant(option.label) as string).join(', ');
   }
 }

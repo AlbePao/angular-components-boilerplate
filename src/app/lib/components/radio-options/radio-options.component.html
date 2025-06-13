@@ -22,9 +22,9 @@
         [disabled]="option.disabled"
       />
       <div class="flex flex-col text-black">
-        <span class="text-base/5 font-semibold">{{ option.label }}</span>
+        <span class="text-base/5 font-semibold">{{ option.label | translate }}</span>
         @if (!!option.smallLabel) {
-          <small class="text-xs font-normal">{{ option.smallLabel }}</small>
+          <small class="text-xs font-normal">{{ option.smallLabel | translate }}</small>
         }
       </div>
     </label>

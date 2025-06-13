@@ -18,11 +18,13 @@
             <app-icon>{{ option.icon }}</app-icon>
           }
           <span class="text-sm font-normal">
-            {{ option.label }}
+            {{ option.label | translate }}
           </span>
         </div>
       } @empty {
-        <div class="box-border block p-4 text-sm font-normal text-black select-none">Nessun risultato trovato</div>
+        <div class="box-border block p-4 text-sm font-normal text-black select-none">
+          {{ 'components.autocomplete.noResults' | translate }}
+        </div>
       }
     </div>
   }

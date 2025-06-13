@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
 import { arrayAttribute } from '@lib/utils/array-attribute';
+import { TranslatePipe } from '@ngx-translate/core';
 
 type TextColors =
   | 'text-primary-dark'
@@ -43,7 +44,7 @@ export type MenuItem<T> = {
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, IconComponent, RouterLink, CdkMenuModule],
+  imports: [CommonModule, IconComponent, RouterLink, TranslatePipe, CdkMenuModule],
   templateUrl: './menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

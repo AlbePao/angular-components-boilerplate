@@ -58,7 +58,7 @@
         }"
       >
         <div class="flex h-full items-center gap-1">
-          {{ column.label }}
+          {{ column.label | translate }}
           @if (column.sortable && !sortKey && !sortDirection) {
             <app-icon class="icon-20">unfold_more</app-icon>
           } @else if (column.sortable && sortKey === column.key && sortDirection === 'asc') {
@@ -84,7 +84,7 @@
           *cdkCellDef="let row; let index = index"
           [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
-          {{ row[column.key] }}
+          {{ row[column.key] | translate }}
         </td>
       } @else if (column.type === columnTypes.textFormat) {
         <td
@@ -93,7 +93,7 @@
           *cdkCellDef="let row; let index = index"
           [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment, row[column.key])"
         >
-          {{ row[column.key].text }}
+          {{ row[column.key].text | translate }}
         </td>
       } @else if (column.type === columnTypes.textIcon) {
         <td
@@ -110,10 +110,10 @@
             }
             <div class="flex flex-col">
               <span class="text-sm font-semibold empty:hidden">
-                {{ row[column.key].label }}
+                {{ row[column.key].label | translate }}
               </span>
               <span class="text-sm font-normal empty:hidden">
-                {{ row[column.key].subLabel }}
+                {{ row[column.key].subLabel | translate }}
               </span>
             </div>
           </div>
@@ -150,7 +150,7 @@
             [routerLink]="row[column.key].link"
             class="text-primary text-sm font-semibold underline"
           >
-            {{ row[column.key].label }}
+            {{ row[column.key].label | translate }}
           </a>
         </td>
       } @else if (column.type === columnTypes.listTooltip) {
@@ -160,7 +160,7 @@
           *cdkCellDef="let row; let index = index"
           [ngClass]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
-          {{ row[column.key][0] }}
+          {{ row[column.key][0] | translate }}
           @if (row[column.key].length > 1) {
             <app-pill
               color="primary"
@@ -190,7 +190,11 @@
               @if (!!row[column.key].icon) {
                 <app-icon>{{ row[column.key].icon }}</app-icon>
               }
-              {{ isNumber(row[column.key].label) ? (row[column.key].label | number: '1.3-3') : row[column.key].label }}
+              {{
+                isNumber(row[column.key].label)
+                  ? (row[column.key].label | number: '1.3-3')
+                  : (row[column.key].label | translate)
+              }}
             </app-pill>
           }
         </td>
@@ -211,7 +215,7 @@
                 @if (!!pill.icon) {
                   <app-icon>{{ pill.icon }}</app-icon>
                 }
-                {{ isNumber(pill.label) ? (pill.label | number: '1.5-5') : pill.label }}
+                {{ isNumber(pill.label) ? (pill.label | number: '1.5-5') : (pill.label | translate) }}
               </app-pill>
             }
           </div>

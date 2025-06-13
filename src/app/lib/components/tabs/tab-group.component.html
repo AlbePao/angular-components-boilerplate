@@ -27,7 +27,7 @@
             'text-gray-darker font-normal': !tab.active,
           }"
         >
-          {{ tab.label }}
+          {{ tab.label | translate }}
         </span>
       </li>
     } @else if (appearance === 'pills') {
@@ -48,7 +48,7 @@
             'text-black': !tab.active,
           }"
         >
-          {{ tab.label }}
+          {{ tab.label | translate }}
         </span>
       </li>
     }

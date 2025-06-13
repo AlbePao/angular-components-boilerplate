@@ -16,6 +16,7 @@ import { IconComponent } from '@lib/components/icon';
 import { Option } from '@lib/types/option';
 import { getOptionScrollPosition } from '@lib/utils/get-option-scroll-position';
 import { isArray } from '@lib/utils/value-checking';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
 let uniqueMultiselectIdCounter = 0;
@@ -50,7 +51,7 @@ function optionsFlattener<T>(options: MultiselectOption<T>[], parentIndex?: numb
 @Component({
   selector: 'app-multiselect',
   standalone: true,
-  imports: [CommonModule, IconComponent, CheckboxComponent],
+  imports: [CommonModule, IconComponent, TranslatePipe, CheckboxComponent],
   exportAs: 'appMultiselect',
   templateUrl: './multiselect.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

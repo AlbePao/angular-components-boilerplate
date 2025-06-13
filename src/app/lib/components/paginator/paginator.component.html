@@ -1,12 +1,11 @@
 <div class="flex flex-row flex-wrap items-center gap-8">
-  <div class="h-10 text-base/10 font-semibold text-black">
-    <span class="font-bold">{{ paginationRange.rangeStart }}</span> di
-    <span class="font-bold"> {{ paginationRange.rangeEnd }}</span> su
-    <span class="font-bold"> {{ paginationRange.length }}</span> totali
-  </div>
+  <div
+    class="h-10 text-base/10 font-semibold text-black"
+    [innerHTML]="'components.paginator.range' | translate: { paginationRange }"
+  ></div>
   <div class="ml-auto flex flex-row gap-4">
     <label for="pageSize" class="h-10 cursor-pointer text-base/10 font-semibold whitespace-nowrap text-black">
-      Elementi per pagina
+      {{ 'paginator.elementsPerPage' | translate }}
     </label>
     <app-form-field hideBottom>
       <select id="pageSize" appSelect class="h-10" [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">

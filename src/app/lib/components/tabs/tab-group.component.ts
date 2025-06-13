@@ -10,6 +10,7 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { TabComponent } from './tab.component';
 
 export interface TabChangeEvent {
@@ -22,7 +23,7 @@ export const APP_TAB_GROUP = new InjectionToken<TabGroupComponent>('TabGroupComp
 @Component({
   selector: 'app-tab-group',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './tab-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

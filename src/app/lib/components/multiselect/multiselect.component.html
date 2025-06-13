@@ -21,12 +21,14 @@
             <app-icon>{{ option.icon }}</app-icon>
           }
           <span class="text-sm font-normal uppercase">
-            {{ option.label }}
+            {{ option.label | translate }}
           </span>
         </div>
       </app-checkbox>
     } @empty {
-      <div class="box-border block p-4 text-sm font-normal text-black select-none">Nessuna opzione presente</div>
+      <div class="box-border block p-4 text-sm font-normal text-black select-none">
+        {{ 'components.multiselect.noOptions' | translate }}
+      </div>
     }
   </div>
 </ng-template>

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
 import { injectDestroy } from '@lib/utils/inject-destroy';
+import { TranslatePipe } from '@ngx-translate/core';
 import { takeUntil, timer } from 'rxjs';
 import { ALERT_POPUP_DATA, AlertPopupData } from './alert-popup-config';
 import { AlertPopupRef } from './alert-popup-ref';
@@ -8,7 +9,7 @@ import { AlertPopupRef } from './alert-popup-ref';
 @Component({
   selector: 'app-alert-popup',
   standalone: true,
-  imports: [IconComponent],
+  imports: [IconComponent, TranslatePipe],
   templateUrl: './alert-popup.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

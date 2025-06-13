@@ -1,0 +1,16 @@
+{
+  "components": {
+    "autocomplete": {
+      "noResults": "No results found"
+    },
+    "multiselect": {
+      "noOptions": "No options"
+    },
+    "paginator": {
+      "range": "<span class=\"font-bold\">{rangeStart}</span> of <span class=\"font-bold\">{rangeEnd}</span> out of <span class=\"font-bold\">{length}</span> total"
+    }
+  },
+  "paginator": {
+    "elementsPerPage": "Elements per page"
+  }
+}

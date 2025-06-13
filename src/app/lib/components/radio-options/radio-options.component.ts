@@ -16,6 +16,7 @@ import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 import { Option } from '@lib/types/option';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface RadioOption<T> extends Option<T> {
   smallLabel?: string;
@@ -26,7 +27,7 @@ let nextUniqueId = 0;
 @Component({
   selector: 'app-radio-options',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './radio-options.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(RadioOptionsComponent), provideNgValueAccessor(RadioOptionsComponent)],

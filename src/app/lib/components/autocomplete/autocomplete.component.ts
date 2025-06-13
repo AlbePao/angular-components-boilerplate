@@ -13,6 +13,7 @@ import {
 import { IconComponent } from '@lib/components/icon';
 import { Option, OptionExtra } from '@lib/types/option';
 import { getOptionScrollPosition } from '@lib/utils/get-option-scroll-position';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
 let uniqueAutocompleteIdCounter = 0;
@@ -20,7 +21,7 @@ let uniqueAutocompleteIdCounter = 0;
 @Component({
   selector: 'app-autocomplete',
   standalone: true,
-  imports: [CommonModule, IconComponent],
+  imports: [CommonModule, TranslatePipe, IconComponent],
   exportAs: 'appAutocomplete',
   templateUrl: './autocomplete.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

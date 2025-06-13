@@ -33,6 +33,7 @@ import { provideNgValidators } from '@lib/providers/ng-validators';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 import { Option, OptionExtra } from '@lib/types/option';
 import { injectDestroy } from '@lib/utils/inject-destroy';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, filter, fromEvent, map, merge, of, take, takeUntil } from 'rxjs';
 import { InputDirective } from '../input';
 import { AutocompleteComponent } from './autocomplete.component';
@@ -58,6 +59,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   private readonly _overlay = inject(Overlay);
   private readonly _document = inject(DOCUMENT);
   private readonly _injector = inject(Injector);
+  private readonly _translateService = inject(TranslateService);
   private readonly _destroy$ = injectDestroy();
 
   private _input: InputDirective | null = null;
@@ -224,7 +226,8 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
       if (this.value) {
         // Sync updated autocomplete options with current value
         const optionValue = this._findOptionValue(this.value, 'value');
-        this._inputValue = optionValue?.label ?? '';
+        const translatedLabel = this._getOptionTranslation(optionValue?.label);
+        this._inputValue = translatedLabel ?? '';
         this.onChange(this.value);
         this.valueChange.emit(this.value);
         this.extrasChange.emit(optionValue?.extra);
@@ -250,8 +253,9 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   writeValue(value: T | null): void {
     const optionValue = this._findOptionValue(value, 'value');
+    const translatedLabel = this._getOptionTranslation(optionValue?.label);
     this._value = value;
-    this._inputValue = optionValue?.label ?? '';
+    this._inputValue = translatedLabel ?? '';
 
     this.appAutocomplete.filteredOptions = this.appAutocomplete.options;
   }
@@ -338,8 +342,9 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   private _setValue(optionValue: Option<T, E> | null, fallback = ''): void {
     const { extra } = optionValue ?? { extra: null };
+    const translatedLabel = this._getOptionTranslation(optionValue?.label);
     this._value = optionValue?.value ?? null;
-    this._inputValue = optionValue?.label ?? fallback;
+    this._inputValue = translatedLabel ?? fallback;
 
     this.onChange(this.value);
     this.valueChange.emit(this.value);
@@ -480,5 +485,9 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
         return isNotOrigin && isNotOverlay;
       }),
     );
+  }
+
+  private _getOptionTranslation(label?: string): string | null {
+    return label ? (this._translateService.instant(label) as string) : null;
   }
 }
