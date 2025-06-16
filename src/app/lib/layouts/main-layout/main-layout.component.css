@@ -1,4 +1,6 @@
 :host {
+  --size-navbar-height: 80px;
+
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: var(--size-navbar-height) 1fr;
