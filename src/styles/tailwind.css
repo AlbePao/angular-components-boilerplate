@@ -7,6 +7,13 @@
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
+
+  /* Remove arrow on input type number */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
