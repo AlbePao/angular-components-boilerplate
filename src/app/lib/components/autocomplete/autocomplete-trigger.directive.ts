@@ -16,7 +16,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Injector,
   Input,
   OnInit,
@@ -52,6 +51,11 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
     '[class]': 'classes',
     '[attr.appFocusable]': 'appFocusable',
     '[attr.role]': 'role',
+    '(focus)': 'handleFocus()',
+    '(blur)': 'handleBlur()',
+    '(keydown)': 'handleKeyDown($event)',
+    '(keyup)': 'handleKeyUp($event)',
+    '(click)': 'handleClick()',
   },
 })
 export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
@@ -91,7 +95,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     return this.appAutocompleteUppercase ? 'uppercase' : '';
   }
 
-  @HostListener('focus')
   handleFocus(): void {
     this.elementFocus.emit();
     this.hostElement.select();
@@ -102,7 +105,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     }
   }
 
-  @HostListener('blur')
   handleBlur(): void {
     this.elementBlur.emit();
     this.onTouched();
@@ -110,7 +112,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     this._focusedByFocusHandlerDirective = false;
   }
 
-  @HostListener('keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     const { filteredOptions } = this.appAutocomplete;
     const { keyCode } = event;
@@ -153,7 +154,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     }
   }
 
-  @HostListener('keyup', ['$event'])
   handleKeyUp(event: KeyboardEvent): void {
     const { keyCode, target } = event;
     const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
@@ -168,7 +168,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     }
   }
 
-  @HostListener('click')
   handleClick(): void {
     if (this._canOpen() && !this.isPanelOpen) {
       this.openPanel();

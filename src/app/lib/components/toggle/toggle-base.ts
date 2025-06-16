@@ -5,7 +5,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   Output,
   ViewChild,
@@ -25,6 +24,7 @@ let nextUniqueId = 0;
     '[class]': 'classes',
     '[attr.id]': 'toggleId',
     '[attr.appFocusable]': 'appFocusable',
+    '(keydown)': 'handleKeyDown($event)',
   },
 })
 export class ToggleBase<T> implements FocusableItem {
@@ -95,7 +95,6 @@ export class ToggleBase<T> implements FocusableItem {
     return this.id || null;
   }
 
-  @HostListener('keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     const { keyCode } = event;
     const isLeftArrowKey = keyCode === LEFT_ARROW;

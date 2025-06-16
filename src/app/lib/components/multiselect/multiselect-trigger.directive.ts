@@ -16,7 +16,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   OnInit,
   Output,
@@ -40,6 +39,10 @@ const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];
   host: {
     '[attr.role]': 'role',
     '[attr.appFocusable]': 'appFocusable',
+    '(focus)': 'handleFocus()',
+    '(blur)': 'handleBlur()',
+    '(keydown)': 'handleKeyDown($event)',
+    '(click)': 'handleClick()',
   },
 })
 export class MultiselectTriggerDirective<T> implements ControlValueAccessor, FocusableItem, OnInit {
@@ -67,7 +70,6 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     return this.appMultiselectDisabled ? null : 'combobox';
   }
 
-  @HostListener('focus')
   handleFocus(): void {
     this.elementFocus.emit();
     this._focusedByUser = true;
@@ -77,7 +79,6 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     }
   }
 
-  @HostListener('blur')
   handleBlur(): void {
     this.elementBlur.emit();
     this.onTouched();
@@ -85,7 +86,6 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     this._focusedByDirective = false;
   }
 
-  @HostListener('keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     const { keyCode } = event;
     const isDownArrowKey = keyCode === DOWN_ARROW;
@@ -123,7 +123,6 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     }
   }
 
-  @HostListener('click')
   handleClick(): void {
     if (this._canOpen() && !this.isPanelOpen) {
       this.openPanel();
