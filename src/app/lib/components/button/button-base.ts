@@ -26,10 +26,10 @@ export class ButtonBase {
   }
 
   get disabledClasses(): string {
-    return this.isAnchorTag
-      ? this.disabled
-        ? 'opacity-50 pointer-events-none'
-        : ''
-      : 'disabled:cursor-default disabled:opacity-50 disabled:pointer-events-none';
+    if (this.isAnchorTag) {
+      return this.disabled ? 'opacity-50 pointer-events-none' : '';
+    }
+
+    return 'disabled:cursor-default disabled:opacity-50 disabled:pointer-events-none';
   }
 }

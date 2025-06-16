@@ -108,6 +108,7 @@ export default tseslint.config(
       'sort-imports': 'off',
       eqeqeq: 'error',
       curly: 'error',
+      'no-nested-ternary': 'error',
       'boundaries/element-types': [
         'error',
         {

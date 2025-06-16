@@ -371,7 +371,11 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
     let sortDirection: SortDirection = 'asc';
 
     if (sortKey === this.sortKey) {
-      sortDirection = this.sortDirection === '' ? 'asc' : this.sortDirection === 'asc' ? 'desc' : '';
+      if (this.sortDirection === '') {
+        sortDirection = 'asc';
+      } else {
+        sortDirection = this.sortDirection === 'asc' ? 'desc' : '';
+      }
     }
 
     sortKey = sortDirection !== '' ? sortKey : '';
