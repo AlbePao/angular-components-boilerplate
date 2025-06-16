@@ -18,7 +18,7 @@ import { Colors } from '@lib/types/colors';
   templateUrl: './alert.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]': '`flex rounded-sm p-5 ${bgColorClass}`',
   },
 })
 export class AlertComponent {
@@ -28,10 +28,6 @@ export class AlertComponent {
   @Input({ transform: booleanAttribute }) dismissable = false;
 
   @Output() readonly dismissed = new EventEmitter<void>();
-
-  get classes(): string {
-    return `flex rounded-sm p-5 ${this.bgColorClass}`;
-  }
 
   get bgColorClass(): string {
     if (this.color === 'info') {

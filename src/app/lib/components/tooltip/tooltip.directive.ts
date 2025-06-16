@@ -9,9 +9,7 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Directive, ElementRef, Input, OnDestroy, OnInit, booleanAttribute, inject } from '@angular/core';
-import { injectDestroy } from '@lib/utils/inject-destroy';
 import { isArray } from '@lib/utils/value-checking';
-import { fromEvent, merge, takeUntil, tap } from 'rxjs';
 import { TooltipComponent } from './tooltip.component';
 
 interface TooltipOffset {
@@ -28,12 +26,17 @@ export type TooltipPosition = 'left' | 'right' | 'above' | 'below';
 
 @Directive({
   selector: '[appTooltip]',
+  host: {
+    '(mouseenter)': 'show()',
+    '(focus)': 'hide()',
+    '(mouseleave)': 'hide()',
+    '(blur)': 'hide()',
+  },
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   private readonly _overlay = inject(Overlay);
   private readonly _overlayPositionBuilder = inject(OverlayPositionBuilder);
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-  private readonly _destroy$ = injectDestroy();
 
   private _overlayRef?: OverlayRef;
 
@@ -47,15 +50,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    merge(
-      fromEvent<MouseEvent>(this.hostElement, 'mouseenter').pipe(tap(() => this._show())),
-      fromEvent<FocusEvent>(this.hostElement, 'focus').pipe(tap(() => this._hide())),
-      fromEvent<MouseEvent>(this.hostElement, 'mouseleave').pipe(tap(() => this._hide())),
-      fromEvent<FocusEvent>(this.hostElement, 'blur').pipe(tap(() => this._hide())),
-    )
-      .pipe(takeUntil(this._destroy$))
-      .subscribe();
-
     const origin = this._getOrigin();
     const overlay = this._getOverlayPosition();
     const offset = this._getOffset();
@@ -68,10 +62,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._hide();
+    this.hide();
   }
 
-  private _show(): void {
+  protected show(): void {
     if (!this.appTooltipDisabled && this._overlayRef && this.appTooltip && this.appTooltip?.length > 0) {
       const tooltipRef: ComponentRef<TooltipComponent> = this._overlayRef.attach(new ComponentPortal(TooltipComponent));
       tooltipRef.instance.tooltipText = isArray(this.appTooltip) ? this.appTooltip : [this.appTooltip];
@@ -82,7 +76,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
   }
 
-  private _hide(): void {
+  protected hide(): void {
     this._overlayRef?.detach();
   }
 

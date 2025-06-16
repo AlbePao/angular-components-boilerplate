@@ -1,8 +1,6 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
-  A,
   BACKSPACE,
-  C,
   COMMA,
   DOWN_ARROW,
   EIGHT,
@@ -31,26 +29,11 @@ import {
   THREE,
   TWO,
   UP_ARROW,
-  V,
-  X,
   ZERO,
 } from '@angular/cdk/keycodes';
-import {
-  booleanAttribute,
-  Directive,
-  DoCheck,
-  ElementRef,
-  EventEmitter,
-  HostAttributeToken,
-  inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { booleanAttribute, Directive, DoCheck, ElementRef, EventEmitter, inject, Input, Output } from '@angular/core';
 import { AbstractControl, NgControl, Validators } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
-import { injectDestroy } from '@lib/utils/inject-destroy';
-import { fromEvent, merge, takeUntil, tap } from 'rxjs';
 
 let nextUniqueId = 0;
 
@@ -92,20 +75,20 @@ const INPUT_NUMBER_ALLOWED_KEYS = [
   providers: [provideFocusableItem(InputDirective)],
   host: {
     '[class]': 'classes',
-    '[attr.id]': 'inputId',
-    '[attr.disabled]': 'isDisabled',
-    '[attr.required]': 'isRequired',
+    '[attr.id]': 'id || null',
+    '[attr.disabled]': 'disabled || null',
+    '[attr.required]': 'required || null',
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
     'attr.autocomplete': 'off',
     'attr.placeholder': ' ',
     '[attr.appFocusable]': 'appFocusable',
+    '(focus)': 'elementFocus.emit()',
+    '(blur)': 'elementBlur.emit()',
   },
 })
-export class InputDirective implements FocusableItem, OnInit, DoCheck {
-  private readonly _type = inject(new HostAttributeToken('type'), { optional: true });
+export class InputDirective implements FocusableItem, DoCheck {
   private readonly _ngControl = inject(NgControl, { self: true, optional: true });
   private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
-  private readonly _destroy$ = injectDestroy();
 
   @Input()
   get id(): string {
@@ -117,7 +100,6 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
   private _id = `app-input-${nextUniqueId++}`;
 
   @Input({ transform: booleanAttribute }) disabled = false;
-  @Input({ transform: booleanAttribute }) appInputUppercase = true;
 
   @Input()
   get required(): boolean {
@@ -132,8 +114,6 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
   @Output() readonly elementBlur = new EventEmitter<void>();
 
   get classes(): string {
-    const uppercaseClass = this.appInputUppercase ? ' uppercase' : '';
-
     const borderColorClassesRequired = this.required
       ? 'placeholder-shown:border-gray-dark'
       : 'placeholder-shown:border-gray-light';
@@ -142,19 +122,7 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
       ? 'border-danger focus:border-danger focus:ring-danger/40 '
       : `border-gray-darker ${borderColorClassesRequired} focus:border-primary focus:ring-primary/40`;
 
-    return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}${uppercaseClass}`;
-  }
-
-  get inputId(): string | null {
-    return this.id || null;
-  }
-
-  get isDisabled(): true | null {
-    return this.disabled || null;
-  }
-
-  get isRequired(): true | null {
-    return this.required || null;
+    return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
 
   appFocusable = true;
@@ -171,17 +139,6 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
     return this._ngControl?.control ?? null;
   }
 
-  ngOnInit(): void {
-    merge(
-      fromEvent<KeyboardEvent>(this.hostElement, 'keydown').pipe(tap((event) => this._handleKeyDown(event))),
-      fromEvent<InputEvent>(this.hostElement, 'input').pipe(tap((event) => this._handleInput(event))),
-      fromEvent<FocusEvent>(this.hostElement, 'focus').pipe(tap(() => this.elementFocus.emit())),
-      fromEvent<FocusEvent>(this.hostElement, 'blur').pipe(tap(() => this.elementBlur.emit())),
-    )
-      .pipe(takeUntil(this._destroy$))
-      .subscribe();
-  }
-
   ngDoCheck(): void {
     if (this._ngControl) {
       if (this._ngControl.disabled !== null && this._ngControl.disabled !== this.disabled) {
@@ -193,41 +150,6 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
   focusItem(): void {
     if (!this.disabled) {
       this.hostElement.focus();
-    }
-  }
-
-  private _handleKeyDown(event: KeyboardEvent): void {
-    // HACK: handle cmd on macOS
-    const isCtrlC = event.ctrlKey && event.keyCode === C;
-    const isCtrlV = event.ctrlKey && event.keyCode === V;
-    const isCtrlA = event.ctrlKey && event.keyCode === A;
-    const isCtrlX = event.ctrlKey && event.keyCode === X;
-
-    if (
-      this._type === 'number' &&
-      !INPUT_NUMBER_ALLOWED_KEYS.includes(event.keyCode) &&
-      !(isCtrlA || isCtrlC || isCtrlV || isCtrlX)
-    ) {
-      event.preventDefault();
-    }
-  }
-
-  private _handleInput(event: InputEvent): void {
-    if (this.appInputUppercase) {
-      const input = event.target as HTMLInputElement;
-      const caretPos = input.selectionStart;
-      const uppercasedValue = input.value.toUpperCase();
-
-      if (this.control) {
-        this.control.setValue(uppercasedValue);
-      } else {
-        this.hostElement.value = uppercasedValue;
-      }
-
-      // When "type" is not declared, its value is null and we treat it as type="text"
-      if (['text', 'search', 'password', 'tel', 'url', null].includes(this._type)) {
-        input.setSelectionRange(caretPos, caretPos);
-      }
     }
   }
 }

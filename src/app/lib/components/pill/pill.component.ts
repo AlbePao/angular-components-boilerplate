@@ -10,7 +10,8 @@ export type PillAppearance = 'fill' | 'outline';
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]':
+      '`inline-flex justify-content items-center select-none whitespace-nowrap rounded-full ${sizeClasses} ${colorClasses}`',
   },
 })
 export class PillComponent {
@@ -40,10 +41,6 @@ export class PillComponent {
     this._color = color ?? 'gray';
   }
   private _color: Colors = 'gray';
-
-  get classes(): string {
-    return `inline-flex justify-content items-center select-none whitespace-nowrap rounded-full ${this.sizeClasses} ${this.colorClasses}`;
-  }
 
   get sizeClasses(): string {
     if (this.size === 'sm') {

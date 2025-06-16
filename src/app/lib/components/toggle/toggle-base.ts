@@ -21,8 +21,8 @@ let nextUniqueId = 0;
 
 @Directive({
   host: {
-    '[class]': 'classes',
-    '[attr.id]': 'toggleId',
+    '[class]': '`inline-block ${disabled ? "opacity-50 pointer-events-none" : ""}`',
+    '[attr.id]': 'id || null',
     '[attr.appFocusable]': 'appFocusable',
     '(keydown)': 'handleKeyDown($event)',
   },
@@ -87,15 +87,7 @@ export class ToggleBase<T> implements FocusableItem {
 
   appFocusable = true;
 
-  get classes(): string {
-    return `inline-block${this.disabled ? ' opacity-50 pointer-events-none' : ''}`;
-  }
-
-  get toggleId(): string | null {
-    return this.id || null;
-  }
-
-  handleKeyDown(event: KeyboardEvent): void {
+  protected handleKeyDown(event: KeyboardEvent): void {
     const { keyCode } = event;
     const isLeftArrowKey = keyCode === LEFT_ARROW;
     const isRightArrowKey = keyCode === RIGHT_ARROW;

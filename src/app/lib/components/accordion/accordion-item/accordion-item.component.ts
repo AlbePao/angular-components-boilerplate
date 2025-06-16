@@ -9,21 +9,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     class: 'block',
     'attr.role': 'button',
     'attr.tabindex': '0',
-    '[attr.id]': 'itemId',
-    '[attr.aria-expanded]': 'ariaExpanded',
-    '[attr.aria-controls]': 'ariaControls',
+    '[attr.id]': '`accordion-header-${id}`',
+    '[attr.aria-expanded]': 'expanded',
+    '[attr.aria-controls]': '`accordion-body-${id}`',
   },
 })
-export class AccordionItemComponent extends CdkAccordionItem {
-  get itemId(): string {
-    return `accordion-header-${this.id}`;
-  }
-
-  get ariaExpanded(): boolean {
-    return this.expanded;
-  }
-
-  get ariaControls(): string {
-    return `accordion-body-${this.id}`;
-  }
-}
+export class AccordionItemComponent extends CdkAccordionItem {}

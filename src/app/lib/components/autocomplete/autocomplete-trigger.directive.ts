@@ -48,9 +48,8 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
     provideNgValidators(AutocompleteTriggerDirective),
   ],
   host: {
-    '[class]': 'classes',
     '[attr.appFocusable]': 'appFocusable',
-    '[attr.role]': 'role',
+    '[attr.role]': 'appAutocompleteDisabled ? null : "combobox"',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',
     '(keydown)': 'handleKeyDown($event)',
@@ -76,7 +75,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   @Input({ required: true }) appAutocomplete!: AutocompleteComponent<T, E>;
   @Input({ transform: booleanAttribute }) appAutocompleteDisabled = false;
-  @Input({ transform: booleanAttribute }) appAutocompleteUppercase = true;
   @Input({ transform: numberAttribute }) appAutocompleteSearchAfterChars = -1;
 
   @Output() readonly valueChange = new EventEmitter<T | null>();
@@ -87,15 +85,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   appFocusable = true;
 
-  get role(): 'combobox' | null {
-    return this.appAutocompleteDisabled ? null : 'combobox';
-  }
-
-  get classes(): string {
-    return this.appAutocompleteUppercase ? 'uppercase' : '';
-  }
-
-  handleFocus(): void {
+  protected handleFocus(): void {
     this.elementFocus.emit();
     this.hostElement.select();
     this._focusedByUser = true;
@@ -105,14 +95,14 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     }
   }
 
-  handleBlur(): void {
+  protected handleBlur(): void {
     this.elementBlur.emit();
     this.onTouched();
     this._focusedByUser = false;
     this._focusedByFocusHandlerDirective = false;
   }
 
-  handleKeyDown(event: KeyboardEvent): void {
+  protected handleKeyDown(event: KeyboardEvent): void {
     const { filteredOptions } = this.appAutocomplete;
     const { keyCode } = event;
     const isDownArrowKey = keyCode === DOWN_ARROW;
@@ -154,7 +144,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     }
   }
 
-  handleKeyUp(event: KeyboardEvent): void {
+  protected handleKeyUp(event: KeyboardEvent): void {
     const { keyCode, target } = event;
     const isArrowKey = keyCode === UP_ARROW || keyCode === DOWN_ARROW;
     const isTabKey = keyCode === TAB;
@@ -168,7 +158,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     }
   }
 
-  handleClick(): void {
+  protected handleClick(): void {
     if (this._canOpen() && !this.isPanelOpen) {
       this.openPanel();
     }
@@ -216,13 +206,12 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   ngOnInit(): void {
     this._input = this._injector.get(InputDirective);
-    this._input.appInputUppercase = false;
 
     this._listenToUpdatedOptions();
   }
 
   _listenToUpdatedOptions(): void {
-    this.appAutocomplete.optionsUpdated$.pipe(takeUntil(this._destroy$)).subscribe((options) => {
+    this.appAutocomplete.optionsUpdated$.pipe(takeUntil(this._destroy$)).subscribe(() => {
       if (this.value) {
         // Sync updated autocomplete options with current value
         const optionValue = this._findOptionValue(this.value, 'value');

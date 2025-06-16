@@ -15,14 +15,14 @@ export class InputDateIsoDirective implements ControlValueAccessor {
   private readonly _renderer = inject(Renderer2);
   private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
-  onInput = (event: Event): void => {
+  protected onInput = (event: Event): void => {
     const { valueAsDate } = event.target as HTMLInputElement;
     const isoString = valueAsDate ? valueAsDate.toISOString() : null;
     this.onChange(isoString);
   };
   onChange = (value: string | null): void => {};
 
-  onTouched = (): void => {};
+  protected onTouched = (): void => {};
 
   writeValue(isoString?: string): void {
     const date = isoString ? new Date(isoString) : null;

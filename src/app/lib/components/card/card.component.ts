@@ -7,15 +7,11 @@ import { Colors } from '@lib/types/colors';
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]': '`border ${borderClass} rounded-sm block`',
   },
 })
 export class CardComponent {
   @Input() color: Colors = 'gray';
-
-  get classes(): string {
-    return `border ${this.borderClass} rounded-sm block`;
-  }
 
   get borderClass(): string {
     if (this.color === 'primary') {

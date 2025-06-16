@@ -1,7 +1,5 @@
-import { Directive, ElementRef, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
-import { injectDestroy } from '@lib/utils/inject-destroy';
-import { fromEvent, merge, takeUntil, tap } from 'rxjs';
 
 let nextUniqueId = 0;
 
@@ -11,12 +9,14 @@ let nextUniqueId = 0;
   host: {
     'attr.tabindex': '-1',
     '[attr.appFocusable]': 'appFocusable',
+    '(focus)': 'elementFocus.emit()',
+    '(blur)': 'elementBlur.emit()',
+    '(click)': 'focusTarget()',
   },
 })
-export class FocusTriggerDirective implements FocusableItem, OnInit {
+export class FocusTriggerDirective implements FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
-  private readonly _destroy$ = injectDestroy();
   private _uniqueId = `app-focus-trigger-${++nextUniqueId}`;
 
   @Input({ alias: 'appFocus' }) appFocusTrigger?: HTMLInputElement;
@@ -38,23 +38,13 @@ export class FocusTriggerDirective implements FocusableItem, OnInit {
   readonly required = false;
   readonly shouldSkipFocus = true;
 
-  ngOnInit(): void {
-    merge(
-      fromEvent<FocusEvent>(this.hostElement, 'focus').pipe(tap(() => this.elementFocus.emit())),
-      fromEvent<FocusEvent>(this.hostElement, 'blur').pipe(tap(() => this.elementBlur.emit())),
-      fromEvent<PointerEvent>(this.hostElement, 'click').pipe(tap(() => this._focusTarget())),
-    )
-      .pipe(takeUntil(this._destroy$))
-      .subscribe();
-  }
-
   focusItem(): void {
     if (!this.disabled) {
       this.hostElement.focus();
     }
   }
 
-  private _focusTarget(): void {
+  protected focusTarget(): void {
     if (this.appFocusTrigger && !this.disabled) {
       this.appFocusTrigger.focus();
     }

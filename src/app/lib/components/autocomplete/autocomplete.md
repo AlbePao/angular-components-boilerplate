@@ -22,12 +22,11 @@ The directive associated to `input[appInput]` that triggers the autocomplete pan
 
 ### Inputs
 
-| Input                             | Description                                                             | Type                    |
-| --------------------------------- | ----------------------------------------------------------------------- | ----------------------- |
-| `appAutocomplete`                 | The autocomplete panel component instance                               | `AutocompleteComponent` |
-| `appAutocompleteDisabled`         | Whether autocomplete is disabled                                        | `boolean`               |
-| `appAutocompleteUppercase`        | (optional) Whether the input text should be uppercased (default `true`) | `boolean`               |
-| `appAutocompleteSearchAfterChars` | (optional) After how many characters the search is triggered            | `number`                |
+| Input                             | Description                                                  | Type                    |
+| --------------------------------- | ------------------------------------------------------------ | ----------------------- |
+| `appAutocomplete`                 | The autocomplete panel component instance                    | `AutocompleteComponent` |
+| `appAutocompleteDisabled`         | Whether autocomplete is disabled                             | `boolean`               |
+| `appAutocompleteSearchAfterChars` | (optional) After how many characters the search is triggered | `number`                |
 
 ### Outputs
 

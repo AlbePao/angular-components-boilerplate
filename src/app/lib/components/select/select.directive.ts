@@ -1,18 +1,6 @@
-import {
-  Directive,
-  DoCheck,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  booleanAttribute,
-  inject,
-} from '@angular/core';
+import { Directive, DoCheck, ElementRef, EventEmitter, Input, Output, booleanAttribute, inject } from '@angular/core';
 import { AbstractControl, NgControl, Validators } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
-import { injectDestroy } from '@lib/utils/inject-destroy';
-import { fromEvent, merge, takeUntil, tap } from 'rxjs';
 
 let nextUniqueId = 0;
 
@@ -21,16 +9,17 @@ let nextUniqueId = 0;
   providers: [provideFocusableItem(SelectDirective)],
   host: {
     '[class]': 'classes',
-    '[attr.id]': 'selectId',
+    '[attr.id]': 'id || null',
+    '[attr.disabled]': 'disabled || null',
     '[attr.appFocusable]': 'appFocusable',
     'attr.placeholder': ' ',
-    '[attr.disabled]': 'isDisabled',
+    '(focus)': 'elementFocus.emit()',
+    '(blur)': 'elementBlur.emit()',
   },
 })
-export class SelectDirective implements FocusableItem, OnInit, DoCheck {
+export class SelectDirective implements FocusableItem, DoCheck {
   private readonly _ngControl = inject(NgControl, { self: true, optional: true });
   private readonly _elementRef = inject<ElementRef<HTMLSelectElement>>(ElementRef);
-  private readonly _destroy$ = injectDestroy();
 
   @Input()
   get id(): string {
@@ -54,15 +43,7 @@ export class SelectDirective implements FocusableItem, OnInit, DoCheck {
     return `block min-h-[40px] pl-2.5 pr-8 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
 
-  get selectId(): string | null {
-    return this.id || null;
-  }
-
   appFocusable = true;
-
-  get isDisabled(): true | null {
-    return this.disabled || null;
-  }
 
   get hostElement(): HTMLSelectElement {
     return this._elementRef.nativeElement;
@@ -78,15 +59,6 @@ export class SelectDirective implements FocusableItem, OnInit, DoCheck {
 
   get control(): AbstractControl<unknown, unknown> | null {
     return this._ngControl?.control ?? null;
-  }
-
-  ngOnInit(): void {
-    merge(
-      fromEvent<FocusEvent>(this.hostElement, 'focus').pipe(tap(() => this.elementFocus.emit())),
-      fromEvent<FocusEvent>(this.hostElement, 'blur').pipe(tap(() => this.elementBlur.emit())),
-    )
-      .pipe(takeUntil(this._destroy$))
-      .subscribe();
   }
 
   ngDoCheck(): void {

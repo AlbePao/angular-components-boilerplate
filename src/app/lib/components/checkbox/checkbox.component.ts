@@ -7,7 +7,6 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild,
   inject,
@@ -15,8 +14,6 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-import { injectDestroy } from '@lib/utils/inject-destroy';
-import { filter, fromEvent, merge, takeUntil } from 'rxjs';
 
 let nextUniqueId = 0;
 
@@ -28,12 +25,13 @@ let nextUniqueId = 0;
   host: {
     '[class]': 'classes',
     '[attr.appFocusable]': 'appFocusable',
+    '(keydown)': 'toggleOnKeyDown($event)',
+    '(click)': 'toggleOnClick($event)',
   },
 })
-export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, FocusableItem {
+export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
-  private readonly _destroy$ = injectDestroy();
 
   private _hasInnerFocus = false;
 
@@ -126,25 +124,22 @@ export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, Focus
     return this._elementRef.nativeElement;
   }
 
-  ngOnInit(): void {
-    merge(
-      fromEvent<KeyboardEvent>(this.hostElement, 'keydown').pipe(filter(({ keyCode }) => keyCode === ENTER)),
-      fromEvent<PointerEvent>(this.hostElement, 'click').pipe(
-        filter(({ target }) => {
-          // If user clicks on checkbox, this observable (which is bound to host element) is triggered twice, so
-          // we must prevent its emission and consequent double toggle by checking if user has clicked on checkbox
-          const inputCheckbox = this.inputCheckbox?.nativeElement;
-          const clickTarget = target as HTMLElement;
-          const isNotOrigin = clickTarget !== inputCheckbox;
+  protected toggleOnKeyDown(event: KeyboardEvent): void {
+    if (event.keyCode === ENTER) {
+      this._toggleChange();
+    }
+  }
 
-          return isNotOrigin;
-        }),
-      ),
-    )
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(() => {
-        this.toggleChange();
-      });
+  protected toggleOnClick(event: MouseEvent): void {
+    // If user clicks on checkbox, this observable (which is bound to host element) is triggered twice, so
+    // we must prevent its emission and consequent double toggle by checking if user has clicked on checkbox
+    const inputCheckbox = this.inputCheckbox?.nativeElement;
+    const clickTarget = event.target as HTMLElement;
+    const isNotOrigin = clickTarget !== inputCheckbox;
+
+    if (isNotOrigin) {
+      this._toggleChange();
+    }
   }
 
   focusItem(): void {
@@ -191,10 +186,10 @@ export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, Focus
 
   onChangeEvent(event: Event): void {
     event.stopPropagation();
-    this.toggleChange();
+    this._toggleChange();
   }
 
-  toggleChange(): void {
+  private _toggleChange(): void {
     this.markAsTouched();
 
     if (!this.disabled) {

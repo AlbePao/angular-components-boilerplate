@@ -10,15 +10,12 @@ export type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'link' | 'd
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]':
+      '`inline-flex flex-row flex-nowrap min-w-max items-center justify-center relative w-auto font-semibold no-underline select-none text-center ${appearanceClasses} ${sizeClasses} ${disabledClasses}`',
   },
 })
 export class ButtonComponent extends ButtonBase {
   @Input() appearance: ButtonAppearance = 'primary';
-
-  get classes(): string {
-    return `inline-flex flex-row flex-nowrap min-w-max items-center justify-center relative w-auto font-semibold no-underline select-none text-center ${this.appearanceClasses} ${this.sizeClasses} ${this.disabledClasses}`;
-  }
 
   get appearanceClasses(): string {
     if (this.appearance === 'link') {

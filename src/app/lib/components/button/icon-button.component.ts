@@ -10,15 +10,12 @@ export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
   template: `<ng-content select="app-icon" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]':
+      '`inline-flex relative align-bottom font-semibold min-w-max items-center justify-center w-auto no-underline select-none text-center rounded-sm ${appearanceClasses} ${sizeClasses} ${disabledClasses}`',
   },
 })
 export class IconButtonComponent extends ButtonBase {
   @Input() appearance: IconButtonAppearance = 'base';
-
-  get classes(): string {
-    return `inline-flex relative align-bottom font-semibold min-w-max items-center justify-center w-auto no-underline select-none text-center rounded-sm ${this.appearanceClasses} ${this.sizeClasses} ${this.disabledClasses}`;
-  }
 
   get appearanceClasses(): string {
     if (this.appearance === 'outline') {

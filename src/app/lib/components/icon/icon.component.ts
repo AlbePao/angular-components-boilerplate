@@ -10,16 +10,12 @@ export type IconColors = Colors | 'black';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]': '`${iconAppearance} ${iconColor} app-icon select-none relative`',
   },
 })
 export class IconComponent {
   @Input() color?: IconColors;
   @Input() appearance: 'normal' | 'outlined' = 'outlined';
-
-  get classes(): string {
-    return `${this.iconAppearance} ${this.iconColor} app-icon select-none relative`;
-  }
 
   get iconColor(): string {
     if (this.color === 'primary') {

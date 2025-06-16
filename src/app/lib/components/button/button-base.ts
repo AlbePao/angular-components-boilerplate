@@ -4,7 +4,7 @@ export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 @Directive({
   host: {
-    '[attr.disabled]': 'isDisabled',
+    '[attr.disabled]': ' (!isAnchorTag && disabled) || null',
   },
 })
 export class ButtonBase {
@@ -12,10 +12,6 @@ export class ButtonBase {
 
   @Input() size: ButtonSize = 'md';
   @Input({ transform: booleanAttribute }) disabled = false;
-
-  get isDisabled(): true | null {
-    return (!this.isAnchorTag && this.disabled) || null;
-  }
 
   get hostElement(): HTMLButtonElement {
     return this._elementRef.nativeElement;

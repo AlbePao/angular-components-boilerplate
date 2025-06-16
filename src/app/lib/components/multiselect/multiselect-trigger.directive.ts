@@ -37,7 +37,7 @@ const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];
   selector: 'input[appMultiselect]',
   providers: [provideFocusableItem(MultiselectTriggerDirective), provideNgValueAccessor(MultiselectTriggerDirective)],
   host: {
-    '[attr.role]': 'role',
+    '[attr.role]': 'appMultiselectDisabled ? null : "combobox"',
     '[attr.appFocusable]': 'appFocusable',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',
@@ -66,11 +66,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
 
   appFocusable = true;
 
-  get role(): 'combobox' | null {
-    return this.appMultiselectDisabled ? null : 'combobox';
-  }
-
-  handleFocus(): void {
+  protected handleFocus(): void {
     this.elementFocus.emit();
     this._focusedByUser = true;
 
@@ -79,14 +75,14 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     }
   }
 
-  handleBlur(): void {
+  protected handleBlur(): void {
     this.elementBlur.emit();
     this.onTouched();
     this._focusedByUser = false;
     this._focusedByDirective = false;
   }
 
-  handleKeyDown(event: KeyboardEvent): void {
+  protected handleKeyDown(event: KeyboardEvent): void {
     const { keyCode } = event;
     const isDownArrowKey = keyCode === DOWN_ARROW;
     const isUpArrowKey = keyCode === UP_ARROW;
@@ -123,7 +119,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     }
   }
 
-  handleClick(): void {
+  protected handleClick(): void {
     if (this._canOpen() && !this.isPanelOpen) {
       this.openPanel();
     }

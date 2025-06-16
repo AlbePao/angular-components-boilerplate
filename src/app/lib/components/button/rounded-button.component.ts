@@ -11,15 +11,12 @@ export type RoundedButtonColor = Colors | 'base';
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'classes',
+    '[class]':
+      '`inline-flex gap-2 flex-row flex-nowrap min-w-max items-center justify-center relative w-auto rounded-full font-semibold no-underline select-none text-base text-center ${colorClasses} ${sizeClasses} ${disabledClasses}`',
   },
 })
 export class RoundedButtonComponent extends ButtonBase {
   @Input() color: RoundedButtonColor = 'base';
-
-  get classes(): string {
-    return `inline-flex gap-2 flex-row flex-nowrap min-w-max items-center justify-center relative w-auto rounded-full font-semibold no-underline select-none text-base text-center ${this.colorClasses} ${this.sizeClasses} ${this.disabledClasses}`;
-  }
 
   get colorClasses(): string {
     if (this.color === 'gray') {

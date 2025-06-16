@@ -4,11 +4,10 @@
 
 ## Inputs
 
-| Input               | Description                                                             | Type      |
-| ------------------- | ----------------------------------------------------------------------- | --------- |
-| `id`                | (optional) Unique ID for the input                                      | `string`  |
-| `disabled`          | Whether the input is disabled or not                                    | `boolean` |
-| `appInputUppercase` | (optional) Whether the input text should be uppercased (default `true`) | `boolean` |
+| Input      | Description                          | Type      |
+| ---------- | ------------------------------------ | --------- |
+| `id`       | (optional) Unique ID for the input   | `string`  |
+| `disabled` | Whether the input is disabled or not | `boolean` |
 
 ## Outputs
 
