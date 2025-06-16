@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, inject } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { injectDestroy } from '@lib/utils/inject-destroy';
 import { fromEvent, merge, takeUntil, tap } from 'rxjs';
@@ -8,6 +8,10 @@ let nextUniqueId = 0;
 @Directive({
   selector: '[appFocus]',
   providers: [provideFocusableItem(FocusTriggerDirective)],
+  host: {
+    'attr.tabindex': '-1',
+    '[attr.appFocusable]': 'appFocusable',
+  },
 })
 export class FocusTriggerDirective implements FocusableItem, OnInit {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
@@ -21,8 +25,7 @@ export class FocusTriggerDirective implements FocusableItem, OnInit {
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('attr.tabindex') tabindex = '-1';
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
   get disabled(): boolean {
     return !!this.appFocusTrigger?.disabled;

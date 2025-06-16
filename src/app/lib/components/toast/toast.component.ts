@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { TOAST_DATA } from '@lib/components/toast/toast-config';
@@ -12,13 +12,14 @@ import { takeUntil, timer } from 'rxjs';
   imports: [ButtonModule, IconComponent, TranslatePipe],
   templateUrl: './toast.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block',
+  },
 })
 export class ToastComponent implements OnInit {
   private readonly _data = inject(TOAST_DATA);
   private readonly _toastRef = inject(ToastRef);
   private readonly _destroy$ = injectDestroy();
-
-  @HostBinding('class') classes = 'block';
 
   get icon(): string | undefined {
     return this._data.icon;

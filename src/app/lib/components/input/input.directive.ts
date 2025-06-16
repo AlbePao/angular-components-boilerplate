@@ -42,7 +42,6 @@ import {
   ElementRef,
   EventEmitter,
   HostAttributeToken,
-  HostBinding,
   inject,
   Input,
   OnInit,
@@ -91,6 +90,16 @@ const INPUT_NUMBER_ALLOWED_KEYS = [
 @Directive({
   selector: 'input[appInput], textarea[appInput]',
   providers: [provideFocusableItem(InputDirective)],
+  host: {
+    '[class]': 'classes',
+    '[attr.id]': 'inputId',
+    '[attr.disabled]': 'isDisabled',
+    '[attr.required]': 'isRequired',
+    // Following attribute prevents native autocomplete of the browser to be shown on the input field
+    'attr.autocomplete': 'off',
+    'attr.placeholder': ' ',
+    '[attr.appFocusable]': 'appFocusable',
+  },
 })
 export class InputDirective implements FocusableItem, OnInit, DoCheck {
   private readonly _type = inject(new HostAttributeToken('type'), { optional: true });
@@ -122,7 +131,6 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('class')
   get classes(): string {
     const uppercaseClass = this.appInputUppercase ? ' uppercase' : '';
 
@@ -137,25 +145,19 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
     return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}${uppercaseClass}`;
   }
 
-  @HostBinding('attr.id')
   get inputId(): string | null {
     return this.id || null;
   }
 
-  @HostBinding('attr.disabled')
   get isDisabled(): true | null {
     return this.disabled || null;
   }
 
-  @HostBinding('attr.required')
   get isRequired(): true | null {
     return this.required || null;
   }
 
-  // Following attribute prevents native autocomplete of the browser to be shown on the input field
-  @HostBinding('attr.autocomplete') attrAutocomplete = 'off';
-  @HostBinding('attr.placeholder') placeholder = ' ';
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
   get hostElement(): HTMLInputElement {
     return this._elementRef.nativeElement;

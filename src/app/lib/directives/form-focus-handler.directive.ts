@@ -3,7 +3,6 @@ import {
   AfterViewInit,
   ContentChildren,
   Directive,
-  HostBinding,
   Input,
   OnInit,
   QueryList,
@@ -20,6 +19,10 @@ const NO_ITEMS_INDEX = -1;
 
 @Directive({
   selector: 'form[focusHandler]',
+  host: {
+    // Following attribute prevents native autocomplete of the browser to be shown on the input field
+    'attr.autocomplete': 'off',
+  },
 })
 export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   private readonly _document = inject(DOCUMENT);
@@ -47,9 +50,6 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
     }
   }
   private _enabled = false;
-
-  // Following attribute prevents native autocomplete of the browser to be shown on the input field
-  @HostBinding('attr.autocomplete') attrAutocomplete = 'off';
 
   ngOnInit(): void {
     merge(

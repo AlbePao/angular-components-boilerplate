@@ -16,7 +16,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Input,
   OnInit,
@@ -38,6 +37,10 @@ const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];
 @Directive({
   selector: 'input[appMultiselect]',
   providers: [provideFocusableItem(MultiselectTriggerDirective), provideNgValueAccessor(MultiselectTriggerDirective)],
+  host: {
+    '[attr.role]': 'role',
+    '[attr.appFocusable]': 'appFocusable',
+  },
 })
 export class MultiselectTriggerDirective<T> implements ControlValueAccessor, FocusableItem, OnInit {
   private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
@@ -58,9 +61,8 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
-  @HostBinding('attr.role')
   get role(): 'combobox' | null {
     return this.appMultiselectDisabled ? null : 'combobox';
   }

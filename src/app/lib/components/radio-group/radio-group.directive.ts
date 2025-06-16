@@ -6,7 +6,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   InjectionToken,
   Input,
   Output,
@@ -35,6 +34,10 @@ export const APP_RADIO_GROUP = new InjectionToken<RadioGroupDirective>('RadioGro
       useExisting: RadioGroupDirective,
     },
   ],
+  host: {
+    class: 'flex gap-4',
+    '[attr.appFocusable]': 'appFocusable',
+  },
 })
 export class RadioGroupDirective implements ControlValueAccessor, FocusableItem, AfterContentInit {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -133,8 +136,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('class') classes = 'flex gap-4';
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
   onChange = (value: unknown): void => {};
   onTouched = (): void => {};

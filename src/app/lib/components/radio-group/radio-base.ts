@@ -5,7 +5,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   InjectionToken,
   Input,
   OnDestroy,
@@ -20,7 +19,11 @@ let nextUniqueId = 0;
 
 export const APP_RADIO = new InjectionToken<RadioBase>('RadioBase');
 
-@Directive()
+@Directive({
+  host: {
+    class: 'inline-block',
+  },
+})
 export class RadioBase implements OnInit, OnDestroy {
   private readonly _radioGroup = inject<RadioGroupDirective>(APP_RADIO_GROUP, { optional: true });
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
@@ -125,8 +128,6 @@ export class RadioBase implements OnInit, OnDestroy {
   @Output() readonly valueChange = new EventEmitter<unknown>();
   @Output() readonly focused = new EventEmitter<void>();
   @Output() readonly blurred = new EventEmitter<void>();
-
-  @HostBinding('class') classes = 'inline-block';
 
   /** Unregister function for _radioDispatcher */
   private _removeUniqueSelectionListener: () => void = () => {};

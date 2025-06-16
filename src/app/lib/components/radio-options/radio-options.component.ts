@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   ViewChild,
@@ -29,6 +28,10 @@ let nextUniqueId = 0;
   templateUrl: './radio-options.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(RadioOptionsComponent), provideNgValueAccessor(RadioOptionsComponent)],
+  host: {
+    class: 'block',
+    '[attr.appFocusable]': 'appFocusable',
+  },
 })
 export class RadioOptionsComponent<T> implements ControlValueAccessor, FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -97,8 +100,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('class') classes = 'block';
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
   onChange = (value: T | null): void => {};
   onTouched = (): void => {};

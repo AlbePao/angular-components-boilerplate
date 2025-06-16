@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, numberAttribute } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block',
+  },
 })
 export class ProgressBarComponent {
   @Input() color?: Colors;
@@ -17,8 +20,6 @@ export class ProgressBarComponent {
     this._value = Math.max(0, Math.min(100, value));
   }
   private _value = 0;
-
-  @HostBinding('class') classes = 'block';
 
   get progressBarColor(): string {
     if (this.color === 'primary') {

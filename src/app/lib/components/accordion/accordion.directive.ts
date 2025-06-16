@@ -4,9 +4,7 @@ import { Directive } from '@angular/core';
 @Directive({
   selector: 'app-accordion',
   host: {
-    '[class]': 'classes',
+    class: 'block w-full bg-gray-lighter rounded',
   },
 })
-export class AccordionDirective extends CdkAccordion {
-  classes = 'block w-full bg-gray-lighter rounded';
-}
+export class AccordionDirective extends CdkAccordion {}

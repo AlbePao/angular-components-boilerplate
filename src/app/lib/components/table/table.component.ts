@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   ViewChild,
@@ -178,6 +177,9 @@ let nextUniqueId = 0;
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'relative block overflow-auto',
+  },
 })
 export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
   protected dataSource$ = new BehaviorSubject<InputRow[]>([]);
@@ -299,8 +301,6 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
   @Output() readonly menuAction = new EventEmitter<TableRowAction<OutputRow>>();
   @Output() readonly rowClick = new EventEmitter<OutputRow>();
   @Output() readonly sortChange = new EventEmitter<TableColumnSort>();
-
-  @HostBinding('class') classes = 'relative block overflow-auto';
 
   get sortStatus(): TableColumnSort {
     return this._sortStatus;

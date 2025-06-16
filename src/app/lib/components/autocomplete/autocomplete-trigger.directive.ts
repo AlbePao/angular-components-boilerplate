@@ -16,7 +16,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Injector,
   Input,
@@ -49,6 +48,11 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
     provideNgValueAccessor(AutocompleteTriggerDirective),
     provideNgValidators(AutocompleteTriggerDirective),
   ],
+  host: {
+    '[class]': 'classes',
+    '[attr.appFocusable]': 'appFocusable',
+    '[attr.role]': 'role',
+  },
 })
 export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   implements ControlValueAccessor, Validator, FocusableItem, OnInit
@@ -77,14 +81,12 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
-  @HostBinding('attr.role')
   get role(): 'combobox' | null {
     return this.appAutocompleteDisabled ? null : 'combobox';
   }
 
-  @HostBinding('class')
   get classes(): string {
     return this.appAutocompleteUppercase ? 'uppercase' : '';
   }

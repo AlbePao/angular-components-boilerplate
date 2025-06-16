@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 export type IconColors = Colors | 'black';
@@ -9,12 +9,14 @@ export type IconColors = Colors | 'black';
   styleUrls: ['./icon.component.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'classes',
+  },
 })
 export class IconComponent {
   @Input() color?: IconColors;
   @Input() appearance: 'normal' | 'outlined' = 'outlined';
 
-  @HostBinding('class')
   get classes(): string {
     return `${this.iconAppearance} ${this.iconColor} app-icon select-none relative`;
   }

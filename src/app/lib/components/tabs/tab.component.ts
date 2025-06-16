@@ -1,13 +1,5 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  HostBinding,
-  Input,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, inject } from '@angular/core';
 import { APP_TAB_GROUP, TabGroupComponent } from './tab-group.component';
 
 let nextUniqueId = 0;
@@ -16,6 +8,9 @@ let nextUniqueId = 0;
   selector: 'app-tab',
   templateUrl: './tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block',
+  },
 })
 export class TabComponent implements OnInit {
   private readonly _tabsGroup = inject<TabGroupComponent>(APP_TAB_GROUP, { optional: true });
@@ -36,8 +31,6 @@ export class TabComponent implements OnInit {
     this._changeDetectorRef.markForCheck();
   }
   private _active = false;
-
-  @HostBinding('class') classes = 'block';
 
   ngOnInit(): void {
     if (!this._tabsGroup) {

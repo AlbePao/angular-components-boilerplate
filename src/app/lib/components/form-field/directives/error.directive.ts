@@ -1,11 +1,12 @@
-import { Directive, HostBinding, InjectionToken } from '@angular/core';
+import { Directive, InjectionToken } from '@angular/core';
 
 export const APP_ERROR = new InjectionToken<ErrorDirective>('AppError');
 
 @Directive({
   selector: 'app-error, [appError]',
   providers: [{ provide: APP_ERROR, useExisting: ErrorDirective }],
+  host: {
+    class: 'text-danger',
+  },
 })
-export class ErrorDirective {
-  @HostBinding('class') classes = 'text-danger';
-}
+export class ErrorDirective {}

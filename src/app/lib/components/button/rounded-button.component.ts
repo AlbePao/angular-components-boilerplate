@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 import { ButtonBase } from './button-base';
 
@@ -10,11 +10,13 @@ export type RoundedButtonColor = Colors | 'base';
   selector: 'button[app-rounded-button], a[app-rounded-button]',
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'classes',
+  },
 })
 export class RoundedButtonComponent extends ButtonBase {
   @Input() color: RoundedButtonColor = 'base';
 
-  @HostBinding('class')
   get classes(): string {
     return `inline-flex gap-2 flex-row flex-nowrap min-w-max items-center justify-center relative w-auto rounded-full font-semibold no-underline select-none text-base text-center ${this.colorClasses} ${this.sizeClasses} ${this.disabledClasses}`;
   }

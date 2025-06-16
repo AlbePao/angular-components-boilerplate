@@ -3,7 +3,6 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnInit,
   Output,
@@ -20,6 +19,13 @@ let nextUniqueId = 0;
 @Directive({
   selector: 'select[appSelect]',
   providers: [provideFocusableItem(SelectDirective)],
+  host: {
+    '[class]': 'classes',
+    '[attr.id]': 'selectId',
+    '[attr.appFocusable]': 'appFocusable',
+    'attr.placeholder': ' ',
+    '[attr.disabled]': 'isDisabled',
+  },
 })
 export class SelectDirective implements FocusableItem, OnInit, DoCheck {
   private readonly _ngControl = inject(NgControl, { self: true, optional: true });
@@ -40,7 +46,6 @@ export class SelectDirective implements FocusableItem, OnInit, DoCheck {
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('class')
   get classes(): string {
     const borderColorClasses = this.invalid
       ? 'border-danger focus:border-danger focus:ring-danger/40'
@@ -49,15 +54,12 @@ export class SelectDirective implements FocusableItem, OnInit, DoCheck {
     return `block min-h-[40px] pl-2.5 pr-8 w-full text-sm text-black rounded border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
 
-  @HostBinding('attr.id')
   get selectId(): string | null {
     return this.id || null;
   }
 
-  @HostBinding('attr.appFocusable') appFocusable = true;
-  @HostBinding('attr.placeholder') placeholder = ' ';
+  appFocusable = true;
 
-  @HostBinding('attr.disabled')
   get isDisabled(): true | null {
     return this.disabled || null;
   }

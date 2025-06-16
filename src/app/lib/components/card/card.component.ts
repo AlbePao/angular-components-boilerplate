@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 // TODO: add app-card-header, app-card-content and app-card-actions directives and related styles
@@ -6,11 +6,13 @@ import { Colors } from '@lib/types/colors';
   selector: 'app-card',
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'classes',
+  },
 })
 export class CardComponent {
   @Input() color: Colors = 'gray';
 
-  @HostBinding('class')
   get classes(): string {
     return `border ${this.borderClass} rounded block`;
   }

@@ -6,7 +6,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnInit,
   Output,
@@ -26,6 +25,10 @@ let nextUniqueId = 0;
   templateUrl: './checkbox.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(CheckboxComponent), provideNgValueAccessor(CheckboxComponent)],
+  host: {
+    '[class]': 'classes',
+    '[attr.appFocusable]': 'appFocusable',
+  },
 })
 export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -103,7 +106,6 @@ export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, Focus
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('class')
   get classes(): string {
     const flexRowClass = this.labelPosition === 'after' ? 'flex-row' : 'flex-row-reverse';
     const disabledClass = this.disabled ? 'opacity-50' : 'cursor-pointer';
@@ -111,7 +113,7 @@ export class CheckboxComponent<T> implements OnInit, ControlValueAccessor, Focus
     return `inline-flex min-h-[40px] items-center gap-3 text-base/5 font-semibold ${flexRowClass} ${disabledClass}`;
   }
 
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
   onChange = (value: boolean | null): void => {};
   onTouched = (): void => {};

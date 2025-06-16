@@ -5,7 +5,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   HostListener,
   Input,
   Output,
@@ -21,7 +20,13 @@ export interface ToggleOption<T> extends Omit<Option<T>, 'label'> {
 
 let nextUniqueId = 0;
 
-@Directive()
+@Directive({
+  host: {
+    '[class]': 'classes',
+    '[attr.id]': 'toggleId',
+    '[attr.appFocusable]': 'appFocusable',
+  },
+})
 export class ToggleBase<T> implements FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
@@ -80,14 +85,12 @@ export class ToggleBase<T> implements FocusableItem {
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
-  @HostBinding('attr.appFocusable') appFocusable = true;
+  appFocusable = true;
 
-  @HostBinding('class')
   get classes(): string {
     return `inline-block${this.disabled ? ' opacity-50 pointer-events-none' : ''}`;
   }
 
-  @HostBinding('attr.id')
   get toggleId(): string | null {
     return this.id || null;
   }

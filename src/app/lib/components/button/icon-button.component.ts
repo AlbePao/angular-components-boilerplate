@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ButtonBase } from './button-base';
 
 export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
@@ -9,11 +9,13 @@ export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
   selector: 'button[app-icon-button], a[app-icon-button]',
   template: `<ng-content select="app-icon" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'classes',
+  },
 })
 export class IconButtonComponent extends ButtonBase {
   @Input() appearance: IconButtonAppearance = 'base';
 
-  @HostBinding('class')
   get classes(): string {
     return `inline-flex relative align-bottom font-semibold min-w-max items-center justify-center w-auto no-underline select-none text-center rounded ${this.appearanceClasses} ${this.sizeClasses} ${this.disabledClasses}`;
   }

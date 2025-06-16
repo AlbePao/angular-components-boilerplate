@@ -1,15 +1,18 @@
-import { Directive, ElementRef, HostBinding, Input, booleanAttribute, inject } from '@angular/core';
+import { Directive, ElementRef, Input, booleanAttribute, inject } from '@angular/core';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
-@Directive()
+@Directive({
+  host: {
+    '[attr.disabled]': 'isDisabled',
+  },
+})
 export class ButtonBase {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
   @Input() size: ButtonSize = 'md';
   @Input({ transform: booleanAttribute }) disabled = false;
 
-  @HostBinding('attr.disabled')
   get isDisabled(): true | null {
     return (!this.isAnchorTag && this.disabled) || null;
   }

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
@@ -11,11 +11,12 @@ import { AuthService } from '@lib/services/auth.service';
   imports: [RouterModule, ButtonModule, IconComponent, MenuModule, AsyncPipe],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block',
+  },
 })
 export class HeaderComponent {
   private readonly _authService = inject(AuthService);
-
-  @HostBinding('class') classes = 'block';
 
   menuItems: MenuItem<'logout'>[] = [
     {

@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  numberAttribute,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, numberAttribute, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon';
@@ -33,6 +25,9 @@ const ELLIPSIS_RANGE = 3;
   imports: [IconComponent, FormsModule, FormFieldModule, SelectDirective, TranslatePipe],
   templateUrl: './paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block',
+  },
 })
 export class PaginatorComponent {
   @Input({ transform: numberAttribute }) currentPage = 1;
@@ -59,8 +54,6 @@ export class PaginatorComponent {
       length: length || 0,
     };
   }
-
-  @HostBinding('class') classes = 'block';
 
   protected setPage(newPage: number): void {
     const { currentPage, pageSize, length } = this;

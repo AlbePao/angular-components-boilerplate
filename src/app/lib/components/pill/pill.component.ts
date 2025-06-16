@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 export type PillSize = 'sm' | 'md' | 'lg';
@@ -9,6 +9,9 @@ export type PillAppearance = 'fill' | 'outline';
   selector: 'app-pill',
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'classes',
+  },
 })
 export class PillComponent {
   @Input()
@@ -38,7 +41,6 @@ export class PillComponent {
   }
   private _color: Colors = 'gray';
 
-  @HostBinding('class')
   get classes(): string {
     return `inline-flex justify-content items-center select-none whitespace-nowrap rounded-full ${this.sizeClasses} ${this.colorClasses}`;
   }

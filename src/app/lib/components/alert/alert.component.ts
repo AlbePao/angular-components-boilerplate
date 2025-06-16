@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   booleanAttribute,
@@ -18,6 +17,9 @@ import { Colors } from '@lib/types/colors';
   imports: [ButtonModule, IconComponent],
   templateUrl: './alert.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'classes',
+  },
 })
 export class AlertComponent {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -27,7 +29,6 @@ export class AlertComponent {
 
   @Output() readonly dismissed = new EventEmitter<void>();
 
-  @HostBinding('class')
   get classes(): string {
     return `flex rounded p-5 ${this.bgColorClass}`;
   }
