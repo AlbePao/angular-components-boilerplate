@@ -14,7 +14,7 @@ export class CardComponent {
   @Input() color: Colors = 'gray';
 
   get classes(): string {
-    return `border ${this.borderClass} rounded block`;
+    return `border ${this.borderClass} rounded-sm block`;
   }
 
   get borderClass(): string {

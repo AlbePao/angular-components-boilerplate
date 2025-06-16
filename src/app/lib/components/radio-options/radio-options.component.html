@@ -2,7 +2,7 @@
   @for (option of options; track option.value) {
     <label
       #inputRadio
-      class="flex h-auto min-h-[72px] min-w-0 flex-1 flex-grow flex-row items-center gap-3 rounded border px-5 py-3"
+      class="flex h-auto min-h-[72px] min-w-0 flex-1 grow flex-row items-center gap-3 rounded-sm border px-5 py-3"
       [class]="{
         'border-primary': option.value === value,
         'border-gray': option.value !== value,

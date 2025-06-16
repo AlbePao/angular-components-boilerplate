@@ -3,7 +3,7 @@
     <ng-container [cdkColumnDef]="startSelectionCol" [sticky]="true">
       <th
         cdk-header-cell
-        class="border-gray bg-gray-lighter/80 border-b border-solid px-2 font-normal whitespace-nowrap backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+        class="border-gray bg-gray-lighter/80 backdrop-blur-sm-xs border-b border-solid px-2 font-normal whitespace-nowrap backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
         *cdkHeaderCellDef
       >
         @if (isMultipleSelection) {
@@ -19,7 +19,7 @@
       </th>
       @if (isMultipleSelection) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
         >
@@ -31,7 +31,7 @@
         </td>
       } @else if (isSingleSelection) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
         >
@@ -49,7 +49,7 @@
     <ng-container [cdkColumnDef]="column.key" [sticky]="column.sticky" [stickyEnd]="column.sticky">
       <th
         cdk-header-cell
-        class="border-gray bg-gray-lighter/80 border-b border-solid px-2 font-normal whitespace-nowrap backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+        class="border-gray bg-gray-lighter/80 backdrop-blur-sm-xs border-b border-solid px-2 font-normal whitespace-nowrap backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
         *cdkHeaderCellDef
         (click)="column.sortable ? toggleSort(column.key) : null"
         [class]="{
@@ -70,7 +70,7 @@
       </th>
       @if (column.type === columnTypes.number) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -79,7 +79,7 @@
         </td>
       } @else if (column.type === columnTypes.text) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -88,7 +88,7 @@
         </td>
       } @else if (column.type === columnTypes.textFormat) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment, row[column.key])"
@@ -97,7 +97,7 @@
         </td>
       } @else if (column.type === columnTypes.textIcon) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -120,7 +120,7 @@
         </td>
       } @else if (column.type === columnTypes.date) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -129,7 +129,7 @@
         </td>
       } @else if (column.type === columnTypes.icon) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -140,7 +140,7 @@
         </td>
       } @else if (column.type === columnTypes.link) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -155,7 +155,7 @@
         </td>
       } @else if (column.type === columnTypes.listTooltip) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -175,7 +175,7 @@
         </td>
       } @else if (column.type === columnTypes.pill) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -200,7 +200,7 @@
         </td>
       } @else if (column.type === columnTypes.pillsList) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
         >
@@ -222,7 +222,7 @@
         </td>
       } @else if (column.type === columnTypes.currency) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -231,7 +231,7 @@
         </td>
       } @else if (column.type === columnTypes.button) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -265,7 +265,7 @@
         </td>
       } @else if (column.type === columnTypes.iconButton) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -293,7 +293,7 @@
         </td>
       } @else if (column.type === columnTypes.roundedButton) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -327,7 +327,7 @@
         </td>
       } @else if (column.type === columnTypes.menu) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 px-2 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 px-2 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -346,7 +346,7 @@
     <ng-container [cdkColumnDef]="endSelectionCol" [stickyEnd]="true">
       <th
         cdk-header-cell
-        class="border-gray bg-gray-lighter/80 border-b border-solid px-2 font-normal whitespace-nowrap backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+        class="border-gray bg-gray-lighter/80 backdrop-blur-sm-xs border-b border-solid px-2 font-normal whitespace-nowrap backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
         *cdkHeaderCellDef
       >
         @if (isMultipleSelection) {
@@ -362,7 +362,7 @@
       </th>
       @if (isMultipleSelection) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
         >
@@ -374,7 +374,7 @@
         </td>
       } @else if (isSingleSelection) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-blur-sm backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
         >
@@ -390,7 +390,7 @@
   }
 
   <tr
-    class="h-11 rounded rounded-b-none text-sm text-black"
+    class="h-11 rounded-sm rounded-b-none text-sm text-black"
     cdk-header-row
     *cdkHeaderRowDef="displayedColumns; sticky: true"
   ></tr>

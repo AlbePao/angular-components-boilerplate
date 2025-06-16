@@ -1,6 +1,6 @@
 <ng-template>
   @if (options.length > 0) {
-    <div class="border-gray-light block w-full overflow-auto rounded border bg-white" role="listbox" [id]="id">
+    <div class="border-gray-light block w-full overflow-auto rounded-sm border bg-white" role="listbox" [id]="id">
       @for (option of filteredOptions; track option.value; let index = $index) {
         <div
           role="option"

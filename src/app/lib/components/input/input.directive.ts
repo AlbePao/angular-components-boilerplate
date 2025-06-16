@@ -142,7 +142,7 @@ export class InputDirective implements FocusableItem, OnInit, DoCheck {
       ? 'border-danger focus:border-danger focus:ring-danger/40 '
       : `border-gray-darker ${borderColorClassesRequired} focus:border-primary focus:ring-primary/40`;
 
-    return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}${uppercaseClass}`;
+    return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}${uppercaseClass}`;
   }
 
   get inputId(): string | null {

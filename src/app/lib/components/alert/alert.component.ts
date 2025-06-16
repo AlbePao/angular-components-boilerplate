@@ -30,7 +30,7 @@ export class AlertComponent {
   @Output() readonly dismissed = new EventEmitter<void>();
 
   get classes(): string {
-    return `flex rounded p-5 ${this.bgColorClass}`;
+    return `flex rounded-sm p-5 ${this.bgColorClass}`;
   }
 
   get bgColorClass(): string {

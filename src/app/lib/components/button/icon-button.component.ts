@@ -17,7 +17,7 @@ export class IconButtonComponent extends ButtonBase {
   @Input() appearance: IconButtonAppearance = 'base';
 
   get classes(): string {
-    return `inline-flex relative align-bottom font-semibold min-w-max items-center justify-center w-auto no-underline select-none text-center rounded ${this.appearanceClasses} ${this.sizeClasses} ${this.disabledClasses}`;
+    return `inline-flex relative align-bottom font-semibold min-w-max items-center justify-center w-auto no-underline select-none text-center rounded-sm ${this.appearanceClasses} ${this.sizeClasses} ${this.disabledClasses}`;
   }
 
   get appearanceClasses(): string {

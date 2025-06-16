@@ -38,13 +38,13 @@ export class ButtonComponent extends ButtonBase {
 
   get sizeClasses(): string {
     if (this.size === 'xs') {
-      return 'rounded h-6 p-0.5 text-sm gap-1';
+      return 'rounded-sm h-6 p-0.5 text-sm gap-1';
     } else if (this.size === 'sm') {
-      return 'rounded h-8 p-1 text-sm gap-1';
+      return 'rounded-sm h-8 p-1 text-sm gap-1';
     } else if (this.size === 'md') {
-      return 'rounded h-10 p-3 text-sm gap-2';
+      return 'rounded-sm h-10 p-3 text-sm gap-2';
     }
 
-    return 'rounded h-12 p-3 text-base gap-2';
+    return 'rounded-sm h-12 p-3 text-base gap-2';
   }
 }

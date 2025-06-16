@@ -51,7 +51,7 @@ export class SelectDirective implements FocusableItem, OnInit, DoCheck {
       ? 'border-danger focus:border-danger focus:ring-danger/40'
       : 'border-gray-darker placeholder-shown:border-gray focus:border-primary focus:ring-primary/40';
 
-    return `block min-h-[40px] pl-2.5 pr-8 w-full text-sm text-black rounded border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
+    return `block min-h-[40px] pl-2.5 pr-8 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
 
   get selectId(): string | null {
