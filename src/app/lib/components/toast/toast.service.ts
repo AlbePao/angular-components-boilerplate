@@ -17,7 +17,7 @@ export class ToastService {
 
   private _lastToast?: ToastRef;
 
-  showMultiple(data: ToastData[]) {
+  showMultiple(data: ToastData[]): void {
     void zip(from(data), interval(100)).forEach(([data]) => this.show(data));
   }
 

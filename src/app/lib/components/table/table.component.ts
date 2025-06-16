@@ -205,7 +205,7 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
   protected endSelectionCol = 'endSelectionCol' as const;
   protected selection = new SelectionModel<InputRow>(true);
 
-  protected get displayedColumns() {
+  protected get displayedColumns(): TableColumn['key'][] {
     return this._displayedColumns;
   }
   protected set displayedColumns(displayedColumns: TableColumn['key'][]) {
@@ -276,7 +276,7 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
   @Input() rowSelection: 'multiple' | 'single' | null = null;
 
   @Input()
-  get rowSelectionPosition() {
+  get rowSelectionPosition(): RowSelectionPosition {
     return this._rowSelectionPosition;
   }
   set rowSelectionPosition(rowSelectionPosition: RowSelectionPosition) {

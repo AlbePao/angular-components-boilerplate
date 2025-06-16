@@ -4,7 +4,7 @@ import boundaries from 'eslint-plugin-boundaries';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import tseslint from 'typescript-eslint';
 
-// eslint-plugin-boundaries based on https://docs.google.com/presentation/d/1oDee5t0cy2t7wEFL9cd2d3_m5Mpj4KfXojp2lGNOiEw/edit?usp=sharing
+// eslint-plugin-boundaries config based on https://docs.google.com/presentation/d/1oDee5t0cy2t7wEFL9cd2d3_m5Mpj4KfXojp2lGNOiEw/edit?usp=sharing
 export default tseslint.config(
   {
     files: ['**/*.ts'],
@@ -109,6 +109,7 @@ export default tseslint.config(
       eqeqeq: 'error',
       curly: 'error',
       'no-nested-ternary': 'error',
+      '@typescript-eslint/explicit-function-return-type': 'error',
       'boundaries/element-types': [
         'error',
         {
@@ -122,7 +123,7 @@ export default tseslint.config(
               from: 'routes', // type routes
               allow: [
                 'lib', // can import from lib
-                ['feature', { feature: '${from.feature}' }],
+                ['routes', { routes: '${from.routes}' }],
               ],
             },
           ],

@@ -138,7 +138,7 @@ export class MultiselectComponent<T> {
     this.selection.select(...values);
   }
 
-  clearSelection() {
+  clearSelection(): void {
     this.selection.clear();
   }
 

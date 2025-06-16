@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Templa
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
-import { arrayAttribute } from '@lib/utils/array-attribute';
 import { TranslatePipe } from '@ngx-translate/core';
 
 type TextColors =
@@ -49,7 +48,7 @@ export type MenuItem<T> = {
 export class MenuComponent<T> {
   @ViewChild(TemplateRef, { static: true }) menu!: TemplateRef<unknown>;
 
-  @Input({ transform: arrayAttribute }) items: MenuItem<T>[] = [];
+  @Input() items: MenuItem<T>[] = [];
 
   @Output() readonly menuAction = new EventEmitter<T>();
 
