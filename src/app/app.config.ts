@@ -4,6 +4,7 @@ import { provideRouter, withComponentInputBinding, withViewTransitions } from '@
 import { jwtInterceptor } from '@lib/interceptors/jwt.interceptor';
 import { serverErrorInterceptor } from '@lib/interceptors/server-error.interceptor';
 import { provideThemeInitializer } from '@lib/providers/theme-initializer';
+import { provideTitleStrategy } from '@lib/providers/title-strategy';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideThemeInitializer(),
+    provideTitleStrategy(),
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
