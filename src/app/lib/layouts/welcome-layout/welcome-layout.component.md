@@ -1,26 +1,37 @@
 # Welcome Layout
 
-The `<app-welcome-layout>` provides a component for wrapping content for non-authenticated users
+This layout provides a component for wrapping children routes for non-authenticated users
 
-## Example
+## Examples
 
 ```typescript
-// example.component.ts
-@Component({
-  // other stuff...
-  imports: [
-    // other imports...
-    WelcomeLayoutComponent,
-    // other imports...
-  ],
-  // other stuff...
-})
-export class ExampleComponent {}
+// example.routes.ts
+export const routes: Routes = [
+  // other imports...
+  {
+    path: 'welcome',
+    // lazy loaded component
+    loadComponent: () => WelcomeLayoutComponent,
+    children: [
+      // children paths...
+    ],
+  },
+  // other paths...
+];
 ```
 
-```html
-<!-- example.component.html -->
-<app-welcome-layout>
-  <!-- Example content here -->
-</app-welcome-layout>
+```typescript
+// example.routes.ts
+export const routes: Routes = [
+  // other imports...
+  {
+    path: 'welcome',
+    // eager loaded component
+    component: WelcomeLayoutComponent,
+    children: [
+      // children paths...
+    ],
+  },
+  // other paths...
+];
 ```

@@ -1,26 +1,37 @@
 # Main Layout
 
-The `<app-main-layout>` provides a component for wrapping content for authenticated users
+This layout provides a component for wrapping children routes for authenticated users
 
-## Example
+## Examples
 
 ```typescript
-// example.component.ts
-@Component({
-  // other stuff...
-  imports: [
-    // other imports...
-    MainLayoutComponent,
-    // other imports...
-  ],
-  // other stuff...
-})
-export class ExampleComponent {}
+// example.routes.ts
+export const routes: Routes = [
+  // other imports...
+  {
+    path: 'welcome',
+    // lazy loaded component
+    loadComponent: () => MainLayoutComponent,
+    children: [
+      // children paths...
+    ],
+  },
+  // other paths...
+];
 ```
 
-```html
-<!-- example.component.html -->
-<app-main-layout>
-  <!-- Example content here -->
-</app-main-layout>
+```typescript
+// example.routes.ts
+export const routes: Routes = [
+  // other imports...
+  {
+    path: 'welcome',
+    // eager loaded component
+    component: MainLayoutComponent,
+    children: [
+      // children paths...
+    ],
+  },
+  // other paths...
+];
 ```
