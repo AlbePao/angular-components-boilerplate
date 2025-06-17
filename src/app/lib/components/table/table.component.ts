@@ -181,8 +181,10 @@ let nextUniqueId = 0;
     class: 'relative block overflow-auto',
   },
 })
-export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
-  protected dataSource$ = new BehaviorSubject<InputRow[]>([]);
+export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
+  private _dataSource$ = new BehaviorSubject<InputRow[]>([]);
+
+  dataSource$ = this._dataSource$.asObservable();
 
   protected columnTypes: { [key in ColumnTypes]: key } = {
     number: 'number',
@@ -201,8 +203,8 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
     roundedButton: 'roundedButton',
     menu: 'menu',
   };
-  protected startSelectionCol = 'startSelectionCol' as const;
-  protected endSelectionCol = 'endSelectionCol' as const;
+  protected readonly startSelectionCol = 'startSelectionCol';
+  protected readonly endSelectionCol = 'endSelectionCol';
   protected selection = new SelectionModel<InputRow>(true);
 
   protected get displayedColumns(): TableColumn['key'][] {
@@ -231,13 +233,13 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
   set columns(columns: TableColumn[] | null) {
     columns = columns ?? [];
 
-    const hasKeyNamedChildren = columns.some(({ key }) =>
-      [this.startSelectionCol, this.endSelectionCol, 'children'].includes(key),
+    const hasForbiddenKeyNames = columns.some(({ key }) =>
+      [this.startSelectionCol, this.endSelectionCol].includes(key),
     );
 
-    if (hasKeyNamedChildren) {
+    if (hasForbiddenKeyNames) {
       throw new Error(
-        `TableBase: Table cannot have a column with a key named "children", "${this.startSelectionCol}" or "${this.endSelectionCol}"`,
+        `TableComponent: Table cannot have a column with a key named "${this.startSelectionCol}" or "${this.endSelectionCol}"`,
       );
     }
 
@@ -320,7 +322,7 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
 
   get isAllRowsSelected(): boolean {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource$.value.length;
+    const numRows = this._dataSource$.value.length;
     return numSelected === numRows;
   }
 
@@ -340,7 +342,7 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
     if (this.isAllRowsSelected) {
       this.selection.clear();
     } else {
-      this.dataSource$.value.forEach((row) => this.selection.select(row));
+      this._dataSource$.value.forEach((row) => this.selection.select(row));
     }
   }
 
@@ -415,7 +417,7 @@ export class TableBase<InputRow extends TableRow, OutputRow = InputRow> {
   }
 
   setDataSource(rows: InputRow[]): void {
-    this.dataSource$.next(rows);
+    this._dataSource$.next(rows);
   }
 
   sortDataSource(rows: InputRow[], sorting: TableColumnSort): void {

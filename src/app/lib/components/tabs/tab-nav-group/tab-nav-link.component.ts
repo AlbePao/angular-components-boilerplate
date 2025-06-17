@@ -5,8 +5,6 @@ import { APP_TAB_NAV_GROUP } from './tab-nav-group.component';
 let nextUniqueId = 0;
 
 @Component({
-  // We disable the eslint rule because of https://angular.io/guide/styleguide#style-05-03
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[app-tab-nav-link], [appTabNavLink]',
   templateUrl: './tab-nav-link.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

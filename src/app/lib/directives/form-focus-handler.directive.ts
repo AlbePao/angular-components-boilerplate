@@ -55,11 +55,15 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
     merge(
       this._hotKeysService.addShortcut({ keys: 'enter' }).pipe(
         map(() => false),
+        // We disable this rule because we need this operators' order to handle pause and resume status of this observable
+        // eslint-disable-next-line rxjs-x/no-unsafe-takeuntil
         takeUntil(this._pauseHandler$),
         repeat({ delay: () => this._resumeHandler$ }),
       ),
       this._hotKeysService.addShortcut({ keys: 'control.enter' }).pipe(
         map(() => true),
+        // We disable this rule because we need this operators' order to handle pause and resume status of this observable
+        // eslint-disable-next-line rxjs-x/no-unsafe-takeuntil
         takeUntil(this._pauseHandler$),
         repeat({ delay: () => this._resumeHandler$ }),
       ),

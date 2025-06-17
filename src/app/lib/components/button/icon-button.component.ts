@@ -4,8 +4,6 @@ import { ButtonBase } from './button-base';
 export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
 
 @Component({
-  // We disable the eslint rule because of https://angular.io/guide/styleguide#style-05-03
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[app-icon-button], a[app-icon-button]',
   template: `<ng-content select="app-icon" />`,
   changeDetection: ChangeDetectionStrategy.OnPush,

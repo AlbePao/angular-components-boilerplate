@@ -34,12 +34,11 @@ let uniqueOptionIndex = 0;
 function optionsFlattener<T>(options: MultiselectOption<T>[], parentIndex?: number): FlatMultiselectOption<T>[] {
   return options.reduce<FlatMultiselectOption<T>[]>((prev, curr) => {
     if (isArray(curr.children)) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { children, ...updatedCurr } = curr;
       return [
         ...prev,
         { ...updatedCurr, parent: parentIndex, index: uniqueOptionIndex++ },
-        ...optionsFlattener(curr.children, uniqueOptionIndex - 1),
+        ...optionsFlattener(children, uniqueOptionIndex - 1),
       ];
     }
 

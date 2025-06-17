@@ -5,8 +5,7 @@ import { storage } from '@lib/storage';
 import { WINDOW } from '@lib/tokens/window';
 import { AppTheme } from '@lib/types/theme';
 import { injectDestroy } from '@lib/utils/inject-destroy';
-import { BehaviorSubject, fromEventPattern, Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, fromEventPattern, Observable, takeUntil } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -2,6 +2,7 @@ import eslint from '@eslint/js';
 import angular from 'angular-eslint';
 import boundaries from 'eslint-plugin-boundaries';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import rxjsX from 'eslint-plugin-rxjs-x';
 import tseslint from 'typescript-eslint';
 
 // eslint-plugin-boundaries config based on https://docs.google.com/presentation/d/1oDee5t0cy2t7wEFL9cd2d3_m5Mpj4KfXojp2lGNOiEw/edit?usp=sharing
@@ -14,6 +15,7 @@ export default tseslint.config(
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
       ...angular.configs.tsRecommended,
+      rxjsX.configs.strict,
       eslintPluginPrettierRecommended,
       boundaries.configs.recommended, // all files have to belong to a type
     ],
@@ -61,7 +63,7 @@ export default tseslint.config(
       '@angular-eslint/component-selector': [
         'error',
         {
-          type: 'element',
+          type: ['element', 'attribute'],
           prefix: 'app',
           style: 'kebab-case',
         },
@@ -84,32 +86,18 @@ export default tseslint.config(
           format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
         },
       ],
-      '@typescript-eslint/no-empty-function': [
-        'error',
-        {
-          allow: ['arrowFunctions'],
-        },
-      ],
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          args: 'none',
-        },
-      ],
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/unbound-method': [
-        'error',
-        {
-          ignoreStatic: true,
-        },
-      ],
+      '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
+      '@typescript-eslint/no-unused-vars': ['warn', { args: 'none' }],
+      '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
       'no-unused-expressions': 'error',
       'sort-imports': 'off',
       eqeqeq: 'error',
       curly: 'error',
       'no-nested-ternary': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'error',
+      'rxjs-x/no-ignored-error': 'off',
       'boundaries/element-types': [
         'error',
         {
