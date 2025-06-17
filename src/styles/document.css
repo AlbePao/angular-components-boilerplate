@@ -1,16 +1,19 @@
 html {
-  @apply font-display;
-  @apply bg-slate-100;
+  @apply font-body;
+  @apply font-light;
 }
 
-html:has(body.dark) {
-  @apply bg-zinc-900;
+html,
+body {
+  @apply h-full;
 }
 
 body {
+  @apply bg-slate-100;
   @apply text-slate-900;
 }
 
 body.dark {
+  @apply bg-zinc-900;
   @apply text-zinc-200;
 }

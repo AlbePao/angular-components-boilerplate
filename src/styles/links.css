@@ -1,9 +1,17 @@
 a.link {
-  @apply text-black;
-  @apply underline;
+  @apply font-semibold;
+  @apply text-primary-dark dark:text-primary;
 }
 
 a.link:hover {
   @apply underline;
-  @apply text-primary;
+  @apply text-primary dark:text-primary-light;
+}
+
+a.link:focus {
+  @apply text-primary-dark dark:text-primary;
+}
+
+a.link:visited {
+  @apply text-danger dark:text-danger-light;
 }

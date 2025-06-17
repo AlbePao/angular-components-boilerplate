@@ -1,23 +1,19 @@
 /* Angular CDK Overlay */
-@import '@angular/cdk/overlay-prebuilt.css';
+@import '@angular/cdk/overlay-prebuilt';
 
 /* Font */
-@import '@fontsource/poppins/300.css';
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/500.css';
-@import '@fontsource/poppins/600.css';
-@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins';
 
 /* Material Icons Fonts */
-@import '@fontsource/material-icons/index.css';
-@import '@fontsource/material-icons-outlined/index.css';
+@import '@fontsource/material-icons';
+@import '@fontsource/material-icons-outlined';
 
 /* Tailwind CSS */
-@import './tailwind.css';
+@import './tailwind';
 
 /* Global styles */
-@import './document.css';
-@import './focus.css';
-@import './heading.css';
-@import './links.css';
-@import './grid.css';
+@import './document';
+@import './focus';
+@import './heading';
+@import './links';
+@import './grid';
