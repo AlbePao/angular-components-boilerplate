@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
   ChangeDetectorRef,
@@ -11,6 +10,7 @@ import {
   OnInit,
   Output,
   ViewChild,
+  booleanAttribute,
   inject,
 } from '@angular/core';
 import { APP_RADIO_GROUP, RadioGroupDirective } from './radio-group.directive';
@@ -49,12 +49,12 @@ export class RadioBase implements OnInit, OnDestroy {
   @Input('aria-describedby') ariaDescribedby: string | null = null;
 
   /** Whether this radio button is checked. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get checked(): boolean {
     return this._checked;
   }
-  set checked(value: BooleanInput) {
-    const isCheckedNewState = coerceBooleanProperty(value);
+  set checked(value: boolean) {
+    const isCheckedNewState = value;
     if (this._checked !== isCheckedNewState) {
       this._checked = isCheckedNewState;
       if (isCheckedNewState && this._radioGroup && this._radioGroup.value !== this.value) {
@@ -106,22 +106,22 @@ export class RadioBase implements OnInit, OnDestroy {
   private _labelPosition: 'before' | 'after' = 'after';
 
   /** Whether the radio button is disabled. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled || !!this._radioGroup?.disabled;
   }
-  set disabled(value: BooleanInput) {
-    this._setDisabled(coerceBooleanProperty(value));
+  set disabled(value: boolean) {
+    this._setDisabled(value);
   }
   private _disabled = false;
 
   /** Whether the radio button is required. */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this._required || !!this._radioGroup?.required;
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
   }
   private _required = false;
 

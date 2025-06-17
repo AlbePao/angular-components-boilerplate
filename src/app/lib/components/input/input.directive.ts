@@ -1,74 +1,8 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import {
-  BACKSPACE,
-  COMMA,
-  DOWN_ARROW,
-  EIGHT,
-  ENTER,
-  FIVE,
-  FOUR,
-  LEFT_ARROW,
-  NINE,
-  NUMPAD_EIGHT,
-  NUMPAD_FIVE,
-  NUMPAD_FOUR,
-  NUMPAD_NINE,
-  NUMPAD_ONE,
-  NUMPAD_PERIOD,
-  NUMPAD_SEVEN,
-  NUMPAD_SIX,
-  NUMPAD_THREE,
-  NUMPAD_TWO,
-  NUMPAD_ZERO,
-  ONE,
-  PERIOD,
-  RIGHT_ARROW,
-  SEVEN,
-  SIX,
-  TAB,
-  THREE,
-  TWO,
-  UP_ARROW,
-  ZERO,
-} from '@angular/cdk/keycodes';
 import { booleanAttribute, Directive, DoCheck, ElementRef, EventEmitter, inject, Input, Output } from '@angular/core';
 import { AbstractControl, NgControl, Validators } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 
 let nextUniqueId = 0;
-
-const INPUT_NUMBER_ALLOWED_KEYS = [
-  ONE,
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  ZERO,
-  NUMPAD_ONE,
-  NUMPAD_TWO,
-  NUMPAD_THREE,
-  NUMPAD_FOUR,
-  NUMPAD_FIVE,
-  NUMPAD_SIX,
-  NUMPAD_SEVEN,
-  NUMPAD_EIGHT,
-  NUMPAD_NINE,
-  NUMPAD_ZERO,
-  NUMPAD_PERIOD,
-  UP_ARROW,
-  DOWN_ARROW,
-  LEFT_ARROW,
-  RIGHT_ARROW,
-  BACKSPACE,
-  ENTER,
-  COMMA,
-  PERIOD,
-  TAB,
-];
 
 @Directive({
   selector: 'input[appInput], textarea[appInput]',
@@ -101,12 +35,12 @@ export class InputDirective implements FocusableItem, DoCheck {
 
   @Input({ transform: booleanAttribute }) disabled = false;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return (this._required || this._ngControl?.control?.hasValidator(Validators.required)) ?? false;
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
   }
   protected _required = false;
 

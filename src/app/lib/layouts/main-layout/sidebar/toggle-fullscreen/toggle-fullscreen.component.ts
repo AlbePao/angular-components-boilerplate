@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, booleanAttribute, inject } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
 
 @Component({
@@ -13,7 +13,7 @@ export class ToggleFullscreenComponent {
 
   element = this._document.documentElement;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get showLabel(): boolean {
     return this._showLabel;
   }

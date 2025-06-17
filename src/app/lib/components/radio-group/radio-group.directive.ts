@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectorRef,
@@ -10,6 +9,7 @@ import {
   Input,
   Output,
   QueryList,
+  booleanAttribute,
   forwardRef,
   inject,
 } from '@angular/core';
@@ -111,23 +111,23 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   private _selected: RadioBase | null = null;
 
   /** Whether the radio group is disabled */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
+  set disabled(value: boolean) {
+    this._disabled = value;
     this._markRadiosForCheck();
   }
   private _disabled = false;
 
   /** Whether the radio group is required */
-  @Input()
+  @Input({ transform: booleanAttribute })
   get required(): boolean {
     return this._required;
   }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
+  set required(value: boolean) {
+    this._required = value;
     this._markRadiosForCheck();
   }
   private _required = false;

@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,6 +7,7 @@ import {
   Input,
   Output,
   ViewChild,
+  booleanAttribute,
   inject,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
@@ -77,12 +77,12 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   }
   private _value: T | null = null;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(disabled: BooleanInput) {
-    const disabledNewValue = coerceBooleanProperty(disabled);
+  set disabled(disabled: boolean) {
+    const disabledNewValue = disabled;
 
     if (disabledNewValue !== this.disabled) {
       this._disabled = disabledNewValue;

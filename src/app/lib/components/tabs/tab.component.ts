@@ -1,5 +1,12 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  booleanAttribute,
+  inject,
+} from '@angular/core';
 import { APP_TAB_GROUP, TabGroupComponent } from './tab-group.component';
 
 let nextUniqueId = 0;
@@ -22,12 +29,12 @@ export class TabComponent implements OnInit {
   @Input() name = this._uniqueId;
   @Input() id = this._uniqueId;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get active(): boolean {
     return this._active;
   }
-  set active(active: BooleanInput) {
-    this._active = coerceBooleanProperty(active);
+  set active(active: boolean) {
+    this._active = active;
     this._changeDetectorRef.markForCheck();
   }
   private _active = false;

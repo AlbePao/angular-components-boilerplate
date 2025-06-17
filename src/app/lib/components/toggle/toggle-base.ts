@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import {
   ChangeDetectorRef,
@@ -8,6 +7,7 @@ import {
   Input,
   Output,
   ViewChild,
+  booleanAttribute,
   inject,
 } from '@angular/core';
 import { FocusableItem } from '@lib/providers/focusable-item';
@@ -62,12 +62,12 @@ export class ToggleBase<T> implements FocusableItem {
   }
   private _value: T | null = null;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(disabled: BooleanInput) {
-    const disabledNewValue = coerceBooleanProperty(disabled);
+  set disabled(disabled: boolean) {
+    const disabledNewValue = disabled;
 
     if (disabledNewValue !== this.disabled) {
       this._disabled = disabledNewValue;

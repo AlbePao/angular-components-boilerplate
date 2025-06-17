@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, booleanAttribute, inject } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
 import { ThemeService } from '@lib/services/theme.service';
 import { AppTheme } from '@lib/types/theme';
@@ -13,7 +13,7 @@ import { AppTheme } from '@lib/types/theme';
 export class ToggleThemeComponent {
   private readonly _themeService = inject(ThemeService);
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get showLabel(): boolean {
     return this._showLabel;
   }

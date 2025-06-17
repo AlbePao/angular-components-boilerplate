@@ -1,4 +1,3 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ENTER } from '@angular/cdk/keycodes';
 import {
   ChangeDetectionStrategy,
@@ -9,6 +8,7 @@ import {
   Input,
   Output,
   ViewChild,
+  booleanAttribute,
   inject,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
@@ -57,12 +57,12 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   }
   private _value: T | null = null;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get checked(): boolean {
     return this._checked;
   }
-  set checked(checked: BooleanInput) {
-    const isChecked = coerceBooleanProperty(checked);
+  set checked(checked: boolean) {
+    const isChecked = checked;
 
     if (isChecked !== this.checked) {
       this._checked = isChecked;
@@ -71,22 +71,22 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   }
   private _checked = false;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get indeterminate(): boolean {
     return this._indeterminate;
   }
-  set indeterminate(indeterminate: BooleanInput) {
-    this._indeterminate = coerceBooleanProperty(indeterminate);
+  set indeterminate(indeterminate: boolean) {
+    this._indeterminate = indeterminate;
     this._syncIndeterminate(this._indeterminate);
   }
   private _indeterminate = false;
 
-  @Input()
+  @Input({ transform: booleanAttribute })
   get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(disabled: BooleanInput) {
-    const disabledNewValue = coerceBooleanProperty(disabled);
+  set disabled(disabled: boolean) {
+    const disabledNewValue = disabled;
 
     if (disabledNewValue !== this.disabled) {
       this._disabled = disabledNewValue;
@@ -162,7 +162,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   }
 
   writeValue(value: boolean | null): void {
-    this.checked = value;
+    this.checked = !!value;
   }
 
   registerOnChange(fn: (value: boolean | null) => void): void {
