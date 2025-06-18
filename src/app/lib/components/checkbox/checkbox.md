@@ -78,5 +78,5 @@ export class ExampleComponent {
 
 ```html
 <!-- example.component.html -->
-<app-checkbox (valueChange)="logCheckboxChange($event)" data-test="inputCheckboxExample">Checkbox Example</app-checkbox>
+<app-checkbox (valueChange)="logCheckboxChange($event)">Checkbox Example</app-checkbox>
 ```
