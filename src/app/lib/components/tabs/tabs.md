@@ -6,12 +6,6 @@ The active tab may be set using the `selected` input or when the user selects on
 
 The `<app-tab-nav-group>` provides instead a tab-like UI for navigating between routes. It is not tied to any particular router; it works with normal `<a>` elements and uses the active property to determine which tab is currently active. The corresponding `<router-outlet>` should typically be placed relatively close to the `<app-tab-nav-group>`.
 
-## `<app-tab-group>` Inputs
-
-| Input        | Description                                                | Type              |
-| ------------ | ---------------------------------------------------------- | ----------------- |
-| `appearance` | (optional) Appearance of the tab labels (default `labels`) | `labels`, `pills` |
-
 ## `<app-tab-group>` Outputs
 
 | Output      | Description                                      | Type             |

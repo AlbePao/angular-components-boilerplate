@@ -18,7 +18,7 @@ import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-it
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 import { injectDestroy } from '@lib/utils/inject-destroy';
 import { Subject, merge, startWith, switchMap, takeUntil } from 'rxjs';
-import { APP_RADIO, RadioBase } from './radio-base';
+import { APP_RADIO, RadioButtonComponent } from './radio-button.component';
 
 let nextUniqueId = 0;
 
@@ -44,15 +44,15 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _destroy$ = injectDestroy();
 
-  private _focusableRadios: RadioBase[] = [];
-  private readonly _focusableRadios$ = new Subject<RadioBase[]>();
+  private _focusableRadios: RadioButtonComponent[] = [];
+  private readonly _focusableRadios$ = new Subject<RadioButtonComponent[]>();
 
   /** Whether the `value` has been set to its initial value. */
   private _isInitialized = false;
 
   // Child radio buttons
   @ContentChildren(forwardRef(() => APP_RADIO), { descendants: true })
-  radioButtons = new QueryList<RadioBase>();
+  radioButtons = new QueryList<RadioButtonComponent>();
 
   @Input()
   get id(): string {
@@ -100,15 +100,15 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
    * will be updated to match the new selected button.
    */
   @Input()
-  get selected(): RadioBase | null {
+  get selected(): RadioButtonComponent | null {
     return this._selected;
   }
-  set selected(selected: RadioBase | null) {
+  set selected(selected: RadioButtonComponent | null) {
     this._selected = selected;
     this.value = selected ? selected.value : null;
     this._checkSelectedRadioButton();
   }
-  private _selected: RadioBase | null = null;
+  private _selected: RadioButtonComponent | null = null;
 
   /** Whether the radio group is disabled */
   @Input({ transform: booleanAttribute })

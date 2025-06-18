@@ -22,7 +22,7 @@ The `<app-radio-button>` provides the same functionality as a native input radio
 | `elementFocus` | Event emitted when the component gets focused      | `void`       |
 | `elementBlur`  | Event emitted when the component loses focus       | `void`       |
 
-## `app-radio-button` and `app-radio-pill` component
+## `app-radio-button` component
 
 ### Inputs
 
@@ -38,12 +38,6 @@ The `<app-radio-button>` provides the same functionality as a native input radio
 | `labelPosition`    | Whether the label should appear after or before the radio button. Defaults to `after` | `before`, `after` |
 | `disabled`         | Whether the radio button is disabled or not                                           | `boolean`         |
 | `required`         | Whether the radio button is required                                                  | `boolean`         |
-
-### `app-radio-pill` Inputs
-
-| Input   | Description                                     | Type     |
-| ------- | ----------------------------------------------- | -------- |
-| `color` | The color of the radio pill. Defaults to `gray` | `Colors` |
 
 ### Outputs
 

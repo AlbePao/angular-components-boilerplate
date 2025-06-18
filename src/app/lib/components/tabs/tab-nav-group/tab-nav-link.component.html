@@ -1,17 +1,11 @@
 <div
   class="flex items-end border-b-4 py-2"
   tabindex="0"
-  [class]="{
-    'border-b-primary': isActive,
-    'border-b-transparent': !isActive,
-  }"
+  [class]="isActive ? 'border-b-primary' : 'border-b-transparent'"
 >
   <span
     class="cursor-pointer items-end py-2 text-lg/5 no-underline before:invisible before:block before:h-0 before:overflow-hidden before:font-bold before:content-[attr(title)] hover:font-medium hover:text-current"
-    [class]="{
-      'font-medium text-black': isActive,
-      'text-gray-darker font-normal': !isActive,
-    }"
+    [class]="isActive ? 'font-medium text-black' : 'text-gray-darker font-normal'"
   >
     <ng-content />
   </span>

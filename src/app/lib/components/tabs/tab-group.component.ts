@@ -5,7 +5,6 @@ import {
   ContentChildren,
   EventEmitter,
   InjectionToken,
-  Input,
   Output,
   QueryList,
 } from '@angular/core';
@@ -33,8 +32,6 @@ export const APP_TAB_GROUP = new InjectionToken<TabGroupComponent>('TabGroupComp
 })
 export class TabGroupComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs = new QueryList<TabComponent>();
-
-  @Input() appearance: 'labels' | 'pills' = 'labels';
 
   @Output() readonly tabChange = new EventEmitter<TabChangeEvent>();
 
