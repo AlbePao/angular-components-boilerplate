@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@lib/guards/auth.guard';
 import { HorizontalLayoutComponent } from '@lib/layouts/horizontal-layout';
+import { MainLayoutComponent } from '@lib/layouts/main-layout';
 import { WelcomeLayoutComponent } from '@lib/layouts/welcome-layout';
 
 export const routes: Routes = [
@@ -14,6 +15,12 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => HorizontalLayoutComponent,
     loadChildren: async () => (await import('@routes/home')).routes,
+    canMatch: [authGuard()],
+  },
+  {
+    path: 'showcase',
+    loadComponent: () => MainLayoutComponent,
+    loadChildren: async () => (await import('@routes/showcase')).routes,
     canMatch: [authGuard()],
   },
   {

@@ -1,0 +1,9 @@
+<form [formGroup]="form" class="control">
+  <app-toggle formControlName="toggleControlExample" [options]="toggleOptions" />
+</form>
+
+<app-toggle
+  [value]="toggleOptions[0]?.value ?? null"
+  [options]="toggleOptions"
+  (valueChange)="logToggleChange($event)"
+/>
