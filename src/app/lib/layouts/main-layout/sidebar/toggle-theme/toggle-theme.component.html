@@ -1,12 +1,12 @@
 @if (currentTheme$ | async; as currentTheme) {
-  <button
-    class="flex flex-row items-center gap-4 rounded-sm no-underline disabled:opacity-50"
-    type="button"
-    (click)="toggleTheme(currentTheme)"
-  >
-    <app-icon class="icon-20">{{ currentTheme === 'dark' ? 'light_mode' : 'dark_mode' }}</app-icon>
+  <button app-rounded-button type="button" (click)="toggleTheme(currentTheme)">
+    <app-icon>{{ currentTheme === 'dark' ? 'light_mode' : 'dark_mode' }}</app-icon>
     @if (showLabel) {
-      {{ currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode' }}
+      {{
+        currentTheme === 'dark'
+          ? ('layouts.mainLayout.sidebar.themeLight' | translate)
+          : ('layouts.mainLayout.sidebar.themeDark' | translate)
+      }}
     }
   </button>
 }

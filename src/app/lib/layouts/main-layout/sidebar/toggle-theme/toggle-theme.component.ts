@@ -1,12 +1,14 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, booleanAttribute, inject } from '@angular/core';
+import { RoundedButtonComponent } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { ThemeService } from '@lib/services/theme.service';
 import { AppTheme } from '@lib/types/theme';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toggle-theme',
-  imports: [AsyncPipe, IconComponent],
+  imports: [AsyncPipe, RoundedButtonComponent, IconComponent, TranslatePipe],
   templateUrl: './toggle-theme.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

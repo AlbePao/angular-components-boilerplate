@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { MenuItem } from '@lib/components/menu';
-import { ToggleFullscreenComponent } from './toggle-fullscreen/toggle-fullscreen.component';
 import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 
 interface SidebarMenuOptions {
@@ -14,7 +13,7 @@ interface SidebarMenuOptions {
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterModule, ButtonModule, IconComponent, ToggleThemeComponent, ToggleFullscreenComponent],
+  imports: [RouterModule, ButtonModule, IconComponent, ToggleThemeComponent],
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
