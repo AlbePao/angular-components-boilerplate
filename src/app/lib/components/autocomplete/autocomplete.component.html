@@ -8,7 +8,8 @@
           class="border-b-gray-light hover:bg-gray-lighter flex h-12 cursor-pointer items-center border-b px-4 uppercase select-none last:border-b-0"
           [class]="{
             'bg-gray-lighter': optionIndex === index,
-            'pointer-events-none opacity-50': option.disabled,
+            'pointer-events-none': option.disabled,
+            'opacity-50': option.disabled,
           }"
           (click)="selectOption(option)"
           (keydown.enter)="selectOption(option)"

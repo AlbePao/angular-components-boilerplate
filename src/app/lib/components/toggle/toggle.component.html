@@ -1,9 +1,6 @@
 <div
   class="flex items-center justify-between gap-4"
-  [class]="{
-    'flex-row': labelPosition === 'before',
-    'flex-row-reverse': labelPosition === 'after',
-  }"
+  [class]="labelPosition === 'before' ? 'flex-row' : 'flex-row-reverse'"
 >
   <div class="cursor-pointer text-base font-normal text-black empty:hidden dark:text-white">
     <ng-content />
@@ -19,8 +16,11 @@
       <label
         class="h-auto w-full rounded-sm px-2 text-center text-sm font-bold whitespace-nowrap text-black uppercase"
         [class]="{
-          'bg-primary text-white': option.value === value,
-          'pointer-events-none cursor-not-allowed opacity-50': option.disabled,
+          'bg-primary': option.value === value,
+          'text-white': option.value === value,
+          'pointer-events-none': option.disabled,
+          'cursor-not-allowed': option.disabled,
+          'opacity-50': option.disabled,
           'cursor-pointer': !option.disabled,
         }"
       >

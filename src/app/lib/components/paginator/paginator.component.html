@@ -33,10 +33,11 @@
             type="button"
             (click)="setPage(page)"
             class="focus:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm border border-solid font-medium select-none"
-            [class]="{
-              'border-primary bg-primary-lighter font-bold text-black': page === currentPage,
-              'border-gray text-gray-darker bg-white font-medium': page !== currentPage,
-            }"
+            [class]="
+              page === currentPage
+                ? 'border-primary bg-primary-lighter font-bold text-black'
+                : 'border-gray text-gray-darker bg-white font-medium'
+            "
           >
             {{ page }}
           </button>

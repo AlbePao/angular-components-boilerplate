@@ -407,6 +407,6 @@
     cdk-row
     *cdkRowDef="let row; columns: displayedColumns; let index = index"
     (click)="clickableRows ? dispatchRowData(row) : null"
-    [class]="{ 'cursor-pointer': clickableRows }"
+    [class]="clickableRows ? 'cursor-pointer' : ''"
   ></tr>
 </table>

@@ -10,7 +10,8 @@
         class="hover:bg-gray-lighter h-12 w-full items-center px-4 select-none"
         [class]="{
           'bg-gray-lighter': optionIndex === index,
-          'pointer-events-none opacity-50': checkIfDisabled(option),
+          'pointer-events-none': checkIfDisabled(option),
+          'opacity-50': checkIfDisabled(option),
         }"
       >
         <div class="mr-auto flex w-full items-center gap-3">
