@@ -57,7 +57,7 @@ export class MultiselectComponent<T> {
   private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
   private _currentOption: HTMLDivElement | null = null;
-  private _optionsUpdated$ = new Subject<Option<T>[]>();
+  private readonly _optionsUpdated$ = new Subject<Option<T>[]>();
   protected selection = new SelectionModel<FlatMultiselectOption<T>>(true);
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 

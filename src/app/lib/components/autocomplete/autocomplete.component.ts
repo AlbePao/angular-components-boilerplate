@@ -28,7 +28,7 @@ export class AutocompleteComponent<T, E extends OptionExtra = never> {
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
   private _currentOption: HTMLDivElement | null = null;
-  private _optionsUpdated$ = new Subject<Option<T, E>[]>();
+  private readonly _optionsUpdated$ = new Subject<Option<T, E>[]>();
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
   id = `app-autocomplete-${uniqueAutocompleteIdCounter++}`;
