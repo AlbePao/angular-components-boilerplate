@@ -69,7 +69,7 @@ Used to define the alignment of the content inside the cells of the column
 type CellAlignment = 'left' | 'right' | 'center';
 ```
 
-### `TableColumn<T extends string | number | symbol = string>`
+### `TableColumn<T extends string | symbol = string>`
 
 Used to describe a table column. A union type can be assigned as `T` to define allowed row cells properties names
 

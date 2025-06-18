@@ -55,7 +55,7 @@ export interface TableColumnSort {
   sortDirection: SortDirection;
 }
 
-export interface TableColumn<T extends string | number | symbol = string> {
+export interface TableColumn<T extends string | symbol = string> {
   key: T;
   label: string;
   hide?: boolean;
@@ -92,7 +92,7 @@ export interface RowCellIcon {
 
 export interface RowCellLink {
   link: string | null;
-  label: string | number | null;
+  label: string | null;
 }
 
 export type RowCellListTooltip = string[];
@@ -372,12 +372,8 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   toggleSort(sortKey: TableColumn['key']): void {
     let sortDirection: SortDirection = 'asc';
 
-    if (sortKey === this.sortKey) {
-      if (this.sortDirection === '') {
-        sortDirection = 'asc';
-      } else {
-        sortDirection = this.sortDirection === 'asc' ? 'desc' : '';
-      }
+    if (sortKey === this.sortKey && this.sortDirection !== '') {
+      sortDirection = this.sortDirection === 'asc' ? 'desc' : '';
     }
 
     sortKey = sortDirection !== '' ? sortKey : '';
