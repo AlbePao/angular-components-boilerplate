@@ -5,7 +5,7 @@
   ></div>
   <div class="ml-auto flex flex-row gap-4">
     <label for="pageSize" class="h-10 cursor-pointer text-base/10 font-semibold whitespace-nowrap text-black">
-      {{ 'paginator.elementsPerPage' | translate }}
+      {{ 'components.paginator.elementsPerPage' | translate }}
     </label>
     <app-form-field hideBottom>
       <select id="pageSize" appSelect class="h-10" [ngModel]="pageSize" (ngModelChange)="setPageSize($event)">

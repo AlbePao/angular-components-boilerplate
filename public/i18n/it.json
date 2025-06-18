@@ -7,10 +7,16 @@
       "noOptions": "Nessuna opzione presente"
     },
     "paginator": {
-      "range": "<span class=\"font-bold\">{rangeStart}</span> di <span class=\"font-bold\">{rangeEnd}</span> su <span class=\"font-bold\">{length}</span> totali"
+      "range": "<span class=\"font-bold\">{rangeStart}</span> di <span class=\"font-bold\">{rangeEnd}</span> su <span class=\"font-bold\">{length}</span> totali",
+      "elementsPerPage": "Elementi per pagina"
     }
   },
-  "paginator": {
-    "elementsPerPage": "Elementi per pagina"
+  "layouts": {
+    "mainLayout": {
+      "sidebar": {
+        "themeLight": "Light mode",
+        "themeDark": "Dark mode"
+      }
+    }
   }
 }

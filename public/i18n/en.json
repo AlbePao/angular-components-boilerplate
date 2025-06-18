@@ -7,10 +7,16 @@
       "noOptions": "No options"
     },
     "paginator": {
-      "range": "<span class=\"font-bold\">{rangeStart}</span> of <span class=\"font-bold\">{rangeEnd}</span> out of <span class=\"font-bold\">{length}</span> total"
+      "range": "<span class=\"font-bold\">{rangeStart}</span> of <span class=\"font-bold\">{rangeEnd}</span> out of <span class=\"font-bold\">{length}</span> total",
+      "elementsPerPage": "Elements per page"
     }
   },
-  "paginator": {
-    "elementsPerPage": "Elements per page"
+  "layouts": {
+    "mainLayout": {
+      "sidebar": {
+        "themeLight": "Light mode",
+        "themeDark": "Dark mode"
+      }
+    }
   }
 }
