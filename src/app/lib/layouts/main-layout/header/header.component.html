@@ -1,9 +1,7 @@
 <div class="border-b-gray box-border flex h-20 w-full flex-row items-center justify-between border-b px-8 py-0">
-  <div class="logo">
-    <a routerLink="/" class="block">
-      <img src="./assets/img/logo.png" width="100" height="48" alt="Logo" />
-    </a>
-  </div>
+  <a routerLink="/" class="block">
+    <app-logo></app-logo>
+  </a>
   <div class="border-l-gray box-border flex h-full min-w-[290px] flex-row items-center gap-4 border-l">
     <div class="ml-auto text-right">
       <div class="ml-auto text-right text-base font-semibold">{{ username$ | async }}</div>

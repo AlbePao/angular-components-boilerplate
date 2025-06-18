@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { MenuItem, MenuModule } from '@lib/components/menu';
+import { LogoComponent } from '@lib/layouts/horizontal-layout/logo/logo.component';
 import { AuthService } from '@lib/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, ButtonModule, IconComponent, MenuModule, AsyncPipe],
+  imports: [LogoComponent, RouterModule, ButtonModule, IconComponent, MenuModule, AsyncPipe],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
