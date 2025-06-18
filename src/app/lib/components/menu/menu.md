@@ -88,7 +88,7 @@ export class ExampleComponent implements OnInit {
     },
   ];
 
-  logMenuAction(event: string) {
+  logMenuAction(event: string): void {
     console.log('logMenuAction', event);
   }
 }

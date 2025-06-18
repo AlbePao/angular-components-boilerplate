@@ -56,7 +56,7 @@ interface TabChangeEvent {
   // other stuff...
 })
 export class ExampleComponent {
-  onTabChange(event: TabChangeEvent) {
+  onTabChange(event: TabChangeEvent): void {
     console.log('onTabChange', event);
   }
 }
