@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { MenuItem } from '@lib/components/menu';
@@ -13,7 +13,7 @@ interface SidebarMenuOptions {
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterModule, ButtonModule, IconComponent, ToggleThemeComponent],
+  imports: [RouterLink, RouterLinkActive, ButtonModule, IconComponent, ToggleThemeComponent],
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { MenuItem, MenuModule } from '@lib/components/menu';
@@ -9,7 +9,7 @@ import { AuthService } from '@lib/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [LogoComponent, RouterModule, ButtonModule, IconComponent, MenuModule, AsyncPipe],
+  imports: [LogoComponent, RouterLink, ButtonModule, IconComponent, MenuModule, AsyncPipe],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

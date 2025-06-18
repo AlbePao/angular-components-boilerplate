@@ -1,13 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonComponent } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { ThemeService } from '@lib/services/theme.service';
 import { AppTheme } from '@lib/types/theme';
 
 @Component({
-  imports: [RouterLink, AsyncPipe, ButtonComponent, IconComponent],
+  imports: [RouterLink, AsyncPipe, IconComponent],
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

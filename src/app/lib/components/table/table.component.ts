@@ -10,7 +10,7 @@ import {
   ViewChild,
   booleanAttribute,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import {
   ButtonAppearance,
   ButtonModule,
@@ -162,7 +162,7 @@ let nextUniqueId = 0;
   selector: 'app-table',
   imports: [
     CdkTableModule,
-    RouterModule,
+    RouterLink,
     PillComponent,
     ButtonModule,
     IconComponent,
