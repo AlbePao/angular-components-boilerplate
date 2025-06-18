@@ -17,7 +17,7 @@ let nextUniqueId = 0;
 export class FocusTriggerDirective implements FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
-  private _uniqueId = `app-focus-trigger-${++nextUniqueId}`;
+  private readonly _uniqueId = `app-focus-trigger-${++nextUniqueId}`;
 
   @Input({ alias: 'appFocus' }) appFocusTrigger?: HTMLInputElement;
   @Input() id = this._uniqueId;

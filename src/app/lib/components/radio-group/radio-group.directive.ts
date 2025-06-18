@@ -45,7 +45,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   private readonly _destroy$ = injectDestroy();
 
   private _focusableRadios: RadioBase[] = [];
-  private _focusableRadios$ = new Subject<RadioBase[]>();
+  private readonly _focusableRadios$ = new Subject<RadioBase[]>();
 
   /** Whether the `value` has been set to its initial value. */
   private _isInitialized = false;

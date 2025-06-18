@@ -29,7 +29,7 @@ export class RadioBase implements OnInit, OnDestroy {
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _radioDispatcher = inject(UniqueSelectionDispatcher);
 
-  private _uniqueId = `app-radio-${++nextUniqueId}`;
+  private readonly _uniqueId = `app-radio-${++nextUniqueId}`;
 
   @ViewChild('inputRadio') inputRadio?: ElementRef<HTMLInputElement>;
 

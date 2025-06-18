@@ -16,7 +16,7 @@ export class ThemeService {
   private readonly _destroy$ = injectDestroy();
   private readonly _mediaQuery = this._window.matchMedia('(prefers-color-scheme: dark)');
 
-  private _currentTheme$ = new BehaviorSubject<AppTheme | null>(this._storedTheme);
+  private readonly _currentTheme$ = new BehaviorSubject<AppTheme | null>(this._storedTheme);
 
   public get currentTheme(): AppTheme | null {
     return this._currentTheme$.getValue();

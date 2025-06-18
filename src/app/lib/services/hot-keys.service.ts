@@ -17,7 +17,7 @@ export class HotKeysService {
   private readonly _document = inject(DOCUMENT);
 
   private _registeredKeys: string[] = [];
-  private _defaults: HotKeysOptions = {
+  private readonly _defaults: HotKeysOptions = {
     element: this._document.body,
     keys: '',
   };

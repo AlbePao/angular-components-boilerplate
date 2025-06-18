@@ -182,7 +182,7 @@ let nextUniqueId = 0;
   },
 })
 export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
-  private _dataSource$ = new BehaviorSubject<InputRow[]>([]);
+  private readonly _dataSource$ = new BehaviorSubject<InputRow[]>([]);
 
   dataSource$ = this._dataSource$.asObservable();
 

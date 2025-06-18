@@ -89,6 +89,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/prefer-readonly': 'error',
       '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
       '@typescript-eslint/no-unused-vars': ['warn', { args: 'none' }],
       '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],

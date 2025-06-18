@@ -21,7 +21,7 @@ export interface LoginConfig {
 export class AuthService {
   private readonly _router = inject(Router);
 
-  private _isAuthenticated$ = new BehaviorSubject<boolean>(!!storage.getItem('appSession'));
+  private readonly _isAuthenticated$ = new BehaviorSubject<boolean>(!!storage.getItem('appSession'));
 
   get isAuthenticated(): boolean {
     return this._isAuthenticated$.getValue();

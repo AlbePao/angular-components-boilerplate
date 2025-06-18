@@ -29,10 +29,10 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   private readonly _hotKeysService = inject(HotKeysService);
   private readonly _destroy$ = injectDestroy();
 
-  private _pauseHandler$ = new Subject<void>();
-  private _resumeHandler$ = new Subject<void>();
+  private readonly _pauseHandler$ = new Subject<void>();
+  private readonly _resumeHandler$ = new Subject<void>();
+  private readonly _focusableItems$ = new Subject<FocusableItem[]>();
   private _focusableItems: FocusableItem[] = [];
-  private _focusableItems$ = new Subject<FocusableItem[]>();
   private _currentItemIndex = 0;
 
   // Focus handling is made by following https://stackoverflow.com/a/51756493

@@ -213,6 +213,6 @@ export class ToggleBase<T> implements FocusableItem {
   }
 
   private _getCurrentOptionIndex(): number {
-    return this.options.findIndex(({ value: value }) => value === this.value);
+    return this.options.findIndex(({ value }) => value === this.value);
   }
 }
