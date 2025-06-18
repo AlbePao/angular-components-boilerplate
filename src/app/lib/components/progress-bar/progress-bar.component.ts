@@ -22,15 +22,17 @@ export class ProgressBarComponent {
   private _value = 0;
 
   get progressBarColor(): string {
-    if (this.color === 'primary') {
+    const { color } = this;
+
+    if (color === 'primary') {
       return 'bg-primary-lighter';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'bg-secondary-lighter';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'bg-success-lighter';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'bg-danger-lighter';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'bg-info-lighter';
     }
 
@@ -38,15 +40,17 @@ export class ProgressBarComponent {
   }
 
   get progressBarBgColor(): string {
-    if (this.color === 'primary') {
+    const { color } = this;
+
+    if (color === 'primary') {
       return 'bg-primary';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'bg-secondary';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'bg-success';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'bg-danger';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'bg-info';
     }
 

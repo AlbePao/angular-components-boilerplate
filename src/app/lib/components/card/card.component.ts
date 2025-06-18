@@ -14,15 +14,17 @@ export class CardComponent {
   @Input() color: Colors = 'gray';
 
   get borderClass(): string {
-    if (this.color === 'primary') {
+    const { color } = this;
+
+    if (color === 'primary') {
       return 'border-primary';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'border-secondary';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'border-success';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'border-danger';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'border-info';
     }
 

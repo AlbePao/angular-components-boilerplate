@@ -16,11 +16,13 @@ export class IconButtonComponent extends ButtonBase {
   @Input() appearance: IconButtonAppearance = 'base';
 
   get appearanceClasses(): string {
-    if (this.appearance === 'outline') {
+    const { appearance } = this;
+
+    if (appearance === 'outline') {
       return 'text-black box-border border border-solid border-gray hover:border-primary disabled:bg-gray-lighter';
-    } else if (this.appearance === 'secondary') {
+    } else if (appearance === 'secondary') {
       return 'text-primary bg-primary-lighter hover:text-white hover:bg-primary-dark';
-    } else if (this.appearance === 'primary') {
+    } else if (appearance === 'primary') {
       return 'text-white bg-primary hover:bg-primary-dark';
     }
 
@@ -28,11 +30,13 @@ export class IconButtonComponent extends ButtonBase {
   }
 
   get sizeClasses(): string {
-    if (this.size === 'xs') {
+    const { size } = this;
+
+    if (size === 'xs') {
       return 'h-6 p-0.5 text-sm';
-    } else if (this.size === 'sm') {
+    } else if (size === 'sm') {
       return 'h-8 p-1 text-sm';
-    } else if (this.size === 'md') {
+    } else if (size === 'md') {
       return 'h-10 p-2 text-sm';
     }
 

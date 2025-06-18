@@ -16,15 +16,17 @@ export class ButtonComponent extends ButtonBase {
   @Input() appearance: ButtonAppearance = 'primary';
 
   get appearanceClasses(): string {
-    if (this.appearance === 'link') {
+    const { appearance } = this;
+
+    if (appearance === 'link') {
       return 'text-primary';
-    } else if (this.appearance === 'outline') {
+    } else if (appearance === 'outline') {
       return 'text-primary box-border border border-solid border-gray hover:border-primary disabled:bg-gray-lighter';
-    } else if (this.appearance === 'secondary') {
+    } else if (appearance === 'secondary') {
       return 'text-primary bg-primary-lighter hover:text-white hover:bg-primary-dark';
-    } else if (this.appearance === 'danger') {
+    } else if (appearance === 'danger') {
       return 'text-danger bg-danger-lighter hover:text-white hover:bg-danger-dark';
-    } else if (this.appearance === 'success') {
+    } else if (appearance === 'success') {
       return 'text-success bg-success-lighter hover:text-white hover:bg-success-dark';
     }
 
@@ -32,11 +34,13 @@ export class ButtonComponent extends ButtonBase {
   }
 
   get sizeClasses(): string {
-    if (this.size === 'xs') {
+    const { size } = this;
+
+    if (size === 'xs') {
       return 'rounded-sm h-6 p-0.5 text-sm gap-1';
-    } else if (this.size === 'sm') {
+    } else if (size === 'sm') {
       return 'rounded-sm h-8 p-1 text-sm gap-1';
-    } else if (this.size === 'md') {
+    } else if (size === 'md') {
       return 'rounded-sm h-10 p-3 text-sm gap-2';
     }
 

@@ -43,9 +43,11 @@ export class PillComponent {
   private _color: Colors = 'gray';
 
   get sizeClasses(): string {
-    if (this.size === 'sm') {
+    const { size } = this;
+
+    if (size === 'sm') {
       return 'h-5 px-2 gap-1 text-xs font-bold [&>app-icon]:text-sm/none';
-    } else if (this.size === 'md') {
+    } else if (size === 'md') {
       return 'h-8 px-3 gap-2 text-sm/none font-medium [&>app-icon]:text-xl/none';
     }
 
@@ -53,31 +55,33 @@ export class PillComponent {
   }
 
   get colorClasses(): string {
-    if (this.appearance === 'outline') {
-      if (this.color === 'primary') {
+    const { appearance, color } = this;
+
+    if (appearance === 'outline') {
+      if (color === 'primary') {
         return 'box-border border text-primary border-primary';
-      } else if (this.color === 'secondary') {
+      } else if (color === 'secondary') {
         return 'box-border border text-secondary border-secondary';
-      } else if (this.color === 'success') {
+      } else if (color === 'success') {
         return 'box-border border text-success-dark border-success';
-      } else if (this.color === 'danger') {
+      } else if (color === 'danger') {
         return 'box-border border text-danger-dark border-danger';
-      } else if (this.color === 'info') {
+      } else if (color === 'info') {
         return 'box-border border text-info-dark border-info';
       }
 
       return 'box-border border text-gray-darker border-gray';
     }
 
-    if (this.color === 'primary') {
+    if (color === 'primary') {
       return 'text-primary bg-primary-lighter';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'text-secondary bg-secondary-lighter';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'text-success-dark bg-success-lighter';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'text-danger-dark bg-danger-lighter';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'text-info-dark bg-info-lighter';
     }
 

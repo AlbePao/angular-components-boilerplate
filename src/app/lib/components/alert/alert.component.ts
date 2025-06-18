@@ -30,15 +30,17 @@ export class AlertComponent {
   @Output() readonly dismissed = new EventEmitter<void>();
 
   get bgColorClass(): string {
-    if (this.color === 'info') {
+    const { color } = this;
+
+    if (color === 'info') {
       return 'bg-info-lighter';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'bg-danger-lighter';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'bg-success-lighter';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'bg-secondary-lighter';
-    } else if (this.color === 'primary') {
+    } else if (color === 'primary') {
       return 'bg-primary-lighter';
     }
 
@@ -46,15 +48,17 @@ export class AlertComponent {
   }
 
   get iconColorClass(): string {
-    if (this.color === 'info') {
+    const { color } = this;
+
+    if (color === 'info') {
       return 'text-info-dark';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'text-danger-dark';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'text-success-dark';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'text-secondary-dark';
-    } else if (this.color === 'primary') {
+    } else if (color === 'primary') {
       return 'text-primary-dark';
     }
 

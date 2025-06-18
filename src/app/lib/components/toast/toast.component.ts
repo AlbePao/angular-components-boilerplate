@@ -34,15 +34,17 @@ export class ToastComponent implements OnInit {
   }
 
   get color(): string {
-    if (this._data.color === 'primary') {
+    const { color } = this._data;
+
+    if (color === 'primary') {
       return 'text-primary bg-primary-lighter';
-    } else if (this._data.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'text-secondary bg-secondary-lighter';
-    } else if (this._data.color === 'success') {
+    } else if (color === 'success') {
       return 'text-success-dark bg-success-lighter';
-    } else if (this._data.color === 'danger') {
+    } else if (color === 'danger') {
       return 'text-danger-dark bg-danger-lighter';
-    } else if (this._data.color === 'info') {
+    } else if (color === 'info') {
       return 'text-info-dark bg-info-lighter';
     }
 

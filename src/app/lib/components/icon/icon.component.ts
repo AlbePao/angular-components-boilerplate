@@ -18,19 +18,21 @@ export class IconComponent {
   @Input() appearance: 'normal' | 'outlined' = 'outlined';
 
   get iconColor(): string {
-    if (this.color === 'primary') {
+    const { color } = this;
+
+    if (color === 'primary') {
       return 'text-primary';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'text-secondary';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'text-success';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'text-danger';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'text-info';
-    } else if (this.color === 'gray') {
+    } else if (color === 'gray') {
       return 'text-gray';
-    } else if (this.color === 'black') {
+    } else if (color === 'black') {
       return 'text-black';
     }
 

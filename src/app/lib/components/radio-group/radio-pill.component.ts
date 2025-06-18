@@ -21,19 +21,21 @@ export class RadioPillComponent extends RadioBase {
   @Input() color: Colors = 'gray';
 
   get radioPillIcon(): RadioPillIcon {
-    if (!this.checked) {
+    const { checked, color } = this;
+
+    if (!checked) {
       return 'radio_button_unchecked';
     }
 
-    if (this.color === 'primary') {
+    if (color === 'primary') {
       return 'radio_button_checked';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'radio_button_checked';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'check_circle_outline';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'block';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'warning';
     }
 

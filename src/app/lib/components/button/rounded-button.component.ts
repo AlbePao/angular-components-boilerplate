@@ -17,17 +17,19 @@ export class RoundedButtonComponent extends ButtonBase {
   @Input() color: RoundedButtonColor = 'base';
 
   get colorClasses(): string {
-    if (this.color === 'gray') {
+    const { color } = this;
+
+    if (color === 'gray') {
       return 'text-gray-dark bg-gray-lighter hover:bg-gray-light';
-    } else if (this.color === 'info') {
+    } else if (color === 'info') {
       return 'text-info-dark bg-info-lighter hover:bg-info-light';
-    } else if (this.color === 'danger') {
+    } else if (color === 'danger') {
       return 'text-danger-dark bg-danger-lighter hover:bg-danger-light';
-    } else if (this.color === 'success') {
+    } else if (color === 'success') {
       return 'text-success-dark bg-success-lighter hover:bg-success-light';
-    } else if (this.color === 'secondary') {
+    } else if (color === 'secondary') {
       return 'text-secondary-dark bg-secondary-lighter hover:bg-secondary-light';
-    } else if (this.color === 'primary') {
+    } else if (color === 'primary') {
       return 'text-primary-dark bg-primary-lighter hover:bg-primary-light';
     }
 
@@ -35,11 +37,13 @@ export class RoundedButtonComponent extends ButtonBase {
   }
 
   get sizeClasses(): string {
-    if (this.size === 'xs') {
+    const { size } = this;
+
+    if (size === 'xs') {
       return 'h-6 p-0.5';
-    } else if (this.size === 'sm') {
+    } else if (size === 'sm') {
       return 'h-8 p-1';
-    } else if (this.size === 'md') {
+    } else if (size === 'md') {
       return 'h-10 p-3';
     }
 
