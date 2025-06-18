@@ -12,6 +12,7 @@
 @import './tailwind';
 
 /* Global styles */
+@import './button';
 @import './document';
 @import './focus';
 @import './heading';
