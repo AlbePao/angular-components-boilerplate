@@ -137,12 +137,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
       } else if (y === 'bottom') {
         y = 'top';
       }
-    } else {
-      if (x === 'end') {
-        x = 'start';
-      } else if (x === 'start') {
-        x = 'end';
-      }
+    } else if (x === 'end') {
+      x = 'start';
+    } else if (x === 'start') {
+      x = 'end';
     }
 
     return { x, y };
