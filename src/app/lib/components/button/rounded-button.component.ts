@@ -40,13 +40,13 @@ export class RoundedButtonComponent extends ButtonBase {
     const { size } = this;
 
     if (size === 'xs') {
-      return 'h-6 p-0.5';
+      return 'p-0.5';
     } else if (size === 'sm') {
-      return 'h-8 p-1';
+      return 'p-1';
     } else if (size === 'md') {
-      return 'h-10 p-3';
+      return 'p-2';
     }
 
-    return 'h-12 p-3';
+    return 'p-3';
   }
 }
