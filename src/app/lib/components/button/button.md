@@ -310,73 +310,73 @@ export class ExampleComponent {}
   <app-icon>add</app-icon>
 </a>
 
-<button app-rounded-button color="primary">
+<button app-rounded-button type="button" color="primary">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="secondary">
+<button app-rounded-button type="button" color="secondary">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="success">
+<button app-rounded-button type="button" color="success">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="danger">
+<button app-rounded-button type="button" color="danger">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="info">
+<button app-rounded-button type="button" color="info">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="gray">
+<button app-rounded-button type="button" color="gray">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="base">
+<button app-rounded-button type="button" color="base">
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
 
-<button app-rounded-button color="primary" disabled>
+<button app-rounded-button type="button" color="primary" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="secondary" disabled>
+<button app-rounded-button type="button" color="secondary" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="success" disabled>
+<button app-rounded-button type="button" color="success" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="danger" disabled>
+<button app-rounded-button type="button" color="danger" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="info" disabled>
+<button app-rounded-button type="button" color="info" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="gray" disabled>
+<button app-rounded-button type="button" color="gray" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>
 </button>
-<button app-rounded-button color="base" disabled>
+<button app-rounded-button type="button" color="base" disabled>
   <app-icon>add</app-icon>
   Label
   <app-icon iconPositionEnd>add</app-icon>

@@ -5,7 +5,7 @@ The `<app-menu>` component is a floating panel containing list of options.
 By itself, the `<app-menu>` element does not render anything. The menu is attached to and opened via application of the `appMenuTriggerFor` directive:
 
 ```html
-<button app-button [appMenuTriggerFor]="appMenu.menu">Menu</button>
+<button app-button type="button" [appMenuTriggerFor]="appMenu.menu">Menu</button>
 ```
 
 ## Inputs
@@ -96,7 +96,7 @@ export class ExampleComponent implements OnInit {
 
 ```html
 <!-- example.component.html -->
-<button app-icon-button [appMenuTriggerFor]="appMenu.menu">
+<button app-icon-button type="button" [appMenuTriggerFor]="appMenu.menu">
   <app-icon>more_vert</app-icon>
 </button>
 <app-menu #appMenu [items]="menuItems" (menuAction)="logMenuAction($event)" />

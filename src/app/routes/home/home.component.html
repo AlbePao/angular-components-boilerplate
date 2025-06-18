@@ -6,6 +6,7 @@
   <div class="mb-6 flex flex-wrap gap-3">
     <button
       app-button
+      type="button"
       [appearance]="(currentTheme$ | async) === 'system' ? 'primary' : 'secondary'"
       (click)="handleThemeChange('system')"
     >
@@ -13,6 +14,7 @@
     </button>
     <button
       app-button
+      type="button"
       [appearance]="(currentTheme$ | async) === 'light' ? 'primary' : 'secondary'"
       (click)="handleThemeChange('light')"
     >
@@ -20,6 +22,7 @@
     </button>
     <button
       app-button
+      type="button"
       [appearance]="(currentTheme$ | async) === 'dark' ? 'primary' : 'secondary'"
       (click)="handleThemeChange('dark')"
     >

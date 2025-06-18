@@ -20,6 +20,7 @@
   @if (pageCounter.length > 1) {
     <div class="flex flex-row flex-wrap gap-4">
       <button
+        type="button"
         class="border-gray text-gray-darker focus:border-primary flex h-10 w-10 items-center justify-center rounded-sm border border-solid bg-white font-medium select-none disabled:opacity-50"
         (click)="setPage(currentPage - 1)"
         [disabled]="currentPage <= 1"
@@ -29,6 +30,7 @@
       @for (page of pageCounter; track page; let index = $index; let first = $first; let last = $last) {
         @if (first || last || isPageInRange(index)) {
           <button
+            type="button"
             (click)="setPage(page)"
             class="focus:border-primary flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm border border-solid font-medium select-none"
             [class]="{
@@ -47,6 +49,7 @@
         }
       }
       <button
+        type="button"
         class="border-gray text-gray-darker focus:border-primary flex h-10 w-10 items-center justify-center rounded-sm border border-solid bg-white font-medium select-none disabled:opacity-50"
         (click)="setPage(currentPage + 1)"
         [disabled]="currentPage >= pageCounter.length"
