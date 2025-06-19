@@ -1,17 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { storage } from '@lib/storage';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { User, UserRoles } from '@lib/types/user';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const AUTH_ROLES = [
-  'admin', // Admin role
-  'user', // Base user role
-] as const;
-
-export type AuthRoles = (typeof AUTH_ROLES)[number];
-
-export interface LoginConfig {
+interface LoginConfig {
   returnUrl: string;
 }
 
@@ -21,29 +14,41 @@ export interface LoginConfig {
 export class AuthService {
   private readonly _router = inject(Router);
 
-  private readonly _isAuthenticated$ = new BehaviorSubject<boolean>(!!storage.getItem('appSession'));
+  private readonly _user$ = new BehaviorSubject<User | null>(storage.getItem('appSession'));
 
   get isAuthenticated(): boolean {
-    return this._isAuthenticated$.getValue();
+    return !!this._user$.getValue();
   }
 
   login(config: LoginConfig): void {
-    storage.setItem('appSession', { user: 'some-user-id', token: 'abc' });
-    this._isAuthenticated$.next(true);
+    const user: User = {
+      id: 'some-user-id',
+      username: 'Lorem Ipsum',
+      email: 'lorem@ipsum.com',
+      token: 'abc',
+      roles: ['admin'],
+    };
+
+    storage.setItem('appSession', user);
+    this._user$.next(user);
     void this._router.navigateByUrl(config.returnUrl);
   }
 
   logout(): void {
     storage.removeItem('appSession');
-    this._isAuthenticated$.next(false);
+    this._user$.next(null);
     void this._router.navigateByUrl('/auth/login');
   }
 
-  getUserRoles(): Observable<AuthRoles[]> {
-    return of(['admin'] satisfies AuthRoles[]);
+  getUserRoles(): Observable<UserRoles[]> {
+    return this._user$.pipe(map((user) => user?.roles ?? []));
   }
 
-  getUserName(): Observable<string> {
-    return of('TEST');
+  getUserName(): Observable<string | null> {
+    return this._user$.pipe(map((user) => user?.username ?? null));
+  }
+
+  getUserEmail(): Observable<string | null> {
+    return this._user$.pipe(map((user) => user?.email ?? null));
   }
 }

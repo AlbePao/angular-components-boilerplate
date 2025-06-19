@@ -1,10 +1,8 @@
 import { AppTheme } from './theme';
+import { User } from './user';
 
 interface StorageObjectMap {
-  appSession: {
-    user: string;
-    token: string;
-  };
+  appSession: User;
   appTheme: AppTheme;
 }
 
