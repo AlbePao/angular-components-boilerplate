@@ -5,7 +5,7 @@
   <div class="border-l-gray box-border flex h-full min-w-[290px] flex-row items-center gap-4 border-l">
     <div class="ml-auto text-right">
       <div class="ml-auto text-right text-base font-semibold">{{ username$ | async }}</div>
-      <div class="ml-auto text-right text-base font-normal">909CICS1</div>
+      <div class="ml-auto text-right text-base font-normal">{{ email$ | async }}</div>
     </div>
     <button app-icon-button type="button" appearance="outline" [appMenuTriggerFor]="userMenu.menu">
       <app-icon>more_vert</app-icon>

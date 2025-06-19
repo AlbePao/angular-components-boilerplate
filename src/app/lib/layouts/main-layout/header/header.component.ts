@@ -28,6 +28,7 @@ export class HeaderComponent {
   ];
 
   username$ = this._authService.getUserName();
+  email$ = this._authService.getUserEmail();
 
   doUserMenuAction(event: string): void {
     if (event === 'logout') {

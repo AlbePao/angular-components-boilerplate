@@ -1,0 +1,9 @@
+@reference '../../../../../styles/tailwind.css';
+
+::-webkit-scrollbar {
+  @apply h-1 w-1;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-dark/90;
+}
