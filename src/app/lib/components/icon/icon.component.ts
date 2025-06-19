@@ -6,7 +6,7 @@ export type IconColors = Colors | 'black';
 @Component({
   selector: 'app-icon',
   template: `<ng-content />`,
-  styleUrls: ['./icon.component.css'],
+  styleUrl: './icon.component.css',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

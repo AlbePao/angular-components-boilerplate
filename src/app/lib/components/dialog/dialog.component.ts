@@ -7,7 +7,7 @@ import { DialogRef } from './dialog-ref';
   selector: 'app-dialog',
   imports: [ButtonModule, IconComponent],
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css'],
+  styleUrl: './dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {

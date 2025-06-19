@@ -7,7 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   selector: 'app-main-layout',
   imports: [RouterOutlet, SidebarComponent, HeaderComponent],
   templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.css'],
+  styleUrl: './main-layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'bg-slate-100 text-slate-900',
