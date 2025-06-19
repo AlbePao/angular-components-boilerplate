@@ -1,7 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Observable, Subject } from 'rxjs';
 
-// TODO: throw error if this class is instantiated outside AlertPopupComponent or AlertPopupService
 export class AlertPopupRef {
   private readonly _closed$ = new Subject<void>();
 

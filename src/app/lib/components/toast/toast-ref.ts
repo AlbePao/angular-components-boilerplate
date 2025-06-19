@@ -1,7 +1,6 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Observable, Subject } from 'rxjs';
 
-// TODO: throw error if this class is instantiated outside ToastComponent or ToastService
 export class ToastRef {
   private readonly _closed$ = new Subject<void>();
 
