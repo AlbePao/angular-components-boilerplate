@@ -149,7 +149,6 @@ export class MultiselectComponent<T> {
     // Find parent
     const optionParent = this.options.find(({ index }) => index === option.parent) ?? null;
 
-    // TODO: maybe exclude parent from selection model
     if (this.selection.isSelected(option)) {
       this.selection.deselect(option);
 
