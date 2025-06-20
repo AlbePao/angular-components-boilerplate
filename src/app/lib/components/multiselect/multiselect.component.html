@@ -14,14 +14,14 @@
           'opacity-50': checkIfDisabled(option),
         }"
       >
-        <div class="mr-auto flex w-full items-center gap-3">
+        <div class="mr-auto flex w-full items-center gap-2 text-black">
           @if (option.parent && option.parent >= 0) {
             <div class="h-10 w-6"></div>
           }
           @if (option.icon) {
             <app-icon>{{ option.icon }}</app-icon>
           }
-          <span class="text-sm font-normal uppercase">
+          <span class="text-sm font-normal">
             {{ option.label | translate }}
           </span>
         </div>

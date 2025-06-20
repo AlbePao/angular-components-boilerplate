@@ -79,7 +79,7 @@
         </td>
       } @else if (column.type === columnTypes.text) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -88,7 +88,7 @@
         </td>
       } @else if (column.type === columnTypes.textFormat) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment, row[column.key])"
@@ -97,7 +97,7 @@
         </td>
       } @else if (column.type === columnTypes.textIcon) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
@@ -155,20 +155,14 @@
         </td>
       } @else if (column.type === columnTypes.listTooltip) {
         <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line uppercase backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
           cdk-cell
           *cdkCellDef="let row; let index = index"
           [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
         >
           {{ row[column.key][0] | translate }}
           @if (row[column.key].length > 1) {
-            <app-pill
-              color="primary"
-              size="sm"
-              class="ml-1"
-              [appTooltip]="getListTooltipText(row[column.key])"
-              appTooltipClass="uppercase"
-            >
+            <app-pill color="primary" size="sm" class="ml-1" [appTooltip]="getListTooltipText(row[column.key])">
               +{{ row[column.key].length - 1 }}
             </app-pill>
           }
