@@ -24,9 +24,7 @@ export abstract class FocusableItem {
   abstract appFocusable: boolean | null;
 }
 
-export const provideFocusableItem = (useExisting: Type<unknown>): Provider => {
-  return {
-    provide: FocusableItem,
-    useExisting,
-  };
-};
+export const provideFocusableItem = (useExisting: Type<unknown>): Provider => ({
+  provide: FocusableItem,
+  useExisting,
+});

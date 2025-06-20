@@ -40,8 +40,9 @@ const defaultAuthGuardOptions = (): AuthGuardOptions => ({
  *   },
  * ];
  */
-export const authGuard = (options: AuthGuardOptions = defaultAuthGuardOptions()): CanMatchFn => {
-  return (_: Route, segments: UrlSegment[]) => {
+export const authGuard =
+  (options: AuthGuardOptions = defaultAuthGuardOptions()): CanMatchFn =>
+  (_: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
 
@@ -57,4 +58,3 @@ export const authGuard = (options: AuthGuardOptions = defaultAuthGuardOptions())
         })
       : router.createUrlTree(['/']);
   };
-};
