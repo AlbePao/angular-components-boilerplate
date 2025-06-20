@@ -17,8 +17,6 @@ export class FocusShortcutDirective implements OnInit {
     this._hotKeysService
       .addShortcut({ keys: this.appFocusShortcutKeys })
       .pipe(takeUntil(this._destroy$))
-      .subscribe(() => {
-        this._elementRef.nativeElement.focus();
-      });
+      .subscribe(() => this._elementRef.nativeElement.focus());
   }
 }

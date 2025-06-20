@@ -158,9 +158,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
         switchMap((radioButtons) => merge(...radioButtons.map((radioButton) => radioButton.focused))),
         takeUntil(this._destroy$),
       )
-      .subscribe(() => {
-        this.elementFocus.emit();
-      });
+      .subscribe(() => this.elementFocus.emit());
 
     this._focusableRadios$
       .pipe(

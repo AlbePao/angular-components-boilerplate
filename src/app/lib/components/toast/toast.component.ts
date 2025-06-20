@@ -54,9 +54,7 @@ export class ToastComponent implements OnInit {
   ngOnInit(): void {
     timer(this.duration)
       .pipe(takeUntil(this._destroy$))
-      .subscribe(() => {
-        this.close();
-      });
+      .subscribe(() => this.close());
   }
 
   close(): void {

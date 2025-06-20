@@ -32,9 +32,7 @@ export class AlertPopupComponent implements OnInit {
   ngOnInit(): void {
     timer(this.duration)
       .pipe(takeUntil(this._destroy$))
-      .subscribe(() => {
-        this._close();
-      });
+      .subscribe(() => this._close());
   }
 
   private _close(): void {

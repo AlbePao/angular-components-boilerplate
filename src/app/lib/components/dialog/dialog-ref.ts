@@ -22,9 +22,7 @@ export class DialogRef<R = unknown, C = unknown> {
         filter(() => !disableClose),
         takeUntil(this._destroy$),
       )
-      .subscribe(() => {
-        this.close();
-      });
+      .subscribe(() => this.close());
   }
 
   close(result?: R): void {

@@ -72,9 +72,7 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
         filter(() => this._isFocusOnFocusableItem()),
         takeUntil(this._destroy$),
       )
-      .subscribe((shouldItemBeRequired) => {
-        this._focusNextItem(shouldItemBeRequired);
-      });
+      .subscribe((shouldItemBeRequired) => this._focusNextItem(shouldItemBeRequired));
   }
 
   ngAfterViewInit(): void {
@@ -90,12 +88,10 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
       )
       .subscribe(({ index }) => (this._currentItemIndex = index));
 
-    this.focusableItems.changes.pipe(startWith(null), takeUntil(this._destroy$)).subscribe(() => {
-      this._setFocusableItems();
-    });
-    this.focusableItems.changes.pipe(take(1)).subscribe(() => {
-      this._handleFirstItemStatus();
-    });
+    this.focusableItems.changes
+      .pipe(startWith(null), takeUntil(this._destroy$))
+      .subscribe(() => this._setFocusableItems());
+    this.focusableItems.changes.pipe(take(1)).subscribe(() => this._handleFirstItemStatus());
 
     this._focusableItems = this.focusableItems.toArray();
     this._focusFirstItem();

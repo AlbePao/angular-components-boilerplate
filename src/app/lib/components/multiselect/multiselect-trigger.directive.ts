@@ -295,9 +295,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
       this._overlayRef ? this._overlayRef.detachments().pipe(filter(() => this._overlayAttached)) : of(),
     )
       .pipe(take(1))
-      .subscribe(() => {
-        this.closePanel();
-      });
+      .subscribe(() => this.closePanel());
   }
 
   private _getPositionStrategy(): FlexibleConnectedPositionStrategy {

@@ -407,9 +407,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
         : of(null),
     )
       .pipe(take(1))
-      .subscribe((value) => {
-        this._setValueFromOption(value);
-      });
+      .subscribe((value) => this._setValueFromOption(value));
   }
 
   private _getPositionStrategy(): FlexibleConnectedPositionStrategy {
