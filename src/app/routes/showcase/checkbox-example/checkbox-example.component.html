@@ -1,1 +1,10 @@
-<p>checkbox-example works!</p>
+<h1>Checkbox</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
+  <app-checkbox formControlName="inputCheckboxControlExample">Checkbox Control Example</app-checkbox>
+</form>
+
+<h2>Template driven</h2>
+
+<app-checkbox (valueChange)="logCheckboxChange($event)">Checkbox Example</app-checkbox>

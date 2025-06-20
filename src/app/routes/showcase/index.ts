@@ -13,9 +13,31 @@ export const routes: Routes = [
       (await import('./accordion-example/accordion-example.component')).AccordionExampleComponent,
   },
   {
+    path: 'alert-example',
+    title: 'Alert | Showcase',
+    loadComponent: async () => (await import('./alert-example/alert-example.component')).AlertExampleComponent,
+  },
+  {
+    path: 'alert-popup-example',
+    title: 'Alert Popup | Showcase',
+    loadComponent: async () =>
+      (await import('./alert-popup-example/alert-popup-example.component')).AlertPopupExampleComponent,
+  },
+  {
+    path: 'autocomplete-example',
+    title: 'Autocomplete | Showcase',
+    loadComponent: async () =>
+      (await import('./autocomplete-example/autocomplete-example.component')).AutocompleteExampleComponent,
+  },
+  {
     path: 'button-example',
-    title: 'Buttons | Showcase',
+    title: 'Button | Showcase',
     loadComponent: async () => (await import('./button-example/button-example.component')).ButtonExampleComponent,
+  },
+  {
+    path: 'card-example',
+    title: 'Card | Showcase',
+    loadComponent: async () => (await import('./card-example/card-example.component')).CardExampleComponent,
   },
   {
     path: 'checkbox-example',

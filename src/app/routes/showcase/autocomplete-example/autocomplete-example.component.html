@@ -1,0 +1,45 @@
+<h1>Autocomplete</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
+  <app-form-field>
+    <app-label>Input Control Example</app-label>
+    <input
+      appInput
+      type="text"
+      formControlName="autocompleteControlExample"
+      [appAutocomplete]="autocompleteExample"
+      #autocompleteControlExampleTrigger
+    />
+    <button app-icon-button type="button" appSuffix [appFocus]="autocompleteControlExampleTrigger">
+      <app-icon color="black">arrow_drop_down</app-icon>
+    </button>
+    <app-autocomplete #autocompleteExample="appAutocomplete" [options]="autocompleteOptions" />
+    @if (form.controls.autocompleteControlExample | showControlError: 'autocompleteInputInvalid') {
+      <app-error>Inserisci un valore valido</app-error>
+    }
+  </app-form-field>
+</form>
+
+<h2>Template driven</h2>
+
+<app-form-field>
+  <app-label>Input Example</app-label>
+  <input
+    appInput
+    type="text"
+    [appAutocomplete]="autocompleteExample"
+    #autocompleteExampleTrigger
+    #autocompleteExampleModel="ngModel"
+    [(ngModel)]="autocompleteValue"
+    (valueChange)="logAutocompleteValueChange($event)"
+    (inputChange)="logAutocompleteInputChange($event)"
+  />
+  <button app-icon-button type="button" appSuffix [appFocus]="autocompleteExampleTrigger">
+    <app-icon color="black">arrow_drop_down</app-icon>
+  </button>
+  <app-autocomplete #autocompleteExample="appAutocomplete" [options]="autocompleteOptions" />
+  @if (autocompleteExampleModel | showControlError: 'autocompleteInputInvalid') {
+    <app-error>Inserisci un valore valido</app-error>
+  }
+</app-form-field>
