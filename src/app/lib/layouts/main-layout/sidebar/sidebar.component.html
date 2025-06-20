@@ -1,10 +1,10 @@
 <div class="flex h-full flex-col bg-black text-white" [class]="isOpen ? 'w-64' : 'w-20'">
-  <div class="flex h-20 items-center py-6" [class]="isOpen ? 'justify-start pl-5' : 'justify-center'">
+  <div class="flex h-20 items-center py-5" [class]="isOpen ? 'justify-start pl-5' : 'justify-center'">
     <button app-icon-button type="button" (click)="toggleSidebar()">
       <app-icon class="icon-20">{{ isOpen ? 'close' : 'menu_open' }}</app-icon>
     </button>
   </div>
-  <div class="mt-10 flex grow flex-col gap-6 overflow-auto pl-5 text-sm font-normal">
+  <div class="relative mt-10 flex grow flex-col gap-6 overflow-auto pb-24 pl-5 text-sm font-normal">
     @if (isOpen) {
       @for (item of sidebarItems; track $index) {
         <a
@@ -19,8 +19,11 @@
         </a>
       }
     }
-  </div>
-  <div class="flex flex-col justify-evenly py-6" [class]="isOpen ? 'items-start pl-5' : 'items-center'">
-    <app-toggle-theme [showLabel]="isOpen" />
+    <div
+      class="fixed bottom-0 flex flex-col justify-evenly py-5 backdrop-blur"
+      [class]="isOpen ? 'items-start' : 'items-center'"
+    >
+      <app-toggle-theme [showLabel]="isOpen" />
+    </div>
   </div>
 </div>
