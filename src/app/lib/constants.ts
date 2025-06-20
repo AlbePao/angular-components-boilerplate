@@ -1,3 +1,8 @@
 import { AppTheme } from './types/theme';
 
-export const DEFAULT_BASE_THEME: AppTheme = 'system' as const;
+export const APP_TITLE = 'Angular Boilerplate';
+
+export const APP_DEFAULT_THEME: AppTheme = 'system';
+
+export const APP_LANGS = ['en', 'it'];
+export const APP_DEFAULT_LANG = 'en';

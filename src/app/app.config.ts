@@ -3,6 +3,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { jwtInterceptor } from '@lib/interceptors/jwt.interceptor';
 import { serverErrorInterceptor } from '@lib/interceptors/server-error.interceptor';
+import { provideLangInitializer } from '@lib/providers/lang-initializer';
 import { provideThemeInitializer } from '@lib/providers/theme-initializer';
 import { provideTitleStrategy } from '@lib/providers/title-strategy';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
@@ -26,8 +27,7 @@ export const appConfig: ApplicationConfig = {
         useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
-      defaultLanguage: 'en',
-      useDefaultLang: true,
     }),
+    provideLangInitializer(),
   ],
 };

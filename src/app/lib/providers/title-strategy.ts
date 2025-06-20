@@ -1,6 +1,7 @@
 import { inject, Injectable, Provider } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
+import { APP_TITLE } from '@lib/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AppTitleStrategy extends TitleStrategy {
     // PageTitle is equal to the "Title" of a route if it's set
     // If its not set it will use the "title" given in index.html
     const pageTitle = this.buildTitle(snapshot) ?? this._title.getTitle();
-    this._title.setTitle(`${pageTitle} | Angular Boilerplate`);
+    this._title.setTitle(`${pageTitle} | ${APP_TITLE}`);
   }
 }
 

@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
-import { DEFAULT_BASE_THEME } from '@lib/constants';
+import { APP_DEFAULT_THEME } from '@lib/constants';
 import { storage } from '@lib/storage';
 import { WINDOW } from '@lib/tokens/window';
 import { AppTheme } from '@lib/types/theme';
@@ -37,7 +37,7 @@ export class ThemeService {
   }
 
   init(): void {
-    this.setTheme(this._storedTheme ?? DEFAULT_BASE_THEME);
+    this.setTheme(this._storedTheme ?? APP_DEFAULT_THEME);
     this._listenForMediaQueryChanges();
   }
 
