@@ -1,0 +1,36 @@
+<h1>Multiselect</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form">
+  <app-form-field>
+    <app-label>Multiselect Control Example</app-label>
+    <input
+      appInput
+      type="text"
+      formControlName="multiselectControlExample"
+      [appMultiselect]="multiselectExample"
+      #multiselectControlExampleTrigger
+    />
+    <button app-icon-button type="button" appSuffix [appFocus]="multiselectControlExampleTrigger">
+      <app-icon color="black">arrow_drop_down</app-icon>
+    </button>
+    <app-multiselect #multiselectExample="appMultiselect" [options]="multiselectOptions" />
+  </app-form-field>
+</form>
+
+<h2>Template driven</h2>
+
+<app-form-field>
+  <app-label>Multiselect Example</app-label>
+  <input
+    appInput
+    type="text"
+    [appMultiselect]="multiselectExample"
+    #multiselectExampleTrigger
+    (valueChange)="logMultiselectValueChange($event)"
+  />
+  <button app-icon-button type="button" appSuffix [appFocus]="multiselectExampleTrigger">
+    <app-icon color="black">arrow_drop_down</app-icon>
+  </button>
+  <app-multiselect #multiselectExample="appMultiselect" [options]="multiselectOptions" />
+</app-form-field>

@@ -93,33 +93,28 @@ export class ExampleComponent implements OnInit {
       label: 'One',
       icon: 'face',
       disabled: false,
-      extra: { data: 'test1' },
     },
     {
       value: 'two',
       label: 'Two',
       disabled: false,
-      extra: { data: 'test2' },
       children: [
         {
-          value: 'roba1',
-          label: 'RobaOne',
+          value: 'sub1',
+          label: 'Sub One',
           icon: 'face',
           disabled: false,
-          extra: { data: 'robaTest1' },
         },
         {
-          value: 'roba2',
-          label: 'RobaTwo',
+          value: 'sub2',
+          label: 'Sub Two',
           disabled: false,
-          extra: { data: 'robaTest2' },
         },
         {
-          value: 'roba3',
-          label: 'RobaThree',
+          value: 'sub3',
+          label: 'Sub Three',
           icon: 'face',
           disabled: true,
-          extra: { data: 'robaTest3' },
         },
       ],
     },
@@ -127,27 +122,23 @@ export class ExampleComponent implements OnInit {
       value: 'two',
       label: 'Two',
       disabled: false,
-      extra: { data: 'test2' },
       children: [
         {
-          value: 'roba1',
-          label: 'RobaOne',
+          value: 'sub1',
+          label: 'Sub One',
           icon: 'face',
           disabled: false,
-          extra: { data: 'robaTest1' },
         },
         {
-          value: 'roba2',
-          label: 'RobaTwo',
+          value: 'sub2',
+          label: 'Sub Two',
           disabled: false,
-          extra: { data: 'robaTest2' },
         },
         {
-          value: 'roba3',
-          label: 'RobaThree',
+          value: 'sub3',
+          label: 'Sub Three',
           icon: 'face',
           disabled: false,
-          extra: { data: 'robaTest3' },
         },
       ],
     },
@@ -156,7 +147,6 @@ export class ExampleComponent implements OnInit {
       label: 'Three',
       icon: 'face',
       disabled: true,
-      extra: { data: 'test3' },
     },
   ];
 
@@ -216,33 +206,28 @@ export class ExampleComponent {
       label: 'One',
       icon: 'face',
       disabled: false,
-      extra: { data: 'test1' },
     },
     {
       value: 'two',
       label: 'Two',
       disabled: false,
-      extra: { data: 'test2' },
       children: [
         {
-          value: 'roba1',
-          label: 'RobaOne',
+          value: 'sub1',
+          label: 'Sub One',
           icon: 'face',
           disabled: false,
-          extra: { data: 'robaTest1' },
         },
         {
-          value: 'roba2',
-          label: 'RobaTwo',
+          value: 'sub2',
+          label: 'Sub Two',
           disabled: false,
-          extra: { data: 'robaTest2' },
         },
         {
-          value: 'roba3',
-          label: 'RobaThree',
+          value: 'sub3',
+          label: 'Sub Three',
           icon: 'face',
           disabled: true,
-          extra: { data: 'robaTest3' },
         },
       ],
     },
@@ -250,27 +235,23 @@ export class ExampleComponent {
       value: 'two',
       label: 'Two',
       disabled: false,
-      extra: { data: 'test2' },
       children: [
         {
-          value: 'roba1',
-          label: 'RobaOne',
+          value: 'sub1',
+          label: 'Sub One',
           icon: 'face',
           disabled: false,
-          extra: { data: 'robaTest1' },
         },
         {
-          value: 'roba2',
-          label: 'RobaTwo',
+          value: 'sub2',
+          label: 'Sub Two',
           disabled: false,
-          extra: { data: 'robaTest2' },
         },
         {
-          value: 'roba3',
-          label: 'RobaThree',
+          value: 'sub3',
+          label: 'Sub Three',
           icon: 'face',
           disabled: false,
-          extra: { data: 'robaTest3' },
         },
       ],
     },
@@ -279,16 +260,11 @@ export class ExampleComponent {
       label: 'Three',
       icon: 'face',
       disabled: true,
-      extra: { data: 'test3' },
     },
   ];
 
-  logMultiselectValueChange(event: string | null): void {
+  logMultiselectValueChange(event: string[] | null): void {
     console.log('logMultiselectValueChange', event);
-  }
-
-  logMultiselectInputChange(event: string): void {
-    console.log('logMultiselectInputChange', event);
   }
 }
 ```
