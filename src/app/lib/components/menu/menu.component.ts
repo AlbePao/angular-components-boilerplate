@@ -25,6 +25,11 @@ export type MenuItem<T> = {
   | {
       children?: never;
       action?: never;
+      link?: never;
+    }
+  | {
+      children?: never;
+      action?: never;
       link: string | null;
     }
   | {

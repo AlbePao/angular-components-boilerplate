@@ -77,6 +77,11 @@ export const routes: Routes = [
       (await import('./letter-box-example/letter-box-example.component')).LetterBoxExampleComponent,
   },
   {
+    path: 'menu-example',
+    title: 'Menu | Showcase',
+    loadComponent: async () => (await import('./menu-example/menu-example.component')).MenuExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>

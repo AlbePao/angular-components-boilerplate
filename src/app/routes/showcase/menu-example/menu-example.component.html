@@ -1,0 +1,4 @@
+<h1>Menu</h1>
+
+<button app-button type="button" [appMenuTriggerFor]="appMenu.menu">Toggle menu</button>
+<app-menu #appMenu [items]="menuItems" (menuAction)="logMenuAction($event)" />
