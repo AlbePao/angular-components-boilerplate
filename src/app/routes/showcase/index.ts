@@ -45,9 +45,15 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./checkbox-example/checkbox-example.component')).CheckboxExampleComponent,
   },
   {
-    path: 'radio-example',
-    title: 'Radio | Showcase',
-    loadComponent: async () => (await import('./radio-example/radio-example.component')).RadioExampleComponent,
+    path: 'chip-example',
+    title: 'Chip | Showcase',
+    loadComponent: async () => (await import('./chip-example/chip-example.component')).ChipExampleComponent,
+  },
+  {
+    path: 'radio-group-example',
+    title: 'Radio Group | Showcase',
+    loadComponent: async () =>
+      (await import('./radio-group-example/radio-group-example.component')).RadioGroupExampleComponent,
   },
   {
     path: 'tabs-example',

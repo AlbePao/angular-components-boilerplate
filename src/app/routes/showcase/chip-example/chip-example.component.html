@@ -1,0 +1,5 @@
+<h1>Chip</h1>
+
+@for (chip of chips; track $index) {
+  <app-chip [value]="chip.value" (removed)="logChipRemove($event)">{{ chip.label }}</app-chip>
+}

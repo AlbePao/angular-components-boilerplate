@@ -43,8 +43,8 @@ export class ExampleComponent {
     },
   ];
 
-  logRemovedFilter(value: T | null): void {
-    console.log('Removed filter value', value);
+  logChipRemove(value: number | null): void {
+    console.log('Removed chip value', value);
   }
 }
 ```
@@ -52,6 +52,6 @@ export class ExampleComponent {
 ```html
 <!-- example.component.html -->
 @for (chip of chips; track $index) {
-<app-chip [value]="chip.value" (removed)="logRemovedFilter($event)">{{ chip.label }}</app-chip>
+<app-chip [value]="chip.value" (removed)="logChipRemove($event)">{{ chip.label }}</app-chip>
 }
 ```
