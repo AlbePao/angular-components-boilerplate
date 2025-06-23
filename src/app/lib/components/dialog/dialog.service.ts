@@ -19,7 +19,6 @@ export class DialogService {
       positionStrategy,
       hasBackdrop: true,
       scrollStrategy: this._overlay.scrollStrategies.block(),
-      panelClass: ['bg-white', 'rounded-sm'],
     });
 
     const dialogRef = new DialogRef<R, C>(overlayRef, config.disableClose);

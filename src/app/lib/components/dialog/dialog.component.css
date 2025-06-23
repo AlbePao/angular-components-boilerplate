@@ -1,6 +1,7 @@
 :host {
-  display: block;
+  display: grid;
   min-height: inherit;
   max-height: inherit;
   width: 100%;
+  height: 100%;
 }

@@ -85,9 +85,6 @@ The following styles are **recommended** to allow dialog to fit inside its overl
 ```css
 /* example-dialog.component.css */
 :host {
-  display: block;
-  min-height: inherit;
-  max-height: inherit;
   width: 100%;
 }
 ```

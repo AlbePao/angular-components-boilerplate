@@ -1,0 +1,10 @@
+<app-dialog showClose>
+  <div app-dialog-title>Example dialog title</div>
+  <div app-dialog-content>
+    <p>Example dialog content</p>
+    <p><strong>Data from the parent:</strong> {{ exampleText }}</p>
+  </div>
+  <div app-dialog-footer>
+    <button app-button type="button" size="lg" appearance="secondary" (click)="close()">Close</button>
+  </div>
+</app-dialog>

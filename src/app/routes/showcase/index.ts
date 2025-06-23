@@ -50,6 +50,11 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./chip-example/chip-example.component')).ChipExampleComponent,
   },
   {
+    path: 'dialog-example',
+    title: 'Dialog | Showcase',
+    loadComponent: async () => (await import('./dialog-example/dialog-example.component')).DialogExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>
