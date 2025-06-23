@@ -56,7 +56,7 @@ export const routes: Routes = [
   },
   {
     path: 'form-field-example',
-    title: 'Form field | Showcase',
+    title: 'Form Field | Showcase',
     loadComponent: async () =>
       (await import('./form-field-example/form-field-example.component')).FormFieldExampleComponent,
   },
@@ -69,6 +69,12 @@ export const routes: Routes = [
     path: 'input-example',
     title: 'Input | Showcase',
     loadComponent: async () => (await import('./input-example/input-example.component')).InputExampleComponent,
+  },
+  {
+    path: 'letter-box-example',
+    title: 'Letter Box | Showcase',
+    loadComponent: async () =>
+      (await import('./letter-box-example/letter-box-example.component')).LetterBoxExampleComponent,
   },
   {
     path: 'radio-group-example',
