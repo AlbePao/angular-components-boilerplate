@@ -1,0 +1,35 @@
+<h1>Form field</h1>
+
+<form [formGroup]="form">
+  <app-form-field>
+    <input appInput type="text" formControlName="firstInputControl" />
+    <app-label>Input Control Example</app-label>
+    @if (form.controls.firstInputControl | showControlError: 'required') {
+      <app-error>Campo obbligatorio</app-error>
+    }
+  </app-form-field>
+  <app-form-field>
+    <input appInput type="text" formControlName="secondInputControl" />
+    <app-label>Input Control Example</app-label>
+    <app-icon appSuffix>face</app-icon>
+    @if (form.controls.secondInputControl | showControlError: 'required') {
+      <app-error>Campo obbligatorio</app-error>
+    }
+  </app-form-field>
+  <app-form-field>
+    <input appInput type="text" formControlName="thirdInputControl" />
+    <app-label>Input Control Example</app-label>
+    <span appTextSuffix>%</span>
+    @if (form.controls.thirdInputControl | showControlError: 'required') {
+      <app-error>Campo obbligatorio</app-error>
+    }
+  </app-form-field>
+  <app-form-field>
+    <input appInput type="text" formControlName="fourthInputControl" />
+    <app-label>Input Control Example</app-label>
+    <span appTextSuffix>%</span>
+    @if (form.controls.fourthInputControl | showControlError: 'required') {
+      <app-error>Campo obbligatorio</app-error>
+    }
+  </app-form-field>
+</form>

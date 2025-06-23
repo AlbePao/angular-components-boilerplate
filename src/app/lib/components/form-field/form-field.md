@@ -40,9 +40,7 @@ type ControlErrors =
   | 'maxlength'
   | 'min'
   | 'max'
-  | 'dateRequired'
-  | 'datePreviousFromToday'
-  | 'dateNextFromToday';
+  | 'autocompleteInputInvalid';
 ```
 
 ## Example
@@ -63,7 +61,7 @@ export class ExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
 
   form = this._fb.group({
-    inputControlExample: [''],
+    inputControlExample: ['', Validators.required],
   });
 
   ngOnInit(): void {
