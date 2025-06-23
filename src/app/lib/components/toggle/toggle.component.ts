@@ -12,11 +12,11 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { IconComponent } from '@lib/components/icon';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 import { Option } from '@lib/types/option';
 import { TranslatePipe } from '@ngx-translate/core';
-import { IconComponent } from '../icon';
 
 export interface ToggleOption<T> extends Omit<Option<T>, 'label'> {
   label?: string;

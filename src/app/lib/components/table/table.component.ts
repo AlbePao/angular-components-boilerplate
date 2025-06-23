@@ -18,16 +18,16 @@ import {
   IconButtonAppearance,
   RoundedButtonColor,
 } from '@lib/components/button';
+import { CheckboxComponent } from '@lib/components/checkbox';
+import { IconComponent } from '@lib/components/icon';
 import { MenuItem, MenuModule } from '@lib/components/menu';
 import { PillAppearance, PillComponent, PillSize } from '@lib/components/pill';
+import { RadioButtonComponent } from '@lib/components/radio-group';
+import { TooltipDirective } from '@lib/components/tooltip';
 import { Colors } from '@lib/types/colors';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
-import { CheckboxComponent } from '../checkbox';
-import { IconComponent } from '../icon';
-import { RadioButtonComponent } from '../radio-group';
-import { TooltipDirective } from '../tooltip';
 
 export type ColumnTypes =
   | 'number'

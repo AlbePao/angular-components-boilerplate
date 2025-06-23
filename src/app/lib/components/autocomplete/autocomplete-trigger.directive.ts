@@ -26,6 +26,7 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, ValidationErrors, Validator } from '@angular/forms';
+import { InputDirective } from '@lib/components/input';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValidators } from '@lib/providers/ng-validators';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
@@ -33,7 +34,6 @@ import { Option, OptionExtra } from '@lib/types/option';
 import { injectDestroy } from '@lib/utils/injectDestroy';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, filter, fromEvent, map, merge, of, take, takeUntil } from 'rxjs';
-import { InputDirective } from '../input';
 import { AutocompleteComponent } from './autocomplete.component';
 
 const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];

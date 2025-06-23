@@ -1,5 +1,5 @@
 import { InjectionToken, Provider } from '@angular/core';
-import { name, version } from '../../../../package.json';
+import { name, version } from 'package.json';
 
 interface PackageJson {
   name: string;
