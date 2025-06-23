@@ -1,0 +1,12 @@
+<h1>Form field</h1>
+
+<form [formGroup]="form">
+  <app-form-field>
+    <input appInput type="text" formControlName="firstInputControl" />
+    <app-label>Input Control Example</app-label>
+  </app-form-field>
+  <app-form-field>
+    <app-label>Input Control Example</app-label>
+    <textarea appInput formControlName="secondInputControl"></textarea>
+  </app-form-field>
+</form>

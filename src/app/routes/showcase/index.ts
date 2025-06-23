@@ -66,6 +66,11 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./icon-example/icon-example.component')).IconExampleComponent,
   },
   {
+    path: 'input-example',
+    title: 'Input | Showcase',
+    loadComponent: async () => (await import('./input-example/input-example.component')).InputExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>
