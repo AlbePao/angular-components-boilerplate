@@ -1,30 +1,30 @@
 <section>
   <h1>Home</h1>
 
-  <h2 class="mb-4">Choose your theme</h2>
-
   @if (currentTheme$ | async; as currentTheme) {
+    <h2 class="mb-4">{{ 'routes.home.chooseTheme' | translate }}</h2>
+
     <div class="mb-6 flex flex-wrap gap-3">
       <button
         type="button"
         class="min-w-[150px] btn {{ currentTheme === 'system' ? 'btn-primary' : 'btn-secondary' }}"
         (click)="handleThemeChange('system')"
       >
-        <app-icon class="icon-20">monitor</app-icon> System
+        <app-icon class="icon-20">monitor</app-icon> {{ 'routes.home.systemTheme' | translate }}
       </button>
       <button
         type="button"
         class="min-w-[150px] btn {{ currentTheme === 'light' ? 'btn-primary' : 'btn-secondary' }}"
         (click)="handleThemeChange('light')"
       >
-        <app-icon class="icon-20">light_mode</app-icon> Light
+        <app-icon class="icon-20">light_mode</app-icon> {{ 'routes.home.lightTheme' | translate }}
       </button>
       <button
         type="button"
         class="min-w-[150px] btn {{ currentTheme === 'dark' ? 'btn-primary' : 'btn-secondary' }}"
         (click)="handleThemeChange('dark')"
       >
-        <app-icon class="icon-20">dark_mode</app-icon> Dark
+        <app-icon class="icon-20">dark_mode</app-icon> {{ 'routes.home.darkTheme' | translate }}
       </button>
     </div>
   }
@@ -117,7 +117,9 @@
   </div>
 
   <div class="mt-12">
-    <h3 class="h5">Settings</h3>
+    <h3 class="h5">
+      {{ 'routes.home.settings' | translate }}
+    </h3>
     <ul>
       <li>
         <a class="link text-sm" routerLink="/settings/accessibility">Accessibility</a>
@@ -128,11 +130,16 @@
       <li>
         <a class="link text-sm" routerLink="/settings/appearance">Appearance</a>
       </li>
+      <li>
+        <a class="link text-sm" routerLink="/settings/language">Language</a>
+      </li>
     </ul>
   </div>
 
   <div class="mt-6">
-    <h3 class="h5">Profiles</h3>
+    <h3 class="h5">
+      {{ 'routes.home.profiles' | translate }}
+    </h3>
     <ul>
       <li>
         <a class="link text-sm" routerLink="/users/maria" text-sm>Maria</a>

@@ -37,7 +37,11 @@
         </g>
       </svg>
     </div>
-    <h1 class="mb-8 text-3xl">The page you were looking for was not found</h1>
-    <a app-button routerLink="/" appearance="primary">Go home</a>
+    <h1 class="mb-8 text-3xl">
+      {{ 'routes.screens.notFound' | translate }}
+    </h1>
+    <a app-button routerLink="/" appearance="primary">
+      {{ 'routes.screens.goHome' | translate }}
+    </a>
   </div>
 </div>

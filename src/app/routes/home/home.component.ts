@@ -4,9 +4,10 @@ import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
 import { ThemeService } from '@lib/services/theme.service';
 import { AppTheme } from '@lib/types/theme';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  imports: [RouterLink, AsyncPipe, IconComponent],
+  imports: [RouterLink, AsyncPipe, IconComponent, TranslatePipe],
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

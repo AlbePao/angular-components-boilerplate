@@ -1,0 +1,8 @@
+<h1>
+  {{ 'routes.settings.language.title' | translate }}
+</h1>
+
+<app-radio-group (valueChange)="changeLanguage($event)">
+  <app-radio-button [checked]="currentLang === 'en'" value="en">EN</app-radio-button>
+  <app-radio-button [checked]="currentLang === 'it'" value="it">IT</app-radio-button>
+</app-radio-group>

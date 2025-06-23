@@ -17,6 +17,41 @@
         "themeLight": "Light mode",
         "themeDark": "Dark mode"
       }
+    },
+    "horizontalLayout": {
+      "navbar": {
+        "logout": "Logout"
+      }
+    }
+  },
+  "routes": {
+    "auth": {
+      "login": {
+        "loginMessage": "You're not logged in!",
+        "login": "Login"
+      }
+    },
+    "home": {
+      "chooseTheme": "Choose your theme",
+      "systemTheme": "System",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "settings": "Settings",
+      "profiles": "Profiles"
+    },
+    "screens": {
+      "notFound": "The page you were looking for was not found",
+      "goHome": "Go home"
+    },
+    "user": {
+      "profile": {
+        "userName": "User: {[username]}"
+      }
+    },
+    "settings": {
+      "language": {
+        "title": "Language"
+      }
     }
   }
 }

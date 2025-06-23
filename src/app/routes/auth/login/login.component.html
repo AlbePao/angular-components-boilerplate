@@ -1,4 +1,4 @@
 <div class="container flex h-full flex-col items-center justify-center">
-  <p class="mb-12 text-center text-5xl">You're not logged in!</p>
-  <button app-button type="button" size="lg" (click)="login()">Login</button>
+  <p class="mb-12 text-center text-5xl">{{ 'routes.auth.login.loginMessage' | translate }}</p>
+  <button app-button type="button" size="lg" (click)="login()">{{ 'routes.auth.login.login' | translate }}</button>
 </div>

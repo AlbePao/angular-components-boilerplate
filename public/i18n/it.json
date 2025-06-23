@@ -17,6 +17,41 @@
         "themeLight": "Light mode",
         "themeDark": "Dark mode"
       }
+    },
+    "horizontalLayout": {
+      "navbar": {
+        "logout": "Logout"
+      }
+    }
+  },
+  "routes": {
+    "auth": {
+      "login": {
+        "loginMessage": "Non hai effettuato il login",
+        "login": "Login"
+      }
+    },
+    "home": {
+      "chooseTheme": "Seleziona il tema",
+      "systemTheme": "Sistema",
+      "lightTheme": "Chiaro",
+      "darkTheme": "Scuro",
+      "settings": "Impostazioni",
+      "profiles": "Profili"
+    },
+    "screens": {
+      "notFound": "La pagina che stai cercando non è stata trovata",
+      "goHome": "Vai alla home"
+    },
+    "user": {
+      "profile": {
+        "userName": "Utente: {{username}}"
+      }
+    },
+    "settings": {
+      "language": {
+        "title": "Lingua"
+      }
     }
   }
 }

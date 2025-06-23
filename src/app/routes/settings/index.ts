@@ -16,4 +16,9 @@ export const routes: Routes = [
     title: 'Appearance settings',
     loadComponent: async () => (await import('./appearance/appearance.component')).AppearanceComponent,
   },
+  {
+    path: 'language',
+    title: 'Language settings',
+    loadComponent: async () => (await import('./language/language.component')).LanguageComponent,
+  },
 ];
