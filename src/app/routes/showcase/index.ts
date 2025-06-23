@@ -61,6 +61,11 @@ export const routes: Routes = [
       (await import('./form-field-example/form-field-example.component')).FormFieldExampleComponent,
   },
   {
+    path: 'icon-example',
+    title: 'Icon | Showcase',
+    loadComponent: async () => (await import('./icon-example/icon-example.component')).IconExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>
