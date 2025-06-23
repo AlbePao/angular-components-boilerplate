@@ -19,6 +19,7 @@ export class DialogService {
       positionStrategy,
       hasBackdrop: true,
       scrollStrategy: this._overlay.scrollStrategies.block(),
+      panelClass: ['text-slate-900'],
     });
 
     const dialogRef = new DialogRef<R, C>(overlayRef, config.disableClose);
