@@ -1,4 +1,4 @@
-import { booleanAttribute, Directive, DoCheck, ElementRef, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Directive, DoCheck, ElementRef, EventEmitter, Input, Output, booleanAttribute, inject } from '@angular/core';
 import { AbstractControl, NgControl, Validators } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 
@@ -14,7 +14,7 @@ let nextUniqueId = 0;
     '[attr.required]': 'required || null',
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
     'attr.autocomplete': 'off',
-    'attr.placeholder': ' ',
+    '[attr.placeholder]': `' '`,
     '[attr.appFocusable]': 'appFocusable',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
