@@ -21,7 +21,7 @@ Replace empty or falsy values with a default or customizable placeholder, keepin
   ],
   // other stuff...
 })
-export class ExampleComponent implements OnInit {
+export class ExampleComponent {
   name: string | null = null;
 }
 ```

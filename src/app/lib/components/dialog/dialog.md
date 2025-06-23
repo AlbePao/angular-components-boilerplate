@@ -29,7 +29,7 @@ import { ExampleDialogComponent } from './example-dialog.component.ts';
   ],
   // other stuff...
 })
-export class ExampleComponent implements OnInit {
+export class ExampleComponent {
   private readonly _dialogService = inject(DialogService);
 
   openExampleDialog(): void {

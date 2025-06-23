@@ -51,7 +51,7 @@ Used to describe a single menu item
   ],
   // other stuff...
 })
-export class ExampleComponent implements OnInit {
+export class ExampleComponent {
   menuItems: MenuItem<string>[] = [
     {
       icon: 'logout',

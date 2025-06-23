@@ -101,7 +101,7 @@ export class ExampleComponent implements OnInit {
   // other stuff...
 })
 export class ExampleComponent {
-  logRadioChange(event: boolean | null): void {
+  logRadioChange(event: unknown): void {
     console.log('logRadioChange', event);
   }
 }
