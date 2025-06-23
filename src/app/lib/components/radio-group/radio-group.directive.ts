@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { Subject, merge, startWith, switchMap, takeUntil } from 'rxjs';
 import { APP_RADIO, RadioButtonComponent } from './radio-button.component';
 

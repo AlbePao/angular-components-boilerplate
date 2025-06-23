@@ -21,7 +21,7 @@ import {
 import { MenuItem, MenuModule } from '@lib/components/menu';
 import { PillAppearance, PillComponent, PillSize } from '@lib/components/pill';
 import { Colors } from '@lib/types/colors';
-import { isArray, isNumber, isString } from '@lib/utils/value-checking';
+import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import { CheckboxComponent } from '../checkbox';
@@ -157,6 +157,14 @@ export type TableRow<T extends string | number | symbol = string, A = unknown> =
 const DEFAULT_SORT_STATUS: TableColumnSort = { sortKey: '', sortDirection: '' };
 
 let nextUniqueId = 0;
+
+function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+function isNumber(value: unknown): value is number {
+  return typeof value === 'number';
+}
 
 @Component({
   selector: 'app-table',
@@ -384,7 +392,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
 
   isNumber(value: unknown): value is number {
-    return typeof value === 'number';
+    return isNumber(value);
   }
 
   getCellTextFormatsClasses(cellFormat?: RowCellTextFormat): string[] {

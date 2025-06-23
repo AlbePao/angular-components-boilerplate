@@ -4,7 +4,7 @@ import { APP_DEFAULT_THEME } from '@lib/constants';
 import { storage } from '@lib/storage';
 import { WINDOW } from '@lib/tokens/window';
 import { AppTheme } from '@lib/types/theme';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { BehaviorSubject, fromEventPattern, Observable, takeUntil } from 'rxjs';
 
 @Injectable({

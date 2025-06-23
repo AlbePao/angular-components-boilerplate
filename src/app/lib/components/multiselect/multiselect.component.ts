@@ -13,8 +13,8 @@ import {
 import { CheckboxComponent } from '@lib/components/checkbox';
 import { IconComponent } from '@lib/components/icon';
 import { Option } from '@lib/types/option';
-import { getOptionScrollPosition } from '@lib/utils/get-option-scroll-position';
-import { isArray } from '@lib/utils/value-checking';
+import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
+import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 

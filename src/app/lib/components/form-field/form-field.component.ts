@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { InputDirective } from '@lib/components/input';
 import { SelectDirective } from '@lib/components/select';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { merge, of, startWith, takeUntil } from 'rxjs';
 import { APP_ERROR, ErrorDirective } from './directives/error.directive';
 import { APP_LABEL, LabelDirective } from './directives/label.directive';

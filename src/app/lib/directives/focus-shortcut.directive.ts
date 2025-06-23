@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, inject } from '@angular/core';
 import { HotKeysService } from '@lib/services/hot-keys.service';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { takeUntil } from 'rxjs';
 
 @Directive({

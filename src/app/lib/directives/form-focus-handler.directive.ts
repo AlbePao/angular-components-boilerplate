@@ -11,8 +11,7 @@ import {
 } from '@angular/core';
 import { FocusableItem } from '@lib/providers/focusable-item';
 import { HotKeysService } from '@lib/services/hot-keys.service';
-import { injectDestroy } from '@lib/utils/inject-destroy';
-import { arrayHasDuplicates } from '@lib/utils/value-checking';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { Subject, filter, map, merge, repeat, startWith, switchMap, take, takeUntil } from 'rxjs';
 
 const NO_ITEMS_INDEX = -1;
@@ -105,7 +104,7 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   private _setFocusableItems(): void {
     const focusableItems = this.focusableItems.toArray();
     const focusableItemsIds = focusableItems.map((item) => item.id);
-    const hasFocusableItemsDuplicatedIds = arrayHasDuplicates(focusableItemsIds);
+    const hasFocusableItemsDuplicatedIds = new Set(focusableItemsIds).size !== focusableItemsIds.length;
 
     if (hasFocusableItemsDuplicatedIds) {
       throw new Error('FormFocusHandlerDirective: Two or more focusable items have the same id assigned');

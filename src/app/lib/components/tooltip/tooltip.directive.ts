@@ -9,7 +9,7 @@ import {
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Directive, ElementRef, Input, OnDestroy, OnInit, booleanAttribute, inject } from '@angular/core';
-import { isArray } from '@lib/utils/value-checking';
+import { isArray } from '@lib/utils/isArray';
 import { TooltipComponent } from './tooltip.component';
 
 interface TooltipOffset {

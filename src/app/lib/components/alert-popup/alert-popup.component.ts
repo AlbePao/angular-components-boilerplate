@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { TranslatePipe } from '@ngx-translate/core';
 import { takeUntil, timer } from 'rxjs';
 import { ALERT_POPUP_DATA, AlertPopupData } from './alert-popup-config';

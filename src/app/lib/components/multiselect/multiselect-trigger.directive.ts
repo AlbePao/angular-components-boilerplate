@@ -26,7 +26,7 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, filter, fromEvent, merge, of, take, takeUntil, tap } from 'rxjs';
 import { FlatMultiselectOption, MultiselectComponent } from './multiselect.component';

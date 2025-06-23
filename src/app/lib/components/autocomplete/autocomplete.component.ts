@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
 import { Option, OptionExtra } from '@lib/types/option';
-import { getOptionScrollPosition } from '@lib/utils/get-option-scroll-position';
+import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 

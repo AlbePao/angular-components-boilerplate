@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { AbstractControl, NgModel } from '@angular/forms';
-import { isArray } from '@lib/utils/value-checking';
+import { isArray } from '@lib/utils/isArray';
 import { ControlErrors } from './control-errors';
 
 @Pipe({

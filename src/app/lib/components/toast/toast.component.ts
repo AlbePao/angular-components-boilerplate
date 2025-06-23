@@ -3,7 +3,7 @@ import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { TOAST_DATA } from '@lib/components/toast/toast-config';
 import { ToastRef } from '@lib/components/toast/toast-ref';
-import { injectDestroy } from '@lib/utils/inject-destroy';
+import { injectDestroy } from '@lib/utils/injectDestroy';
 import { TranslatePipe } from '@ngx-translate/core';
 import { takeUntil, timer } from 'rxjs';
 
