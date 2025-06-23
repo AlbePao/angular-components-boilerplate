@@ -36,10 +36,11 @@ export class ExampleComponent {}
 
 ```html
 <!-- example.component.html -->
-<app-icon>face</app-icon>
 <app-icon color="primary">face</app-icon>
 <app-icon color="secondary">face</app-icon>
 <app-icon color="success">face</app-icon>
 <app-icon color="danger">face</app-icon>
-<app-icon color="warning">face</app-icon>
+<app-icon color="info">face</app-icon>
+<app-icon color="gray">face</app-icon>
+<app-icon color="black">face</app-icon>
 ```

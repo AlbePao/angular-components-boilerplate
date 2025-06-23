@@ -85,15 +85,15 @@ export class ExampleComponent {}
 <app-progress-bar color="danger" value="90" />
 <app-progress-bar color="danger" value="100" />
 
-<app-progress-bar color="warning" value="0" />
-<app-progress-bar color="warning" value="10" />
-<app-progress-bar color="warning" value="20" />
-<app-progress-bar color="warning" value="30" />
-<app-progress-bar color="warning" value="40" />
-<app-progress-bar color="warning" value="50" />
-<app-progress-bar color="warning" value="60" />
-<app-progress-bar color="warning" value="70" />
-<app-progress-bar color="warning" value="80" />
-<app-progress-bar color="warning" value="90" />
-<app-progress-bar color="warning" value="100" />
+<app-progress-bar color="info" value="0" />
+<app-progress-bar color="info" value="10" />
+<app-progress-bar color="info" value="20" />
+<app-progress-bar color="info" value="30" />
+<app-progress-bar color="info" value="40" />
+<app-progress-bar color="info" value="50" />
+<app-progress-bar color="info" value="60" />
+<app-progress-bar color="info" value="70" />
+<app-progress-bar color="info" value="80" />
+<app-progress-bar color="info" value="90" />
+<app-progress-bar color="info" value="100" />
 ```
