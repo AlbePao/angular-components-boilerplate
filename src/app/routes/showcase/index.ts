@@ -94,6 +94,11 @@ export const routes: Routes = [
       (await import('./paginator-example/paginator-example.component')).PaginatorExampleComponent,
   },
   {
+    path: 'pill-example',
+    title: 'Pill | Showcase',
+    loadComponent: async () => (await import('./pill-example/pill-example.component')).PillExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>
