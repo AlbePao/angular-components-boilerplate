@@ -47,7 +47,7 @@ Used to describe a single option. It extends [`Option` interface](../../../types
 export class ExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
 
-  radioOptionsExamples: RadioOption[] = [
+  radioOptionsExamples: RadioOption<string>[] = [
     { value: 'example-1', label: 'Example One' },
     { value: 'example-2', label: 'Example Two' },
   ];
@@ -85,7 +85,7 @@ export class ExampleComponent implements OnInit {
   // other stuff...
 })
 export class ExampleComponent {
-  radioOptionsExamples: RadioOption[] = [
+  radioOptionsExamples: RadioOption<string>[] = [
     { value: 'example-1', label: 'Example One' },
     { value: 'example-2', label: 'Example Two' },
   ];

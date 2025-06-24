@@ -1,0 +1,10 @@
+<h1>Radio Options</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
+  <app-radio-options [options]="radioOptionsExamples" formControlName="inputRadioControlExample" />
+</form>
+
+<h2>Template driven</h2>
+
+<app-radio-options [options]="radioOptionsExamples" (valueChange)="logRadioChange($event)" />
