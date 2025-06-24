@@ -122,6 +122,11 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./select-example/select-example.component')).SelectExampleComponent,
   },
   {
+    path: 'spinner-example',
+    title: 'Spinner | Showcase',
+    loadComponent: async () => (await import('./spinner-example/spinner-example.component')).SpinnerExampleComponent,
+  },
+  {
     path: 'tabs-example',
     title: 'Tabs | Showcase',
     loadComponent: async () => (await import('./tabs-example/tabs-example.component')).TabsExampleComponent,
