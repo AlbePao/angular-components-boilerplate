@@ -42,7 +42,7 @@ Fired by `pageChange` event
 })
 export class ExampleComponent {
   currentPage = 1;
-  pageSize = 20;
+  pageSize = 25;
   length = 100;
 
   logPaginator(event: PaginationEvent): void {

@@ -7,7 +7,9 @@
       "noOptions": "Nessuna opzione presente"
     },
     "paginator": {
-      "range": "<span class=\"font-bold\">{rangeStart}</span> di <span class=\"font-bold\">{rangeEnd}</span> su <span class=\"font-bold\">{length}</span> totali",
+      "of": "di",
+      "outOf": "su",
+      "total": "totali",
       "elementsPerPage": "Elementi per pagina"
     }
   },

@@ -88,6 +88,12 @@ export const routes: Routes = [
       (await import('./multiselect-example/multiselect-example.component')).MultiselectExampleComponent,
   },
   {
+    path: 'paginator-example',
+    title: 'Paginator | Showcase',
+    loadComponent: async () =>
+      (await import('./paginator-example/paginator-example.component')).PaginatorExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>

@@ -7,7 +7,9 @@
       "noOptions": "No options"
     },
     "paginator": {
-      "range": "<span class=\"font-bold\">{rangeStart}</span> of <span class=\"font-bold\">{rangeEnd}</span> out of <span class=\"font-bold\">{length}</span> total",
+      "of": "of",
+      "outOf": "out of",
+      "total": "total",
       "elementsPerPage": "Elements per page"
     }
   },

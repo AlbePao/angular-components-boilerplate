@@ -1,0 +1,8 @@
+<h1>Paginator</h1>
+
+<app-paginator
+  [currentPage]="currentPage"
+  [pageSize]="pageSize"
+  [length]="length"
+  (pageChange)="logPaginator($event)"
+/>
