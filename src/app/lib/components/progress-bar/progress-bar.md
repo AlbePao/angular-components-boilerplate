@@ -96,4 +96,16 @@ export class ExampleComponent {}
 <app-progress-bar color="info" value="80" />
 <app-progress-bar color="info" value="90" />
 <app-progress-bar color="info" value="100" />
+
+<app-progress-bar color="gray" value="0" />
+<app-progress-bar color="gray" value="10" />
+<app-progress-bar color="gray" value="20" />
+<app-progress-bar color="gray" value="30" />
+<app-progress-bar color="gray" value="40" />
+<app-progress-bar color="gray" value="50" />
+<app-progress-bar color="gray" value="60" />
+<app-progress-bar color="gray" value="70" />
+<app-progress-bar color="gray" value="80" />
+<app-progress-bar color="gray" value="90" />
+<app-progress-bar color="gray" value="100" />
 ```

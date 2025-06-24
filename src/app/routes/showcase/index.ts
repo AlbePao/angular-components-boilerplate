@@ -99,6 +99,12 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./pill-example/pill-example.component')).PillExampleComponent,
   },
   {
+    path: 'progress-bar-example',
+    title: 'Progress Bar | Showcase',
+    loadComponent: async () =>
+      (await import('./progress-bar-example/progress-bar-example.component')).ProgressBarExampleComponent,
+  },
+  {
     path: 'radio-group-example',
     title: 'Radio Group | Showcase',
     loadComponent: async () =>
