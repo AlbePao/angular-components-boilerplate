@@ -141,4 +141,9 @@ export const routes: Routes = [
     title: 'Toggle | Showcase',
     loadComponent: async () => (await import('./toggle-example/toggle-example.component')).ToggleExampleComponent,
   },
+  {
+    path: 'tooltip-example',
+    title: 'Tooltip | Showcase',
+    loadComponent: async () => (await import('./tooltip-example/tooltip-example.component')).TooltipExampleComponent,
+  },
 ];
