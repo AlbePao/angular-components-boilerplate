@@ -6,17 +6,17 @@ export interface TabNavChangeEvent {
   tabNav: TabNavLinkComponent;
 }
 
-export const APP_TAB_NAV_GROUP = new InjectionToken<TabNavGroupComponent>('TabNavGroupComponent');
+export const APP_TABS_NAV_GROUP = new InjectionToken<TabsNavGroupComponent>('TabsNavGroupComponent');
 
 @Component({
-  selector: 'app-tab-nav-group',
-  templateUrl: './tab-nav-group.component.html',
+  selector: 'app-tabs-nav-group',
+  templateUrl: './tabs-nav-group.component.html',
   providers: [
     {
-      provide: APP_TAB_NAV_GROUP,
-      useExisting: TabNavGroupComponent,
+      provide: APP_TABS_NAV_GROUP,
+      useExisting: TabsNavGroupComponent,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TabNavGroupComponent {}
+export class TabsNavGroupComponent {}

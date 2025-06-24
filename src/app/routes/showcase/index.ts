@@ -127,9 +127,9 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./spinner-example/spinner-example.component')).SpinnerExampleComponent,
   },
   {
-    path: 'tabs-example',
-    title: 'Tabs | Showcase',
-    loadComponent: async () => (await import('./tabs-example/tabs-example.component')).TabsExampleComponent,
+    path: 'tabs-group-example',
+    title: 'Tabs Group | Showcase',
+    loadChildren: async () => (await import('./tabs-group-example')).routes,
   },
   {
     path: 'toggle-example',

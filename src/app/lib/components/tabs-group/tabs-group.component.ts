@@ -16,21 +16,24 @@ export interface TabChangeEvent {
   tab: TabComponent;
 }
 
-export const APP_TAB_GROUP = new InjectionToken<TabGroupComponent>('TabGroupComponent');
+export const APP_TABS_GROUP = new InjectionToken<TabsGroupComponent>('TabsGroupComponent');
 
 @Component({
-  selector: 'app-tab-group',
+  selector: 'app-tabs-group',
   imports: [TranslatePipe],
-  templateUrl: './tab-group.component.html',
+  templateUrl: './tabs-group.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block',
+  },
   providers: [
     {
-      provide: APP_TAB_GROUP,
-      useExisting: TabGroupComponent,
+      provide: APP_TABS_GROUP,
+      useExisting: TabsGroupComponent,
     },
   ],
 })
-export class TabGroupComponent implements AfterContentInit {
+export class TabsGroupComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs = new QueryList<TabComponent>();
 
   @Output() readonly tabChange = new EventEmitter<TabChangeEvent>();

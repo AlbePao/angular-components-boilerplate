@@ -7,7 +7,7 @@ import {
   booleanAttribute,
   inject,
 } from '@angular/core';
-import { APP_TAB_GROUP, TabGroupComponent } from './tab-group.component';
+import { APP_TABS_GROUP, TabsGroupComponent } from './tabs-group.component';
 
 let nextUniqueId = 0;
 
@@ -20,7 +20,7 @@ let nextUniqueId = 0;
   },
 })
 export class TabComponent implements OnInit {
-  private readonly _tabsGroup = inject<TabGroupComponent>(APP_TAB_GROUP, { optional: true });
+  private readonly _tabsGroup = inject<TabsGroupComponent>(APP_TABS_GROUP, { optional: true });
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
   private readonly _uniqueId = `app-tab-${++nextUniqueId}`;
@@ -41,7 +41,7 @@ export class TabComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this._tabsGroup) {
-      throw new Error('TabComponent: app-tab component must be inside an app-tab-group');
+      throw new Error('TabComponent: app-tab component must be inside an app-tabs-group');
     }
   }
 }
