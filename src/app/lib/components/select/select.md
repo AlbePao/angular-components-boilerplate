@@ -58,7 +58,7 @@ export class ExampleComponent implements OnInit {
       <option value="3">Three</option>
     </select>
     @if (form.controls.selectControlExample | showControlError: 'required') {
-    <app-error>Campo obbligatorio</app-error>
+    <app-error>Required field</app-error>
     }
   </app-form-field>
 </form>

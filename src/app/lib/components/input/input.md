@@ -54,7 +54,7 @@ export class ExampleComponent implements OnInit {
     <app-label>Input Control Example</app-label>
     <input appInput type="text" formControlName="inputControlExample" />
     @if (form.controls.inputControlExample | showControlError: 'required') {
-    <app-error>Campo obbligatorio</app-error>
+    <app-error>Required field</app-error>
     }
   </app-form-field>
 </form>
