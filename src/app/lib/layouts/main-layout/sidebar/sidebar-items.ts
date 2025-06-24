@@ -4,7 +4,7 @@ interface SidebarItem {
   icon?: string;
 }
 
-export const SIDEBAR_ITEMS: SidebarItem[] = [
+export const SHOWCASE_ITEMS: SidebarItem[] = [
   {
     link: '/showcase/accordion-example',
     label: 'Accordion',
@@ -98,8 +98,8 @@ export const SIDEBAR_ITEMS: SidebarItem[] = [
     label: 'Table',
   },
   {
-    link: '/showcase/tabs-example',
-    label: 'Tabs',
+    link: '/showcase/tabs-group-example',
+    label: 'Tabs Group',
   },
   {
     link: '/showcase/toast-example',

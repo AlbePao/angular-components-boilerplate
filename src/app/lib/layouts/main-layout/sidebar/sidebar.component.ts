@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { TranslatePipe } from '@ngx-translate/core';
-import { SIDEBAR_ITEMS } from './sidebar-items';
+import { SHOWCASE_ITEMS } from './sidebar-items';
 import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 
 @Component({
@@ -22,7 +22,7 @@ export class SidebarComponent {
   }
   private _isOpen = true;
 
-  readonly sidebarItems = SIDEBAR_ITEMS;
+  readonly sidebarItems = SHOWCASE_ITEMS;
 
   toggleSidebar(): void {
     this.isOpen = !this.isOpen;
