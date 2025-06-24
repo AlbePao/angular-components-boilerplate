@@ -6,6 +6,7 @@ import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon';
 import { InputDirective } from '@lib/components/input';
 import { Option } from '@lib/types/option';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-autocomplete-example',
@@ -17,6 +18,7 @@ import { Option } from '@lib/types/option';
     AutocompleteModule,
     IconComponent,
     ButtonModule,
+    TranslatePipe,
   ],
   templateUrl: './autocomplete-example.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,7 +5,7 @@
     <input appInput type="text" formControlName="firstInputControl" />
     <app-label>Input Control Example</app-label>
     @if (form.controls.firstInputControl | showControlError: 'required') {
-      <app-error>Campo obbligatorio</app-error>
+      <app-error>{{ 'forms.controls.errors.required' | translate }}</app-error>
     }
   </app-form-field>
   <app-form-field>
@@ -13,7 +13,7 @@
     <app-label>Input Control Example</app-label>
     <app-icon appSuffix>face</app-icon>
     @if (form.controls.secondInputControl | showControlError: 'required') {
-      <app-error>Campo obbligatorio</app-error>
+      <app-error>{{ 'forms.controls.errors.required' | translate }}</app-error>
     }
   </app-form-field>
   <app-form-field>
@@ -21,7 +21,7 @@
     <app-label>Input Control Example</app-label>
     <span appTextSuffix>%</span>
     @if (form.controls.thirdInputControl | showControlError: 'required') {
-      <app-error>Campo obbligatorio</app-error>
+      <app-error>{{ 'forms.controls.errors.required' | translate }}</app-error>
     }
   </app-form-field>
   <app-form-field>
@@ -29,7 +29,7 @@
     <app-label>Input Control Example</app-label>
     <span appTextSuffix>%</span>
     @if (form.controls.fourthInputControl | showControlError: 'required') {
-      <app-error>Campo obbligatorio</app-error>
+      <app-error>{{ 'forms.controls.errors.required' | translate }}</app-error>
     }
   </app-form-field>
 </form>

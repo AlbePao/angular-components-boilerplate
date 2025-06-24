@@ -3,10 +3,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon/icon.component';
 import { InputDirective } from '@lib/components/input';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-form-field-example',
-  imports: [FormFieldModule, ReactiveFormsModule, InputDirective, IconComponent],
+  imports: [FormFieldModule, ReactiveFormsModule, InputDirective, IconComponent, TranslatePipe],
   templateUrl: './form-field-example.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

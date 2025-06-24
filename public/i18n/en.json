@@ -55,5 +55,13 @@
         "title": "Language"
       }
     }
+  },
+  "forms": {
+    "controls": {
+      "errors": {
+        "autocompleteInputInvalid": "Enter a valid value",
+        "required": "Required field"
+      }
+    }
   }
 }

@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { SelectDirective } from '@lib/components/select';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-select-example',
-  imports: [ReactiveFormsModule, FormFieldModule, SelectDirective],
+  imports: [ReactiveFormsModule, FormFieldModule, SelectDirective, TranslatePipe],
   templateUrl: './select-example.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

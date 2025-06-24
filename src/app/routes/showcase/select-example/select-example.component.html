@@ -10,7 +10,7 @@
       <option value="3">Three</option>
     </select>
     @if (form.controls.selectControlExample | showControlError: 'required') {
-      <app-error>Campo obbligatorio</app-error>
+      <app-error>{{ 'forms.controls.errors.required' | translate }}</app-error>
     }
   </app-form-field>
 </form>
