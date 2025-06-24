@@ -13,7 +13,7 @@ export class InputExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
 
   form = this._fb.group({
-    firstInputControl: ['', Validators.required],
+    firstInputControl: [''],
     secondInputControl: ['', Validators.required],
   });
 
@@ -21,5 +21,9 @@ export class InputExampleComponent implements OnInit {
     this.form.valueChanges.subscribe((value) => {
       console.log('form values', value);
     });
+  }
+
+  logInputChange(event: Event): void {
+    console.log('logInputChange', event);
   }
 }

@@ -75,7 +75,7 @@ export class ExampleComponent implements OnInit {
   // other stuff...
 })
 export class ExampleComponent {
-  logInputChange(event: string | null): void {
+  logInputChange(event: Event): void {
     console.log('logInputChange', event);
   }
 }

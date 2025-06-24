@@ -1,6 +1,7 @@
 <h1>Input</h1>
 
-<form [formGroup]="form">
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
   <app-form-field>
     <input appInput type="text" formControlName="firstInputControl" />
     <app-label>Input Control Example</app-label>
@@ -8,5 +9,15 @@
   <app-form-field>
     <app-label>Input Control Example</app-label>
     <textarea appInput formControlName="secondInputControl"></textarea>
+    @if (form.controls.secondInputControl | showControlError: 'required') {
+      <app-error>Campo obbligatorio</app-error>
+    }
   </app-form-field>
 </form>
+
+<h2>Template driven</h2>
+
+<app-form-field>
+  <app-label>Input Example</app-label>
+  <input appInput type="text" (change)="logInputChange($event)" />
+</app-form-field>
