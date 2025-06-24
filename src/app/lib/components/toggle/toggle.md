@@ -69,7 +69,7 @@ export class ExampleComponent implements OnInit {
 
 ```html
 <!-- example.component.html -->
-<form [formGroup]="form" class="control">
+<form [formGroup]="form">
   <app-toggle formControlName="toggleControlExample" [options]="toggleOptions" />
 </form>
 ```

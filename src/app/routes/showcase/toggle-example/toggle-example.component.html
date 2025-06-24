@@ -1,6 +1,11 @@
-<form [formGroup]="form" class="control">
+<h1>Select</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
   <app-toggle formControlName="toggleControlExample" [options]="toggleOptions" />
 </form>
+
+<h2>Template driven</h2>
 
 <app-toggle
   [value]="toggleOptions[0]?.value ?? null"
