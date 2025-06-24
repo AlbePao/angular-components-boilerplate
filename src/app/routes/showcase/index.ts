@@ -132,6 +132,11 @@ export const routes: Routes = [
     loadChildren: async () => (await import('./tabs-group-example')).routes,
   },
   {
+    path: 'toast-example',
+    title: 'Toast | Showcase',
+    loadComponent: async () => (await import('./toast-example/toast-example.component')).ToastExampleComponent,
+  },
+  {
     path: 'toggle-example',
     title: 'Toggle | Showcase',
     loadComponent: async () => (await import('./toggle-example/toggle-example.component')).ToggleExampleComponent,

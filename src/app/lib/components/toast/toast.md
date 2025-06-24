@@ -29,6 +29,7 @@ export class ExampleComponent {
 
   showToast(): void {
     this._toastService.show({
+      color: 'primary',
       icon: 'face',
       message: 'Alert popup message',
       duration: 10000,
@@ -38,11 +39,13 @@ export class ExampleComponent {
   showMultipleToast(): void {
     this._toastService.showMultiple([
       {
+        color: 'primary',
         icon: 'face',
         message: 'Alert popup message 1',
         duration: 10000,
       },
       {
+        color: 'secondary',
         icon: 'face',
         message: 'Alert popup message 2',
         duration: 10000,
