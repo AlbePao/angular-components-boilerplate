@@ -117,6 +117,11 @@ export const routes: Routes = [
       (await import('./radio-options-example/radio-options-example.component')).RadioOptionsExampleComponent,
   },
   {
+    path: 'select-example',
+    title: 'Select | Showcase',
+    loadComponent: async () => (await import('./select-example/select-example.component')).SelectExampleComponent,
+  },
+  {
     path: 'tabs-example',
     title: 'Tabs | Showcase',
     loadComponent: async () => (await import('./tabs-example/tabs-example.component')).TabsExampleComponent,

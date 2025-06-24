@@ -57,7 +57,7 @@ export class ExampleComponent implements OnInit {
       <option value="2">Two</option>
       <option value="3">Three</option>
     </select>
-    @if (form.controls.inputControlExample | showControlError: 'required') {
+    @if (form.controls.selectControlExample | showControlError: 'required') {
     <app-error>Campo obbligatorio</app-error>
     }
   </app-form-field>
@@ -79,7 +79,7 @@ export class ExampleComponent implements OnInit {
   // other stuff...
 })
 export class ExampleComponent {
-  logSelectChange(event: string | null): void {
+  logSelectChange(event: Event): void {
     console.log('logSelectChange', event);
   }
 }

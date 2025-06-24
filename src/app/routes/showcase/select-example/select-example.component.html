@@ -1,0 +1,27 @@
+<h1>Select</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
+  <app-form-field>
+    <app-label>Select Control Example</app-label>
+    <select appSelect type="text" formControlName="selectControlExample">
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    @if (form.controls.selectControlExample | showControlError: 'required') {
+      <app-error>Campo obbligatorio</app-error>
+    }
+  </app-form-field>
+</form>
+
+<h2>Template driven</h2>
+
+<app-form-field>
+  <app-label>Select Example</app-label>
+  <select appSelect type="text" (change)="logSelectChange($event)">
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</app-form-field>
