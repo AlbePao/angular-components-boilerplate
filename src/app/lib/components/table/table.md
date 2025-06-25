@@ -26,7 +26,6 @@ The table bases its behaviour on [Angular CDK table](https://material.angular.io
 | `menuAction`              | Object with action and related row data emitted after menu action button is clicked               | `TableRowAction`  |
 | `rowClick`                | Object with related row data emitted if `clickableRows` is true                                   | `TableRow`        |
 | `sortChange`              | Object with column `key` and sort direction emitted after sortable column header is clicked       | `TableColumnSort` |
-| `columnsChange`           | Array of displayed `TableColumn` after columns toggle dialog is closed                            | `TableColumn[]`   |
 
 ## Type aliases
 
@@ -35,22 +34,7 @@ The table bases its behaviour on [Angular CDK table](https://material.angular.io
 Used to define the type of cells of the defined column
 
 ```typescript
-type ColumnTypes =
-  | 'number'
-  | 'text'
-  | 'textIcon'
-  | 'textFormat'
-  | 'date'
-  | 'icon'
-  | 'link'
-  | 'listTooltip'
-  | 'pill'
-  | 'pillsList'
-  | 'currency'
-  | 'button'
-  | 'iconButton'
-  | 'roundedButton'
-  | 'menu';
+export type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu';
 ```
 
 ### `SortDirection`
@@ -83,18 +67,11 @@ Used to describe a table column. A union type can be assigned as `T` to define a
 - `type` a `ColumnTypes` type to identify what kind of data to display in column cells. Accepted values are:
   - `number` to show a cell with a number formatted with [DecimalPipe](https://angular.io/api/common/DecimalPipe)
   - `text` to show a cell with simple plain text
-  - `textIcon` to show a cell with an icon and a text title and subtitle (both optional)
-  - `textFormat` to show a cell with formatted plain text
   - `date` to show a cell with a formatted date from a string or a `Date` object
   - `icon` to show an icon
-  - `link` to show a link
-  - `listTooltip` to show a list in which the first element is displayed and the others are shown in a tooltip
   - `pill` to show a cell with an `app-pill` component with specified color, text, icon (optional) and tooltip (optional)
-  - `pillsList` to show a cell with a list of `app-pill` components with specified color, text, icon (optional) and tooltip (optional)
   - `currency` to show a cell with an `app-pill` component with a formatted currency
   - `button` to show a `button[app-button]` with related inputs and action emitted on click or an `a[app-button]` with related inputs and link
-  - `iconButton` to show a `button[app-icon-button]` with related inputs and action emitted on click or an `a[app-icon-button]` with related inputs and link
-  - `roundedButton` to show a `button[app-rounded-button]` with related inputs and action emitted on click or an `a[app-rounded-button]` with related inputs and link
   - `menu` to show a cell with an icon button that opens an `app-menu`
 
 ### `TableRow<T extends string | number | symbol = string, A = unknown>`
@@ -102,89 +79,28 @@ Used to describe a table column. A union type can be assigned as `T` to define a
 Used to display a single row cell of the table. `T` should be the same union type assigned to `TableColumn<T>` type
 
 ```typescript
-type TableRow<T extends string | number | symbol = string, A = unknown> = {
-  [key in T]:
-    | unknown
-    | RowCellTextIcon
-    | RowCellIcon
-    | RowCellLink
-    | RowCellListTooltip
-    | RowCellPill
-    | RowCellPillsList
-    | RowCellButton<A>
-    | RowCellIconButton<A>
-    | RowCellRoundedButton<A>
-    | RowCellMenu<A>;
-};
+type TableRow<T extends string | number | symbol = string, A = unknown> = Record<
+  T,
+  number | string | RowCellIcon | RowCellPill | RowCellButton<A> | RowCellMenu<A>
+>;
 ```
 
 `key` can ba a union type which values **must** match the same property declared in `TableColumn<T>` to display data related to that cell.
 
 Value for that cell must be one of the following:
 
-| Column `type`   | Related cell type         |
-| --------------- | ------------------------- |
-| `number`        | `string`, `number`        |
-| `text`          | `string`, `number`        |
-| `textIcon`      | `RowCellTextIcon`         |
-| `textFormat`    | `RowCellTextFormat`       |
-| `date`          | `string`, `number`        |
-| `icon`          | `RowCellIcon`             |
-| `link`          | `RowCellLink`             |
-| `listTooltip`   | `RowCellListTooltip`      |
-| `pill`          | `RowCellPill`             |
-| `pillsList`     | `RowCellPillsList`        |
-| `currency`      | `string`, `number`        |
-| `button`        | `RowCellButton<A>`        |
-| `iconButton`    | `RowCellIconButton<A>`    |
-| `roundedButton` | `RowCellRoundedButton<A>` |
-| `menu`          | `RowCellMenu<A>`          |
+| Column `type` | Related cell type  |
+| ------------- | ------------------ |
+| `number`      | `string`, `number` |
+| `text`        | `string`, `number` |
+| `date`        | `string`, `number` |
+| `icon`        | `RowCellIcon`      |
+| `pill`        | `RowCellPill`      |
+| `currency`    | `string`, `number` |
+| `button`      | `RowCellButton<A>` |
+| `menu`        | `RowCellMenu<A>`   |
 
 ## Columns types
-
-### `RowCellTextFormat`
-
-Used to display a text with single or multiple format options
-
-- `formats` a `CellTextFormat` type or array of it to apply one or multiple formats to text
-- `text` text label to display
-- `color` (optional) color of the text from `Colors` type
-
-### `RowCellTextIcon`
-
-Used to display an icon with an optional text
-
-- `icon` [Material Icon](https://fonts.google.com/icons?icon.set=Material+Icons) to display in the cell
-- `color` (optional) color of the icon from `Colors` type
-- `label` (optional) text label next to the icon
-- `subLabel` (optional) smaller text label under the icon
-
-### `RowCellListTooltip`
-
-An alias of `string[]`
-
-```typescript
-type RowCellListTooltip = string[];
-```
-
-### `RowCellPill`
-
-Used to display a simple text within a pill component
-
-- `label` text label inside the pill
-- `color` (optional) color from `Colors` type
-- `appearance`: (optional) appearance from `PillAppearance` type
-- `size`: (optional) size from `PillSize` type
-- `icon`: (optional) an icon to display inside the pill
-- `tooltip`: (optional) a tooltip to show on pill hover
-
-### `RowCellPillsList`
-
-An alias of `RowCellPill[]`
-
-```typescript
-type RowCellPillsList = RowCellPill[];
-```
 
 ### `RowCellIcon`
 
@@ -192,14 +108,18 @@ Used to display an icon
 
 - `icon` (optional) [Material Icon](https://fonts.google.com/icons?icon.set=Material+Icons) to display
 - `color` (optional) color from `Colors` type
-- `tooltip`: (optional) a tooltip to show on icon hover
+- `tooltip` (optional) a tooltip to show on icon hover
 
-### `RowCellLink`
+### `RowCellPill`
 
-Used to display a link
+Used to display a simple text within a pill component
 
-- `link` the link to navigate to
-- `label` link label inside the pill
+- `label` text label inside the pill
+- `color` (optional) color from `Colors` type
+- `appearance` (optional) appearance from `PillAppearance` type
+- `size` (optional) size from `PillSize` type
+- `icon` (optional) an icon to display inside the pill
+- `tooltip` (optional) a tooltip to show on pill hover
 
 ### `RowCellButton<A>`
 
@@ -207,28 +127,6 @@ Used to display a `button[app-button]` or an `a[app-button]`
 
 - `appearance` the appearance of the button
 - `label` text label of the button
-- `size` the size of the button
-- `icon` (optional) [Material Icon](https://fonts.google.com/icons?icon.set=Material+Icons) of the button
-- `disabled` (optional) whether the button is disabled or not
-- `action` an action of type `A` which indicates what action is fired on menu item click
-- `link` the link to navigate to
-
-### `RowCellIconButton<A>`
-
-Used to display a `button[app-icon-button]` or an `a[app-icon-button]`
-
-- `appearance` the appearance of the icon button
-- `size` the size of the icon button
-- `icon` [Material Icon](https://fonts.google.com/icons?icon.set=Material+Icons) of the button
-- `disabled` (optional) whether the button is disabled or not
-- `action` an action of type `A` which indicates what action is fired on menu item click
-- `link` the link to navigate to
-
-### `RowCellRoundedButton<A>`
-
-Used to display a `button[app-rounded-button]` or an `a[app-rounded-button]`
-
-- `color` the appearance of the icon button
 - `size` the size of the button
 - `icon` (optional) [Material Icon](https://fonts.google.com/icons?icon.set=Material+Icons) of the button
 - `disabled` (optional) whether the button is disabled or not
@@ -271,65 +169,263 @@ Fired by `menuAction` event
 export class ExampleComponent {
   columns: TableColumn[] = [
     {
+      key: 'id',
+      label: 'ID',
+      type: 'number',
+      hide: true,
+    },
+    {
+      key: 'progression',
+      label: 'Progression',
+      type: 'number',
+      sortable: true,
+    },
+    {
       key: 'name',
-      label: 'Nome cliente',
+      label: 'Name',
       type: 'text',
       sortable: true,
     },
     {
-      key: 'assignmentStart',
-      label: 'Inizio mandato',
+      key: 'lastName',
+      label: 'Last name',
+      type: 'text',
+      sortable: true,
+    },
+    {
+      key: 'birthDate',
+      label: 'Birth date',
       type: 'date',
       sortable: true,
     },
     {
+      key: 'icon',
+      label: 'Icon',
+      type: 'icon',
+    },
+    {
       key: 'status',
-      label: 'Stato',
+      label: 'Status',
       type: 'pill',
       sortable: true,
     },
     {
-      key: 'total',
-      label: 'Totale',
+      key: 'amount',
+      label: 'Amount',
       type: 'currency',
       sortable: true,
     },
     {
+      key: 'actionButton',
+      label: 'Button',
+      type: 'button',
+    },
+    {
       key: 'menu',
+      label: '',
       type: 'menu',
     },
   ];
 
   rows: TableRow[] = [
     {
-      name: 'Massimiliano Rossi',
-      assignmentStart: '2019-11-21',
-      status: {
-        label: 'MIFID Mancante',
-        color: 'info',
+      id: 321,
+      progression: 1,
+      name: 'John',
+      lastName: 'Doe',
+      birthDate: '2000-01-01',
+      icon: {
+        icon: 'face',
+        color: 'primary',
+        tooltip: 'Lorem ipsum',
       },
-      total: 1000,
+      status: {
+        label: 'OK',
+        color: 'success',
+      },
+      amount: 299.9,
+      actionButton: {
+        appearance: 'primary',
+        size: 'md',
+        label: 'Lorem Ipsum',
+        action: 'loremIpsum',
+      },
       menu: [
         {
           icon: 'edit',
           label: 'Modifica',
           action: 'edit',
         },
+        {
+          icon: 'home',
+          label: 'Home',
+          link: '/',
+        },
+      ],
+    },
+    {
+      id: 3434,
+      progression: 2,
+      name: 'John',
+      lastName: 'Doe',
+      birthDate: '2000-01-01',
+      icon: {
+        icon: 'face',
+        color: 'primary',
+        tooltip: 'Lorem ipsum',
+      },
+      status: {
+        label: 'OK',
+        color: 'success',
+      },
+      amount: 299.9,
+      actionButton: {
+        appearance: 'primary',
+        size: 'md',
+        label: 'Lorem Ipsum',
+        action: 'loremIpsum',
+      },
+      menu: [
+        {
+          icon: 'edit',
+          label: 'Modifica',
+          action: 'edit',
+        },
+        {
+          icon: 'home',
+          label: 'Home',
+          link: '/',
+        },
+      ],
+    },
+    {
+      id: 243,
+      progression: 3,
+      name: 'John',
+      lastName: 'Doe',
+      birthDate: '2000-01-01',
+      icon: {
+        icon: 'face',
+        color: 'primary',
+        tooltip: 'Lorem ipsum',
+      },
+      status: {
+        label: 'OK',
+        color: 'success',
+      },
+      amount: 299.9,
+      actionButton: {
+        appearance: 'primary',
+        size: 'md',
+        label: 'Lorem Ipsum',
+        action: 'loremIpsum',
+      },
+      menu: [
+        {
+          icon: 'edit',
+          label: 'Modifica',
+          action: 'edit',
+        },
+        {
+          icon: 'home',
+          label: 'Home',
+          link: '/',
+        },
       ],
     },
   ];
 
-  logMenuAction(event: TableRowAction): void {
+  selectedRows = this.rows.slice(0, 2);
+
+  logSelectedAction(event: TableRowAction<TableRow>): void {
+    console.log('logSelectedAction', event);
+  }
+
+  logMenuAction(event: TableRowAction<TableRow, unknown>): void {
     console.log('logAction', event);
   }
 
   logSort(event: TableColumnSort): void {
     console.log('logSort', event);
   }
+
+  logRowClick(event: TableRow): void {
+    console.log('logRowClick', event);
+  }
+
+  logSingleSelectionChange(event: TableRow): void {
+    console.log('logSingleSelectionChange', event);
+  }
+
+  logMultipleSelectionChange(event: TableRow[]): void {
+    console.log('logMultipleSelectionChange', event);
+  }
 }
 ```
 
 ```html
 <!-- example.component.html -->
-<app-table [rows]="rows" [columns]="columns" (menuAction)="logMenuAction($event)" (sortChange)="logSort($event)" />
+<h1>Table</h1>
+
+<h2>Simple table</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+/>
+
+<h2>Table with clickable row</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  clickableRows
+  (rowClick)="logRowClick($event)"
+/>
+
+<h2>Table with single selection</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  rowSelection="single"
+  rowSelectionPosition="start"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  (singleSelectionChange)="logSingleSelectionChange($event)"
+/>
+
+<h2>Table with multiple selection</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  rowSelection="multiple"
+  rowSelectionPosition="start"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  (multipleSelectionChange)="logMultipleSelectionChange($event)"
+/>
+
+<h2>Table with multiple selection and selected rows</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  rowSelection="multiple"
+  rowSelectionPosition="start"
+  [selectedRows]="selectedRows"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  (multipleSelectionChange)="logMultipleSelectionChange($event)"
+/>
 ```

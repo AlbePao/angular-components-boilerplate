@@ -11,13 +11,7 @@ import {
   booleanAttribute,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  ButtonAppearance,
-  ButtonModule,
-  ButtonSize,
-  IconButtonAppearance,
-  RoundedButtonColor,
-} from '@lib/components/button';
+import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
 import { CheckboxComponent } from '@lib/components/checkbox';
 import { IconComponent } from '@lib/components/icon';
 import { MenuItem, MenuModule } from '@lib/components/menu';
@@ -29,22 +23,7 @@ import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
-export type ColumnTypes =
-  | 'number'
-  | 'text'
-  | 'textIcon'
-  | 'textFormat'
-  | 'date'
-  | 'icon'
-  | 'link'
-  | 'listTooltip'
-  | 'pill'
-  | 'pillsList'
-  | 'currency'
-  | 'button'
-  | 'iconButton'
-  | 'roundedButton'
-  | 'menu';
+export type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu';
 export type CellTextFormat = 'bold' | 'italic' | 'underline' | 'stroked';
 export type CellAlignment = 'left' | 'right' | 'center';
 export type SortDirection = 'asc' | 'desc' | '';
@@ -71,33 +50,25 @@ export interface TableRowAction<R, A = unknown> {
   row: R;
 }
 
-export interface RowCellTextFormat {
-  formats: CellTextFormat | CellTextFormat[];
-  color?: Colors | null;
-  text: string | null;
-}
-
-export interface RowCellTextIcon {
-  icon?: string | null;
-  color?: Colors | null;
-  label?: string | number | null;
-  subLabel?: string | number | null;
-}
-
 export interface RowCellIcon {
   color?: Colors | null;
   tooltip?: string | null;
   icon: string | null;
 }
 
-export interface RowCellLink {
-  link: string | null;
-  label: string | null;
+export interface RowCellPill {
+  label: string | number | null;
+  color?: Colors;
+  appearance?: PillAppearance;
+  size?: PillSize;
+  icon?: string;
+  tooltip?: string;
 }
 
-export type RowCellListTooltip = string[];
-
-type ButtonActionLink<A> = {
+export type RowCellButton<A> = {
+  appearance: ButtonAppearance;
+  label: string;
+  icon?: string;
   size: ButtonSize;
   disabled?: boolean;
 } & (
@@ -111,47 +82,11 @@ type ButtonActionLink<A> = {
     }
 );
 
-export type RowCellButton<A> = {
-  appearance: ButtonAppearance;
-  label: string;
-  icon?: string;
-} & ButtonActionLink<A>;
-
-export type RowCellIconButton<A> = {
-  appearance: IconButtonAppearance;
-  icon: string;
-} & ButtonActionLink<A>;
-
-export type RowCellRoundedButton<A> = {
-  color: RoundedButtonColor;
-  icon?: string;
-} & ButtonActionLink<A>;
-
-export interface RowCellPill {
-  label: string | number | null;
-  color?: Colors;
-  appearance?: PillAppearance;
-  size?: PillSize;
-  icon?: string;
-  tooltip?: string;
-}
-
-export type RowCellPillsList = RowCellPill[];
-
 export type RowCellMenu<A> = MenuItem<A>[];
 
 export type TableRow<T extends string | number | symbol = string, A = unknown> = Record<
   T,
-  | RowCellTextIcon
-  | RowCellIcon
-  | RowCellLink
-  | RowCellListTooltip
-  | RowCellPill
-  | RowCellPillsList
-  | RowCellButton<A>
-  | RowCellIconButton<A>
-  | RowCellRoundedButton<A>
-  | RowCellMenu<A>
+  number | string | RowCellIcon | RowCellPill | RowCellButton<A> | RowCellMenu<A>
 >;
 
 const DEFAULT_SORT_STATUS: TableColumnSort = { sortKey: '', sortDirection: '' };
@@ -197,18 +132,11 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   protected columnTypes: { [key in ColumnTypes]: key } = {
     number: 'number',
     text: 'text',
-    textIcon: 'textIcon',
-    textFormat: 'textFormat',
     date: 'date',
     icon: 'icon',
-    link: 'link',
-    listTooltip: 'listTooltip',
     pill: 'pill',
-    pillsList: 'pillsList',
     currency: 'currency',
     button: 'button',
-    iconButton: 'iconButton',
-    roundedButton: 'roundedButton',
     menu: 'menu',
   };
   protected readonly startSelectionCol = 'startSelectionCol';
@@ -395,27 +323,6 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
     return isNumber(value);
   }
 
-  getCellTextFormatsClasses(cellFormat?: RowCellTextFormat): string[] {
-    if (!cellFormat) {
-      return [];
-    }
-
-    const { formats, color } = cellFormat;
-
-    return [
-      ...(formats.includes('bold') ? ['font-bold'] : []),
-      ...(formats.includes('italic') ? ['italic'] : []),
-      ...(formats.includes('stroked') ? ['line-through'] : []),
-      ...(formats.includes('underline') ? ['underline'] : []),
-      ...(color === 'primary' ? ['text-primary'] : []),
-      ...(color === 'secondary' ? ['text-secondary'] : []),
-      ...(color === 'success' ? ['text-success-dark'] : []),
-      ...(color === 'danger' ? ['text-danger-dark'] : []),
-      ...(color === 'info' ? ['text-info-dark'] : []),
-      ...(color === 'gray' ? ['text-gray-dark'] : []),
-    ];
-  }
-
   getListTooltipText(listTooltip: string[]): string[] {
     return listTooltip.slice(1);
   }
@@ -466,13 +373,12 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
     }
   }
 
-  getCellTextAlignmentClass(divider?: boolean, alignment?: CellAlignment, formats?: RowCellTextFormat): string[] {
+  getCellTextAlignmentClass(divider?: boolean, alignment?: CellAlignment): string[] {
     return [
       ...(divider ? ['border-r'] : []),
       ...(alignment === 'center' ? ['text-center'] : []),
       ...(alignment === 'right' ? ['text-right'] : []),
       ...(!alignment || alignment === 'left' ? ['text-left'] : []),
-      ...this.getCellTextFormatsClasses(formats),
     ];
   }
 

@@ -1,0 +1,63 @@
+<h1>Table</h1>
+
+<h2>Simple table</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+/>
+
+<h2>Table with clickable row</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  clickableRows
+  (rowClick)="logRowClick($event)"
+/>
+
+<h2>Table with single selection</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  rowSelection="single"
+  rowSelectionPosition="start"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  (singleSelectionChange)="logSingleSelectionChange($event)"
+/>
+
+<h2>Table with multiple selection</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  rowSelection="multiple"
+  rowSelectionPosition="start"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  (multipleSelectionChange)="logMultipleSelectionChange($event)"
+/>
+
+<h2>Table with multiple selection and selected rows</h2>
+<app-table
+  class="mb-10"
+  [rows]="rows"
+  [columns]="columns"
+  rowSelection="multiple"
+  rowSelectionPosition="start"
+  [selectedRows]="selectedRows"
+  (menuAction)="logMenuAction($event)"
+  (sortChange)="logSort($event)"
+  (selectedAction)="logSelectedAction($event)"
+  (multipleSelectionChange)="logMultipleSelectionChange($event)"
+/>
