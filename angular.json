@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "azm-ui": {
+    "angular-components-boilerplate": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -93,10 +93,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "azm-ui:build:production"
+              "buildTarget": "angular-components-boilerplate:build:production"
             },
             "development": {
-              "buildTarget": "azm-ui:build:development"
+              "buildTarget": "angular-components-boilerplate:build:development"
             }
           },
           "defaultConfiguration": "development"

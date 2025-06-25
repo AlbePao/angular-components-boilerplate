@@ -1,4 +1,15 @@
-# NADIR
+# Angular Components Boilerplate
+
+This boilerplate is an Angular v20 project with a collection of custom components previously developed by me to fit most of use cases in an enterprise application.
+
+The architecture of the project is inspired from [angular-boilerplate](https://github.com/ju4n97/angular-boilerplate) by [ju4n97](https://github.com/ju4n97)
+
+## Features
+
+- [Angular v20](https://angular.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [ngx-translate v16](https://ngx-translate.org/)
+- [Fontsource](https://fontsource.org/)
 
 ## Components documentation
 
@@ -29,7 +40,7 @@ Atomic components used across the whole application and in other composed compon
 - [Select](./src/app/lib/components/select/select.md)
 - [Spinner](./src/app/lib/components/spinner/spinner.md)
 - [Table](./src/app/lib/components/table/table.md)
-- [Tabs](./src/app/lib/components/tabs/tabs.md)
+- [Tabs Group](./src/app/lib/components/tabs-group/tabs-group.md)
 - [Toast](./src/app/lib/components/toast/toast.md)
 - [Toggle](./src/app/lib/components/toggle/toggle.md)
 - [Tooltip](./src/app/lib/components/tooltip/tooltip.md)
@@ -122,7 +133,7 @@ Composed components used as layout wrappers for application routes
 
 The grid system uses a series of containers, rows, and columns to layout and align content. It’s built with flexbox and is fully responsive and integrated with [TailwindCSS breakpoints](https://tailwindcss.com/docs/responsive-design) to allow different column sizes according to minimum screen width.
 
-Use grid system best practices by [working mobile first](https://tailwindcss.com/docs/responsive-design#working-mobile-first) as suggested by TailwindCSS documentation.
+The layout uses grid system best practices by [working mobile first](https://tailwindcss.com/docs/responsive-design#working-mobile-first) as suggested by TailwindCSS documentation.
 
 ## Lint
 
