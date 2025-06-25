@@ -76,58 +76,58 @@ Composed components used as layout wrappers for application routes
 
 ### Gray palette
 
-| Color                                                                    | HEX Code  | Name           |
-| ------------------------------------------------------------------------ | --------- | -------------- |
-| <div style="width: 32px; height: 32px; background-color: #F7F7F8"></div> | `#F7F7F8` | `gray-lighter` |
-| <div style="width: 32px; height: 32px; background-color: #EDEEF2"></div> | `#EDEEF2` | `gray-light`   |
-| <div style="width: 32px; height: 32px; background-color: #DADBDF"></div> | `#DADBDF` | `gray`         |
-| <div style="width: 32px; height: 32px; background-color: #B0B0B0"></div> | `#B0B0B0` | `gray-dark`    |
-| <div style="width: 32px; height: 32px; background-color: #636363"></div> | `#636363` | `gray-darker`  |
+| Color                                                    | HEX Code  | Name           |
+| -------------------------------------------------------- | --------- | -------------- |
+| ![#F7F7F8](https://placehold.co/32x32/F7F7F8/F7F7F8.png) | `#F7F7F8` | `gray-lighter` |
+| ![#EDEEF2](https://placehold.co/32x32/EDEEF2/EDEEF2.png) | `#EDEEF2` | `gray-light`   |
+| ![#DADBDF](https://placehold.co/32x32/DADBDF/DADBDF.png) | `#DADBDF` | `gray`         |
+| ![#B0B0B0](https://placehold.co/32x32/B0B0B0/B0B0B0.png) | `#B0B0B0` | `gray-dark`    |
+| ![#636363](https://placehold.co/32x32/636363/636363.png) | `#636363` | `gray-darker`  |
 
 ### Primary palette
 
-| Color                                                                    | HEX Code  | Name              |
-| ------------------------------------------------------------------------ | --------- | ----------------- |
-| <div style="width: 32px; height: 32px; background-color: #DEE7F8"></div> | `#DEE7F8` | `primary-lighter` |
-| <div style="width: 32px; height: 32px; background-color: #BCD0F0"></div> | `#BCD0F0` | `primary-light`   |
-| <div style="width: 32px; height: 32px; background-color: #2570EA"></div> | `#2570EA` | `primary`         |
-| <div style="width: 32px; height: 32px; background-color: #1F498E"></div> | `#1F498E` | `primary-dark`    |
+| Color                                                    | HEX Code  | Name              |
+| -------------------------------------------------------- | --------- | ----------------- |
+| ![#DEE7F8](https://placehold.co/32x32/DEE7F8/DEE7F8.png) | `#DEE7F8` | `primary-lighter` |
+| ![#BCD0F0](https://placehold.co/32x32/BCD0F0/BCD0F0.png) | `#BCD0F0` | `primary-light`   |
+| ![#2570EA](https://placehold.co/32x32/2570EA/2570EA.png) | `#2570EA` | `primary`         |
+| ![#1F498E](https://placehold.co/32x32/1F498E/1F498E.png) | `#1F498E` | `primary-dark`    |
 
 ### Secondary palette
 
-| Color                                                                    | HEX Code  | Name                |
-| ------------------------------------------------------------------------ | --------- | ------------------- |
-| <div style="width: 32px; height: 32px; background-color: #EEE1FF"></div> | `#EEE1FF` | `secondary-lighter` |
-| <div style="width: 32px; height: 32px; background-color: #DEC4FF"></div> | `#DEC4FF` | `secondary-light`   |
-| <div style="width: 32px; height: 32px; background-color: #9747FF"></div> | `#9747FF` | `secondary`         |
-| <div style="width: 32px; height: 32px; background-color: #6730AD"></div> | `#6730AD` | `secondary-dark`    |
+| Color                                                    | HEX Code  | Name                |
+| -------------------------------------------------------- | --------- | ------------------- |
+| ![#EEE1FF](https://placehold.co/32x32/EEE1FF/EEE1FF.png) | `#EEE1FF` | `secondary-lighter` |
+| ![#DEC4FF](https://placehold.co/32x32/DEC4FF/DEC4FF.png) | `#DEC4FF` | `secondary-light`   |
+| ![#9747FF](https://placehold.co/32x32/9747FF/9747FF.png) | `#9747FF` | `secondary`         |
+| ![#6730AD](https://placehold.co/32x32/6730AD/6730AD.png) | `#6730AD` | `secondary-dark`    |
 
 ### Success palette
 
-| Color                                                                    | HEX Code  | Name              |
-| ------------------------------------------------------------------------ | --------- | ----------------- |
-| <div style="width: 32px; height: 32px; background-color: #E1FCE7"></div> | `#E1FCE7` | `success-lighter` |
-| <div style="width: 32px; height: 32px; background-color: #C4FAD0"></div> | `#C4FAD0` | `success-light`   |
-| <div style="width: 32px; height: 32px; background-color: #47EF6C"></div> | `#47EF6C` | `success`         |
-| <div style="width: 32px; height: 32px; background-color: #2CAC49"></div> | `#2CAC49` | `success-dark`    |
+| Color                                                    | HEX Code  | Name              |
+| -------------------------------------------------------- | --------- | ----------------- |
+| ![#E1FCE7](https://placehold.co/32x32/E1FCE7/E1FCE7.png) | `#E1FCE7` | `success-lighter` |
+| ![#C4FAD0](https://placehold.co/32x32/C4FAD0/C4FAD0.png) | `#C4FAD0` | `success-light`   |
+| ![#47EF6C](https://placehold.co/32x32/47EF6C/47EF6C.png) | `#47EF6C` | `success`         |
+| ![#2CAC49](https://placehold.co/32x32/2CAC49/2CAC49.png) | `#2CAC49` | `success-dark`    |
 
 ### Danger palette
 
-| Color                                                                    | HEX Code  | Name             |
-| ------------------------------------------------------------------------ | --------- | ---------------- |
-| <div style="width: 32px; height: 32px; background-color: #FADBE5"></div> | `#FADBE5` | `danger-lighter` |
-| <div style="width: 32px; height: 32px; background-color: #F5B8CA"></div> | `#F5B8CA` | `danger-light`   |
-| <div style="width: 32px; height: 32px; background-color: #DF215A"></div> | `#DF215A` | `danger`         |
-| <div style="width: 32px; height: 32px; background-color: #BA2853"></div> | `#BA2853` | `danger-dark`    |
+| Color                                                    | HEX Code  | Name             |
+| -------------------------------------------------------- | --------- | ---------------- |
+| ![#FADBE5](https://placehold.co/32x32/FADBE5/FADBE5.png) | `#FADBE5` | `danger-lighter` |
+| ![#F5B8CA](https://placehold.co/32x32/F5B8CA/F5B8CA.png) | `#F5B8CA` | `danger-light`   |
+| ![#DF215A](https://placehold.co/32x32/DF215A/DF215A.png) | `#DF215A` | `danger`         |
+| ![#BA2853](https://placehold.co/32x32/BA2853/BA2853.png) | `#BA2853` | `danger-dark`    |
 
 ### Info palette
 
-| Color                                                                    | HEX Code  | Name           |
-| ------------------------------------------------------------------------ | --------- | -------------- |
-| <div style="width: 32px; height: 32px; background-color: #FFFBEC"></div> | `#FFFBEC` | `info-lighter` |
-| <div style="width: 32px; height: 32px; background-color: #FFF7D9"></div> | `#FFF7D9` | `info-light`   |
-| <div style="width: 32px; height: 32px; background-color: #FFE589"></div> | `#FFE589` | `info`         |
-| <div style="width: 32px; height: 32px; background-color: #F2AE2A"></div> | `#F2AE2A` | `info-dark`    |
+| Color                                                    | HEX Code  | Name           |
+| -------------------------------------------------------- | --------- | -------------- |
+| ![#FFFBEC](https://placehold.co/32x32/FFFBEC/FFFBEC.png) | `#FFFBEC` | `info-lighter` |
+| ![#FFF7D9](https://placehold.co/32x32/FFF7D9/FFF7D9.png) | `#FFF7D9` | `info-light`   |
+| ![#FFE589](https://placehold.co/32x32/FFE589/FFE589.png) | `#FFE589` | `info`         |
+| ![#F2AE2A](https://placehold.co/32x32/F2AE2A/F2AE2A.png) | `#F2AE2A` | `info-dark`    |
 
 ## Responsive grid system
 
