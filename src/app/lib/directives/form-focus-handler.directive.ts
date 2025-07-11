@@ -34,7 +34,7 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   private _focusableItems: FocusableItem[] = [];
   private _currentItemIndex = 0;
 
-  // Focus handling is made by following https://stackoverflow.com/a/51756493
+  // Focus handling is based on https://stackoverflow.com/a/51756493
   @ContentChildren(FocusableItem, { descendants: true }) focusableItems = new QueryList<FocusableItem>();
 
   @Input({ alias: 'focusHandler', transform: booleanAttribute })
