@@ -1,4 +1,4 @@
-import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { jwtInterceptor } from '@lib/interceptors/jwt.interceptor';
@@ -16,7 +16,7 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: Http
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withInterceptors([serverErrorInterceptor, jwtInterceptor])),
+    provideHttpClient(withInterceptors([serverErrorInterceptor, jwtInterceptor]), withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideThemeInitializer(),
