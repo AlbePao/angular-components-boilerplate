@@ -78,12 +78,4 @@ export class MenuComponent<T> {
 
     return 'text-black';
   }
-
-  protected getAnchorTagClasses(item: MenuItem<T>): Record<string, boolean> {
-    return {
-      [this.getMenuItemTextColor(item.color)]: true,
-      'hover:bg-gray-lighter focus:outline-0': !item.disabled,
-      'pointer-events-none opacity-50': !!item.disabled,
-    };
-  }
 }

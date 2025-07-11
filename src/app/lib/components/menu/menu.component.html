@@ -7,7 +7,7 @@
       @if (!!item.children && !item.hide) {
         <button
           type="button"
-          class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded-sm px-2 text-sm font-normal text-black no-underline enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
+          class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded-sm px-2 text-sm font-normal text-black no-underline select-none enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
           [class]="getMenuItemTextColor(item.color)"
           cdkMenuItem
           [cdkMenuTriggerFor]="menuComponent.menu"
@@ -26,7 +26,7 @@
         <button
           type="button"
           (click)="$event.stopPropagation(); dispatchAction(item.action)"
-          class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded-sm px-2 text-sm font-normal no-underline enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
+          class="focus:bg-gray-lighter enabled:hover:bg-gray-lighter mx-2 flex h-8 items-center rounded-sm px-2 text-sm font-normal no-underline select-none enabled:focus:outline-0 disabled:pointer-events-none disabled:opacity-50"
           [class]="getMenuItemTextColor(item.color)"
           cdkMenuItem
           [cdkMenuItemDisabled]="item.disabled"
@@ -41,8 +41,18 @@
       @if (!!item.link && !item.hide) {
         <a
           [routerLink]="item.link"
-          class="mx-2 flex h-8 items-center rounded-sm px-2 text-sm font-normal text-black no-underline"
-          [class]="getAnchorTagClasses(item)"
+          class="focus:bg-gray-lighter hover:bg-gray-lighter mx-2 flex h-8 items-center rounded-sm px-2 text-sm font-normal text-black no-underline select-none focus:outline-0"
+          [class]="{
+            'pointer-events-none': !!item.disabled,
+            'opacity-50': !!item.disabled,
+            'text-primary-dark': item.color === 'primary',
+            'text-secondary-dark': item.color === 'secondary',
+            'text-success-dark': item.color === 'success',
+            'text-danger': item.color === 'danger',
+            'text-info-dark': item.color === 'info',
+            'text-gray-dark': item.color === 'gray',
+            'text-black': !item.color,
+          }"
           cdkMenuItem
           [cdkMenuItemDisabled]="item.disabled"
         >
