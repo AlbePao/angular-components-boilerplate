@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "analyze": "ng build --stats-json --named-chunks && npx -yü @angular-experts/hawkeye dist/angular-components-boilerplate/stats.json"
   },
   "private": true,
   "dependencies": {
