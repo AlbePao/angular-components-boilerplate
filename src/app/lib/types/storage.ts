@@ -1,10 +1,11 @@
+import { Language } from '@ngx-translate/core';
 import { AppTheme } from './theme';
 import { User } from './user';
 
 interface StorageObjectMap {
   appSession: User;
   appTheme: AppTheme;
-  appLang: string;
+  appLang: Language;
 }
 
 export type StorageObjectType = keyof StorageObjectMap;

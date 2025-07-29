@@ -8,7 +8,7 @@ The architecture of the project is inspired from [angular-boilerplate](https://g
 
 - [Angular v20](https://angular.dev/)
 - [Tailwind CSS v4](https://tailwindcss.com/)
-- [ngx-translate v16](https://ngx-translate.org/)
+- [ngx-translate v17](https://ngx-translate.org/)
 - [Fontsource](https://fontsource.org/)
 
 ## Components documentation
