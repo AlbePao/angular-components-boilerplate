@@ -193,8 +193,8 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     return this.hostElement.disabled;
   }
 
-  onChange = (value: T | null): void => {};
-  onTouched = (): void => {};
+  protected onChange = (value: T | null): void => {};
+  protected onTouched = (): void => {};
 
   get required(): boolean {
     return this.hostElement.required;

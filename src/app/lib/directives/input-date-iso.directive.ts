@@ -20,8 +20,7 @@ export class InputDateIsoDirective implements ControlValueAccessor {
     const isoString = valueAsDate ? valueAsDate.toISOString() : null;
     this.onChange(isoString);
   };
-  onChange = (value: string | null): void => {};
-
+  protected onChange = (value: string | null): void => {};
   protected onTouched = (): void => {};
 
   writeValue(isoString?: string): void {

@@ -154,8 +154,8 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     return this.hostElement.disabled;
   }
 
-  onChange = (value: T[] | null): void => {};
-  onTouched = (): void => {};
+  protected onChange = (value: T[] | null): void => {};
+  protected onTouched = (): void => {};
 
   get required(): boolean {
     return this.hostElement.required;

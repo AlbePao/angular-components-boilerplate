@@ -114,8 +114,8 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
     }
   }
 
-  onChange = (value: T | null): void => {};
-  onTouched = (): void => {};
+  protected onChange = (value: T | null): void => {};
+  protected onTouched = (): void => {};
 
   required = true;
   touched = false;
