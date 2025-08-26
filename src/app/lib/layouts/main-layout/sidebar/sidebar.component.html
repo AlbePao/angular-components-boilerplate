@@ -1,11 +1,21 @@
-<div class="flex h-full flex-col bg-black text-white" [class]="isOpen ? 'w-64' : 'w-20'">
-  <div class="flex h-20 items-center py-5" [class]="isOpen ? 'justify-start pl-5' : 'justify-center'">
+<div
+  class="flex h-full flex-col overflow-hidden bg-black text-white transition-all duration-300 ease-in-out"
+  [class]="isOpen() ? 'w-64' : 'w-20'"
+>
+  <div
+    class="flex h-20 items-center py-5"
+    [class]="{
+      'justify-center': !isOpen(),
+      'justify-start': isOpened(),
+      'pl-5': isOpen() || isOpened(),
+    }"
+  >
     <button app-icon-button type="button" (click)="toggleSidebar()">
-      <app-icon class="icon-20">{{ isOpen ? 'close' : 'menu_open' }}</app-icon>
+      <app-icon class="icon-20">{{ isOpened() ? 'close' : 'menu_open' }}</app-icon>
     </button>
   </div>
   <div class="relative mt-10 flex grow flex-col gap-6 overflow-auto pb-24 pl-5 text-sm font-normal">
-    @if (isOpen) {
+    @if (shouldShowLabels()) {
       @for (item of sidebarItems; track $index) {
         <a
           [routerLink]="item.link"
@@ -21,9 +31,9 @@
     }
     <div
       class="fixed bottom-0 flex flex-col justify-evenly py-5 backdrop-blur"
-      [class]="isOpen ? 'items-start' : 'items-center'"
+      [class]="isOpen() ? 'items-start' : 'items-center'"
     >
-      <app-toggle-theme [showLabel]="isOpen" />
+      <app-toggle-theme [showLabel]="shouldShowLabels()" />
     </div>
   </div>
 </div>

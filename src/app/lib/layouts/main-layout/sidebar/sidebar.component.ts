@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
+import { debounceSignal } from '@lib/utils/debounceSignal';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SHOWCASE_ITEMS } from './sidebar-items';
 import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
@@ -14,17 +15,13 @@ import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  get isOpen(): boolean {
-    return this._isOpen;
-  }
-  set isOpen(isOpen: boolean) {
-    this._isOpen = isOpen;
-  }
-  private _isOpen = true;
-
   readonly sidebarItems = SHOWCASE_ITEMS;
 
+  readonly isOpen = signal(true);
+  readonly isOpened = debounceSignal(this.isOpen, 300, this.isOpen());
+  readonly shouldShowLabels = computed(() => this.isOpen() && this.isOpened());
+
   toggleSidebar(): void {
-    this.isOpen = !this.isOpen;
+    this.isOpen.set(!this.isOpen());
   }
 }
