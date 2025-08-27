@@ -113,8 +113,8 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
 
   appFocusable = true;
 
-  protected onChange = (value: boolean | null): void => {};
-  protected onTouched = (): void => {};
+  onChange = (value: boolean | null): void => {};
+  onTouched = (): void => {};
 
   required = true;
   touched = false;

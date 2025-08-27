@@ -138,8 +138,8 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
 
   appFocusable = true;
 
-  protected onChange = (value: unknown): void => {};
-  protected onTouched = (): void => {};
+  onChange = (value: unknown): void => {};
+  onTouched = (): void => {};
 
   touched = false;
 

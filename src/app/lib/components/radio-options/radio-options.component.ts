@@ -102,8 +102,8 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
 
   appFocusable = true;
 
-  protected onChange = (value: T | null): void => {};
-  protected onTouched = (): void => {};
+  onChange = (value: T | null): void => {};
+  onTouched = (): void => {};
 
   required = true;
   touched = false;
