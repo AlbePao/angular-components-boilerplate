@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  booleanAttribute,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, booleanAttribute, inject, input, output } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
@@ -24,13 +15,13 @@ import { Colors } from '@lib/types/colors';
 export class AlertComponent {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  @Input() color: Colors = 'gray';
-  @Input({ transform: booleanAttribute }) dismissable = false;
+  readonly color = input<Colors>('gray');
+  readonly dismissable = input(false, { transform: booleanAttribute });
 
-  @Output() readonly dismissed = new EventEmitter<void>();
+  readonly dismissed = output<void>();
 
   get bgColorClass(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'info') {
       return 'bg-info-lighter';
@@ -48,7 +39,7 @@ export class AlertComponent {
   }
 
   get iconColorClass(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'info') {
       return 'text-info-dark';
