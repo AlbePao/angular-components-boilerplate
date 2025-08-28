@@ -303,10 +303,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
     if (!this.disabled) {
       this.appAutocomplete.filteredOptions = this.appAutocomplete.options.filter((option) => {
-        if (option.disabled) {
-          return false;
-        }
-
         const isKeyMatching = option.value?.toString().toLowerCase().includes(value.toLowerCase());
         const isTextMatching = option.label.toLowerCase().includes(value.toLowerCase());
 
