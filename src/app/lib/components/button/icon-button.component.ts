@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ButtonBase } from './button-base';
 
 export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
@@ -13,10 +13,10 @@ export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
   },
 })
 export class IconButtonComponent extends ButtonBase {
-  @Input() appearance: IconButtonAppearance = 'base';
+  readonly appearance = input<IconButtonAppearance>('base');
 
   get appearanceClasses(): string {
-    const { appearance } = this;
+    const appearance = this.appearance();
 
     if (appearance === 'outline') {
       return 'text-black box-border border border-solid border-gray hover:border-primary disabled:bg-gray-lighter';
@@ -30,7 +30,7 @@ export class IconButtonComponent extends ButtonBase {
   }
 
   get sizeClasses(): string {
-    const { size } = this;
+    const size = this.size();
 
     if (size === 'xs') {
       return 'h-6 p-0.5 text-sm';
