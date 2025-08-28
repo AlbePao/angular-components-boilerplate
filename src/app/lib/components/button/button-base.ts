@@ -1,17 +1,17 @@
-import { Directive, ElementRef, Input, booleanAttribute, inject } from '@angular/core';
+import { Directive, ElementRef, booleanAttribute, inject, input } from '@angular/core';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 @Directive({
   host: {
-    '[attr.disabled]': ' (!isAnchorTag && disabled) || null',
+    '[attr.disabled]': ' (!isAnchorTag && disabled()) || null',
   },
 })
 export class ButtonBase {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
-  @Input() size: ButtonSize = 'md';
-  @Input({ transform: booleanAttribute }) disabled = false;
+  readonly size = input<ButtonSize>('md');
+  readonly disabled = input(false, { transform: booleanAttribute });
 
   get hostElement(): HTMLButtonElement {
     return this._elementRef.nativeElement;
@@ -23,7 +23,7 @@ export class ButtonBase {
 
   get disabledClasses(): string {
     if (this.isAnchorTag) {
-      return this.disabled ? 'opacity-50 pointer-events-none' : '';
+      return this.disabled() ? 'opacity-50 pointer-events-none' : '';
     }
 
     return 'disabled:cursor-default disabled:opacity-50 disabled:pointer-events-none';

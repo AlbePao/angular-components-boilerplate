@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 // TODO: add app-card-header, app-card-content and app-card-actions directives and related styles
@@ -11,10 +11,10 @@ import { Colors } from '@lib/types/colors';
   },
 })
 export class CardComponent {
-  @Input() color: Colors = 'gray';
+  readonly color = input<Colors>('gray');
 
   get borderClass(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'primary') {
       return 'border-primary';

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 export type IconColors = Colors | 'black';
@@ -14,11 +14,11 @@ export type IconColors = Colors | 'black';
   },
 })
 export class IconComponent {
-  @Input() color?: IconColors;
-  @Input() appearance: 'normal' | 'outlined' = 'outlined';
+  readonly color = input<IconColors>();
+  readonly outlined = input(false, { transform: booleanAttribute });
 
   get iconColor(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'primary') {
       return 'text-primary';
@@ -40,6 +40,6 @@ export class IconComponent {
   }
 
   get iconAppearance(): string {
-    return this.appearance === 'normal' ? 'material-icons' : 'material-icons-outlined';
+    return this.outlined() ? 'material-icons-outlined' : 'material-icons';
   }
 }

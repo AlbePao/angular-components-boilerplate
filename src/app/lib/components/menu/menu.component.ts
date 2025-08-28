@@ -1,5 +1,5 @@
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, TemplateRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
@@ -53,9 +53,9 @@ export type MenuItem<T> = {
 export class MenuComponent<T> {
   @ViewChild(TemplateRef, { static: true }) menu!: TemplateRef<unknown>;
 
-  @Input() items: MenuItem<T>[] = [];
+  readonly items = input<MenuItem<T>[]>([]);
 
-  @Output() readonly menuAction = new EventEmitter<T>();
+  readonly menuAction = output<T>();
 
   dispatchAction(action: NonNullable<T>): void {
     this.menuAction.emit(action);

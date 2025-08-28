@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ButtonBase } from './button-base';
 
 export type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'link' | 'danger' | 'success';
@@ -13,10 +13,10 @@ export type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'link' | 'd
   },
 })
 export class ButtonComponent extends ButtonBase {
-  @Input() appearance: ButtonAppearance = 'primary';
+  readonly appearance = input<ButtonAppearance>('primary');
 
   get appearanceClasses(): string {
-    const { appearance } = this;
+    const appearance = this.appearance();
 
     if (appearance === 'link') {
       return 'text-primary';
@@ -34,7 +34,7 @@ export class ButtonComponent extends ButtonBase {
   }
 
   get sizeClasses(): string {
-    const { size } = this;
+    const size = this.size();
 
     if (size === 'xs') {
       return 'rounded-sm h-6 p-0.5 text-sm gap-1';

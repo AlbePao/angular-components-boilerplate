@@ -3,7 +3,7 @@
     class="border-gray inline-flex max-w-[280px] min-w-[180px] flex-col rounded-sm border border-solid bg-white py-2 shadow-xs"
     cdkMenu
   >
-    @for (item of items; track $index) {
+    @for (item of items(); track $index) {
       @if (!!item.children && !item.hide) {
         <button
           type="button"

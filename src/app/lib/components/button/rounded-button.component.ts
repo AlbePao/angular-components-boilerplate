@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 import { ButtonBase } from './button-base';
 
@@ -14,10 +14,10 @@ export type RoundedButtonColor = Colors | 'base';
   },
 })
 export class RoundedButtonComponent extends ButtonBase {
-  @Input() color: RoundedButtonColor = 'base';
+  readonly color = input<RoundedButtonColor>('base');
 
   get colorClasses(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'gray') {
       return 'text-gray-dark bg-gray-lighter hover:bg-gray-light';
@@ -37,7 +37,7 @@ export class RoundedButtonComponent extends ButtonBase {
   }
 
   get sizeClasses(): string {
-    const { size } = this;
+    const size = this.size();
 
     if (size === 'xs') {
       return 'p-0.5';

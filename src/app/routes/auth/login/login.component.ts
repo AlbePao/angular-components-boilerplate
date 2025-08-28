@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { ButtonComponent } from '@lib/components/button';
 import { AuthService } from '@lib/services/auth.service';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,11 +11,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class LoginComponent {
   private readonly _authService = inject(AuthService);
 
-  @Input() returnUrl = '';
+  readonly returnUrl = input<string>('');
 
   login(): void {
     this._authService.login({
-      returnUrl: this.returnUrl,
+      returnUrl: this.returnUrl(),
     });
   }
 }
