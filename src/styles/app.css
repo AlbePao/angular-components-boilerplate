@@ -22,7 +22,6 @@
 /* Global styles */
 @import './button';
 @import './document';
-@import './focus';
 @import './heading';
 @import './links';
 @import './grid';

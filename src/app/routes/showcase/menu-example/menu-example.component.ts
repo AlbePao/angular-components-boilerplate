@@ -30,7 +30,7 @@ export class MenuExampleComponent {
         },
         {
           label: 'Lorem Ipsum',
-          link: '/home',
+          link: '/',
         },
       ],
     },
@@ -41,7 +41,7 @@ export class MenuExampleComponent {
     },
     {
       label: 'Lorem Ipsum',
-      link: '/home',
+      link: '/',
     },
   ];
 

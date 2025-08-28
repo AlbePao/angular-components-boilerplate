@@ -1,5 +1,0 @@
-a:focus-visible:not([cdkMenuItem]),
-[app-button]:focus,
-[app-rounded-button]:focus {
-  @apply ring-primary/40 ring-4 ring-offset-0 outline-0;
-}

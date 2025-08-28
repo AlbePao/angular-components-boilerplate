@@ -4,6 +4,7 @@ export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 @Directive({
   host: {
+    class: 'focus:ring-primary/40 focus:ring-4 focus:ring-offset-0 focus:outline-0',
     '[attr.disabled]': ' (!isAnchorTag && disabled()) || null',
   },
 })
