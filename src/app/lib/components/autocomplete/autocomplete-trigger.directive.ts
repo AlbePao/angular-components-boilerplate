@@ -257,8 +257,8 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     this.onTouched = fn;
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.hostElement.disabled = disabled;
+  setDisabledState(isDisabled: boolean): void {
+    this.hostElement.disabled = isDisabled;
   }
 
   openPanel(): void {

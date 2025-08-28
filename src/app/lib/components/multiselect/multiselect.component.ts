@@ -18,7 +18,7 @@ import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
-let uniqueMultiselectIdCounter = 0;
+let nextUniqueId = 0;
 
 export interface MultiselectOption<T> extends Option<T> {
   children?: Option<T>[];
@@ -61,7 +61,7 @@ export class MultiselectComponent<T> {
   protected selection = new SelectionModel<FlatMultiselectOption<T>>(true);
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = `app-multiselect-${uniqueMultiselectIdCounter++}`;
+  id = `app-multiselect-${nextUniqueId++}`;
   optionIndex = 0;
   panel: HTMLElement | null = null;
 

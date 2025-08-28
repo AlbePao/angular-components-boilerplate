@@ -44,6 +44,8 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _destroy$ = injectDestroy();
 
+  private readonly _uniqueId = `app-radio-group-${nextUniqueId++}`;
+
   private _focusableRadios: RadioButtonComponent[] = [];
   private readonly _focusableRadios$ = new Subject<RadioButtonComponent[]>();
 
@@ -61,7 +63,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   set id(value: string) {
     this._id = value;
   }
-  private _id = `app-radio-group-${nextUniqueId++}`;
+  private _id = this._uniqueId;
 
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
@@ -72,7 +74,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
     this._name = value;
     this._updateRadioButtonNames();
   }
-  private _name = `app-radio-group-${nextUniqueId++}`;
+  private _name = this._uniqueId;
 
   /**
    * Value for the radio-group. Should equal the value of the selected radio button if there is
@@ -223,8 +225,8 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
     }
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
     this._changeDetectorRef.markForCheck();
   }
 

@@ -164,8 +164,8 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
     }
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
     this._changeDetectorRef.detectChanges();
   }
 

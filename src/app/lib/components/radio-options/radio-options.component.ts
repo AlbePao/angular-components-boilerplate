@@ -152,8 +152,8 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
     }
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
     this._changeDetectorRef.markForCheck();
   }
 

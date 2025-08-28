@@ -204,8 +204,8 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     this.onTouched = fn;
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.hostElement.disabled = disabled;
+  setDisabledState(isDisabled: boolean): void {
+    this.hostElement.disabled = isDisabled;
   }
 
   openPanel(): void {

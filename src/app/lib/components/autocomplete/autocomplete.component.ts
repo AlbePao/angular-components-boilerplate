@@ -15,7 +15,7 @@ import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
-let uniqueAutocompleteIdCounter = 0;
+let nextUniqueId = 0;
 
 @Component({
   selector: 'app-autocomplete',
@@ -31,7 +31,7 @@ export class AutocompleteComponent<T, E extends OptionExtra = never> {
   private readonly _optionsUpdated$ = new Subject<Option<T, E>[]>();
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = `app-autocomplete-${uniqueAutocompleteIdCounter++}`;
+  id = `app-autocomplete-${nextUniqueId++}`;
   filteredOptions: Option<T, E>[] = [];
   optionIndex = 0;
   panel: HTMLElement | null = null;

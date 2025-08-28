@@ -14,7 +14,7 @@ export class TabNavLinkComponent implements OnInit {
   private readonly _tabsNavGroup = inject(APP_TABS_NAV_GROUP, { optional: true });
   private readonly _routerLinkActive = inject(RouterLinkActive);
 
-  private readonly _uniqueId = `app-tab-nav-link-${++nextUniqueId}`;
+  private readonly _uniqueId = `app-tab-nav-link-${nextUniqueId++}`;
 
   @Input() name = this._uniqueId;
   @Input() id = this._uniqueId;

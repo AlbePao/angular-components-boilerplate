@@ -180,8 +180,8 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
     }
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   onChangeEvent(event: Event): void {

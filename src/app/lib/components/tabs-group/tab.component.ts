@@ -23,7 +23,7 @@ export class TabComponent implements OnInit {
   private readonly _tabsGroup = inject<TabsGroupComponent>(APP_TABS_GROUP, { optional: true });
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
-  private readonly _uniqueId = `app-tab-${++nextUniqueId}`;
+  private readonly _uniqueId = `app-tab-${nextUniqueId++}`;
 
   @Input() label = '';
   @Input() name = this._uniqueId;
