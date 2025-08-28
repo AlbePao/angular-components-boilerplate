@@ -30,6 +30,7 @@ let nextUniqueId = 0;
   providers: [provideFocusableItem(RadioOptionsComponent), provideNgValueAccessor(RadioOptionsComponent)],
   host: {
     class: 'block',
+    '[attr.id]': 'id',
     '[attr.appFocusable]': 'appFocusable',
   },
 })

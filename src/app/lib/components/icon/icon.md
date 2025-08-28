@@ -4,9 +4,10 @@ The `<app-icon>` provides a way to use [Material Icons](https://fonts.google.com
 
 ## Inputs
 
-| Input   | Description                                     | Type     |
-| ------- | ----------------------------------------------- | -------- |
-| `color` | The color of the icon. Defaults to parent color | `Colors` |
+| Input      | Description                                                         | Type      |
+| ---------- | ------------------------------------------------------------------- | --------- |
+| `color`    | The color of the icon. Defaults to parent color                     | `Colors`  |
+| `outlined` | Whether the icon type should be outlined or not, Default to `false` | `boolean` |
 
 ## Type aliases
 
