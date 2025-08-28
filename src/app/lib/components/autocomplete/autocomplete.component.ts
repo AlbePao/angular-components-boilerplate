@@ -23,15 +23,20 @@ let nextUniqueId = 0;
   exportAs: 'appAutocomplete',
   templateUrl: './autocomplete.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[id]': 'id',
+  },
 })
 export class AutocompleteComponent<T, E extends OptionExtra = never> {
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
+  private readonly _currentUniqueId = nextUniqueId++;
   private _currentOption: HTMLDivElement | null = null;
   private readonly _optionsUpdated$ = new Subject<Option<T, E>[]>();
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = `app-autocomplete-${nextUniqueId++}`;
+  id = `app-autocomplete-${this._currentUniqueId}`;
+  panelId = `app-autocomplete-panel-${this._currentUniqueId}`;
   filteredOptions: Option<T, E>[] = [];
   optionIndex = 0;
   panel: HTMLElement | null = null;

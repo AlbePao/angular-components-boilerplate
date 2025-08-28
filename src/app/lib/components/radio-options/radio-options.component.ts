@@ -38,6 +38,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
+  private readonly _currentUniqueId = nextUniqueId++;
   private _hasInnerFocus = false;
 
   @ViewChild('inputRadio') firstInputRadio?: ElementRef<HTMLInputElement>;
@@ -49,7 +50,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   set id(value: string) {
     this._id = value;
   }
-  private _id = `app-radio-${nextUniqueId++}`;
+  private _id = `app-radio-${this._currentUniqueId}`;
 
   @Input()
   get options(): RadioOption<T>[] {
@@ -67,7 +68,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   set name(value: string) {
     this._name = value;
   }
-  private _name = `radio-options-${nextUniqueId++}`;
+  private _name = `radio-options-${this._currentUniqueId}`;
 
   @Input()
   get value(): T | null {
