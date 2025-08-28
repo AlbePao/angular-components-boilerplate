@@ -32,8 +32,8 @@ let nextUniqueId = 0;
   providers: [provideFocusableItem(ToggleComponent), provideNgValueAccessor(ToggleComponent)],
   host: {
     '[class]': '`inline-block ${disabled ? "opacity-50 pointer-events-none" : ""}`',
-    '[attr.id]': 'id || null',
-    '[attr.appFocusable]': 'appFocusable',
+    '[id]': 'id',
+    '[attr.appFocusable]': 'appFocusable || null',
     '(keydown)': 'handleKeyDown($event)',
   },
 })

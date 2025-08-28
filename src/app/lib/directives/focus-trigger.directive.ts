@@ -7,8 +7,8 @@ let nextUniqueId = 0;
   selector: '[appFocus]',
   providers: [provideFocusableItem(FocusTriggerDirective)],
   host: {
-    'attr.tabindex': '-1',
-    '[attr.appFocusable]': 'appFocusable',
+    tabindex: '-1',
+    '[attr.appFocusable]': 'appFocusable || null',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
     '(click)': 'focusTarget()',

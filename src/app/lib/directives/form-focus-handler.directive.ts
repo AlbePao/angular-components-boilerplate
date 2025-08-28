@@ -20,7 +20,7 @@ const NO_ITEMS_INDEX = -1;
   selector: 'form[focusHandler]',
   host: {
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
-    'attr.autocomplete': 'off',
+    autocomplete: 'off',
   },
 })
 export class FormFocusHandlerDirective implements OnInit, AfterViewInit {

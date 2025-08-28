@@ -7,9 +7,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
-    'attr.role': 'button',
-    'attr.tabindex': '0',
-    '[attr.id]': '`accordion-header-${id}`',
+    role: 'button',
+    tabindex: '0',
+    '[id]': '`accordion-header-${id}`',
     '[attr.aria-expanded]': 'expanded',
     '[attr.aria-controls]': '`accordion-body-${id}`',
   },

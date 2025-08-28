@@ -9,13 +9,13 @@ let nextUniqueId = 0;
   providers: [provideFocusableItem(InputDirective)],
   host: {
     '[class]': 'classes',
-    '[attr.id]': 'id || null',
+    '[id]': 'id',
     '[attr.disabled]': 'disabled || null',
     '[attr.required]': 'required || null',
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
-    'attr.autocomplete': 'off',
-    '[attr.placeholder]': `' '`,
-    '[attr.appFocusable]': 'appFocusable',
+    autocomplete: 'off',
+    '[placeholder]': `' '`,
+    '[attr.appFocusable]': 'appFocusable || null',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
   },

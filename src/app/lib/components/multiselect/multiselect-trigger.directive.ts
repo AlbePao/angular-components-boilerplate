@@ -38,7 +38,7 @@ const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];
   providers: [provideFocusableItem(MultiselectTriggerDirective), provideNgValueAccessor(MultiselectTriggerDirective)],
   host: {
     '[attr.role]': 'appMultiselectDisabled ? null : "combobox"',
-    '[attr.appFocusable]': 'appFocusable',
+    '[attr.appFocusable]': 'appFocusable || null',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',
     '(keydown)': 'handleKeyDown($event)',

@@ -2,7 +2,7 @@
 <div
   role="region"
   [class]="!expanded ? 'hidden' : ''"
-  [attr.id]="'accordion-body-' + id"
+  [id]="'accordion-body-' + id"
   [attr.aria-labelledby]="'accordion-header-' + id"
 >
   <ng-content />

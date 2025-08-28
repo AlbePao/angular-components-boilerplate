@@ -9,10 +9,10 @@ let nextUniqueId = 0;
   providers: [provideFocusableItem(SelectDirective)],
   host: {
     '[class]': 'classes',
-    '[attr.id]': 'id || null',
+    '[id]': 'id',
     '[attr.disabled]': 'disabled || null',
-    '[attr.appFocusable]': 'appFocusable',
-    'attr.placeholder': ' ',
+    '[attr.appFocusable]': 'appFocusable || null',
+    placeholder: ' ',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
   },

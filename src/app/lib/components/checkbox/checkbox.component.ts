@@ -24,7 +24,7 @@ let nextUniqueId = 0;
   providers: [provideFocusableItem(CheckboxComponent), provideNgValueAccessor(CheckboxComponent)],
   host: {
     '[class]': 'classes',
-    '[attr.appFocusable]': 'appFocusable',
+    '[attr.appFocusable]': 'appFocusable || null',
     '(keydown)': 'toggleOnKeyDown($event)',
     '(click)': 'toggleOnClick($event)',
   },

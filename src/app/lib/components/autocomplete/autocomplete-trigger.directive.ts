@@ -48,7 +48,7 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
     provideNgValidators(AutocompleteTriggerDirective),
   ],
   host: {
-    '[attr.appFocusable]': 'appFocusable',
+    '[attr.appFocusable]': 'appFocusable || null',
     '[attr.role]': 'appAutocompleteDisabled ? null : "combobox"',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',

@@ -15,7 +15,7 @@
         class="border-gray-darker focus:border-primary-light focus:ring-primary/40 box-border block h-5 w-5 rounded-full focus:ring-4 focus:ring-offset-0"
         [value]="option.value"
         [checked]="option.value === value"
-        [attr.name]="name"
+        [name]="name"
         (click)="setValue(option.value)"
         (focus)="changeInnerFocus(true)"
         (blur)="changeInnerFocus(false)"
