@@ -14,7 +14,7 @@ export class SelectExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
 
   form = this._fb.group({
-    selectControlExample: [''],
+    selectControlExample: ['1'],
   });
 
   ngOnInit(): void {
