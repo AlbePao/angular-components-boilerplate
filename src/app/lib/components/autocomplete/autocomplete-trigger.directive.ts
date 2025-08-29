@@ -16,7 +16,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Injector,
   Input,
   OnInit,
   Output,
@@ -26,7 +25,6 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, ValidationErrors, Validator } from '@angular/forms';
-import { InputDirective } from '@lib/components/input';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValidators } from '@lib/providers/ng-validators';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
@@ -64,11 +62,9 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   private readonly _viewContainerRef = inject(ViewContainerRef);
   private readonly _overlay = inject(Overlay);
   private readonly _document = inject(DOCUMENT);
-  private readonly _injector = inject(Injector);
   private readonly _translateService = inject(TranslateService);
   private readonly _destroy$ = injectDestroy();
 
-  private _input: InputDirective | null = null;
   private _overlayRef: OverlayRef | null = null;
   private _focusedByUser = false;
   private _focusedByFocusHandlerDirective = false;
@@ -205,8 +201,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   }
 
   ngOnInit(): void {
-    this._input = this._injector.get(InputDirective);
-
     this._listenToUpdatedOptions();
   }
 
