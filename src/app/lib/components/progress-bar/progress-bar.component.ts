@@ -1,5 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';
 import { Colors } from '@lib/types/colors';
+
+function progressBarTransform(value: unknown): number {
+  return Math.min(100, Math.max(0, numberAttribute(value)));
+}
 
 @Component({
   selector: 'app-progress-bar',
@@ -10,19 +14,11 @@ import { Colors } from '@lib/types/colors';
   },
 })
 export class ProgressBarComponent {
-  @Input() color?: Colors;
-
-  @Input({ transform: numberAttribute })
-  get value(): number {
-    return this._value;
-  }
-  set value(value: number) {
-    this._value = Math.max(0, Math.min(100, value));
-  }
-  private _value = 0;
+  readonly color = input<Colors>();
+  readonly value = input(0, { transform: progressBarTransform });
 
   get progressBarColor(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'primary') {
       return 'bg-primary-lighter';
@@ -40,7 +36,7 @@ export class ProgressBarComponent {
   }
 
   get progressBarBgColor(): string {
-    const { color } = this;
+    const color = this.color();
 
     if (color === 'primary') {
       return 'bg-primary';

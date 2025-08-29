@@ -1,7 +1,7 @@
 @if (currentTheme$ | async; as currentTheme) {
   <button app-rounded-button type="button" (click)="toggleTheme(currentTheme)">
     <app-icon>{{ currentTheme === 'dark' ? 'light_mode' : 'dark_mode' }}</app-icon>
-    @if (showLabel) {
+    @if (showLabel()) {
       {{
         currentTheme === 'dark'
           ? ('layouts.mainLayout.sidebar.themeLight' | translate)

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, numberAttribute, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, numberAttribute, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon';
@@ -35,7 +35,7 @@ export class PaginatorComponent {
   @Input({ transform: numberAttribute }) length = 0;
   @Input() pageSizeOptions = [25, 50, 100, 150];
 
-  @Output() readonly pageChange = new EventEmitter<PaginationEvent>();
+  readonly pageChange = output<PaginationEvent>();
 
   get pageCounter(): number[] {
     const { length, pageSize } = this;

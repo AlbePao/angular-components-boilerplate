@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component, Input, numberAttribute } from '@ang
   },
 })
 export class SpinnerComponent {
-  @Input({ transform: numberAttribute }) diameter = 32;
+  readonly diameter = input(32, { transform: numberAttribute });
 }

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, booleanAttribute, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, booleanAttribute, inject, input } from '@angular/core';
 import { RoundedButtonComponent } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { ThemeService } from '@lib/services/theme.service';
@@ -15,14 +15,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ToggleThemeComponent {
   private readonly _themeService = inject(ThemeService);
 
-  @Input({ transform: booleanAttribute })
-  get showLabel(): boolean {
-    return this._showLabel;
-  }
-  set showLabel(showLabel: boolean) {
-    this._showLabel = showLabel;
-  }
-  private _showLabel = false;
+  readonly showLabel = input(false, { transform: booleanAttribute });
 
   currentTheme$ = this._themeService.getTheme();
 

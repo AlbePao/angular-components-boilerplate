@@ -3,9 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  EventEmitter,
   InjectionToken,
-  Output,
+  output,
   QueryList,
 } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -36,7 +35,7 @@ export const APP_TABS_GROUP = new InjectionToken<TabsGroupComponent>('TabsGroupC
 export class TabsGroupComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs = new QueryList<TabComponent>();
 
-  @Output() readonly tabChange = new EventEmitter<TabChangeEvent>();
+  readonly tabChange = output<TabChangeEvent>();
 
   // contentChildren are set
   ngAfterContentInit(): void {

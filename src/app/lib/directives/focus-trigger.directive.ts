@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, Output, inject, input } from '@angular/core';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 
 let nextUniqueId = 0;
@@ -17,7 +17,7 @@ let nextUniqueId = 0;
 export class FocusTriggerDirective implements FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
-  @Input({ alias: 'appFocus' }) appFocusTrigger?: HTMLInputElement;
+  readonly appFocusTrigger = input.required<HTMLInputElement>({ alias: 'appFocus' });
   @Input() id = `app-focus-trigger-${nextUniqueId++}`;
 
   @Output() readonly elementFocus = new EventEmitter<void>();
@@ -26,7 +26,7 @@ export class FocusTriggerDirective implements FocusableItem {
   appFocusable = true;
 
   get disabled(): boolean {
-    return !!this.appFocusTrigger?.disabled;
+    return this.appFocusTrigger().disabled;
   }
 
   get hostElement(): HTMLButtonElement {
@@ -43,8 +43,8 @@ export class FocusTriggerDirective implements FocusableItem {
   }
 
   protected focusTarget(): void {
-    if (this.appFocusTrigger && !this.disabled) {
-      this.appFocusTrigger.focus();
+    if (!this.disabled) {
+      this.appFocusTrigger().focus();
     }
   }
 }

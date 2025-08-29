@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, input, output } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 
@@ -15,12 +15,12 @@ import { IconComponent } from '@lib/components/icon';
 export class ChipComponent<T> {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  @Input() value: T | null = null;
+  readonly value = input<T | null>(null);
 
-  @Output() readonly removed = new EventEmitter<T | null>();
+  readonly removed = output<T | null>();
 
   remove(): void {
-    this.removed.emit(this.value);
+    this.removed.emit(this.value());
     this._elementRef.nativeElement.remove();
   }
 }

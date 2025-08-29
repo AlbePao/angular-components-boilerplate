@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
 import { APP_TABS_NAV_GROUP } from './tabs-nav-group.component';
 
@@ -16,8 +16,8 @@ export class TabNavLinkComponent implements OnInit {
 
   private readonly _uniqueId = `app-tab-nav-link-${nextUniqueId++}`;
 
-  @Input() name = this._uniqueId;
-  @Input() id = this._uniqueId;
+  readonly name = input<string>(this._uniqueId);
+  readonly id = input<string>(this._uniqueId);
 
   get isActive(): boolean {
     return this._routerLinkActive.isActive;

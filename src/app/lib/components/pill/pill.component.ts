@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 export type PillSize = 'sm' | 'md' | 'lg';
@@ -15,35 +15,12 @@ export type PillAppearance = 'fill' | 'outline';
   },
 })
 export class PillComponent {
-  @Input()
-  get appearance(): PillAppearance {
-    return this._appearance;
-  }
-  set appearance(appearance: PillAppearance | null) {
-    this._appearance = appearance ?? 'fill';
-  }
-  private _appearance: PillAppearance = 'fill';
-
-  @Input()
-  get size(): PillSize {
-    return this._size;
-  }
-  set size(size: PillSize | null) {
-    this._size = size ?? 'sm';
-  }
-  private _size: PillSize = 'sm';
-
-  @Input()
-  get color(): Colors {
-    return this._color;
-  }
-  set color(color: Colors | null) {
-    this._color = color ?? 'gray';
-  }
-  private _color: Colors = 'gray';
+  readonly appearance = input<PillAppearance>('fill');
+  readonly size = input<PillSize>('sm');
+  readonly color = input<Colors>('gray');
 
   get sizeClasses(): string {
-    const { size } = this;
+    const size = this.size();
 
     if (size === 'sm') {
       return 'h-5 px-2 gap-1 text-xs font-bold [&>app-icon]:text-sm/none';
@@ -55,7 +32,8 @@ export class PillComponent {
   }
 
   get colorClasses(): string {
-    const { appearance, color } = this;
+    const appearance = this.appearance();
+    const color = this.color();
 
     if (appearance === 'outline') {
       if (color === 'primary') {

@@ -8,7 +8,7 @@ import {
   VerticalConnectionPos,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Directive, ElementRef, Input, OnDestroy, OnInit, booleanAttribute, inject } from '@angular/core';
+import { ComponentRef, Directive, ElementRef, OnDestroy, OnInit, booleanAttribute, inject, input } from '@angular/core';
 import { isArray } from '@lib/utils/isArray';
 import { TooltipComponent } from './tooltip.component';
 
@@ -40,10 +40,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   private _overlayRef?: OverlayRef;
 
-  @Input() appTooltip?: string | string[] | null = null;
-  @Input() appTooltipClass: string | null = null;
-  @Input() appTooltipPosition: TooltipPosition = 'left';
-  @Input({ transform: booleanAttribute }) appTooltipDisabled = false;
+  readonly appTooltip = input.required<string | string[]>();
+  readonly appTooltipClass = input<string | null>(null);
+  readonly appTooltipPosition = input<TooltipPosition>('left');
+  readonly appTooltipDisabled = input(false, { transform: booleanAttribute });
 
   get hostElement(): HTMLElement {
     return this._elementRef.nativeElement;
@@ -66,12 +66,15 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   protected show(): void {
-    if (!this.appTooltipDisabled && this._overlayRef && this.appTooltip && this.appTooltip?.length > 0) {
-      const tooltipRef: ComponentRef<TooltipComponent> = this._overlayRef.attach(new ComponentPortal(TooltipComponent));
-      tooltipRef.instance.tooltipText = isArray(this.appTooltip) ? this.appTooltip : [this.appTooltip];
+    if (!this.appTooltipDisabled() && this._overlayRef) {
+      const appTooltip = this.appTooltip();
+      const appTooltipClass = this.appTooltipClass();
 
-      if (this.appTooltipClass && this.appTooltipClass.length > 0) {
-        tooltipRef.instance.tooltipClass = this.appTooltipClass;
+      const tooltipRef: ComponentRef<TooltipComponent> = this._overlayRef.attach(new ComponentPortal(TooltipComponent));
+      tooltipRef.instance.tooltipText = isArray(appTooltip) ? appTooltip : [appTooltip];
+
+      if (appTooltipClass) {
+        tooltipRef.instance.tooltipClass = appTooltipClass;
       }
     }
   }
@@ -81,7 +84,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   private _getOrigin(): { main: OriginConnectionPosition; fallback: OriginConnectionPosition } {
-    const position = this.appTooltipPosition;
+    const position = this.appTooltipPosition();
     let originPosition: OriginConnectionPosition = { originX: 'start', originY: 'center' };
 
     if (position === 'above' || position === 'below') {
@@ -101,7 +104,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   private _getOverlayPosition(): { main: OverlayConnectionPosition; fallback: OverlayConnectionPosition } {
-    const position = this.appTooltipPosition;
+    const position = this.appTooltipPosition();
     let overlayPosition: OverlayConnectionPosition = { overlayX: 'start', overlayY: 'center' };
 
     if (position === 'above' || position === 'below') {
@@ -121,7 +124,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   private _getOffset(): TooltipOffset {
-    const position = this.appTooltipPosition;
+    const position = this.appTooltipPosition();
 
     if (position === 'above' || position === 'below') {
       return { offsetX: 0, offsetY: position === 'above' ? -8 : 8 };
@@ -131,7 +134,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   private _invertPosition(x: HorizontalConnectionPos, y: VerticalConnectionPos): TooltipPositionInverted {
-    if (this.appTooltipPosition === 'above' || this.appTooltipPosition === 'below') {
+    const position = this.appTooltipPosition();
+
+    if (position === 'above' || position === 'below') {
       if (y === 'top') {
         y = 'bottom';
       } else if (y === 'bottom') {

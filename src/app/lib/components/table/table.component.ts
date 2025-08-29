@@ -1,15 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
 import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-  booleanAttribute,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild, booleanAttribute, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
 import { CheckboxComponent } from '@lib/components/checkbox';
@@ -233,12 +225,12 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
 
   @Input({ transform: booleanAttribute }) clickableRows = false;
 
-  @Output() readonly multipleSelectionChange = new EventEmitter<InputRow[]>();
-  @Output() readonly singleSelectionChange = new EventEmitter<InputRow>();
-  @Output() readonly selectedAction = new EventEmitter<TableRowAction<OutputRow>>();
-  @Output() readonly menuAction = new EventEmitter<TableRowAction<OutputRow>>();
-  @Output() readonly rowClick = new EventEmitter<OutputRow>();
-  @Output() readonly sortChange = new EventEmitter<TableColumnSort>();
+  readonly multipleSelectionChange = output<InputRow[]>();
+  readonly singleSelectionChange = output<InputRow>();
+  readonly selectedAction = output<TableRowAction<OutputRow>>();
+  readonly menuAction = output<TableRowAction<OutputRow>>();
+  readonly rowClick = output<OutputRow>();
+  readonly sortChange = output<TableColumnSort>();
 
   get sortStatus(): TableColumnSort {
     return this._sortStatus;
