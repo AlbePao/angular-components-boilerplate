@@ -55,6 +55,12 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./dialog-example/dialog-example.component')).DialogExampleComponent,
   },
   {
+    path: 'file-uploader-example',
+    title: 'File Uploader | Showcase',
+    loadComponent: async () =>
+      (await import('./file-uploader-example/file-uploader-example.component')).FileUploaderExampleComponent,
+  },
+  {
     path: 'form-field-example',
     title: 'Form Field | Showcase',
     loadComponent: async () =>

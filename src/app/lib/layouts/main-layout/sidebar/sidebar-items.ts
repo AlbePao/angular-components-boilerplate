@@ -42,6 +42,10 @@ export const SHOWCASE_ITEMS: SidebarItem[] = [
     label: 'Dialog',
   },
   {
+    link: '/showcase/file-uploader-example',
+    label: 'File Uploader',
+  },
+  {
     link: '/showcase/form-field-example',
     label: 'Form Field',
   },

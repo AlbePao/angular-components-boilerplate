@@ -1,0 +1,21 @@
+<h1>File Uploader</h1>
+
+<h2>Reactive forms</h2>
+<form [formGroup]="form" class="mb-10">
+  <h3>Single file upload</h3>
+  <app-file-uploader formControlName="singleFileUploadExample" />
+  <h3>Multiple file upload</h3>
+  <app-file-uploader formControlName="multipleFileUploadExample" type="multiple" />
+  <h3>Disabled file upload</h3>
+  <app-file-uploader formControlName="disabledFileUploadExample" type="multiple" />
+  <button app-button type="button" (click)="toggleDisabled()">Toggle disabled</button>
+</form>
+
+<h2>Template driven</h2>
+
+<h3>Single file upload</h3>
+<app-file-uploader (filesChange)="logFileChange($event, 'single')" />
+<h3>Multiple file upload</h3>
+<app-file-uploader type="multiple" (filesChange)="logFileChange($event, 'multiple')" />
+<h3>Disabled file upload</h3>
+<app-file-uploader disabled (filesChange)="logFileChange($event, 'multiple')" />
