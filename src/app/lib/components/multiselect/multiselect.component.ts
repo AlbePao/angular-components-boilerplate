@@ -52,16 +52,23 @@ function optionsFlattener<T>(options: MultiselectOption<T>[], parentIndex?: numb
   exportAs: 'appMultiselect',
   templateUrl: './multiselect.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[id]': 'id',
+  },
 })
 export class MultiselectComponent<T> {
   private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+
+  private readonly _currentUniqueId = nextUniqueId++;
 
   private _currentOption: HTMLDivElement | null = null;
   private readonly _optionsUpdated$ = new Subject<Option<T>[]>();
   protected selection = new SelectionModel<FlatMultiselectOption<T>>(true);
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = `app-multiselect-${nextUniqueId++}`;
+  id = `app-multiselect-${this._currentUniqueId}`;
+  panelId = `app-multiselect-panel-${this._currentUniqueId}`;
+
   optionIndex = 0;
   panel: HTMLElement | null = null;
 

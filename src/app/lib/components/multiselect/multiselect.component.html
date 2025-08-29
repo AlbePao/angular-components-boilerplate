@@ -1,5 +1,9 @@
 <ng-template>
-  <div class="border-gray-light flex w-full flex-col overflow-auto rounded-sm border bg-white" role="listbox" [id]="id">
+  <div
+    class="border-gray-light flex w-full flex-col overflow-auto rounded-sm border bg-white"
+    role="listbox"
+    [id]="panelId"
+  >
     @for (option of options; track index; let index = $index) {
       <app-checkbox
         (valueChange)="toggleSelection(option, index)"
