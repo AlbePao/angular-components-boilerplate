@@ -28,7 +28,7 @@ The `<app-radio-button>` provides the same functionality as a native input radio
 
 | Input              | Description                                                                           | Type              |
 | ------------------ | ------------------------------------------------------------------------------------- | ----------------- |
-| `id`               | The unique ID for the radio button                                                    | `string`          |
+| `id`               | (optional) Unique ID for the radio button                                             | `string`          |
 | `name`             | Analog to HTML `name` attribute used to group radios for unique selection             | `string`          |
 | `aria-label`       | Used to set the `aria-label` attribute on the underlying input element                | `string`          |
 | `aria-labelledby`  | The `aria-labelledby` attribute takes precedence as the element's text alternative    | `string`          |

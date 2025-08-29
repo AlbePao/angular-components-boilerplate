@@ -18,7 +18,7 @@ The `<app-tabs-nav-group>` provides instead a tab-like UI for navigating between
 | ------- | --------------------------------------- | -------- |
 | `label` | (`<app-tab>` only) The label of the tab | `string` |
 | `name`  | (optional) The name of the tab          | `string` |
-| `id`    | (optional) The id of the tab            | `string` |
+| `id`    | (optional) Unique ID for the tab        | `string` |
 
 ## Interfaces
 

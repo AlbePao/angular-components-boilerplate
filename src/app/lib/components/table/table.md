@@ -8,7 +8,7 @@ The table bases its behaviour on [Angular CDK table](https://material.angular.io
 
 | Input                  | Description                                                                                                                                                | Type                     |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| `id`                   | (optional) Unique ID for the table component                                                                                                               | `string`                 |
+| `id`                   | (optional) Unique ID for the table                                                                                                                         | `string`                 |
 | `columns`              | Array of `TableColumn` describing the columns of table                                                                                                     | `TableColumn[]`          |
 | `rows`                 | Array of `TableRow` with row cells data related to its column                                                                                              | `TableRow[]`             |
 | `rowSelection`         | Whether if rows should be selectable by checkboxes (`multiple`) or radio buttons (`single`)                                                                | `multiple`, `single`     |
