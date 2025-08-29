@@ -1,0 +1,26 @@
+<div
+  class="border-gray hover:text-primary text-gray-dark focus:border-primary-light focus:ring-primary/40 mx-auto my-5 flex h-48 w-full items-center justify-center rounded-xl border-2 outline-0 focus:ring-4 focus:ring-offset-0"
+  [class]="
+    isDragOver() ? 'border-primary bg-primary/10' : 'hover:border-primary hover:bg-primary/10 hover:cursor-pointer'
+  "
+  (dragover)="isDragOver.set(true)"
+  (dragleave)="isDragOver.set(false)"
+  (drop)="isDragOver.set(false)"
+  (click)="fileInput.click()"
+  appDragDropFiles
+  (fileDropped)="addFile($event)"
+  [tabindex]="isDisabled() ? -1 : 0"
+>
+  <app-icon class="icon-48">cloud_upload</app-icon>
+  <input hidden type="file" #fileInput [multiple]="isMultiple()" (change)="addFile($event.target.files)" />
+</div>
+@for (file of files; track $index; let index = $index) {
+  <div
+    class="border-gray text-primary mx-auto my-3 flex w-full items-center justify-between gap-4 rounded-xl border p-2 font-medium"
+  >
+    <p>{{ file.name }}</p>
+    <button app-icon-button (click)="deleteAttachment(index)">
+      <app-icon color="danger">delete</app-icon>
+    </button>
+  </div>
+}
