@@ -8,7 +8,7 @@ import {
   VerticalConnectionPos,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Directive, ElementRef, OnDestroy, OnInit, booleanAttribute, inject, input } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, booleanAttribute, inject, input } from '@angular/core';
 import { isArray } from '@lib/utils/isArray';
 import { TooltipComponent } from './tooltip.component';
 
@@ -70,7 +70,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       const appTooltip = this.appTooltip();
       const appTooltipClass = this.appTooltipClass();
 
-      const tooltipRef: ComponentRef<TooltipComponent> = this._overlayRef.attach(new ComponentPortal(TooltipComponent));
+      const tooltipRef = this._overlayRef.attach(new ComponentPortal(TooltipComponent));
       tooltipRef.instance.tooltipText = isArray(appTooltip) ? appTooltip : [appTooltip];
 
       if (appTooltipClass) {

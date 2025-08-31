@@ -1,6 +1,6 @@
 import { GlobalPositionStrategy, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
-import { ComponentRef, Injectable, Injector, inject } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { DIALOG_DATA, DialogConfig } from './dialog-config';
 import { DialogRef } from './dialog-ref';
 
@@ -27,7 +27,7 @@ export class DialogService {
     const injector = this._getInjector<R, D, C>(dialogRef, this._parentInjector, config.data);
     const dialogPortal = new ComponentPortal(component, null, injector);
 
-    const componentRef: ComponentRef<C> = overlayRef.attach(dialogPortal);
+    const componentRef = overlayRef.attach(dialogPortal);
     (dialogRef as { componentInstance: C }).componentInstance = componentRef.instance;
 
     return dialogRef;

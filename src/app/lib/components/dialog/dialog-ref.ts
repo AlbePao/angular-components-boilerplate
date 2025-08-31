@@ -1,6 +1,6 @@
 import { ESCAPE } from '@angular/cdk/keycodes';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { filter, merge, Observable, Subject, takeUntil } from 'rxjs';
+import { filter, merge, Subject, takeUntil } from 'rxjs';
 
 export class DialogRef<R = unknown, C = unknown> {
   private readonly _destroy$ = new Subject<void>();
@@ -8,7 +8,7 @@ export class DialogRef<R = unknown, C = unknown> {
 
   readonly componentInstance: C | null = null;
 
-  closed: Observable<R | void> = this._closed$.asObservable();
+  closed = this._closed$.asObservable();
 
   constructor(
     private readonly _overlay: OverlayRef,

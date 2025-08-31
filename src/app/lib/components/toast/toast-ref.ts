@@ -1,10 +1,10 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 export class ToastRef {
   private readonly _closed$ = new Subject<void>();
 
-  closed: Observable<void> = this._closed$.asObservable();
+  closed = this._closed$.asObservable();
 
   constructor(private readonly _overlay: OverlayRef) {}
 
