@@ -22,6 +22,6 @@ export class SidebarComponent {
   readonly shouldShowLabels = computed(() => this.isOpen() && this.isOpened());
 
   toggleSidebar(): void {
-    this.isOpen.set(!this.isOpen());
+    this.isOpen.update((isOpen) => !isOpen);
   }
 }
