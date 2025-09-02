@@ -10,6 +10,7 @@ import {
   ViewChild,
   booleanAttribute,
   inject,
+  input,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -36,7 +37,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
 
   @ViewChild('inputCheckbox') inputCheckbox?: ElementRef<HTMLInputElement>;
 
-  @Input() labelPosition: 'before' | 'after' = 'after';
+  readonly labelPosition = input<'before' | 'after'>('after');
 
   // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = inject(IdGeneratorService).getId('app-checkbox');
@@ -99,7 +100,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   @Output() readonly elementBlur = new EventEmitter<void>();
 
   get classes(): string {
-    const flexRowClass = this.labelPosition === 'after' ? 'flex-row' : 'flex-row-reverse';
+    const flexRowClass = this.labelPosition() === 'after' ? 'flex-row' : 'flex-row-reverse';
     const disabledClass = this.disabled ? 'opacity-50' : 'cursor-pointer';
 
     return `inline-flex min-h-[40px] items-center gap-3 text-base/5 font-semibold ${flexRowClass} ${disabledClass}`;
