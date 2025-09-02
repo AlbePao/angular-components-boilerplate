@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, numberAttribute, output } from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, Component, computed, input, numberAttribute, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon';
@@ -30,58 +31,62 @@ const ELLIPSIS_RANGE = 3;
   },
 })
 export class PaginatorComponent {
-  @Input({ transform: numberAttribute }) currentPage = 1;
-  @Input({ transform: numberAttribute }) pageSize = 0;
-  @Input({ transform: numberAttribute }) length = 0;
-  @Input() pageSizeOptions = [25, 50, 100, 150];
+  readonly currentPage = input.required({ transform: numberAttribute });
+  readonly pageSize = input.required({ transform: numberAttribute });
+  readonly length = input.required({ transform: numberAttribute });
+  readonly pageSizeOptions = input([25, 50, 100, 150]);
 
   readonly pageChange = output<PaginationEvent>();
 
-  get pageCounter(): number[] {
-    const { length, pageSize } = this;
+  readonly pageCounter = computed<number[]>(() => {
+    const pageSize = this.pageSize();
+    const length = this.length();
     const totalPages = Math.ceil(length / pageSize);
 
     return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
+  });
 
-  get paginationRange(): PaginationRange {
-    const { currentPage, pageSize, length } = this;
+  readonly paginationRange = computed<PaginationRange>(() => {
+    const currentPage = this.currentPage();
+    const pageSize = this.pageSize();
+    const length = this.length();
     const rangeEnd = currentPage * pageSize;
 
     return {
       rangeStart: length > 0 ? (currentPage - 1) * pageSize + 1 : 0,
-      rangeEnd: rangeEnd > length ? length : rangeEnd || 0,
-      length: length || 0,
+      rangeEnd: rangeEnd > length ? length : rangeEnd,
+      length,
     };
-  }
+  });
 
   protected setPage(newPage: number): void {
-    const { currentPage, pageSize, length } = this;
+    const currentPage = this.currentPage();
+    const pageSize = this.pageSize();
+    const length = this.length();
 
     if (newPage !== currentPage) {
       this.pageChange.emit({ currentPage: newPage, pageSize, length });
     }
   }
 
-  protected setPageSize(pageSize: number): void {
-    const { length } = this;
-    const startIndex = (this.currentPage - 1) * this.pageSize;
+  protected setPageSize(newPageSize: string): void {
+    const length = this.length();
+    const startIndex = (this.currentPage() - 1) * this.pageSize();
+    const pageSize = coerceNumberProperty(newPageSize);
     const currentPage = Math.floor(startIndex / pageSize) || 1;
 
-    this.currentPage = currentPage;
-    this.pageSize = pageSize;
     this.pageChange.emit({ currentPage, pageSize, length });
   }
 
   protected isPageInRange(selectedIndex: number): boolean {
-    const { currentPage } = this;
+    const currentPage = this.currentPage();
     const selectedPage = selectedIndex + 1;
 
     return selectedPage >= currentPage - PAGINATION_RANGE && selectedPage <= currentPage + PAGINATION_RANGE;
   }
 
-  protected canShowEllipsis(selectedIndex: number): boolean {
-    const { currentPage } = this;
+  protected shouldShowEllipsis(selectedIndex: number): boolean {
+    const currentPage = this.currentPage();
     const selectedPage = selectedIndex + 1;
 
     return selectedPage === currentPage - ELLIPSIS_RANGE || selectedPage === currentPage + ELLIPSIS_RANGE;
