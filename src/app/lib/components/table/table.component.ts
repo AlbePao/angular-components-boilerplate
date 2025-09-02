@@ -1,7 +1,16 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
 import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewChild, booleanAttribute, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewChild,
+  booleanAttribute,
+  inject,
+  input,
+  output,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
 import { CheckboxComponent } from '@lib/components/checkbox';
@@ -189,14 +198,16 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
 
   @Input()
   set selectedRows(selectedRows: InputRow | InputRow[] | null) {
-    if (this.rowSelection === 'multiple' && isArray(selectedRows)) {
+    const rowSelection = this.rowSelection();
+
+    if (rowSelection === 'multiple' && isArray(selectedRows)) {
       this.selection.setSelection(...selectedRows);
-    } else if (this.rowSelection === 'multiple' && selectedRows && !isArray(selectedRows)) {
+    } else if (rowSelection === 'multiple' && selectedRows && !isArray(selectedRows)) {
       this.selection.setSelection(selectedRows);
     }
   }
 
-  @Input() rowSelection: 'multiple' | 'single' | null = null;
+  readonly rowSelection = input<'multiple' | 'single' | null>(null);
 
   @Input()
   get rowSelectionPosition(): RowSelectionPosition {
@@ -216,7 +227,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
   private _rowSelectionPosition: RowSelectionPosition = null;
 
-  @Input({ transform: booleanAttribute }) clickableRows = false;
+  readonly clickableRows = input(false, { transform: booleanAttribute });
 
   readonly multipleSelectionChange = output<InputRow[]>();
   readonly singleSelectionChange = output<InputRow>();
@@ -248,11 +259,11 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
 
   get isMultipleSelection(): boolean {
-    return this.rowSelection === 'multiple';
+    return this.rowSelection() === 'multiple';
   }
 
   get isSingleSelection(): boolean {
-    return this.rowSelection === 'single';
+    return this.rowSelection() === 'single';
   }
 
   get radioButtonName(): string {
@@ -353,7 +364,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
 
   stopPropagation(event: MouseEvent): void {
-    if (this.clickableRows) {
+    if (this.clickableRows()) {
       event.stopPropagation();
     }
   }

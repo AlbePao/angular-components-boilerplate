@@ -1,5 +1,5 @@
 <table cdk-table class="w-full" [dataSource]="dataSource$" [id]="id">
-  @if (rowSelection) {
+  @if (rowSelection()) {
     <ng-container [cdkColumnDef]="startSelectionCol" [sticky]="true">
       <th
         cdk-header-cell
@@ -195,7 +195,7 @@
       }
     </ng-container>
   }
-  @if (rowSelection) {
+  @if (rowSelection()) {
     <ng-container [cdkColumnDef]="endSelectionCol" [stickyEnd]="true">
       <th
         cdk-header-cell
@@ -251,7 +251,7 @@
     class="group border-gray border-b border-solid text-sm font-normal last-of-type:border-black"
     cdk-row
     *cdkRowDef="let row; columns: displayedColumns; let index = index"
-    (click)="clickableRows ? dispatchRowData(row) : null"
-    [class]="clickableRows ? 'cursor-pointer' : ''"
+    (click)="clickableRows() ? dispatchRowData(row) : null"
+    [class]="clickableRows() ? 'cursor-pointer' : ''"
   ></tr>
 </table>
