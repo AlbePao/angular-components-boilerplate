@@ -16,12 +16,12 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Input,
   OnInit,
   Output,
   ViewContainerRef,
   booleanAttribute,
   inject,
+  input,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -37,7 +37,7 @@ const ESCAPE_KEYS = [LEFT_ARROW, RIGHT_ARROW, CONTROL, SHIFT];
   selector: 'input[appMultiselect]',
   providers: [provideFocusableItem(MultiselectTriggerDirective), provideNgValueAccessor(MultiselectTriggerDirective)],
   host: {
-    '[attr.role]': 'appMultiselectDisabled ? null : "combobox"',
+    '[attr.role]': 'appMultiselectDisabled() ? null : "combobox"',
     '[attr.appFocusable]': 'appFocusable || null',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',
@@ -57,8 +57,8 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
   private _focusedByUser = false;
   private _focusedByDirective = false;
 
-  @Input({ required: true }) appMultiselect!: MultiselectComponent<T>;
-  @Input({ transform: booleanAttribute }) appMultiselectDisabled = false;
+  readonly appMultiselect = input.required<MultiselectComponent<T>>();
+  readonly appMultiselectDisabled = input(false, { transform: booleanAttribute });
 
   @Output() readonly valueChange = new EventEmitter<T[] | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
@@ -101,16 +101,18 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     }
 
     if (this.isPanelOpen) {
+      const appMultiselect = this.appMultiselect();
+
       if (isDownArrowKey) {
-        this.appMultiselect.focusNextOption();
+        appMultiselect.focusNextOption();
       } else if (isUpArrowKey) {
-        this.appMultiselect.focusPrevOption();
+        appMultiselect.focusPrevOption();
       } else if (isEnterKey) {
-        const { options, optionIndex } = this.appMultiselect;
+        const { options, optionIndex } = appMultiselect;
         const option = options[optionIndex];
 
         if (option) {
-          this.appMultiselect.toggleSelection(option, optionIndex);
+          appMultiselect.toggleSelection(option, optionIndex);
           this._emitSelection();
         }
       }
@@ -166,10 +168,12 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
   }
 
   ngOnInit(): void {
+    const appMultiselect = this.appMultiselect();
+
     merge(
       // Sync updated multiselect options with current value
-      this.appMultiselect.optionsUpdated$.pipe(tap(() => this.writeValue(this.value))),
-      this.appMultiselect.selectionChange.pipe(tap(() => this._emitSelection())),
+      appMultiselect.optionsUpdated$.pipe(tap(() => this.writeValue(this.value))),
+      appMultiselect.selectionChange.pipe(tap(() => this._emitSelection())),
     )
       .pipe(takeUntil(this._destroy$))
       .subscribe();
@@ -183,16 +187,17 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
   }
 
   writeValue(value: T[] | null): void {
+    const appMultiselect = this.appMultiselect();
     const selectedOptions = value
-      ? this.appMultiselect.options.filter((option) => value.includes(option.value) && !option.disabled)
+      ? appMultiselect.options.filter((option) => value.includes(option.value) && !option.disabled)
       : [];
 
     this._value = value;
-    this.appMultiselect.selectValues(selectedOptions);
+    appMultiselect.selectValues(selectedOptions);
     this._inputValue = this._getOptionsTranslations(selectedOptions);
 
     if (!value) {
-      this.appMultiselect.clearSelection();
+      appMultiselect.clearSelection();
     }
   }
 
@@ -217,8 +222,10 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
       return;
     }
 
+    const appMultiselect = this.appMultiselect();
+
     if (this.isPanelOpen) {
-      this.appMultiselect.closed.emit();
+      appMultiselect.closed.emit();
     }
 
     this._overlayAttached = false;
@@ -226,12 +233,12 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     if (this._overlayRef?.hasAttached()) {
       this._overlayRef.detach();
       this._overlayRef = null;
-      this.appMultiselect.panel = null;
+      appMultiselect.panel = null;
     }
   }
 
   private _emitSelection(): void {
-    const selectedValues = this.appMultiselect.selectedValues;
+    const selectedValues = this.appMultiselect().selectedValues;
 
     if (!this.disabled) {
       this._value = selectedValues.map((option) => option.value);
@@ -255,15 +262,13 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
   }
 
   private _attachOverlay(): void {
-    if (!this.appMultiselect) {
-      throw new Error('MultiselectTriggerDirective: missing related app-multiselect component');
-    }
+    const appMultiselect = this.appMultiselect();
 
     let portal: TemplatePortal | null = null;
     let overlayRef = this._overlayRef;
 
     if (!overlayRef) {
-      portal = new TemplatePortal(this.appMultiselect.template, this._viewContainerRef);
+      portal = new TemplatePortal(appMultiselect.template, this._viewContainerRef);
       overlayRef = this._overlay.create({
         minWidth: getComputedStyle(this.hostElement).width,
         maxHeight: 248,
@@ -276,7 +281,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
 
     if (portal && overlayRef && !overlayRef.hasAttached()) {
       overlayRef.attach(portal);
-      this.appMultiselect.panel = this._document.getElementById(this.appMultiselect.id);
+      appMultiselect.panel = this._document.getElementById(appMultiselect.id);
       this._subscribeToClosingActions();
     }
 
@@ -285,7 +290,7 @@ export class MultiselectTriggerDirective<T> implements ControlValueAccessor, Foc
     this._overlayAttached = true;
 
     if (this.isPanelOpen && wasOpen !== this.isPanelOpen) {
-      this.appMultiselect.opened.emit();
+      appMultiselect.opened.emit();
     }
   }
 
