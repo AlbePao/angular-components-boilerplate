@@ -1,15 +1,15 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  Input,
   OnInit,
   booleanAttribute,
+  computed,
   inject,
+  input,
+  signal,
 } from '@angular/core';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { APP_TABS_GROUP, TabsGroupComponent } from './tabs-group.component';
-
-let nextUniqueId = 0;
 
 @Component({
   selector: 'app-tab',
@@ -21,23 +21,15 @@ let nextUniqueId = 0;
 })
 export class TabComponent implements OnInit {
   private readonly _tabsGroup = inject<TabsGroupComponent>(APP_TABS_GROUP, { optional: true });
-  private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly _uniqueId = inject(IdGeneratorService).getId('app-tab');
 
-  private readonly _uniqueId = `app-tab-${nextUniqueId++}`;
+  readonly label = input<string>('');
+  readonly name = input<string>(this._uniqueId);
+  readonly id = input<string>(this._uniqueId);
+  readonly active = input(false, { transform: booleanAttribute });
 
-  @Input() label = '';
-  @Input() name = this._uniqueId;
-  @Input() id = this._uniqueId;
-
-  @Input({ transform: booleanAttribute })
-  get active(): boolean {
-    return this._active;
-  }
-  set active(active: boolean) {
-    this._active = active;
-    this._changeDetectorRef.markForCheck();
-  }
-  private _active = false;
+  readonly isActive = signal<boolean>(this.active());
+  readonly isActivated = computed(() => this.active() || this.isActive());
 
   ngOnInit(): void {
     if (!this._tabsGroup) {

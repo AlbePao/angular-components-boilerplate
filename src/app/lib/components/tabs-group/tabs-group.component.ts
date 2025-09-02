@@ -2,10 +2,9 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
+  contentChildren,
   InjectionToken,
   output,
-  QueryList,
 } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TabComponent } from './tab.component';
@@ -33,30 +32,32 @@ export const APP_TABS_GROUP = new InjectionToken<TabsGroupComponent>('TabsGroupC
   ],
 })
 export class TabsGroupComponent implements AfterContentInit {
-  @ContentChildren(TabComponent) tabs = new QueryList<TabComponent>();
+  readonly tabs = contentChildren(TabComponent);
 
   readonly tabChange = output<TabChangeEvent>();
 
   // contentChildren are set
   ngAfterContentInit(): void {
+    const tabs = this.tabs();
+
     // get the active tab
-    const activeTab = this.tabs.find((tab) => tab.active);
+    const activeTab = tabs.find((tab) => tab.active());
 
     // if there is no active tab set, activate the first
-    if (!activeTab) {
-      this.selectTab(this.tabs.first);
+    if (!activeTab && tabs[0]) {
+      this.selectTab(tabs[0]);
     }
   }
 
   selectTab(selectedTab: TabComponent): void {
-    const tabs = this.tabs.toArray();
+    const tabs = this.tabs();
     const selectedTabIndex = tabs.findIndex((tab) => tab.id === selectedTab.id);
 
     // deactivate all tabs
-    tabs.forEach((tab) => (tab.active = false));
+    tabs.forEach((tab) => tab.isActive.set(false));
 
     // activate the tab the user has clicked on.
-    selectedTab.active = true;
+    selectedTab.isActive.set(true);
 
     // emit currently selected tab
     this.tabChange.emit({ index: selectedTabIndex, tab: selectedTab });

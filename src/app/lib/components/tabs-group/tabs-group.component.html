@@ -2,27 +2,27 @@
   <div class="mb-2 empty:hidden">
     <ng-content select="[appTabsPrefixContent]" />
   </div>
-  @for (tab of tabs; track tab.id) {
+  @for (tab of tabs(); track tab.id()) {
     <li
       class="flex items-end border-b-4 py-2"
       (click)="selectTab(tab)"
       (keydown.enter)="selectTab(tab)"
       tabindex="0"
       [class]="{
-        'border-b-primary': tab.active,
-        'border-b-transparent': !tab.active,
+        'border-b-primary': tab.isActive(),
+        'border-b-transparent': !tab.isActive(),
       }"
     >
       <span
         class="cursor-pointer items-end py-2 text-lg/5 no-underline before:invisible before:block before:h-0 before:overflow-hidden before:font-bold before:content-[attr(title)] hover:font-medium hover:text-current"
         [class]="{
-          'font-medium': tab.active,
-          'text-black': tab.active,
-          'text-gray-darker': !tab.active,
-          'font-normal': !tab.active,
+          'font-medium': tab.isActive(),
+          'text-black': tab.isActive(),
+          'text-gray-darker': !tab.isActive(),
+          'font-normal': !tab.isActive(),
         }"
       >
-        {{ tab.label | translate }}
+        {{ tab.label() | translate }}
       </span>
     </li>
   }
