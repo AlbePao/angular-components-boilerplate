@@ -40,7 +40,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   private _overlayRef?: OverlayRef;
 
-  readonly appTooltip = input.required<string | string[]>();
+  readonly appTooltip = input<string | string[]>();
   readonly appTooltipClass = input<string | null>(null);
   readonly appTooltipPosition = input<TooltipPosition>('left');
   readonly appTooltipDisabled = input(false, { transform: booleanAttribute });
@@ -66,8 +66,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   protected show(): void {
-    if (!this.appTooltipDisabled() && this._overlayRef) {
-      const appTooltip = this.appTooltip();
+    const appTooltipDisabled = this.appTooltipDisabled();
+    const appTooltip = this.appTooltip();
+
+    if (!appTooltipDisabled && this._overlayRef && appTooltip && appTooltip.length > 0) {
       const appTooltipClass = this.appTooltipClass();
 
       const tooltipRef = this._overlayRef.attach(new ComponentPortal(TooltipComponent));
