@@ -12,13 +12,12 @@ import {
 } from '@angular/core';
 import { CheckboxComponent } from '@lib/components/checkbox';
 import { IconComponent } from '@lib/components/icon';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Option } from '@lib/types/option';
 import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
-
-let nextUniqueId = 0;
 
 export interface MultiselectOption<T> extends Option<T> {
   children?: Option<T>[];
@@ -59,15 +58,13 @@ function optionsFlattener<T>(options: MultiselectOption<T>[], parentIndex?: numb
 export class MultiselectComponent<T> {
   private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
 
-  private readonly _currentUniqueId = nextUniqueId++;
-
   private _currentOption: HTMLDivElement | null = null;
   private readonly _optionsUpdated$ = new Subject<Option<T>[]>();
   protected selection = new SelectionModel<FlatMultiselectOption<T>>(true);
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = `app-multiselect-${this._currentUniqueId}`;
-  panelId = `app-multiselect-panel-${this._currentUniqueId}`;
+  id = inject(IdGeneratorService).getId('app-multiselect');
+  panelId = inject(IdGeneratorService).getId('app-multiselect-panel');
 
   optionIndex = 0;
   panel: HTMLElement | null = null;

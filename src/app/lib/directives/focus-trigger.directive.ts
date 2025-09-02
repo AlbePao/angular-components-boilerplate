@@ -1,7 +1,6 @@
 import { Directive, ElementRef, EventEmitter, Input, Output, inject, input } from '@angular/core';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
-
-let nextUniqueId = 0;
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 
 @Directive({
   selector: '[appFocus]',
@@ -18,7 +17,7 @@ export class FocusTriggerDirective implements FocusableItem {
   private readonly _elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
   readonly appFocusTrigger = input.required<HTMLInputElement>({ alias: 'appFocus' });
-  @Input() id = `app-focus-trigger-${nextUniqueId++}`;
+  @Input() id = inject(IdGeneratorService).getId('app-focus-trigger');
 
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();

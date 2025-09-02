@@ -10,6 +10,7 @@ import { MenuItem, MenuModule } from '@lib/components/menu';
 import { PillAppearance, PillComponent, PillSize } from '@lib/components/pill';
 import { RadioButtonComponent } from '@lib/components/radio-group';
 import { TooltipDirective } from '@lib/components/tooltip';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Colors } from '@lib/types/colors';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -83,8 +84,6 @@ export type TableRow<T extends string | number | symbol = string, A = unknown> =
 
 const DEFAULT_SORT_STATUS: TableColumnSort = { sortKey: '', sortDirection: '' };
 
-let nextUniqueId = 0;
-
 function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
@@ -118,6 +117,7 @@ function isNumber(value: unknown): value is number {
 })
 export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   private readonly _dataSource$ = new BehaviorSubject<InputRow[]>([]);
+  private readonly _uniqueId = inject(IdGeneratorService).getId('app-table');
 
   dataSource$ = this._dataSource$.asObservable();
 
@@ -145,14 +145,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
 
   @ViewChild(CdkTable) table?: CdkTable<InputRow>;
 
-  @Input()
-  get id(): string {
-    return this._id;
-  }
-  set id(value: string) {
-    this._id = value;
-  }
-  private _id = `app-table-${nextUniqueId++}`;
+  readonly id = input<string>(this._uniqueId);
 
   @Input()
   get columns(): TableColumn[] {
@@ -263,7 +256,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
 
   get radioButtonName(): string {
-    return `${this.id}-radio-button`;
+    return `${this.id()}-radio-button`;
   }
 
   protected toggleRows(): void {

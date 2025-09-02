@@ -14,9 +14,8 @@ import {
   booleanAttribute,
   inject,
 } from '@angular/core';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { APP_RADIO_GROUP, RadioGroupDirective } from './radio-group.directive';
-
-let nextUniqueId = 0;
 
 export const APP_RADIO = new InjectionToken<RadioButtonComponent>('RadioButtonComponent');
 
@@ -36,7 +35,7 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _radioDispatcher = inject(UniqueSelectionDispatcher);
 
-  private readonly _uniqueId = `app-radio-${nextUniqueId++}`;
+  private readonly _uniqueId = inject(IdGeneratorService).getId('app-radio');
 
   @ViewChild('inputRadio') inputRadio?: ElementRef<HTMLInputElement>;
 

@@ -14,8 +14,7 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-
-let nextUniqueId = 0;
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 
 @Component({
   selector: 'app-checkbox',
@@ -40,14 +39,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   @Input() labelPosition: 'before' | 'after' = 'after';
 
   // TODO: replace this input with signal input and private signal with related computed signal
-  @Input()
-  get id(): string {
-    return this._id;
-  }
-  set id(value: string) {
-    this._id = value;
-  }
-  private _id = `app-checkbox-${nextUniqueId++}`;
+  @Input() id = inject(IdGeneratorService).getId('app-checkbox');
 
   // TODO: replace this input with signal input and private signal with related computed signal
   @Input()

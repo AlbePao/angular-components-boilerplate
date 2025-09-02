@@ -10,12 +10,11 @@ import {
   inject,
 } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Option, OptionExtra } from '@lib/types/option';
 import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
-
-let nextUniqueId = 0;
 
 @Component({
   selector: 'app-autocomplete',
@@ -30,13 +29,12 @@ let nextUniqueId = 0;
 export class AutocompleteComponent<T, E extends OptionExtra = never> {
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
 
-  private readonly _currentUniqueId = nextUniqueId++;
   private _currentOption: HTMLDivElement | null = null;
   private readonly _optionsUpdated$ = new Subject<Option<T, E>[]>();
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = `app-autocomplete-${this._currentUniqueId}`;
-  panelId = `app-autocomplete-panel-${this._currentUniqueId}`;
+  id = inject(IdGeneratorService).getId('app-autocomplete');
+  panelId = inject(IdGeneratorService).getId('app-autocomplete-panel');
   filteredOptions: Option<T, E>[] = [];
   optionIndex = 0;
   panel: HTMLElement | null = null;

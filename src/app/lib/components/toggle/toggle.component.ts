@@ -15,14 +15,13 @@ import { ControlValueAccessor } from '@angular/forms';
 import { IconComponent } from '@lib/components/icon';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Option } from '@lib/types/option';
 import { TranslatePipe } from '@ngx-translate/core';
 
 export interface ToggleOption<T> extends Omit<Option<T>, 'label'> {
   label?: string;
 }
-
-let nextUniqueId = 0;
 
 @Component({
   selector: 'app-toggle',
@@ -48,14 +47,7 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
   @Input() labelPosition: 'before' | 'after' = 'before';
 
   // TODO: replace this input with signal input and private signal with related computed signal
-  @Input()
-  get id(): string {
-    return this._id;
-  }
-  set id(value: string) {
-    this._id = value;
-  }
-  private _id = `app-toggle-${nextUniqueId++}`;
+  @Input() id = inject(IdGeneratorService).getId('app-toggle');
 
   @Input()
   get options(): ToggleOption<T>[] {

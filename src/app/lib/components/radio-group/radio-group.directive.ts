@@ -16,11 +16,10 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
+import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { injectDestroy } from '@lib/utils/injectDestroy';
 import { Subject, merge, startWith, switchMap, takeUntil } from 'rxjs';
 import { APP_RADIO, RadioButtonComponent } from './radio-button.component';
-
-let nextUniqueId = 0;
 
 export const APP_RADIO_GROUP = new InjectionToken<RadioGroupDirective>('RadioGroupDirective');
 
@@ -45,7 +44,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _destroy$ = injectDestroy();
 
-  private readonly _uniqueId = `app-radio-group-${nextUniqueId++}`;
+  private readonly _uniqueId = inject(IdGeneratorService).getId('app-radio-group');
 
   private _focusableRadios: RadioButtonComponent[] = [];
   private readonly _focusableRadios$ = new Subject<RadioButtonComponent[]>();
@@ -58,14 +57,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   radioButtons = new QueryList<RadioButtonComponent>();
 
   // TODO: replace this input with signal input and private signal with related computed signal
-  @Input()
-  get id(): string {
-    return this._id;
-  }
-  set id(value: string) {
-    this._id = value;
-  }
-  private _id = this._uniqueId;
+  @Input() id = this._uniqueId;
 
   /** Name of the radio button group. All radio buttons inside this group will use this name. */
   @Input()
