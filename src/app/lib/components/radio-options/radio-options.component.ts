@@ -43,6 +43,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
 
   @ViewChild('inputRadio') firstInputRadio?: ElementRef<HTMLInputElement>;
 
+  // TODO: replace this input with signal input and private signal with related computed signal
   @Input()
   get id(): string {
     return this._id;
@@ -61,6 +62,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   }
   private _options: RadioOption<T>[] = [];
 
+  // TODO: replace this input with signal input and private signal with related computed signal
   @Input()
   get name(): string {
     return this._name;

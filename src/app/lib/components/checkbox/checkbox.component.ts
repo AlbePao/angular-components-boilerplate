@@ -39,6 +39,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
 
   @Input() labelPosition: 'before' | 'after' = 'after';
 
+  // TODO: replace this input with signal input and private signal with related computed signal
   @Input()
   get id(): string {
     return this._id;
@@ -48,6 +49,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   }
   private _id = `app-checkbox-${nextUniqueId++}`;
 
+  // TODO: replace this input with signal input and private signal with related computed signal
   @Input()
   get value(): T | null {
     return this._value;
