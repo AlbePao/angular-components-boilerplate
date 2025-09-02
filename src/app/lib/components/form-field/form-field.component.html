@@ -60,8 +60,13 @@
     </div>
   }
 </div>
-@if (!hideBottom) {
-  <div class="flex min-h-5 flex-col items-start py-1 text-[10px]/none">
-    <ng-content select="app-error, [appError]" />
-  </div>
-}
+<div
+  class="flex flex-col items-start text-[10px]/none transition-all duration-300 ease-in-out"
+  [class]="{
+    'min-h-5': subscriptSizing() === 'fixed' || isControlInvalid,
+    'py-1': subscriptSizing() === 'fixed' || isControlInvalid,
+    'min-h-0': subscriptSizing() === 'dynamic' && !isControlInvalid,
+  }"
+>
+  <ng-content select="app-error, [appError]" />
+</div>

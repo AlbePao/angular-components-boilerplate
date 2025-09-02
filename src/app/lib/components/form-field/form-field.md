@@ -10,9 +10,9 @@ The following components are designed to work inside an `<app-form-field>`:
 
 ## Inputs
 
-| Input        | Description                                     | Type      |
-| ------------ | ----------------------------------------------- | --------- |
-| `hideBottom` | (optional) Hide bottom spacing of the component | `boolean` |
+| Input             | Description                                                                                                                                                                                                                                                                                               | Type               |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| `subscriptSizing` | (optional) Whether the form field should reserve space for one line of hint/error text (default) or to have the spacing grow from 0px as needed based on the size of the hint/error content. Note that when using dynamic sizing, layout shifts will occur when hint/error text changes (Default `fixed`) | `fixed`, `dynamic` |
 
 ## Directives
 

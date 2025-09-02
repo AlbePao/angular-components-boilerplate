@@ -5,10 +5,9 @@ import {
   Component,
   ContentChild,
   ContentChildren,
-  Input,
   QueryList,
-  booleanAttribute,
   inject,
+  input,
 } from '@angular/core';
 import { InputDirective } from '@lib/components/input';
 import { SelectDirective } from '@lib/components/select';
@@ -18,6 +17,8 @@ import { APP_ERROR, ErrorDirective } from './directives/error.directive';
 import { APP_LABEL, LabelDirective } from './directives/label.directive';
 import { APP_PREFIX, PrefixDirective } from './directives/prefix.directive';
 import { APP_SUFFIX, SuffixDirective } from './directives/suffix.directive';
+
+export type SubscriptSizing = 'fixed' | 'dynamic';
 
 @Component({
   selector: 'app-form-field',
@@ -43,7 +44,7 @@ export class FormFieldComponent implements AfterContentInit {
   @ContentChildren(APP_SUFFIX, { descendants: true }) suffixChildren = new QueryList<SuffixDirective>();
   @ContentChildren(APP_ERROR, { descendants: true }) errorChildren = new QueryList<ErrorDirective>();
 
-  @Input({ transform: booleanAttribute }) hideBottom = false;
+  readonly subscriptSizing = input<SubscriptSizing>('fixed');
 
   ngAfterContentInit(): void {
     this._initializePrefixAndSuffix();
@@ -52,10 +53,10 @@ export class FormFieldComponent implements AfterContentInit {
   }
 
   private _checkPrefixAndSuffixTypes(): void {
-    this.hasContentPrefix = !!this.prefixChildren.find((p) => !p.isText);
-    this.hasTextPrefix = !!this.prefixChildren.find((p) => p.isText);
-    this.hasContentSuffix = !!this.suffixChildren.find((s) => !s.isText);
-    this.hasTextSuffix = !!this.suffixChildren.find((s) => s.isText);
+    this.hasContentPrefix = !!this.prefixChildren.find((p) => !p.isText());
+    this.hasTextPrefix = !!this.prefixChildren.find((p) => p.isText());
+    this.hasContentSuffix = !!this.suffixChildren.find((s) => !s.isText());
+    this.hasTextSuffix = !!this.suffixChildren.find((s) => s.isText());
   }
 
   /** Initializes the prefix and suffix containers. */
