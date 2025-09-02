@@ -1,4 +1,4 @@
-import { Directive, InjectionToken, Input } from '@angular/core';
+import { booleanAttribute, Directive, InjectionToken, input } from '@angular/core';
 
 export const APP_PREFIX = new InjectionToken<PrefixDirective>('AppPrefix');
 
@@ -7,10 +7,5 @@ export const APP_PREFIX = new InjectionToken<PrefixDirective>('AppPrefix');
   providers: [{ provide: APP_PREFIX, useExisting: PrefixDirective }],
 })
 export class PrefixDirective {
-  @Input({ alias: 'appTextPrefix' })
-  set isTextSelector(value: '') {
-    this.isText = true;
-  }
-
-  isText = false;
+  readonly isText = input(false, { alias: 'appTextPrefix', transform: booleanAttribute });
 }

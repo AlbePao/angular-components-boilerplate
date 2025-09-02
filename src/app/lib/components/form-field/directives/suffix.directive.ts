@@ -1,4 +1,4 @@
-import { Directive, InjectionToken, Input } from '@angular/core';
+import { booleanAttribute, Directive, InjectionToken, input } from '@angular/core';
 
 export const APP_SUFFIX = new InjectionToken<SuffixDirective>('AppSuffix');
 
@@ -7,10 +7,5 @@ export const APP_SUFFIX = new InjectionToken<SuffixDirective>('AppSuffix');
   providers: [{ provide: APP_SUFFIX, useExisting: SuffixDirective }],
 })
 export class SuffixDirective {
-  @Input({ alias: 'appTextSuffix' })
-  set isTextSelector(value: '') {
-    this.isText = true;
-  }
-
-  isText = false;
+  readonly isText = input(false, { alias: 'appTextSuffix', transform: booleanAttribute });
 }
