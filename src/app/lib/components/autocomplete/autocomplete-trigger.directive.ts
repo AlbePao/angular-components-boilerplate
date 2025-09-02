@@ -16,12 +16,12 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Input,
   OnInit,
   Output,
   ViewContainerRef,
   booleanAttribute,
   inject,
+  input,
   numberAttribute,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, ValidationErrors, Validator } from '@angular/forms';
@@ -47,7 +47,7 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
   ],
   host: {
     '[attr.appFocusable]': 'appFocusable || null',
-    '[attr.role]': 'appAutocompleteDisabled ? null : "combobox"',
+    '[attr.role]': 'appAutocompleteDisabled() ? null : "combobox"',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',
     '(keydown)': 'handleKeyDown($event)',
@@ -69,9 +69,9 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   private _focusedByUser = false;
   private _focusedByFocusHandlerDirective = false;
 
-  @Input({ required: true }) appAutocomplete!: AutocompleteComponent<T, E>;
-  @Input({ transform: booleanAttribute }) appAutocompleteDisabled = false;
-  @Input({ transform: numberAttribute }) appAutocompleteSearchAfterChars = -1;
+  readonly appAutocomplete = input.required<AutocompleteComponent<T, E>>();
+  readonly appAutocompleteDisabled = input(false, { transform: booleanAttribute });
+  readonly appAutocompleteSearchAfterChars = input(-1, { transform: numberAttribute });
 
   @Output() readonly valueChange = new EventEmitter<T | null>();
   @Output() readonly inputChange = new EventEmitter<string>();
@@ -99,7 +99,8 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   }
 
   protected handleKeyDown(event: KeyboardEvent): void {
-    const { filteredOptions } = this.appAutocomplete;
+    const appAutocomplete = this.appAutocomplete();
+    const { filteredOptions } = appAutocomplete;
     const { keyCode } = event;
     const isDownArrowKey = keyCode === DOWN_ARROW;
     const isUpArrowKey = keyCode === UP_ARROW;
@@ -119,17 +120,17 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
       if (isDownArrowKey) {
         event.preventDefault();
         this.hostElement.select();
-        this.appAutocomplete.highlightNextOption();
+        appAutocomplete.highlightNextOption();
       } else if (isUpArrowKey) {
         event.preventDefault();
         this.hostElement.select();
-        this.appAutocomplete.highlightPrevOption();
+        appAutocomplete.highlightPrevOption();
       } else if (isEnterKey || isTabKey) {
         if (isEnterKey) {
           event.preventDefault();
         }
 
-        const { value } = filteredOptions[this.appAutocomplete.optionIndex] ?? {
+        const { value } = filteredOptions[appAutocomplete.optionIndex] ?? {
           value: null,
         };
 
@@ -205,18 +206,20 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   }
 
   _listenToUpdatedOptions(): void {
-    this.appAutocomplete.optionsUpdated$.pipe(takeUntil(this._destroy$)).subscribe(() => {
-      if (this.value) {
-        // Sync updated autocomplete options with current value
-        const optionValue = this._findOptionValue(this.value, 'value');
-        const translatedLabel = this._getOptionTranslation(optionValue?.label);
-        this._inputValue = translatedLabel ?? '';
-        this.onChange(this.value);
-        this.valueChange.emit(this.value);
-        this.extrasChange.emit(optionValue?.extra);
-        this.elementBlur.emit();
-      }
-    });
+    this.appAutocomplete()
+      .optionsUpdated$.pipe(takeUntil(this._destroy$))
+      .subscribe(() => {
+        if (this.value) {
+          // Sync updated autocomplete options with current value
+          const optionValue = this._findOptionValue(this.value, 'value');
+          const translatedLabel = this._getOptionTranslation(optionValue?.label);
+          this._inputValue = translatedLabel ?? '';
+          this.onChange(this.value);
+          this.valueChange.emit(this.value);
+          this.extrasChange.emit(optionValue?.extra);
+          this.elementBlur.emit();
+        }
+      });
   }
 
   focusItem(): void {
@@ -240,7 +243,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     this._value = value;
     this._inputValue = translatedLabel ?? '';
 
-    this.appAutocomplete.filteredOptions = this.appAutocomplete.options;
+    this.appAutocomplete().filteredOptions = this.appAutocomplete().options;
   }
 
   registerOnChange(fn: (value: T | null) => void): void {
@@ -257,7 +260,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   openPanel(): void {
     // Panel should display all options at panel open, user will filter them lately
-    this.appAutocomplete.filteredOptions = this.appAutocomplete.options;
+    this.appAutocomplete().filteredOptions = this.appAutocomplete().options;
 
     this._attachOverlay();
   }
@@ -267,8 +270,10 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
       return;
     }
 
+    const appAutocomplete = this.appAutocomplete();
+
     if (this.isPanelOpen) {
-      this.appAutocomplete.closed.emit();
+      appAutocomplete.closed.emit();
     }
 
     this._overlayAttached = false;
@@ -276,16 +281,17 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     if (this._overlayRef?.hasAttached()) {
       this._overlayRef.detach();
       this._overlayRef = null;
-      this.appAutocomplete.panel = null;
+      appAutocomplete.panel = null;
     }
   }
 
   private _setValueFromOption(value: T | null): void {
     const optionValue = this._findOptionValue(value, 'value');
+    const appAutocomplete = this.appAutocomplete();
 
     if (!this.disabled && !!optionValue && !optionValue.disabled) {
-      this.appAutocomplete.filteredOptions = [optionValue];
-      this.appAutocomplete.optionIndex = 0;
+      appAutocomplete.filteredOptions = [optionValue];
+      appAutocomplete.optionIndex = 0;
       this._setValue(optionValue);
     }
 
@@ -293,17 +299,18 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   }
 
   private _setValueFromInput(value: string): void {
+    const appAutocomplete = this.appAutocomplete();
     const optionValue = this._findOptionValue(value, 'label');
 
     if (!this.disabled) {
-      this.appAutocomplete.filteredOptions = this.appAutocomplete.options.filter((option) => {
+      appAutocomplete.filteredOptions = appAutocomplete.options.filter((option) => {
         const isKeyMatching = option.value?.toString().toLowerCase().includes(value.toLowerCase());
         const isTextMatching = option.label.toLowerCase().includes(value.toLowerCase());
 
         return isKeyMatching ?? isTextMatching;
       });
 
-      this.appAutocomplete.optionIndex = 0;
+      appAutocomplete.optionIndex = 0;
       this._setValue(optionValue, value);
       this.inputChange.emit(value);
     }
@@ -311,7 +318,7 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
   private _findOptionValue(searchValue: T | string | null, searchBy: 'value' | 'label'): Option<T, E> | null {
     return (
-      this.appAutocomplete.options.find(
+      this.appAutocomplete().options.find(
         (option) =>
           (searchBy === 'value' && option.value === searchValue) ||
           (searchBy === 'label' && option.label === searchValue),
@@ -344,21 +351,19 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     return (
       !hostElement.readOnly &&
       !hostElement.disabled &&
-      hostElement.value.length > appAutocompleteSearchAfterChars &&
-      !appAutocompleteDisabled
+      hostElement.value.length > appAutocompleteSearchAfterChars() &&
+      !appAutocompleteDisabled()
     );
   }
 
   private _attachOverlay(): void {
-    if (!this.appAutocomplete) {
-      throw new Error('AutocompleteTriggerDirective: missing related app-autocomplete component');
-    }
+    const appAutocomplete = this.appAutocomplete();
 
     let portal: TemplatePortal | null = null;
     let overlayRef = this._overlayRef;
 
     if (!overlayRef) {
-      portal = new TemplatePortal(this.appAutocomplete.template, this._viewContainerRef);
+      portal = new TemplatePortal(appAutocomplete.template, this._viewContainerRef);
       overlayRef = this._overlay.create({
         minWidth: getComputedStyle(this.hostElement).width,
         maxHeight: 248,
@@ -371,8 +376,8 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
 
     if (portal && overlayRef && !overlayRef.hasAttached()) {
       overlayRef.attach(portal);
-      this.appAutocomplete.panel = this._document.getElementById(this.appAutocomplete.id);
-      this.appAutocomplete.scrollToValueOption(this.value);
+      appAutocomplete.panel = this._document.getElementById(appAutocomplete.id);
+      appAutocomplete.scrollToValueOption(this.value);
       this._subscribeToClosingActions();
     }
 
@@ -381,13 +386,13 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
     this._overlayAttached = true;
 
     if (this.isPanelOpen && wasOpen !== this.isPanelOpen) {
-      this.appAutocomplete.opened.emit();
+      appAutocomplete.opened.emit();
     }
   }
 
   private _subscribeToClosingActions(): void {
     merge(
-      this.appAutocomplete.optionChange,
+      this.appAutocomplete().optionChange,
       this._getOutsideClickStream().pipe(map(() => null)),
       this._overlayRef
         ? this._overlayRef.detachments().pipe(
