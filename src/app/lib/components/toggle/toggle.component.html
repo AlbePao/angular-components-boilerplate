@@ -1,6 +1,6 @@
 <div
   class="flex items-center justify-between gap-4"
-  [class]="labelPosition === 'before' ? 'flex-row' : 'flex-row-reverse'"
+  [class]="labelPosition() === 'before' ? 'flex-row' : 'flex-row-reverse'"
 >
   <div class="cursor-pointer text-base font-normal text-black empty:hidden">
     <ng-content />

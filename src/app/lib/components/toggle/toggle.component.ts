@@ -10,6 +10,7 @@ import {
   ViewChild,
   booleanAttribute,
   inject,
+  input,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { IconComponent } from '@lib/components/icon';
@@ -44,7 +45,7 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
 
   @ViewChild('appToggle') appToggle?: ElementRef<HTMLDivElement>;
 
-  @Input() labelPosition: 'before' | 'after' = 'before';
+  readonly labelPosition = input<'before' | 'after'>('after');
 
   // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = inject(IdGeneratorService).getId('app-toggle');
@@ -58,6 +59,7 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
   }
   private _options: ToggleOption<T>[] = [];
 
+  // TODO: replace this input with signal input and private signal with related computed signal
   @Input()
   get value(): T | null {
     return this._value;
