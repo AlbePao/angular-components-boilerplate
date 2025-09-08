@@ -53,13 +53,6 @@ export default tseslint.config(
       '@angular-eslint/no-lifecycle-call': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/prefer-output-readonly': 'warn',
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          prefix: 'app',
-          style: 'camelCase',
-        },
-      ],
       '@angular-eslint/component-selector': [
         'error',
         {
