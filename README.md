@@ -26,6 +26,7 @@ Atomic components used across the whole application and in other composed compon
 - [Checkbox](./src/app/lib/components/checkbox/checkbox.md)
 - [Chip](./src/app/lib/components/chip/chip.md)
 - [Dialog](./src/app/lib/components/dialog/dialog.md)
+- [File Uploader](./src/app/lib/components/file-uploader/file-uploader.md)
 - [Form Field](./src/app/lib/components/form-field/form-field.md)
 - [Icon](./src/app/lib/components/icon/icon.md)
 - [Input](./src/app/lib/components/input/input.md)
