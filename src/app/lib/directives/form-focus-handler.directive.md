@@ -4,9 +4,9 @@ This directive applies on a `form` and sets focus automatically on the first com
 
 ## Inputs
 
-| Input          | Description                                                | Type      |
-| -------------- | ---------------------------------------------------------- | --------- |
-| `focusHandler` | Whether form focus handler should handle focus on controls | `boolean` |
+| Input             | Description                                                | Type      |
+| ----------------- | ---------------------------------------------------------- | --------- |
+| `appFocusHandler` | Whether form focus handler should handle focus on controls | `boolean` |
 
 ## Example
 
@@ -32,7 +32,7 @@ export class ExampleComponent {
 
 ```html
 <!-- example.component.html -->
-<form focusHandler [formGroup]="form">
+<form appFocusHandler [formGroup]="form">
   <!-- form control components with FocusableItem provider -->
 </form>
 ```

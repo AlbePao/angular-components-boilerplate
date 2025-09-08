@@ -17,7 +17,7 @@ import { Subject, filter, map, merge, repeat, startWith, switchMap, take, takeUn
 const NO_ITEMS_INDEX = -1;
 
 @Directive({
-  selector: 'form[focusHandler]',
+  selector: 'form[appFocusHandler]',
   host: {
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
     autocomplete: 'off',
@@ -37,7 +37,7 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   // Focus handling is based on https://stackoverflow.com/a/51756493
   @ContentChildren(FocusableItem, { descendants: true }) focusableItems = new QueryList<FocusableItem>();
 
-  @Input({ alias: 'focusHandler', transform: booleanAttribute })
+  @Input({ alias: 'appFocusHandler', transform: booleanAttribute })
   set enabled(enabled: boolean) {
     this._enabled = enabled;
 
