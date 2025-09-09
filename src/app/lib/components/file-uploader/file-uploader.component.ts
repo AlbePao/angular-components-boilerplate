@@ -1,16 +1,7 @@
-import {
-  booleanAttribute,
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  output,
-  signal,
-} from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { IconButtonComponent } from '../button';
 import { IconComponent } from '../icon';
 import { DragDropFilesDirective } from './drag-drop-files.directive';
@@ -31,7 +22,7 @@ export type FileUploaderType = 'single' | 'multiple';
   },
 })
 export class FileUploaderComponent implements ControlValueAccessor {
-  readonly id = input<string>(inject(IdGeneratorService).getId('app-file-uploader'));
+  readonly id = input<string>(getUniqueId('app-file-uploader'));
   readonly type = input<FileUploaderType>('single');
   readonly disabled = input(false, { transform: booleanAttribute });
 

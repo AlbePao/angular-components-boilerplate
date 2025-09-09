@@ -12,9 +12,9 @@ import {
 } from '@angular/core';
 import { CheckboxComponent } from '@lib/components/checkbox';
 import { IconComponent } from '@lib/components/icon';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Option } from '@lib/types/option';
 import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
@@ -63,8 +63,8 @@ export class MultiselectComponent<T> {
   protected selection = new SelectionModel<FlatMultiselectOption<T>>(true);
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = inject(IdGeneratorService).getId('app-multiselect');
-  panelId = inject(IdGeneratorService).getId('app-multiselect-panel');
+  id = getUniqueId('app-multiselect');
+  panelId = getUniqueId('app-multiselect-panel');
 
   optionIndex = 0;
   panel: HTMLElement | null = null;

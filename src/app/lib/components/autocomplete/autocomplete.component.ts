@@ -10,9 +10,9 @@ import {
   inject,
 } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Option, OptionExtra } from '@lib/types/option';
 import { getOptionScrollPosition } from '@lib/utils/getOptionScrollPosition';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
@@ -33,8 +33,8 @@ export class AutocompleteComponent<T, E extends OptionExtra = never> {
   private readonly _optionsUpdated$ = new Subject<Option<T, E>[]>();
   optionsUpdated$ = this._optionsUpdated$.asObservable();
 
-  id = inject(IdGeneratorService).getId('app-autocomplete');
-  panelId = inject(IdGeneratorService).getId('app-autocomplete-panel');
+  id = getUniqueId('app-autocomplete');
+  panelId = getUniqueId('app-autocomplete-panel');
   filteredOptions: Option<T, E>[] = [];
   optionIndex = 0;
   panel: HTMLElement | null = null;

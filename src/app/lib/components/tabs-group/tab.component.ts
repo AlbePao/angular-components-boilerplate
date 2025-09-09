@@ -8,7 +8,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { APP_TABS_GROUP, TabsGroupComponent } from './tabs-group.component';
 
 @Component({
@@ -21,7 +21,7 @@ import { APP_TABS_GROUP, TabsGroupComponent } from './tabs-group.component';
 })
 export class TabComponent implements OnInit {
   private readonly _tabsGroup = inject<TabsGroupComponent>(APP_TABS_GROUP, { optional: true });
-  private readonly _uniqueId = inject(IdGeneratorService).getId('app-tab');
+  private readonly _uniqueId = getUniqueId('app-tab');
 
   readonly label = input<string>('');
   readonly name = input<string>(this._uniqueId);

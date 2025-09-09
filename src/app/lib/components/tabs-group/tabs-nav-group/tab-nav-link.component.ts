@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { APP_TABS_NAV_GROUP } from './tabs-nav-group.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { APP_TABS_NAV_GROUP } from './tabs-nav-group.component';
 export class TabNavLinkComponent implements OnInit {
   private readonly _tabsNavGroup = inject(APP_TABS_NAV_GROUP, { optional: true });
   private readonly _routerLinkActive = inject(RouterLinkActive);
-  private readonly _uniqueId = inject(IdGeneratorService).getId('app-tab-nav-link');
+  private readonly _uniqueId = getUniqueId('app-tab-nav-link');
 
   readonly name = input<string>(this._uniqueId);
   readonly id = input<string>(this._uniqueId);

@@ -1,7 +1,7 @@
 import { Directive, DoCheck, ElementRef, EventEmitter, Input, Output, booleanAttribute, inject } from '@angular/core';
 import { AbstractControl, NgControl, Validators } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 
 @Directive({
   selector: 'select[appSelect]',
@@ -21,7 +21,7 @@ export class SelectDirective implements FocusableItem, DoCheck {
   private readonly _elementRef = inject<ElementRef<HTMLSelectElement>>(ElementRef);
 
   // TODO: replace this input with signal input and private signal with related computed signal
-  @Input() id = inject(IdGeneratorService).getId('app-select');
+  @Input() id = getUniqueId('app-select');
 
   @Input({ transform: booleanAttribute }) disabled = false;
 

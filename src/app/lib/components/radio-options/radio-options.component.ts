@@ -13,8 +13,8 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Option } from '@lib/types/option';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { TranslatePipe } from '@ngx-translate/core';
 
 export interface RadioOption<T> extends Option<T> {
@@ -42,7 +42,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   @ViewChild('inputRadio') firstInputRadio?: ElementRef<HTMLInputElement>;
 
   // TODO: replace this input with signal input and private signal with related computed signal
-  @Input() id = inject(IdGeneratorService).getId('app-radio');
+  @Input() id = getUniqueId('app-radio');
 
   @Input()
   get options(): RadioOption<T>[] {
@@ -54,7 +54,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   private _options: RadioOption<T>[] = [];
 
   // TODO: replace this input with signal input and private signal with related computed signal
-  @Input() name = inject(IdGeneratorService).getId('app-radio-options');
+  @Input() name = getUniqueId('app-radio-options');
 
   @Input()
   get value(): T | null {

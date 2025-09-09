@@ -1,16 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
 import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewChild,
-  booleanAttribute,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild, booleanAttribute, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
 import { CheckboxComponent } from '@lib/components/checkbox';
@@ -19,8 +10,8 @@ import { MenuItem, MenuModule } from '@lib/components/menu';
 import { PillAppearance, PillComponent, PillSize } from '@lib/components/pill';
 import { RadioButtonComponent } from '@lib/components/radio-group';
 import { TooltipDirective } from '@lib/components/tooltip';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
 import { Colors } from '@lib/types/colors';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
@@ -126,7 +117,7 @@ function isNumber(value: unknown): value is number {
 })
 export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   private readonly _dataSource$ = new BehaviorSubject<InputRow[]>([]);
-  private readonly _uniqueId = inject(IdGeneratorService).getId('app-table');
+  private readonly _uniqueId = getUniqueId('app-table');
 
   dataSource$ = this._dataSource$.asObservable();
 

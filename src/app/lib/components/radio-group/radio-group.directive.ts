@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
-import { IdGeneratorService } from '@lib/services/id-generator.service';
+import { getUniqueId } from '@lib/utils/getUniqueId';
 import { injectDestroy } from '@lib/utils/injectDestroy';
 import { Subject, merge, startWith, switchMap, takeUntil } from 'rxjs';
 import { APP_RADIO, RadioButtonComponent } from './radio-button.component';
@@ -44,7 +44,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _destroy$ = injectDestroy();
 
-  private readonly _uniqueId = inject(IdGeneratorService).getId('app-radio-group');
+  private readonly _uniqueId = getUniqueId('app-radio-group');
 
   private _focusableRadios: RadioButtonComponent[] = [];
   private readonly _focusableRadios$ = new Subject<RadioButtonComponent[]>();
