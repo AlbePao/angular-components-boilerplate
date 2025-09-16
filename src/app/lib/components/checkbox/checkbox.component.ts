@@ -38,18 +38,9 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
 
   readonly labelPosition = input<'before' | 'after'>('after');
 
-  // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = getUniqueId('app-checkbox');
 
-  // TODO: replace this input with signal input and private signal with related computed signal
-  @Input()
-  get value(): T | null {
-    return this._value;
-  }
-  set value(value: T | null) {
-    this._value = value;
-  }
-  private _value: T | null = null;
+  value = input<T | null>(null);
 
   @Input({ transform: booleanAttribute })
   get checked(): boolean {

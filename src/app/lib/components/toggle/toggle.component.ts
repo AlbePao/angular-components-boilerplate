@@ -46,7 +46,6 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
 
   readonly labelPosition = input<'before' | 'after'>('after');
 
-  // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = getUniqueId('app-toggle');
 
   @Input()
@@ -58,7 +57,6 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
   }
   private _options: ToggleOption<T>[] = [];
 
-  // TODO: replace this input with signal input and private signal with related computed signal
   @Input()
   get value(): T | null {
     return this._value;

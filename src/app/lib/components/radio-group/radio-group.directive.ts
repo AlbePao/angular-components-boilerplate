@@ -55,7 +55,6 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   @ContentChildren(forwardRef(() => APP_RADIO), { descendants: true })
   radioButtons = new QueryList<RadioButtonComponent>();
 
-  // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = this._uniqueId;
 
   /** Name of the radio button group. All radio buttons inside this group will use this name. */

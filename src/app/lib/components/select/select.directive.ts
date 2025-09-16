@@ -19,7 +19,6 @@ export class SelectDirective implements FocusableItem, DoCheck {
   private readonly _ngControl = inject(NgControl, { self: true, optional: true });
   private readonly _elementRef = inject<ElementRef<HTMLSelectElement>>(ElementRef);
 
-  // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = getUniqueId('app-select');
 
   @Input({ transform: booleanAttribute }) disabled = false;
