@@ -26,6 +26,17 @@
       }
     }
   },
+  "pipes": {
+    "relativeTime": {
+      "justNow": "just now",
+      "minuteAgo":"a minute ago",
+      "minutesAgo":"{{minutes}} minutes ago",
+      "hourAgo":"an hour ago",
+      "hoursAgo":"{{hours}} hours ago",
+      "dayAgo":"a day ago",
+      "daysAgo":"{{days}} days ago"
+    }
+  },
   "routes": {
     "auth": {
       "login": {
