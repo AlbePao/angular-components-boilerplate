@@ -9,7 +9,7 @@ import {
   booleanAttribute,
   inject,
 } from '@angular/core';
-import { FocusableItem } from '@lib/providers/focusable-item';
+import { FOCUSABLE_ITEM, FocusableItem } from '@lib/providers/focusable-item';
 import { HotKeysService } from '@lib/services/hot-keys.service';
 import { injectDestroy } from '@lib/utils/injectDestroy';
 import { Subject, filter, map, merge, repeat, startWith, switchMap, take, takeUntil } from 'rxjs';
@@ -35,7 +35,7 @@ export class FormFocusHandlerDirective implements OnInit, AfterViewInit {
   private _currentItemIndex = 0;
 
   // Focus handling is based on https://stackoverflow.com/a/51756493
-  @ContentChildren(FocusableItem, { descendants: true }) focusableItems = new QueryList<FocusableItem>();
+  @ContentChildren(FOCUSABLE_ITEM, { descendants: true }) focusableItems = new QueryList<FocusableItem>();
 
   @Input({ alias: 'appFocusHandler', transform: booleanAttribute })
   set enabled(enabled: boolean) {

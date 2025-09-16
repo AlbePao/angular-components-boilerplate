@@ -14,7 +14,6 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
     autocomplete: 'off',
     '[placeholder]': `' '`,
-    '[attr.appFocusable]': 'appFocusable || null',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
   },
@@ -51,8 +50,6 @@ export class InputDirective implements FocusableItem, DoCheck {
 
     return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
-
-  appFocusable = true;
 
   get hostElement(): HTMLInputElement {
     return this._elementRef.nativeElement;

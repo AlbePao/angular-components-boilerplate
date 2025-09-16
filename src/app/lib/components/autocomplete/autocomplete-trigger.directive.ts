@@ -46,7 +46,6 @@ export const AUTOCOMPLETE_INPUT_INVALID = 'autocompleteInputInvalid';
     provideNgValidators(AutocompleteTriggerDirective),
   ],
   host: {
-    '[attr.appFocusable]': 'appFocusable || null',
     '[attr.role]': 'appAutocompleteDisabled() ? null : "combobox"',
     '(focus)': 'handleFocus()',
     '(blur)': 'handleBlur()',
@@ -78,8 +77,6 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   @Output() readonly extrasChange = new EventEmitter<E | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
-
-  appFocusable = true;
 
   protected handleFocus(): void {
     this.elementFocus.emit();

@@ -24,7 +24,6 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
   providers: [provideFocusableItem(CheckboxComponent), provideNgValueAccessor(CheckboxComponent)],
   host: {
     '[class]': 'classes',
-    '[attr.appFocusable]': 'appFocusable || null',
     '(keydown)': 'toggleOnKeyDown($event)',
     '(click)': 'toggleOnClick($event)',
   },
@@ -105,8 +104,6 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
 
     return `inline-flex min-h-[40px] items-center gap-3 text-base/5 font-semibold ${flexRowClass} ${disabledClass}`;
   }
-
-  appFocusable = true;
 
   onChange = (value: boolean | null): void => {};
   onTouched = (): void => {};

@@ -33,7 +33,6 @@ export interface ToggleOption<T> extends Omit<Option<T>, 'label'> {
   host: {
     '[class]': '`inline-block ${disabled ? "opacity-50 pointer-events-none" : ""}`',
     '[id]': 'id',
-    '[attr.appFocusable]': 'appFocusable || null',
     '(keydown)': 'handleKeyDown($event)',
   },
 })
@@ -91,8 +90,6 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
   @Output() readonly valueChange = new EventEmitter<T | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
-
-  appFocusable = true;
 
   protected handleKeyDown(event: KeyboardEvent): void {
     const { keyCode } = event;

@@ -7,7 +7,6 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
   providers: [provideFocusableItem(FocusTriggerDirective)],
   host: {
     tabindex: '-1',
-    '[attr.appFocusable]': 'appFocusable || null',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
     '(click)': 'focusTarget()',
@@ -21,8 +20,6 @@ export class FocusTriggerDirective implements FocusableItem {
 
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
-
-  appFocusable = true;
 
   get disabled(): boolean {
     return this.appFocusTrigger().disabled;

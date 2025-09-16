@@ -36,7 +36,6 @@ export const APP_RADIO_GROUP = new InjectionToken<RadioGroupDirective>('RadioGro
   host: {
     class: 'flex gap-4',
     '[id]': 'id',
-    '[attr.appFocusable]': 'appFocusable || null',
   },
 })
 export class RadioGroupDirective implements ControlValueAccessor, FocusableItem, AfterContentInit {
@@ -131,8 +130,6 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   @Output() readonly valueChange = new EventEmitter<unknown>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
-
-  appFocusable = true;
 
   onChange = (value: unknown): void => {};
   onTouched = (): void => {};

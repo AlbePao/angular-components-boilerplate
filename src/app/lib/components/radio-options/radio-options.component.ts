@@ -30,7 +30,6 @@ export interface RadioOption<T> extends Option<T> {
   host: {
     class: 'block',
     '[id]': 'id',
-    '[attr.appFocusable]': 'appFocusable || null',
   },
 })
 export class RadioOptionsComponent<T> implements ControlValueAccessor, FocusableItem {
@@ -87,8 +86,6 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   @Output() readonly valueChange = new EventEmitter<T | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
-
-  appFocusable = true;
 
   onChange = (value: T | null): void => {};
   onTouched = (): void => {};
