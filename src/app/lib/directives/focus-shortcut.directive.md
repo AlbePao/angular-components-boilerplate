@@ -4,9 +4,9 @@ This directive is applied to any html element to allow focus on it through keybo
 
 ## Inputs
 
-| Input                  | Description                                                           | Type     |
-| ---------------------- | --------------------------------------------------------------------- | -------- |
-| `appFocusShortcutKeys` | (optional) Set alternative shortcut for focus (default `'control.s'`) | `string` |
+| Input                  | Description                                                         | Type     |
+| ---------------------- | ------------------------------------------------------------------- | -------- |
+| `appFocusShortcutKeys` | (optional) Set alternative shortcut for focus (default `control.s`) | `string` |
 
 ## Example
 
