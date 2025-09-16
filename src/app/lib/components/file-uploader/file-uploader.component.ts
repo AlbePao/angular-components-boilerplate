@@ -33,7 +33,7 @@ export class FileUploaderComponent implements ControlValueAccessor {
   readonly isDisabled = computed(() => this.disabled() || this._isDisabled());
   readonly isMultiple = computed(() => this.type() === 'multiple');
 
-  files: File[] = [];
+  protected files: File[] = [];
 
   onChange: (value: File[] | null) => void = () => {};
   onTouched: () => void = () => {};
