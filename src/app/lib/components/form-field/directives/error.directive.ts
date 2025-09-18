@@ -1,6 +1,6 @@
 import { Directive, InjectionToken } from '@angular/core';
 
-export const APP_ERROR = new InjectionToken<ErrorDirective>('AppError');
+export const APP_ERROR = new InjectionToken<ErrorDirective>('ErrorDirective');
 
 @Directive({
   selector: 'app-error, [appError]',

@@ -1,6 +1,6 @@
 import { booleanAttribute, Directive, InjectionToken, input } from '@angular/core';
 
-export const APP_SUFFIX = new InjectionToken<SuffixDirective>('AppSuffix');
+export const APP_SUFFIX = new InjectionToken<SuffixDirective>('SuffixDirective');
 
 @Directive({
   selector: '[appSuffix], [appIconSuffix], [appTextSuffix]',

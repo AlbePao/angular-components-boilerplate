@@ -1,6 +1,6 @@
 import { Directive, InjectionToken } from '@angular/core';
 
-export const APP_LABEL = new InjectionToken<LabelDirective>('AppError');
+export const APP_LABEL = new InjectionToken<LabelDirective>('LabelDirective');
 
 @Directive({
   selector: 'app-label, [appLabel]',

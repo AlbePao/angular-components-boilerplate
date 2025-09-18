@@ -6,7 +6,7 @@ interface PackageJson {
   version: string;
 }
 
-export const PACKAGE_JSON = new InjectionToken<PackageJson>('PACKAGE_JSON');
+export const PACKAGE_JSON = new InjectionToken<PackageJson>('PackageJson');
 
 export const providePackageJson = (): Provider => ({
   provide: PACKAGE_JSON,

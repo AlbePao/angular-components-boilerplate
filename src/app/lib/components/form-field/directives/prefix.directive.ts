@@ -1,6 +1,6 @@
 import { booleanAttribute, Directive, InjectionToken, input } from '@angular/core';
 
-export const APP_PREFIX = new InjectionToken<PrefixDirective>('AppPrefix');
+export const APP_PREFIX = new InjectionToken<PrefixDirective>('PrefixDirective');
 
 @Directive({
   selector: '[appPrefix], [appIconPrefix], [appTextPrefix]',
