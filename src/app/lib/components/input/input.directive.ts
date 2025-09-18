@@ -13,7 +13,7 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
     '[attr.required]': 'required || null',
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
     autocomplete: 'off',
-    '[placeholder]': `' '`,
+    placeholder: ' ',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
   },
