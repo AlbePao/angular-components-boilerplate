@@ -28,7 +28,7 @@ export class FileUploaderComponent implements ControlValueAccessor {
 
   readonly filesChange = output<File[]>();
 
-  readonly isDragOver = signal<boolean>(false);
+  protected readonly isDragOver = signal<boolean>(false);
   private readonly _isDisabled = signal<boolean>(this.disabled());
   readonly isDisabled = computed(() => this.disabled() || this._isDisabled());
   readonly isMultiple = computed(() => this.type() === 'multiple');
