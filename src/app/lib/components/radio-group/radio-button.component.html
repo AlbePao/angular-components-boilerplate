@@ -1,8 +1,8 @@
 <div
   class="flex gap-4"
   [class]="{
-    'flex-row': labelPosition === 'after',
-    'flex-row-reverse': labelPosition === 'before',
+    'flex-row': labelPosition() === 'after',
+    'flex-row-reverse': labelPosition() === 'before',
     'opacity-50': disabled,
   }"
 >

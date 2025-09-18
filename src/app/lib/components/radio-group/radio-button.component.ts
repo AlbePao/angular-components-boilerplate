@@ -13,6 +13,7 @@ import {
   ViewChild,
   booleanAttribute,
   inject,
+  input,
 } from '@angular/core';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 import { APP_RADIO_GROUP, RadioGroupDirective } from './radio-group.directive';
@@ -102,14 +103,7 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
   private _value: unknown = null;
 
   /** Whether the label should appear after or before the radio button. Defaults to 'after' */
-  @Input()
-  get labelPosition(): 'before' | 'after' {
-    return this._labelPosition;
-  }
-  set labelPosition(value) {
-    this._labelPosition = value;
-  }
-  private _labelPosition: 'before' | 'after' = 'after';
+  labelPosition = input<'before' | 'after'>('after');
 
   /** Whether the radio button is disabled. */
   @Input({ transform: booleanAttribute })

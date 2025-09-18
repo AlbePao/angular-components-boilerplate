@@ -9,6 +9,7 @@ import {
   ViewChild,
   booleanAttribute,
   inject,
+  input,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -40,7 +41,6 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
 
   @ViewChild('inputRadio') firstInputRadio?: ElementRef<HTMLInputElement>;
 
-  // TODO: replace this input with signal input and private signal with related computed signal
   @Input() id = getUniqueId('app-radio');
 
   @Input()
@@ -52,8 +52,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   }
   private _options: RadioOption<T>[] = [];
 
-  // TODO: replace this input with signal input and private signal with related computed signal
-  @Input() name = getUniqueId('app-radio-options');
+  name = input(getUniqueId('app-radio-options'));
 
   @Input()
   get value(): T | null {
