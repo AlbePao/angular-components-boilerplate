@@ -8,8 +8,8 @@ import { PaginationEvent, PaginatorComponent } from '@lib/components/paginator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginatorExampleComponent {
-  currentPage = signal(1);
-  pageSize = signal(25);
+  currentPage = signal<number>(1);
+  pageSize = signal<number>(25);
   length = 200;
 
   logPaginator(event: PaginationEvent): void {

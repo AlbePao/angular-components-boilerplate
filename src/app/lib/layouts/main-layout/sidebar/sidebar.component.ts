@@ -17,7 +17,7 @@ import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 export class SidebarComponent {
   readonly sidebarItems = SHOWCASE_ITEMS;
 
-  readonly isOpen = signal(true);
+  readonly isOpen = signal<boolean>(true);
   readonly isOpened = debounceSignal(this.isOpen, 300, this.isOpen());
   readonly shouldShowLabels = computed(() => this.isOpen() && this.isOpened());
 
