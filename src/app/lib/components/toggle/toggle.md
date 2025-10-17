@@ -56,7 +56,6 @@ export class ExampleComponent implements OnInit {
 
   form = this._fb.group({
     toggleControlExample: [1],
-    roundedToggleControlExample: [1],
   });
 
   ngOnInit(): void {
