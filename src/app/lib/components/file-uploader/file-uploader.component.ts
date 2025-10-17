@@ -1,9 +1,9 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { IconButtonComponent } from '@lib/components/button';
+import { IconComponent } from '@lib/components/icon';
 import { provideNgValueAccessor } from '@lib/providers/ng-value-accessor';
 import { getUniqueId } from '@lib/utils/getUniqueId';
-import { IconButtonComponent } from '../button';
-import { IconComponent } from '../icon';
 import { DragDropFilesDirective } from './drag-drop-files.directive';
 
 export type FileUploaderType = 'single' | 'multiple';
