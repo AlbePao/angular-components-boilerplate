@@ -3,10 +3,11 @@ import angular from 'angular-eslint';
 import boundaries from 'eslint-plugin-boundaries';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import rxjsX from 'eslint-plugin-rxjs-x';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
 // eslint-plugin-boundaries config based on https://docs.google.com/presentation/d/1oDee5t0cy2t7wEFL9cd2d3_m5Mpj4KfXojp2lGNOiEw/edit?usp=sharing
-export default tseslint.config(
+export default defineConfig(
   {
     files: ['**/*.ts'],
     plugins: { boundaries },
