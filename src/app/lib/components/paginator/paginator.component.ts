@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input, numberAttribute, o
 import { FormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon';
-import { SelectDirective } from '@lib/components/select';
+import { InputDirective } from '@lib/components/input';
 import { TranslatePipe } from '@ngx-translate/core';
 
 export interface PaginationEvent {
@@ -23,7 +23,8 @@ const ELLIPSIS_RANGE = 3;
 
 @Component({
   selector: 'app-paginator',
-  imports: [IconComponent, FormsModule, FormFieldModule, SelectDirective, TranslatePipe],
+  // TODO: replace InputDirective with SelectComponent when available
+  imports: [IconComponent, FormsModule, FormFieldModule, InputDirective, TranslatePipe],
   templateUrl: './paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

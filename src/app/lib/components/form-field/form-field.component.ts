@@ -10,7 +10,6 @@ import {
   input,
 } from '@angular/core';
 import { InputDirective } from '@lib/components/input';
-import { SelectDirective } from '@lib/components/select';
 import { injectDestroy } from '@lib/utils/injectDestroy';
 import { merge, of, startWith, takeUntil } from 'rxjs';
 import { APP_ERROR, ErrorDirective } from './directives/error.directive';
@@ -36,10 +35,11 @@ export class FormFieldComponent implements AfterContentInit {
   protected hasTextPrefix = false;
   protected hasContentSuffix = false;
   protected hasTextSuffix = false;
+  protected isFieldValueEmpty = true;
 
   @ContentChild(APP_LABEL) labelChild?: LabelDirective;
   @ContentChild(InputDirective) input?: InputDirective;
-  @ContentChild(SelectDirective) select?: SelectDirective;
+  // TODO: re-add select component ContentChild
   @ContentChildren(APP_PREFIX, { descendants: true }) prefixChildren = new QueryList<PrefixDirective>();
   @ContentChildren(APP_SUFFIX, { descendants: true }) suffixChildren = new QueryList<SuffixDirective>();
   @ContentChildren(APP_ERROR, { descendants: true }) errorChildren = new QueryList<ErrorDirective>();
@@ -74,7 +74,8 @@ export class FormFieldComponent implements AfterContentInit {
   }
 
   private _initializeChildElement(): void {
-    const childElement = this.input ?? this.select;
+    // TODO: re-add select component support
+    const childElement = this.input;
 
     if (childElement) {
       this.id = childElement.id;
@@ -115,6 +116,10 @@ export class FormFieldComponent implements AfterContentInit {
 
           this.isControlDisabled = status === 'DISABLED';
           this.isControlInvalid = childElement.invalid;
+
+          const value = childElement.hostElement.value;
+          this.isFieldValueEmpty = !(value !== null && value !== undefined && `${value}`.length > 0);
+
           this._changeDetectorRef.markForCheck();
         });
     }

@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
-import { SelectDirective } from '@lib/components/select';
+import { InputDirective } from '@lib/components/input';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-select-example',
-  imports: [ReactiveFormsModule, FormFieldModule, SelectDirective, TranslatePipe],
+  imports: [ReactiveFormsModule, FormFieldModule, InputDirective, TranslatePipe],
   templateUrl: './select-example.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -14,7 +14,7 @@ export class SelectExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);
 
   form = this._fb.group({
-    selectControlExample: ['1'],
+    selectControlExample: [null],
   });
 
   ngOnInit(): void {

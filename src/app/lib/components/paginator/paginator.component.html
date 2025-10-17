@@ -10,7 +10,7 @@
       {{ 'components.paginator.elementsPerPage' | translate }}
     </label>
     <app-form-field subscriptSizing="dynamic">
-      <select id="pageSize" appSelect class="h-10" [ngModel]="pageSize()" (ngModelChange)="setPageSize($event)">
+      <select appSelect class="h-10" [ngModel]="pageSize()" (ngModelChange)="setPageSize($event)">
         @for (option of pageSizeOptions(); track option) {
           <option [value]="option" [selected]="option === pageSize()">
             {{ option }}

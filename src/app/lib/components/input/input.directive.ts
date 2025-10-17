@@ -1,10 +1,24 @@
-import { Directive, DoCheck, ElementRef, EventEmitter, Input, Output, booleanAttribute, inject } from '@angular/core';
+import {
+  Directive,
+  DoCheck,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  booleanAttribute,
+  effect,
+  inject,
+  input,
+} from '@angular/core';
 import { AbstractControl, NgControl, Validators } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 
+// Invalid input type. Using one of these will throw an MatInputUnsupportedTypeError.
+const APP_INPUT_INVALID_TYPES = ['button', 'checkbox', 'file', 'hidden', 'image', 'radio', 'range', 'reset', 'submit'];
+
 @Directive({
-  selector: 'input[appInput], textarea[appInput]',
+  selector: 'input[appInput], textarea[appInput], select[appSelect]',
   providers: [provideFocusableItem(InputDirective)],
   host: {
     '[class]': 'classes',
@@ -13,14 +27,16 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
     '[attr.required]': 'required || null',
     // Following attribute prevents native autocomplete of the browser to be shown on the input field
     autocomplete: 'off',
-    placeholder: ' ',
     '(focus)': 'elementFocus.emit()',
     '(blur)': 'elementBlur.emit()',
   },
 })
 export class InputDirective implements FocusableItem, DoCheck {
   private readonly _ngControl = inject(NgControl, { self: true, optional: true });
-  private readonly _elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+  private readonly _elementRef =
+    inject<ElementRef<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>(ElementRef);
+
+  readonly type = input('text');
 
   @Input() id = getUniqueId('app-input');
 
@@ -28,7 +44,7 @@ export class InputDirective implements FocusableItem, DoCheck {
 
   @Input({ transform: booleanAttribute })
   get required(): boolean {
-    return (this._required || this._ngControl?.control?.hasValidator(Validators.required)) ?? false;
+    return (this._required || this.control?.hasValidator(Validators.required)) ?? false;
   }
   set required(value: boolean) {
     this._required = value;
@@ -39,18 +55,16 @@ export class InputDirective implements FocusableItem, DoCheck {
   @Output() readonly elementBlur = new EventEmitter<void>();
 
   get classes(): string {
-    const borderColorClassesRequired = this.required
-      ? 'placeholder-shown:border-gray-dark'
-      : 'placeholder-shown:border-gray-light';
-
     const borderColorClasses = this.invalid
       ? 'border-danger focus:border-danger focus:ring-danger/40 '
-      : `border-gray-darker ${borderColorClassesRequired} focus:border-primary focus:ring-primary/40`;
+      : `border-gray-darker focus:border-primary focus:ring-primary/40`;
 
-    return `block min-h-[40px] px-2.5 w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
+    const paddingClasses = this._isSelect ? 'pl-2.5 pr-8' : 'px-2.5';
+
+    return `block min-h-[40px] ${paddingClasses} w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
 
-  get hostElement(): HTMLInputElement {
+  get hostElement(): HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement {
     return this._elementRef.nativeElement;
   }
 
@@ -62,11 +76,30 @@ export class InputDirective implements FocusableItem, DoCheck {
     return this._ngControl?.control ?? null;
   }
 
-  ngDoCheck(): void {
-    if (this._ngControl) {
-      if (this._ngControl.disabled !== null && this._ngControl.disabled !== this.disabled) {
-        this.disabled = this._ngControl.disabled;
+  get nodeName(): string {
+    return this.hostElement.nodeName.toLowerCase();
+  }
+
+  private readonly _isInput = this.nodeName === 'input';
+  private readonly _isSelect = this.nodeName === 'select';
+
+  constructor() {
+    effect(() => {
+      if (this.type() && this._isInput) {
+        const type = this.type();
+
+        if (APP_INPUT_INVALID_TYPES.includes(type)) {
+          throw new Error(`InputDirective: Input type "${type}" isn't supported`);
+        }
+
+        this._elementRef.nativeElement.setAttribute('type', type);
       }
+    });
+  }
+
+  ngDoCheck(): void {
+    if (this._ngControl && this._ngControl.disabled !== null && this._ngControl.disabled !== this.disabled) {
+      this.disabled = this._ngControl.disabled;
     }
   }
 
