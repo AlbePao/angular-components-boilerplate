@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal, signal } from '@angular/core';
 import { APP_DEFAULT_THEME } from '@lib/constants';
 import { storage } from '@lib/storage';
 import { WINDOW } from '@lib/tokens/window';
 import { AppTheme } from '@lib/types/theme';
 import { injectDestroy } from '@lib/utils/injectDestroy';
-import { BehaviorSubject, fromEventPattern, Observable, takeUntil } from 'rxjs';
+import { fromEventPattern, takeUntil } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,21 +16,21 @@ export class ThemeService {
   private readonly _destroy$ = injectDestroy();
   private readonly _mediaQuery = this._window.matchMedia('(prefers-color-scheme: dark)');
 
-  private readonly _currentTheme$ = new BehaviorSubject<AppTheme | null>(this._storedTheme);
+  private readonly _currentTheme = signal<AppTheme>(this._storedTheme);
 
-  public get currentTheme(): AppTheme | null {
-    return this._currentTheme$.getValue();
+  public get currentTheme(): AppTheme {
+    return this._currentTheme();
   }
 
   public get systemTheme(): AppTheme {
     return this._mediaQuery.matches ? 'dark' : 'light';
   }
 
-  private get _storedTheme(): AppTheme | null {
-    return storage.getItem('appTheme');
+  private get _storedTheme(): AppTheme {
+    return storage.getItem('appTheme') ?? 'system';
   }
 
-  private set _storedTheme(theme: AppTheme | null) {
+  private set _storedTheme(theme: AppTheme) {
     if (theme) {
       storage.setItem('appTheme', theme);
     }
@@ -41,8 +41,8 @@ export class ThemeService {
     this._listenForMediaQueryChanges();
   }
 
-  getTheme(): Observable<AppTheme | null> {
-    return this._currentTheme$.asObservable();
+  getTheme(): Signal<AppTheme> {
+    return this._currentTheme.asReadonly();
   }
 
   setTheme(theme: AppTheme): void {
@@ -50,7 +50,7 @@ export class ThemeService {
     this._storedTheme = theme;
 
     let bodyClass = theme;
-    this._currentTheme$.next(bodyClass);
+    this._currentTheme.set(bodyClass);
 
     if (theme === 'system') {
       bodyClass = this.systemTheme;
