@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
@@ -9,7 +8,7 @@ import { AuthService } from '@lib/services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [LogoComponent, RouterLink, ButtonModule, IconComponent, MenuModule, AsyncPipe],
+  imports: [LogoComponent, RouterLink, ButtonModule, IconComponent, MenuModule],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -27,8 +26,8 @@ export class HeaderComponent {
     },
   ];
 
-  username$ = this._authService.getUserName();
-  email$ = this._authService.getUserEmail();
+  username = this._authService.getUserName();
+  email = this._authService.getUserEmail();
 
   doUserMenuAction(event: string): void {
     if (event === 'logout') {

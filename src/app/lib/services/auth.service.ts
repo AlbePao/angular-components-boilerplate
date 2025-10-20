@@ -1,8 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { storage } from '@lib/storage';
 import { User, UserRoles } from '@lib/types/user';
-import { BehaviorSubject, map, Observable } from 'rxjs';
 
 interface LoginConfig {
   returnUrl: string;
@@ -14,10 +13,10 @@ interface LoginConfig {
 export class AuthService {
   private readonly _router = inject(Router);
 
-  private readonly _user$ = new BehaviorSubject<User | null>(storage.getItem('appSession'));
+  private readonly _user = signal<User | null>(storage.getItem('appSession'));
 
   get isAuthenticated(): boolean {
-    return !!this._user$.getValue();
+    return !!this._user();
   }
 
   login(config: LoginConfig): void {
@@ -30,25 +29,25 @@ export class AuthService {
     };
 
     storage.setItem('appSession', user);
-    this._user$.next(user);
+    this._user.set(user);
     void this._router.navigateByUrl(config.returnUrl);
   }
 
   logout(): void {
     storage.removeItem('appSession');
-    this._user$.next(null);
+    this._user.set(null);
     void this._router.navigateByUrl('/auth/login');
   }
 
-  getUserRoles(): Observable<UserRoles[]> {
-    return this._user$.pipe(map((user) => user?.roles ?? []));
+  getUserRoles(): UserRoles[] {
+    return this._user()?.roles ?? [];
   }
 
-  getUserName(): Observable<string | null> {
-    return this._user$.pipe(map((user) => user?.username ?? null));
+  getUserName(): string | null {
+    return this._user()?.username ?? null;
   }
 
-  getUserEmail(): Observable<string | null> {
-    return this._user$.pipe(map((user) => user?.email ?? null));
+  getUserEmail(): string | null {
+    return this._user()?.email ?? null;
   }
 }
