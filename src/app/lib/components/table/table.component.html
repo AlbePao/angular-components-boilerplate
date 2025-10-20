@@ -1,4 +1,4 @@
-<table cdk-table class="w-full" [dataSource]="dataSource$" [id]="id()">
+<table cdk-table class="w-full" [dataSource]="dataSource()" [id]="id()">
   @if (rowSelection()) {
     <ng-container [cdkColumnDef]="startSelectionCol" [sticky]="true">
       <th

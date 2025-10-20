@@ -1,7 +1,16 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
 import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewChild, booleanAttribute, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewChild,
+  booleanAttribute,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
 import { CheckboxComponent } from '@lib/components/checkbox';
@@ -14,7 +23,6 @@ import { Colors } from '@lib/types/colors';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
 
 export type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu';
 export type CellTextFormat = 'bold' | 'italic' | 'underline' | 'stroked';
@@ -84,6 +92,17 @@ export type TableRow<T extends string | number | symbol = string, A = unknown> =
 
 const DEFAULT_SORT_STATUS: TableColumnSort = { sortKey: '', sortDirection: '' };
 
+const TABLE_COLUMN_TYPES: { [key in ColumnTypes]: key } = {
+  number: 'number',
+  text: 'text',
+  date: 'date',
+  icon: 'icon',
+  pill: 'pill',
+  currency: 'currency',
+  button: 'button',
+  menu: 'menu',
+};
+
 function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
@@ -116,24 +135,15 @@ function isNumber(value: unknown): value is number {
   },
 })
 export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
-  private readonly _dataSource$ = new BehaviorSubject<InputRow[]>([]);
   private readonly _uniqueId = getUniqueId('app-table');
 
-  dataSource$ = this._dataSource$.asObservable();
+  private readonly _dataSource = signal<InputRow[]>([]);
+  protected readonly dataSource: () => InputRow[] = () => this._dataSource();
 
-  protected columnTypes: { [key in ColumnTypes]: key } = {
-    number: 'number',
-    text: 'text',
-    date: 'date',
-    icon: 'icon',
-    pill: 'pill',
-    currency: 'currency',
-    button: 'button',
-    menu: 'menu',
-  };
+  protected readonly columnTypes = TABLE_COLUMN_TYPES;
   protected readonly startSelectionCol = 'startSelectionCol';
   protected readonly endSelectionCol = 'endSelectionCol';
-  protected selection = new SelectionModel<InputRow>(true);
+  protected readonly selection = new SelectionModel<InputRow>(true);
 
   protected get displayedColumns(): TableColumn['key'][] {
     return this._displayedColumns;
@@ -245,7 +255,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
 
   get isAllRowsSelected(): boolean {
     const numSelected = this.selection.selected.length;
-    const numRows = this._dataSource$.value.length;
+    const numRows = this._dataSource().length;
     return numSelected === numRows;
   }
 
@@ -265,7 +275,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
     if (this.isAllRowsSelected) {
       this.selection.clear();
     } else {
-      this._dataSource$.value.forEach((row) => this.selection.select(row));
+      this._dataSource().forEach((row) => this.selection.select(row));
     }
   }
 
@@ -315,7 +325,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
 
   setDataSource(rows: InputRow[]): void {
-    this._dataSource$.next(rows);
+    this._dataSource.set(rows);
   }
 
   sortDataSource(rows: InputRow[], sorting: TableColumnSort): void {
