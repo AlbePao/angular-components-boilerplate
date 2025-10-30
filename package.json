@@ -33,9 +33,9 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular/build": "^20.3.7",
-    "@angular/cli": "^20.3.7",
-    "@angular/compiler-cli": "^20.3.7",
+    "@angular/build": "^20.3.8",
+    "@angular/cli": "^20.3.8",
+    "@angular/compiler-cli": "^20.3.9",
     "@tailwindcss/forms": "^0.5.10",
     "@total-typescript/ts-reset": "^0.6.1",
     "@types/jasmine": "~5.1.12",
