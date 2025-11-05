@@ -34,5 +34,6 @@ export class ExampleComponent {}
 
 ```html
 <!-- example.component.html -->
-<input appFocusShortcut type="text" />
+<input appInput type="text" #inputFocus />
+<button app-button type="button" [appFocus]="inputFocus">Focus input text</button>
 ```
