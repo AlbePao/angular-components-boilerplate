@@ -6,21 +6,21 @@
   <div class="mb-6 flex flex-wrap gap-3">
     <button
       type="button"
-      class="min-w-[150px] btn {{ currentTheme() === 'system' ? 'btn-primary' : 'btn-secondary' }}"
+      class="min-w-36 btn {{ currentTheme() === 'system' ? 'btn-primary' : 'btn-secondary' }}"
       (click)="handleThemeChange('system')"
     >
       <app-icon class="icon-20">monitor</app-icon> {{ 'routes.home.systemTheme' | translate }}
     </button>
     <button
       type="button"
-      class="min-w-[150px] btn {{ currentTheme() === 'light' ? 'btn-primary' : 'btn-secondary' }}"
+      class="min-w-36 btn {{ currentTheme() === 'light' ? 'btn-primary' : 'btn-secondary' }}"
       (click)="handleThemeChange('light')"
     >
       <app-icon class="icon-20">light_mode</app-icon> {{ 'routes.home.lightTheme' | translate }}
     </button>
     <button
       type="button"
-      class="min-w-[150px] btn {{ currentTheme() === 'dark' ? 'btn-primary' : 'btn-secondary' }}"
+      class="min-w-36 btn {{ currentTheme() === 'dark' ? 'btn-primary' : 'btn-secondary' }}"
       (click)="handleThemeChange('dark')"
     >
       <app-icon class="icon-20">dark_mode</app-icon> {{ 'routes.home.darkTheme' | translate }}

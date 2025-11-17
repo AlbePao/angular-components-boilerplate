@@ -61,7 +61,7 @@ export class InputDirective implements FocusableItem, DoCheck {
 
     const paddingClasses = this._isSelect ? 'pl-2.5 pr-8' : 'px-2.5';
 
-    return `block min-h-[40px] ${paddingClasses} w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
+    return `block min-h-10 ${paddingClasses} w-full text-sm text-black rounded-sm border appearance-none focus:ring-4 focus:ring-offset-0 peer select-none disabled:bg-gray-lighter disabled:opacity-50 ${borderColorClasses}`;
   }
 
   get hostElement(): HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement {

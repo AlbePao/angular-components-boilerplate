@@ -1,7 +1,7 @@
 .btn {
   @apply w-full md:w-auto;
   @apply rounded-lg border border-transparent outline-hidden;
-  @apply h-10 min-w-[80px] px-3 py-2;
+  @apply h-10 min-w-20 px-3 py-2;
   @apply relative inline-flex items-center justify-center;
   @apply text-center text-sm leading-none font-medium;
   @apply cursor-pointer select-none;

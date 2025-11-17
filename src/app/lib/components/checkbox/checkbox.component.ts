@@ -93,7 +93,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
     const flexRowClass = this.labelPosition() === 'after' ? 'flex-row' : 'flex-row-reverse';
     const disabledClass = this.disabled ? 'opacity-50' : 'cursor-pointer';
 
-    return `inline-flex min-h-[40px] items-center gap-3 text-base/5 font-semibold ${flexRowClass} ${disabledClass}`;
+    return `inline-flex min-h-10 items-center gap-3 text-base/5 font-semibold ${flexRowClass} ${disabledClass}`;
   }
 
   onChange = (value: boolean | null): void => {};
