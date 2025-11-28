@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { inject, Injectable, Signal, signal } from '@angular/core';
 import { APP_DEFAULT_THEME } from '@lib/constants';
-import { storage } from '@lib/storage';
 import { WINDOW } from '@lib/tokens/window';
 import { AppTheme } from '@lib/types/theme';
 import { injectDestroy } from '@lib/utils/injectDestroy';
 import { fromEventPattern, takeUntil } from 'rxjs';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,7 @@ import { fromEventPattern, takeUntil } from 'rxjs';
 export class ThemeService {
   private readonly _document = inject(DOCUMENT);
   private readonly _window = inject(WINDOW);
+  private readonly _storageService = inject(StorageService);
   private readonly _destroy$ = injectDestroy();
   private readonly _mediaQuery = this._window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -27,12 +28,12 @@ export class ThemeService {
   }
 
   private get _storedTheme(): AppTheme {
-    return storage.getItem('appTheme') ?? 'system';
+    return this._storageService.getItem('appTheme') ?? 'system';
   }
 
   private set _storedTheme(theme: AppTheme) {
     if (theme) {
-      storage.setItem('appTheme', theme);
+      this._storageService.setItem('appTheme', theme);
     }
   }
 
