@@ -11,6 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class LoginComponent {
   private readonly _authService = inject(AuthService);
 
+  // Input bindings of returnUrl route param with withComponentInputBinding() in provided routes
   readonly returnUrl = input<string>('');
 
   login(): void {
