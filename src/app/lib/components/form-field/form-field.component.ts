@@ -36,6 +36,7 @@ export class FormFieldComponent implements AfterContentInit {
   protected hasContentSuffix = false;
   protected hasTextSuffix = false;
   protected isFieldValueEmpty = true;
+  protected shouldRaiseLabel = false;
 
   @ContentChild(APP_LABEL) labelChild?: LabelDirective;
   @ContentChild(InputDirective) input?: InputDirective;
@@ -79,6 +80,7 @@ export class FormFieldComponent implements AfterContentInit {
 
     if (childElement) {
       this.id = childElement.id;
+      this.shouldRaiseLabel = childElement instanceof InputDirective && childElement.shouldRaiseLabel;
 
       if (this.labelChild) {
         childElement.hostElement.classList.add('pt-3.5', 'pb-1');

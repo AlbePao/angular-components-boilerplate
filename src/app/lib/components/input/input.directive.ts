@@ -17,6 +17,9 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
 // Invalid input type. Using one of these will throw an MatInputUnsupportedTypeError.
 const APP_INPUT_INVALID_TYPES = ['button', 'checkbox', 'file', 'hidden', 'image', 'radio', 'range', 'reset', 'submit'];
 
+// TODO: update types for which label should raised
+const APP_INPUT_RAISED_LABEL_TYPES = ['date', 'time'];
+
 @Directive({
   selector: 'input[appInput], textarea[appInput], select[appSelect]',
   providers: [provideFocusableItem(InputDirective)],
@@ -82,6 +85,10 @@ export class InputDirective implements FocusableItem, DoCheck {
 
   get nodeName(): string {
     return this.hostElement.nodeName.toLowerCase();
+  }
+
+  get shouldRaiseLabel(): boolean {
+    return APP_INPUT_RAISED_LABEL_TYPES.includes(this.type());
   }
 
   private readonly _isInput = this.nodeName === 'input';
