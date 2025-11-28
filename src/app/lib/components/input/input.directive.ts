@@ -69,7 +69,11 @@ export class InputDirective implements FocusableItem, DoCheck {
   }
 
   get invalid(): boolean {
-    return !!(this.control?.dirty ?? this.control?.touched) && !!this.control?.invalid;
+    if (!this.control) {
+      return false;
+    }
+
+    return !!(this.control.dirty || this.control.touched) && !!this.control.invalid;
   }
 
   get control(): AbstractControl<unknown, unknown> | null {
