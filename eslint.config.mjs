@@ -7,7 +7,7 @@ import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
 // eslint-plugin-boundaries config based on https://docs.google.com/presentation/d/1oDee5t0cy2t7wEFL9cd2d3_m5Mpj4KfXojp2lGNOiEw/edit?usp=sharing
-export default defineConfig(
+export default defineConfig([
   {
     files: ['**/*.ts'],
     plugins: { boundaries },
@@ -159,4 +159,4 @@ export default defineConfig(
       '@angular-eslint/template/button-has-type': 'error',
     },
   },
-);
+]);
