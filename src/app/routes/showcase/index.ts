@@ -88,12 +88,6 @@ export const routes: Routes = [
     loadComponent: async () => (await import('./menu-example/menu-example.component')).MenuExampleComponent,
   },
   {
-    path: 'multiselect-example',
-    title: 'Multiselect | Showcase',
-    loadComponent: async () =>
-      (await import('./multiselect-example/multiselect-example.component')).MultiselectExampleComponent,
-  },
-  {
     path: 'paginator-example',
     title: 'Paginator | Showcase',
     loadComponent: async () =>

@@ -66,10 +66,6 @@ export const SHOWCASE_ITEMS: SidebarItem[] = [
     label: 'Menu',
   },
   {
-    link: '/showcase/multiselect-example',
-    label: 'Multiselect',
-  },
-  {
     link: '/showcase/paginator-example',
     label: 'Paginator',
   },

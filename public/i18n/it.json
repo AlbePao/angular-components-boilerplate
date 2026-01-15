@@ -3,9 +3,6 @@
     "autocomplete": {
       "noResults": "Nessun risultato trovato"
     },
-    "multiselect": {
-      "noOptions": "Nessuna opzione presente"
-    },
     "paginator": {
       "of": "di",
       "outOf": "su",
