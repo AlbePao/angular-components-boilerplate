@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
-import { injectDestroy } from '@lib/utils/injectDestroy';
 import { TranslatePipe } from '@ngx-translate/core';
-import { takeUntil, timer } from 'rxjs';
 import { ALERT_POPUP_DATA, AlertPopupData } from './alert-popup-config';
 import { AlertPopupRef } from './alert-popup-ref';
 
@@ -15,7 +13,6 @@ import { AlertPopupRef } from './alert-popup-ref';
 export class AlertPopupComponent implements OnInit {
   private readonly _data = inject<AlertPopupData>(ALERT_POPUP_DATA);
   private readonly _alertPopupRef = inject(AlertPopupRef);
-  private readonly _destroy$ = injectDestroy();
 
   get icon(): string {
     return this._data.icon;
@@ -30,9 +27,7 @@ export class AlertPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    timer(this.duration)
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(() => this._close());
+    setTimeout(() => this._close(), this.duration);
   }
 
   private _close(): void {
