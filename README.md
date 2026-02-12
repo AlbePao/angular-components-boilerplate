@@ -6,13 +6,13 @@ The architecture of the project is inspired from [angular-boilerplate](https://g
 
 ## Features
 
-- [Angular v21](https://angular.dev/)
-- [Angular CD v21](https://material.angular.dev/cdk/categories/)
+- [Angular v21.1](https://angular.dev/)
+- [Angular CDK v21](https://material.angular.dev/cdk/categories/)
 - [Tailwind CSS v4.1](https://tailwindcss.com/)
 - [ngx-translate v17](https://ngx-translate.org/)
 - [Fontsource](https://fontsource.org/)
 - [angular-eslint v21](https://github.com/angular-eslint/angular-eslint/)
-- [Prettier v3.7](https://prettier.io/)
+- [Prettier v3.8](https://prettier.io/)
 
 ## Components documentation
 
@@ -35,7 +35,6 @@ Atomic components used across the whole application and in other composed compon
 - [Input](./src/app/lib/components/input/input.md)
 - [Letter Box](./src/app/lib/components/letter-box/letter-box.md)
 - [Menu](./src/app/lib/components/menu/menu.md)
-- [Multiselect](./src/app/lib/components/multiselect/multiselect.md)
 - [Paginator](./src/app/lib/components/paginator/paginator.md)
 - [Pill](./src/app/lib/components/pill/pill.md)
 - [Progress Bar](./src/app/lib/components/progress-bar/progress-bar.md)
