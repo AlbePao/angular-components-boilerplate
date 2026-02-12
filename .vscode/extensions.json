@@ -9,7 +9,7 @@
     "streetsidesoftware.code-spell-checker-italian",
     "lokalise.i18n-ally",
     "christian-kohler.path-intellisense",
-    "prettier.prettier-vscode",
+    "esbenp.prettier-vscode",
     "YoavBls.pretty-ts-errors",
     "bradlc.vscode-tailwindcss",
     "meganrogge.template-string-converter",
