@@ -14,7 +14,7 @@ export class LanguageComponent {
   private readonly _translateService = inject(TranslateService);
   private readonly _storageService = inject(StorageService);
 
-  get currentLang(): string {
+  get currentLang(): string | null {
     return this._translateService.getCurrentLang();
   }
 
