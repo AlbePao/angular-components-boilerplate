@@ -84,6 +84,9 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
+      '@typescript-eslint/prefer-enum-initializers': 'error',
+      '@typescript-eslint/no-mixed-enums': 'error',
+      '@typescript-eslint/no-duplicate-enum-values': 'error',
       '@typescript-eslint/no-empty-function': [
         'error',
         {
@@ -115,20 +118,20 @@ export default defineConfig([
       curly: 'error',
       'no-nested-ternary': 'error',
       'rxjs-x/no-ignored-error': 'off',
-      'boundaries/element-types': [
+      'boundaries/dependencies': [
         'error',
         {
           default: 'disallow',
-          rules: [
+          policies: [
             {
-              from: 'lib', // type lib
-              allow: ['lib'], // can only import from itself (lib)
+              from: [{ type: 'lib' }], // type lib
+              allow: [{ type: 'lib' }], // can only import from itself (lib)
             },
             {
-              from: 'routes', // type routes
+              from: [{ type: 'routes' }], // type routes
               allow: [
-                'lib', // can import from lib
-                ['routes', { routes: '${from.routes}' }],
+                { type: 'lib' }, // can import from lib
+                { type: 'routes', routes: '{{from.routes}}' },
               ],
             },
           ],
