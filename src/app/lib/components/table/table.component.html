@@ -192,6 +192,39 @@
             <app-menu #tableMenu [items]="row[column.key]" (menuAction)="dispatchMenuAction($event, row)" />
           }
         </td>
+      } @else if (column.type === columnTypes.inputText) {
+        <td
+          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 px-2 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-1 last-of-type:pr-1"
+          cdk-cell
+          *cdkCellDef="let row; let index = index"
+          [class]="getCellTextAlignmentClass(column.divider, column.alignment)"
+        >
+          <app-form-field subscriptSizing="dynamic">
+            <input
+              appInput
+              [type]="row[column.key].type ?? 'text'"
+              [(ngModel)]="row[column.key].value"
+              (ngModelChange)="onInputValueChange(row)"
+              [placeholder]="row[column.key].placeholder ?? ''"
+              [disabled]="row[column.key].disabled"
+            />
+            @if (row[column.key].label) {
+              <app-label>{{ row[column.key].label }}</app-label>
+            }
+            @if (row[column.key].iconPrefix) {
+              <app-icon appPrefix>{{ row[column.key].iconPrefix }}</app-icon>
+            }
+            @if (row[column.key].iconSuffix) {
+              <app-icon appSuffix>{{ row[column.key].iconSuffix }}</app-icon>
+            }
+            @if (row[column.key].textPrefix) {
+              <span appTextPrefix>{{ row[column.key].textPrefix }}</span>
+            }
+            @if (row[column.key].textSuffix) {
+              <span appTextSuffix>{{ row[column.key].textSuffix }}</span>
+            }
+          </app-form-field>
+        </td>
       }
     </ng-container>
   }

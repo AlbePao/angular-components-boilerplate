@@ -57,6 +57,11 @@ export class TableExampleComponent {
       sortable: true,
     },
     {
+      key: 'inputText',
+      label: 'Input text',
+      type: 'inputText',
+    },
+    {
       key: 'actionButton',
       label: 'Button',
       type: 'button',
@@ -78,6 +83,11 @@ export class TableExampleComponent {
       icon: { icon: 'face', color: 'primary', tooltip: 'Lorem ipsum' },
       status: { label: 'OK', color: 'success' },
       amount: 299.9,
+      inputText: {
+        label: 'Lorem ipsum',
+        value: 'Lorem ipsum',
+        disabled: true,
+      },
       actionButton: { appearance: 'primary', size: 'md', label: 'Lorem Ipsum', action: 'loremIpsum' },
       menu: [
         { icon: 'edit', label: 'Modifica', action: 'edit' },
@@ -93,6 +103,11 @@ export class TableExampleComponent {
       icon: { icon: 'face', color: 'primary', tooltip: 'Lorem ipsum' },
       status: { label: 'OK', color: 'success' },
       amount: 299.9,
+      inputText: {
+        iconPrefix: 'search',
+        iconSuffix: 'close',
+        value: '',
+      },
       actionButton: { appearance: 'primary', size: 'md', label: 'Lorem Ipsum', action: 'loremIpsum' },
       menu: [
         { icon: 'edit', label: 'Modifica', action: 'edit' },
@@ -108,6 +123,11 @@ export class TableExampleComponent {
       icon: { icon: 'face', color: 'primary', tooltip: 'Lorem ipsum' },
       status: { label: 'OK', color: 'success' },
       amount: 299.9,
+      inputText: {
+        textPrefix: 'EUR',
+        textSuffix: 'EUR',
+        value: '',
+      },
       actionButton: { appearance: 'primary', size: 'md', label: 'Lorem Ipsum', action: 'loremIpsum' },
       menu: [
         { icon: 'edit', label: 'Modifica', action: 'edit' },

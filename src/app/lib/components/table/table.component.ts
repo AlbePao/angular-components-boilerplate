@@ -11,10 +11,12 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
 import { CheckboxComponent } from '@lib/components/checkbox';
 import { IconComponent } from '@lib/components/icon';
+import { InputDirective } from '@lib/components/input';
 import { MenuItem, MenuModule } from '@lib/components/menu';
 import { PillAppearance, PillComponent, PillSize } from '@lib/components/pill';
 import { RadioButtonComponent } from '@lib/components/radio-group';
@@ -23,8 +25,9 @@ import { Colors } from '@lib/types/colors';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 import { isArray } from '@lib/utils/isArray';
 import { TranslatePipe } from '@ngx-translate/core';
+import { FormFieldModule } from '../form-field';
 
-export type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu';
+export type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu' | 'inputText';
 export type CellTextFormat = 'bold' | 'italic' | 'underline' | 'stroked';
 export type CellAlignment = 'left' | 'right' | 'center';
 export type SortDirection = 'asc' | 'desc' | '';
@@ -85,9 +88,21 @@ export type RowCellButton<A> = {
 
 export type RowCellMenu<A> = MenuItem<A>[];
 
+export interface RowCellInputText {
+  type?: string;
+  label?: string;
+  placeholder?: string;
+  value: string;
+  disabled?: boolean;
+  iconPrefix?: string;
+  iconSuffix?: string;
+  textPrefix?: string;
+  textSuffix?: string;
+}
+
 export type TableRow<T extends string | number | symbol = string, A = unknown> = Record<
   T,
-  number | string | RowCellIcon | RowCellPill | RowCellButton<A> | RowCellMenu<A>
+  number | string | RowCellIcon | RowCellPill | RowCellButton<A> | RowCellMenu<A> | RowCellInputText
 >;
 
 const DEFAULT_SORT_STATUS: TableColumnSort = { sortKey: '', sortDirection: '' };
@@ -101,6 +116,7 @@ const TABLE_COLUMN_TYPES: { [key in ColumnTypes]: key } = {
   currency: 'currency',
   button: 'button',
   menu: 'menu',
+  inputText: 'inputText',
 };
 
 function isString(value: unknown): value is string {
@@ -120,6 +136,9 @@ function isNumber(value: unknown): value is number {
     ButtonModule,
     IconComponent,
     MenuModule,
+    FormFieldModule,
+    InputDirective,
+    FormsModule,
     TooltipDirective,
     CheckboxComponent,
     RadioButtonComponent,
@@ -314,6 +333,18 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
     this.sortStatus = { sortKey, sortDirection };
     this.sortChange.emit(this.sortStatus);
     this.sortDataSource(this.rows, this.sortStatus);
+  }
+
+  onInputValueChange(row: InputRow): void {
+    if (!this.selection.isSelected(row)) {
+      return;
+    }
+
+    if (this.rowSelection() === 'single') {
+      this.singleSelectionChange.emit(row);
+    } else {
+      this.multipleSelectionChange.emit([...this.selection.selected]);
+    }
   }
 
   isNumber(value: unknown): value is number {

@@ -73,6 +73,7 @@ Used to describe a table column. A union type can be assigned as `T` to define a
   - `currency` to show a cell with an `app-pill` component with a formatted currency
   - `button` to show a `button[app-button]` with related inputs and action emitted on click or an `a[app-button]` with related inputs and link
   - `menu` to show a cell with an icon button that opens an `app-menu`
+  - `inputText` to show a cell with a `<app-form-field>` with an input text
 
 ### `TableRow<T extends string | number | symbol = string, A = unknown>`
 
@@ -81,7 +82,7 @@ Used to display a single row cell of the table. `T` should be the same union typ
 ```typescript
 type TableRow<T extends string | number | symbol = string, A = unknown> = Record<
   T,
-  number | string | RowCellIcon | RowCellPill | RowCellButton<A> | RowCellMenu<A>
+  number | string | RowCellIcon | RowCellPill | RowCellButton<A> | RowCellMenu<A> | RowCellInputText
 >;
 ```
 
@@ -99,6 +100,7 @@ Value for that cell must be one of the following:
 | `currency`    | `string`, `number` |
 | `button`      | `RowCellButton<A>` |
 | `menu`        | `RowCellMenu<A>`   |
+| `inputText`   | `RowCellInputText` |
 
 ## Columns types
 
@@ -136,6 +138,20 @@ Used to display a `button[app-button]` or an `a[app-button]`
 ### `RowCellMenu<A>`
 
 Used to display a list of menu items on menu button click on a table cell. This type extends an array of `MenuItem<T>` describing menu items with links or buttons.
+
+### `RowCellInputText`
+
+Used to display an input text within a `<app-form-field>` component.
+
+- `label` (optional) text label for the input field
+- `iconPrefix` (optional) an icon to display at the beginning of the input field
+- `iconSuffix` (optional) an icon to display at the end of the input field
+- `textPrefix` (optional) text to display at the beginning of the input field
+- `textSuffix` (optional) text to display at the end of the input field
+- `value` the value of the input field
+- `placeholder` (optional) placeholder text for the input field
+- `disabled` (optional) whether the input field is disabled or not
+- `type` (optional) the type of the input field, defaults to `text`
 
 ## Interfaces
 
