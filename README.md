@@ -40,7 +40,6 @@ Atomic components used across the whole application and in other composed compon
 - [Progress Bar](./src/app/lib/components/progress-bar/progress-bar.md)
 - [Radio Group](./src/app/lib/components/radio-group/radio-group.md)
 - [Radio Options](./src/app/lib/components/radio-options/radio-options.md)
-- [Select](./src/app/lib/components/select/select.md)
 - [Spinner](./src/app/lib/components/spinner/spinner.md)
 - [Table](./src/app/lib/components/table/table.md)
 - [Tabs Group](./src/app/lib/components/tabs-group/tabs-group.md)
