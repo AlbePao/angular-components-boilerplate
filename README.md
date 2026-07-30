@@ -1,18 +1,18 @@
 # Angular Components Boilerplate
 
-This boilerplate is an Angular v21 project with a collection of custom components previously developed by me to fit most of use cases in an enterprise application.
+This boilerplate is an Angular v22 project with a collection of custom components previously developed by me to fit most of use cases in an enterprise application.
 
 The architecture of the project is inspired from [angular-boilerplate](https://github.com/ju4n97/angular-boilerplate) by [ju4n97](https://github.com/ju4n97)
 
 ## Features
 
-- [Angular v21.1](https://angular.dev/)
-- [Angular CDK v21](https://material.angular.dev/cdk/categories/)
-- [Tailwind CSS v4.1](https://tailwindcss.com/)
-- [ngx-translate v17](https://ngx-translate.org/)
+- [Angular v22](https://angular.dev/)
+- [Angular CDK v22](https://material.angular.dev/cdk/categories/)
+- [Tailwind CSS v4.3](https://tailwindcss.com/)
+- [ngx-translate v18](https://ngx-translate.org/)
 - [Fontsource](https://fontsource.org/)
-- [angular-eslint v21](https://github.com/angular-eslint/angular-eslint/)
-- [Prettier v3.8](https://prettier.io/)
+- [angular-eslint v22](https://github.com/angular-eslint/angular-eslint/)
+- [Prettier v3.9](https://prettier.io/)
 
 ## Components documentation
 

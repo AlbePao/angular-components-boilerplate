@@ -385,7 +385,6 @@ export class ExampleComponent {
 
 <h2>Simple table</h2>
 <app-table
-  class="mb-10"
   [rows]="rows"
   [columns]="columns"
   (menuAction)="logMenuAction($event)"
@@ -395,7 +394,6 @@ export class ExampleComponent {
 
 <h2>Table with clickable row</h2>
 <app-table
-  class="mb-10"
   [rows]="rows"
   [columns]="columns"
   (menuAction)="logMenuAction($event)"
@@ -407,7 +405,6 @@ export class ExampleComponent {
 
 <h2>Table with single selection</h2>
 <app-table
-  class="mb-10"
   [rows]="rows"
   [columns]="columns"
   rowSelection="single"
@@ -420,7 +417,6 @@ export class ExampleComponent {
 
 <h2>Table with multiple selection</h2>
 <app-table
-  class="mb-10"
   [rows]="rows"
   [columns]="columns"
   rowSelection="multiple"
@@ -433,7 +429,6 @@ export class ExampleComponent {
 
 <h2>Table with multiple selection and selected rows</h2>
 <app-table
-  class="mb-10"
   [rows]="rows"
   [columns]="columns"
   rowSelection="multiple"

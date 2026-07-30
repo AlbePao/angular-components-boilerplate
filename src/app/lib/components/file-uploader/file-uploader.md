@@ -50,7 +50,7 @@ export class ExampleComponent implements OnInit {
 
 ```html
 <!-- example.component.html -->
-<form [formGroup]="form" class="mb-10">
+<form [formGroup]="form">
   <h3>Single file upload</h3>
   <app-file-uploader formControlName="singleFileUploadExample" />
   <h3>Multiple file upload</h3>
