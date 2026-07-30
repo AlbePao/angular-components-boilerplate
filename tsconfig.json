@@ -3,11 +3,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
-    "baseUrl": "./",
+    "rootDir": "./",
     "paths": {
-      "@lib/*": ["src/app/lib/*"],
-      "@routes/*": ["src/app/routes/*"]
+      "@lib/*": ["./src/app/lib/*"],
+      "@routes/*": ["./src/app/routes/*"],
+      "package.json": ["./package.json"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
