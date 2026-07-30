@@ -11,7 +11,7 @@ export const routes: Routes = [
   {
     path: 'welcome',
     // lazy loaded component
-    loadComponent: () => WelcomeLayoutComponent,
+    loadComponent: async () => (await import('path/to/component')).WelcomeLayoutComponent,
     children: [
       // children paths...
     ],
