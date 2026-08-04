@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ButtonBase } from './button-base';
 
 export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
@@ -6,7 +6,6 @@ export type IconButtonAppearance = 'primary' | 'secondary' | 'outline' | 'base';
 @Component({
   selector: 'button[app-icon-button], a[app-icon-button]',
   template: `<ng-content select="app-icon" />`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]':
       '`inline-flex relative align-bottom font-semibold min-w-max items-center justify-center w-auto no-underline select-none text-center rounded-sm ${appearanceClasses} ${sizeClasses} ${disabledClasses}`',

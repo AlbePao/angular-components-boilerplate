@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@lib/components/button';
 import { DialogService } from '@lib/components/dialog';
 import { ExampleDialogComponent } from './example-dialog/example-dialog.component';
@@ -7,7 +7,6 @@ import { ExampleDialogComponent } from './example-dialog/example-dialog.componen
   selector: 'app-dialog-example',
   imports: [ButtonComponent],
   templateUrl: './dialog-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogExampleComponent {
   private readonly _dialogService = inject(DialogService);

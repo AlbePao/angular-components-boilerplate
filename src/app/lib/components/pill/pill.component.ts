@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 export type PillSize = 'sm' | 'md' | 'lg';
@@ -8,7 +8,6 @@ export type PillAppearance = 'fill' | 'outline';
 @Component({
   selector: 'app-pill',
   template: `<ng-content />`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]':
       '`inline-flex justify-content items-center select-none whitespace-nowrap rounded-full ${sizeClasses} ${colorClasses}`',

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';
+import { Component, input, numberAttribute } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 function progressBarTransform(value: unknown): number {
@@ -8,7 +8,6 @@ function progressBarTransform(value: unknown): number {
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

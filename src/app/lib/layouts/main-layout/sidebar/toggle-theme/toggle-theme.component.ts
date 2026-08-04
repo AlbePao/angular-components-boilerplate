@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, booleanAttribute, inject, input } from '@angular/core';
+import { Component, booleanAttribute, inject, input } from '@angular/core';
 import { RoundedButtonComponent } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { ThemeService } from '@lib/services/theme.service';
@@ -8,7 +8,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-toggle-theme',
   imports: [RoundedButtonComponent, IconComponent, TranslatePipe],
   templateUrl: './toggle-theme.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleThemeComponent {
   private readonly _themeService = inject(ThemeService);

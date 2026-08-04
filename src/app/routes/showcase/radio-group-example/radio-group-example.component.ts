@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RadioGroupModule } from '@lib/components/radio-group';
 
@@ -6,7 +6,6 @@ import { RadioGroupModule } from '@lib/components/radio-group';
   selector: 'app-radio-group-example',
   imports: [RadioGroupModule, ReactiveFormsModule],
   templateUrl: './radio-group-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioGroupExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);

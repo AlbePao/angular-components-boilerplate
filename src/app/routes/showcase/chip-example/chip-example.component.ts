@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ChipComponent } from '@lib/components/chip';
 
 @Component({
   selector: 'app-chip-example',
   imports: [ChipComponent],
   templateUrl: './chip-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChipExampleComponent {
   chips = [

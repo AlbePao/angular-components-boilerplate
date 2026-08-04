@@ -1,16 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkTable, CdkTableModule } from '@angular/cdk/table';
 import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewChild,
-  booleanAttribute,
-  input,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, Input, ViewChild, booleanAttribute, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ButtonAppearance, ButtonModule, ButtonSize } from '@lib/components/button';
@@ -148,7 +139,6 @@ function isNumber(value: unknown): value is number {
     DatePipe,
   ],
   templateUrl: './table.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'relative block overflow-auto',
   },

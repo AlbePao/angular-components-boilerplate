@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 import { ButtonBase } from './button-base';
 
@@ -7,7 +7,6 @@ export type RoundedButtonColor = Colors | 'base';
 @Component({
   selector: 'button[app-rounded-button], a[app-rounded-button]',
   templateUrl: './button.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]':
       '`inline-flex gap-2 flex-row flex-nowrap min-w-max items-center justify-center relative w-auto rounded-full font-semibold no-underline select-none text-base text-center ${colorClasses} ${sizeClasses} ${disabledClasses}`',

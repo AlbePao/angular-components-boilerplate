@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
@@ -12,7 +12,6 @@ import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
   imports: [TranslatePipe, RouterLink, RouterLinkActive, ButtonModule, IconComponent, ToggleThemeComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
   readonly sidebarItems = SHOWCASE_ITEMS;

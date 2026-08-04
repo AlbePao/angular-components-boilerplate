@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '@lib/components/checkbox';
 
@@ -6,7 +6,6 @@ import { CheckboxComponent } from '@lib/components/checkbox';
   selector: 'app-checkbox-example',
   imports: [ReactiveFormsModule, CheckboxComponent],
   templateUrl: './checkbox-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
+import { Component, OnInit, inject, input } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 import { APP_TABS_NAV_GROUP } from './tabs-nav-group.component';
@@ -6,7 +6,6 @@ import { APP_TABS_NAV_GROUP } from './tabs-nav-group.component';
 @Component({
   selector: '[app-tab-nav-link], [appTabNavLink]',
   templateUrl: './tab-nav-link.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [RouterLinkActive],
 })
 export class TabNavLinkComponent implements OnInit {

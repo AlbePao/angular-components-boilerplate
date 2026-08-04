@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AccordionItemComponent } from '@lib/components/accordion/accordion-item/accordion-item.component';
 import { IconComponent } from '@lib/components/icon';
 
@@ -6,7 +6,6 @@ import { IconComponent } from '@lib/components/icon';
   selector: 'app-accordion-item-header',
   imports: [IconComponent],
   templateUrl: './accordion-item-header.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

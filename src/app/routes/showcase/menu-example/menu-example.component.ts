@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { MenuItem, MenuModule } from '@lib/components/menu';
 
@@ -6,7 +6,6 @@ import { MenuItem, MenuModule } from '@lib/components/menu';
   selector: 'app-menu-example',
   imports: [MenuModule, ButtonModule],
   templateUrl: './menu-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuExampleComponent {
   menuItems: MenuItem<string>[] = [

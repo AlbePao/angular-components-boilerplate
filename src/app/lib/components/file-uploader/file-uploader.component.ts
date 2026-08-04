@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { booleanAttribute, Component, computed, input, output, signal } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { IconButtonComponent } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
@@ -12,7 +12,6 @@ export type FileUploaderType = 'single' | 'multiple';
   selector: 'app-file-uploader',
   imports: [DragDropFilesDirective, IconButtonComponent, IconComponent],
   templateUrl: './file-uploader.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideNgValueAccessor(FileUploaderComponent)],
   host: {
     '[id]': 'id()',

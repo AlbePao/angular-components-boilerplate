@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, input, ViewEncapsulation } from '@angular/core';
 import { Colors } from '@lib/types/colors';
 
 export type IconColors = Colors | 'black';
@@ -8,7 +8,6 @@ export type IconColors = Colors | 'black';
   template: `<ng-content />`,
   styleUrl: './icon.component.css',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': '`${iconAppearance} ${iconColor} app-icon select-none relative`',
   },

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -26,7 +25,6 @@ export interface RadioOption<T> extends Option<T> {
   selector: 'app-radio-options',
   imports: [TranslatePipe],
   templateUrl: './radio-options.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(RadioOptionsComponent), provideNgValueAccessor(RadioOptionsComponent)],
   host: {
     class: 'block',

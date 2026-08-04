@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, InjectionToken } from '@angular/core';
+import { Component, InjectionToken } from '@angular/core';
 import { TabNavLinkComponent } from './tab-nav-link.component';
 
 export interface TabNavChangeEvent {
@@ -17,6 +17,5 @@ export const APP_TABS_NAV_GROUP = new InjectionToken<TabsNavGroupComponent>('Tab
       useExisting: TabsNavGroupComponent,
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsNavGroupComponent {}

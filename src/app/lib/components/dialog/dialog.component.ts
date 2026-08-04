@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, booleanAttribute, inject, input } from '@angular/core';
+import { Component, booleanAttribute, inject, input } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { DialogRef } from './dialog-ref';
@@ -8,7 +8,6 @@ import { DialogRef } from './dialog-ref';
   imports: [ButtonModule, IconComponent],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
   private readonly _dialogRef = inject(DialogRef);

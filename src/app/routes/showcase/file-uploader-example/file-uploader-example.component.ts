@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '@lib/components/button';
 import { FileUploaderComponent } from '@lib/components/file-uploader';
@@ -7,7 +7,6 @@ import { FileUploaderComponent } from '@lib/components/file-uploader';
   selector: 'app-file-uploader-example',
   imports: [ReactiveFormsModule, FileUploaderComponent, ButtonComponent],
   templateUrl: './file-uploader-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileUploaderExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);

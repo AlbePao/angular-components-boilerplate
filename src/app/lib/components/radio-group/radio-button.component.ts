@@ -1,6 +1,5 @@
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -23,7 +22,6 @@ export const APP_RADIO = new InjectionToken<RadioButtonComponent>('RadioButtonCo
 @Component({
   selector: 'app-radio-button',
   templateUrl: './radio-button.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: APP_RADIO,

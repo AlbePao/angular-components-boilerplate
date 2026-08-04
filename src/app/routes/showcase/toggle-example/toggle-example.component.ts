@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ToggleComponent, ToggleOption } from '@lib/components/toggle';
 
@@ -6,7 +6,6 @@ import { ToggleComponent, ToggleOption } from '@lib/components/toggle';
   selector: 'app-toggle-example',
   imports: [ToggleComponent, ReactiveFormsModule],
   templateUrl: './toggle-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);

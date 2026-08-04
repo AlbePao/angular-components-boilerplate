@@ -1,6 +1,5 @@
 import { LEFT_ARROW, RIGHT_ARROW, SPACE } from '@angular/cdk/keycodes';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -28,7 +27,6 @@ export interface ToggleOption<T> extends Omit<Option<T>, 'label'> {
   selector: 'app-toggle',
   imports: [IconComponent, TranslatePipe],
   templateUrl: './toggle.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(ToggleComponent), provideNgValueAccessor(ToggleComponent)],
   host: {
     '[class]': '`inline-block ${disabled ? "opacity-50 pointer-events-none" : ""}`',

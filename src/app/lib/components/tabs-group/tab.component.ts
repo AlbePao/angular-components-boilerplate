@@ -1,20 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  booleanAttribute,
-  computed,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, OnInit, booleanAttribute, computed, inject, input, signal } from '@angular/core';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 import { APP_TABS_GROUP, TabsGroupComponent } from './tabs-group.component';
 
 @Component({
   selector: 'app-tab',
   templateUrl: './tab.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

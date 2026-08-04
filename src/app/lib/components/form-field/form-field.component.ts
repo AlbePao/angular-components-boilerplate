@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
@@ -22,7 +21,6 @@ export type SubscriptSizing = 'fixed' | 'dynamic';
 @Component({
   selector: 'app-form-field',
   templateUrl: './form-field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFieldComponent implements AfterContentInit {
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);

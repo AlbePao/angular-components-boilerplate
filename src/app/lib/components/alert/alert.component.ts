@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, booleanAttribute, inject, input, output } from '@angular/core';
+import { Component, ElementRef, booleanAttribute, inject, input, output } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
@@ -7,7 +7,6 @@ import { Colors } from '@lib/types/colors';
   selector: 'app-alert',
   imports: [ButtonModule, IconComponent],
   templateUrl: './alert.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': '`flex rounded-sm p-5 ${bgColorClass}`',
   },

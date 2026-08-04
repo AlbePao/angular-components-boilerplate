@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@lib/components/button';
 import { DIALOG_DATA, DialogComponent, DialogRef } from '@lib/components/dialog';
 
@@ -11,7 +11,6 @@ import { DIALOG_DATA, DialogComponent, DialogRef } from '@lib/components/dialog'
       width: 100%;
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExampleDialogComponent {
   private readonly _dialogRef = inject(DialogRef);

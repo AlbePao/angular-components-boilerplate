@@ -1,11 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  contentChildren,
-  InjectionToken,
-  output,
-} from '@angular/core';
+import { AfterContentInit, Component, contentChildren, InjectionToken, output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TabComponent } from './tab.component';
 
@@ -20,7 +13,6 @@ export const APP_TABS_GROUP = new InjectionToken<TabsGroupComponent>('TabsGroupC
   selector: 'app-tabs-group',
   imports: [TranslatePipe],
   templateUrl: './tabs-group.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

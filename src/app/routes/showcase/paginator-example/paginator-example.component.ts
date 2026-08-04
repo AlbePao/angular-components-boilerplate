@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { PaginationEvent, PaginatorComponent } from '@lib/components/paginator';
 
 @Component({
   selector: 'app-paginator-example',
   imports: [PaginatorComponent],
   templateUrl: './paginator-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginatorExampleComponent {
   currentPage = signal<number>(1);

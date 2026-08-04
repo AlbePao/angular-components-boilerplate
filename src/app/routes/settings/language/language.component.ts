@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RadioGroupModule } from '@lib/components/radio-group';
 import { APP_LANGS } from '@lib/constants';
 import { StorageService } from '@lib/services/storage.service';
@@ -8,7 +8,6 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   selector: 'app-language',
   imports: [RadioGroupModule, TranslatePipe],
   templateUrl: './language.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageComponent {
   private readonly _translateService = inject(TranslateService);

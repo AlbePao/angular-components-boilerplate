@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TableColumn, TableColumnSort, TableComponent, TableRow, TableRowAction } from '@lib/components/table';
 
 @Component({
   selector: 'app-table-example',
   imports: [TableComponent],
   templateUrl: './table-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableExampleComponent {
   columns: TableColumn[] = [

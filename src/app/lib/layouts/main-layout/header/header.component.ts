@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
@@ -10,7 +10,6 @@ import { AuthService } from '@lib/services/auth.service';
   selector: 'app-header',
   imports: [LogoComponent, RouterLink, ButtonModule, IconComponent, MenuModule],
   templateUrl: './header.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

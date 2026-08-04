@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AlertPopupService } from '@lib/components/alert-popup';
 import { ButtonComponent } from '@lib/components/button';
 
@@ -6,7 +6,6 @@ import { ButtonComponent } from '@lib/components/button';
   selector: 'app-alert-popup-example',
   imports: [ButtonComponent],
   templateUrl: './alert-popup-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertPopupExampleComponent {
   private readonly _alertPopupService = inject(AlertPopupService);

@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, input, numberAttribute } from '@angular/core';
+import { Component, input, numberAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
   templateUrl: './spinner.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

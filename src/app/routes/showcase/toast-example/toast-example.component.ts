@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@lib/components/button';
 import { ToastService } from '@lib/components/toast';
 
@@ -6,7 +6,6 @@ import { ToastService } from '@lib/components/toast';
   selector: 'app-toast-example',
   imports: [ButtonComponent],
   templateUrl: './toast-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastExampleComponent {
   private readonly _toastService = inject(ToastService);

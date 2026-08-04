@@ -1,6 +1,5 @@
 import { ENTER } from '@angular/cdk/keycodes';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -20,7 +19,6 @@ import { getUniqueId } from '@lib/utils/getUniqueId';
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideFocusableItem(CheckboxComponent), provideNgValueAccessor(CheckboxComponent)],
   host: {
     '[class]': 'classes',

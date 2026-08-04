@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutocompleteModule } from '@lib/components/autocomplete';
 import { ButtonModule } from '@lib/components/button';
@@ -21,7 +21,6 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe,
   ],
   templateUrl: './autocomplete-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);

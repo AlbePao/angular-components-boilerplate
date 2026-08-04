@@ -1,5 +1,5 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, Component, computed, input, numberAttribute, output } from '@angular/core';
+import { Component, computed, input, numberAttribute, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon';
@@ -26,7 +26,6 @@ const ELLIPSIS_RANGE = 3;
   // TODO: replace InputDirective with SelectComponent when available
   imports: [IconComponent, FormsModule, FormFieldModule, InputDirective, TranslatePipe],
   templateUrl: './paginator.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

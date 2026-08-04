@@ -1,5 +1,5 @@
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { ChangeDetectionStrategy, Component, input, output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, input, output, TemplateRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
 import { Colors } from '@lib/types/colors';
@@ -48,7 +48,6 @@ export type MenuItem<T> = {
   selector: 'app-menu',
   imports: [IconComponent, RouterLink, TranslatePipe, CdkMenuModule],
   templateUrl: './menu.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent<T> {
   @ViewChild(TemplateRef, { static: true }) menu!: TemplateRef<unknown>;

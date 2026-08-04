@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { TOAST_DATA } from '@lib/components/toast/toast-config';
@@ -11,7 +11,6 @@ import { takeUntil, timer } from 'rxjs';
   selector: 'app-toast',
   imports: [ButtonModule, IconComponent, TranslatePipe],
   templateUrl: './toast.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block',
   },

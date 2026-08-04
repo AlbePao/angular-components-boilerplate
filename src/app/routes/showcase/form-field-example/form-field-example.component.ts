@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
 import { IconComponent } from '@lib/components/icon/icon.component';
@@ -9,7 +9,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-form-field-example',
   imports: [FormFieldModule, ReactiveFormsModule, InputDirective, IconComponent, TranslatePipe],
   templateUrl: './form-field-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormFieldExampleComponent implements OnInit {
   private readonly _fb = inject(FormBuilder);

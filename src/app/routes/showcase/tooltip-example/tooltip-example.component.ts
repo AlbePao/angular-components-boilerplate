@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonComponent } from '@lib/components/button';
 import { TooltipDirective } from '@lib/components/tooltip';
 
@@ -6,6 +6,5 @@ import { TooltipDirective } from '@lib/components/tooltip';
   selector: 'app-tooltip-example',
   imports: [ButtonComponent, TooltipDirective],
   templateUrl: './tooltip-example.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipExampleComponent {}

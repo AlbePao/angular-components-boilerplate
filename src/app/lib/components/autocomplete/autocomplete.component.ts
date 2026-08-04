@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -21,7 +20,6 @@ import { Subject } from 'rxjs';
   imports: [TranslatePipe, IconComponent],
   exportAs: 'appAutocomplete',
   templateUrl: './autocomplete.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[id]': 'id',
   },
