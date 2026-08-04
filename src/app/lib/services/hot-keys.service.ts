@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Injectable, inject } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { EventManager } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
@@ -9,9 +9,7 @@ interface HotKeysOptions {
 }
 
 // Find more about this service here: https://netbasal.com/diy-keyboard-shortcuts-in-your-angular-application-4704734547a2
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class HotKeysService {
   private readonly _eventManager = inject(EventManager);
   private readonly _document = inject(DOCUMENT);

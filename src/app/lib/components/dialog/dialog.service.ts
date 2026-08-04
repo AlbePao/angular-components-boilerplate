@@ -1,12 +1,10 @@
 import { GlobalPositionStrategy, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
-import { Injectable, Injector, inject } from '@angular/core';
+import { inject, Injector, Service } from '@angular/core';
 import { DIALOG_DATA, DialogConfig } from './dialog-config';
 import { DialogRef } from './dialog-ref';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class DialogService {
   private readonly _overlay = inject(Overlay);
   private readonly _parentInjector = inject(Injector);

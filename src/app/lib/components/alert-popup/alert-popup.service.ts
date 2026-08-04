@@ -1,13 +1,11 @@
 import { GlobalPositionStrategy, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, Injector, inject } from '@angular/core';
+import { inject, Injector, Service } from '@angular/core';
 import { ALERT_POPUP_DATA, AlertPopupData } from './alert-popup-config';
 import { AlertPopupRef } from './alert-popup-ref';
 import { AlertPopupComponent } from './alert-popup.component';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AlertPopupService {
   private readonly _overlay = inject(Overlay);
   private readonly _parentInjector = inject(Injector);

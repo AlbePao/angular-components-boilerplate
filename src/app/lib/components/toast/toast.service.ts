@@ -1,16 +1,14 @@
 import { coerceCssPixelValue } from '@angular/cdk/coercion';
 import { GlobalPositionStrategy, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, Injector, inject } from '@angular/core';
+import { inject, Injector, Service } from '@angular/core';
 import { TOAST_DATA, ToastData } from '@lib/components/toast/toast-config';
 import { ToastRef } from '@lib/components/toast/toast-ref';
 import { ToastComponent } from '@lib/components/toast/toast.component';
 import { from, interval, zip } from 'rxjs';
 
 // The following service and toast implementation are based on https://adrianfaciu.dev/posts/angular-toast-service/
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ToastService {
   private readonly _overlay = inject(Overlay);
   private readonly _parentInjector = inject(Injector);

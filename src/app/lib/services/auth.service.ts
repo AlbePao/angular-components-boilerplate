@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Service, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, UserRoles } from '@lib/types/user';
 import { StorageService } from './storage.service';
@@ -7,9 +7,7 @@ interface LoginConfig {
   returnUrl: string;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AuthService {
   private readonly _router = inject(Router);
   private readonly _storageService = inject(StorageService);

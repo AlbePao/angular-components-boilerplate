@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable, Signal, signal } from '@angular/core';
+import { inject, Service, Signal, signal } from '@angular/core';
 import { APP_DEFAULT_THEME } from '@lib/constants';
 import { WINDOW } from '@lib/tokens/window';
 import { AppTheme } from '@lib/types/theme';
@@ -7,9 +7,7 @@ import { injectDestroy } from '@lib/utils/injectDestroy';
 import { fromEventPattern, takeUntil } from 'rxjs';
 import { StorageService } from './storage.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ThemeService {
   private readonly _document = inject(DOCUMENT);
   private readonly _window = inject(WINDOW);

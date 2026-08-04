@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { LOCAL_STORAGE } from '@lib/tokens/local-storage';
 import { SESSION_STORAGE } from '@lib/tokens/session-storage';
 import { StorageObjectData, StorageObjectType } from '@lib/types/storage';
@@ -7,9 +7,7 @@ interface StorageOptions {
   api?: 'LocalStorage' | 'SessionStorage';
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class StorageService {
   private readonly _sessionStorage = inject(SESSION_STORAGE);
   private readonly _localStorage = inject(LOCAL_STORAGE);
