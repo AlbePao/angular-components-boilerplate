@@ -3,9 +3,7 @@ import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { TOAST_DATA } from '@lib/components/toast/toast-config';
 import { ToastRef } from '@lib/components/toast/toast-ref';
-import { injectDestroy } from '@lib/utils/injectDestroy';
 import { TranslatePipe } from '@ngx-translate/core';
-import { takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'app-toast',
@@ -18,7 +16,6 @@ import { takeUntil, timer } from 'rxjs';
 export class ToastComponent implements OnInit {
   private readonly _data = inject(TOAST_DATA);
   private readonly _toastRef = inject(ToastRef);
-  private readonly _destroy$ = injectDestroy();
 
   get icon(): string | undefined {
     return this._data.icon;
@@ -51,9 +48,7 @@ export class ToastComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    timer(this.duration)
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(() => this.close());
+    setTimeout(() => this.close(), this.duration);
   }
 
   close(): void {

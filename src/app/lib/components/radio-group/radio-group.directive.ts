@@ -12,6 +12,7 @@ import {
   booleanAttribute,
   forwardRef,
   inject,
+  output,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -126,7 +127,7 @@ export class RadioGroupDirective implements ControlValueAccessor, FocusableItem,
   }
   private _required = false;
 
-  @Output() readonly valueChange = new EventEmitter<unknown>();
+  readonly valueChange = output<unknown>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 

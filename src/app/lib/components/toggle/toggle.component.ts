@@ -10,6 +10,7 @@ import {
   booleanAttribute,
   inject,
   input,
+  output,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { IconComponent } from '@lib/components/icon';
@@ -83,7 +84,7 @@ export class ToggleComponent<T> implements FocusableItem, ControlValueAccessor {
   }
   private _disabled = false;
 
-  @Output() readonly valueChange = new EventEmitter<T | null>();
+  readonly valueChange = output<T | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 

@@ -10,6 +10,7 @@ import {
   booleanAttribute,
   inject,
   input,
+  output,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -83,7 +84,7 @@ export class CheckboxComponent<T> implements ControlValueAccessor, FocusableItem
   }
   private _disabled = false;
 
-  @Output() readonly valueChange = new EventEmitter<boolean | null>();
+  readonly valueChange = output<boolean | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 

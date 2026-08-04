@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewChild,
   inject,
+  output,
 } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
 import { Option, OptionExtra } from '@lib/types/option';
@@ -52,8 +53,8 @@ export class AutocompleteComponent<T, E extends OptionExtra = never> {
   private _options: Option<T, E>[] = [];
 
   @Output() readonly optionChange = new EventEmitter<T>();
-  @Output() readonly opened = new EventEmitter<void>();
-  @Output() readonly closed = new EventEmitter<void>();
+  readonly opened = output<void>();
+  readonly closed = output<void>();
 
   setScrollTop(scrollTop: number): void {
     if (this.panel) {

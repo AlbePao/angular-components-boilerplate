@@ -9,6 +9,7 @@ import {
   booleanAttribute,
   inject,
   input,
+  output,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -80,7 +81,7 @@ export class RadioOptionsComponent<T> implements ControlValueAccessor, Focusable
   }
   private _disabled = false;
 
-  @Output() readonly valueChange = new EventEmitter<T | null>();
+  readonly valueChange = output<T | null>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 

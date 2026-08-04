@@ -13,6 +13,7 @@ import {
   booleanAttribute,
   inject,
   input,
+  output,
 } from '@angular/core';
 import { getUniqueId } from '@lib/utils/getUniqueId';
 import { APP_RADIO_GROUP, RadioGroupDirective } from './radio-group.directive';
@@ -39,19 +40,19 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
   @ViewChild('inputRadio') inputRadio?: ElementRef<HTMLInputElement>;
 
   /** The unique ID for the radio button. */
-  @Input() id: string = this._uniqueId;
+  readonly id = input<string>(this._uniqueId);
 
   /** Analog to HTML 'name' attribute used to group radios for unique selection. */
   @Input() name = '';
 
   /** Used to set the 'aria-label' attribute on the underlying input element. */
-  @Input('aria-label') ariaLabel: string | null = null;
+  readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
 
   /** The 'aria-labelledby' attribute takes precedence as the element's text alternative. */
-  @Input('aria-labelledby') ariaLabelledby: string | null = null;
+  readonly ariaLabelledby = input<string | null>(null, { alias: 'aria-labelledby' });
 
   /** The 'aria-describedby' attribute is read after the element's label and field type. */
-  @Input('aria-describedby') ariaDescribedby: string | null = null;
+  readonly ariaDescribedby = input<string | null>(null, { alias: 'aria-describedby' });
 
   /** Whether this radio button is checked. */
   @Input({ transform: booleanAttribute })
@@ -72,7 +73,7 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
 
       if (isCheckedNewState) {
         // Notify all radio buttons with the same name to un-check.
-        this._radioDispatcher.notify(this.id, this.name);
+        this._radioDispatcher.notify(this.id(), this.name);
       }
       this._changeDetectorRef.markForCheck();
     }
@@ -123,7 +124,7 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
   }
   private _required = false;
 
-  @Output() readonly valueChange = new EventEmitter<unknown>();
+  readonly valueChange = output<unknown>();
   @Output() readonly focused = new EventEmitter<void>();
   @Output() readonly blurred = new EventEmitter<void>();
 
@@ -132,7 +133,7 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
 
   /** ID of the native input element inside `<app-radio-button>` */
   get inputId(): string {
-    return `${this.id || this._uniqueId}-input`;
+    return `${this.id() || this._uniqueId}-input`;
   }
 
   get isFocused(): boolean {
@@ -156,7 +157,7 @@ export class RadioButtonComponent implements OnInit, OnDestroy {
     }
 
     this._removeUniqueSelectionListener = this._radioDispatcher.listen((id, name) => {
-      if (id !== this.id && name === this.name) {
+      if (id !== this.id() && name === this.name) {
         this.checked = false;
       }
     });

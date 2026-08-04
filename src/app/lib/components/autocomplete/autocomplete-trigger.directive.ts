@@ -23,6 +23,7 @@ import {
   inject,
   input,
   numberAttribute,
+  output,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, ValidationErrors, Validator } from '@angular/forms';
 import { FocusableItem, provideFocusableItem } from '@lib/providers/focusable-item';
@@ -72,9 +73,9 @@ export class AutocompleteTriggerDirective<T, E extends OptionExtra = never>
   readonly appAutocompleteDisabled = input(false, { transform: booleanAttribute });
   readonly appAutocompleteSearchAfterChars = input(-1, { transform: numberAttribute });
 
-  @Output() readonly valueChange = new EventEmitter<T | null>();
-  @Output() readonly inputChange = new EventEmitter<string>();
-  @Output() readonly extrasChange = new EventEmitter<E | null>();
+  readonly valueChange = output<T | null>();
+  readonly inputChange = output<string>();
+  readonly extrasChange = output<E | null | undefined>();
   @Output() readonly elementFocus = new EventEmitter<void>();
   @Output() readonly elementBlur = new EventEmitter<void>();
 
