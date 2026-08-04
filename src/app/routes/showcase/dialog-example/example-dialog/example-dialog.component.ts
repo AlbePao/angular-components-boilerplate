@@ -6,11 +6,9 @@ import { DIALOG_DATA, DialogComponent, DialogRef } from '@lib/components/dialog'
   selector: 'app-example-dialog',
   imports: [DialogComponent, ButtonComponent],
   templateUrl: './example-dialog.component.html',
-  styles: `
-    :host {
-      width: 100%;
-    }
-  `,
+  host: {
+    class: 'w-full',
+  },
 })
 export class ExampleDialogComponent {
   private readonly _dialogRef = inject(DialogRef);

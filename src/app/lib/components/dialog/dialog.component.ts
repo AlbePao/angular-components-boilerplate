@@ -7,7 +7,9 @@ import { DialogRef } from './dialog-ref';
   selector: 'app-dialog',
   imports: [ButtonModule, IconComponent],
   templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.css',
+  host: {
+    class: 'grid h-full max-h-[inherit] min-h-[inherit] w-full',
+  },
 })
 export class DialogComponent {
   private readonly _dialogRef = inject(DialogRef);
