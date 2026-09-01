@@ -26,12 +26,12 @@
   "pipes": {
     "relativeTime": {
       "justNow": "just now",
-      "minuteAgo":"a minute ago",
-      "minutesAgo":"{{minutes}} minutes ago",
-      "hourAgo":"an hour ago",
-      "hoursAgo":"{{hours}} hours ago",
-      "dayAgo":"a day ago",
-      "daysAgo":"{{days}} days ago"
+      "minuteAgo": "a minute ago",
+      "minutesAgo": "{{minutes}} minutes ago",
+      "hourAgo": "an hour ago",
+      "hoursAgo": "{{hours}} hours ago",
+      "dayAgo": "a day ago",
+      "daysAgo": "{{days}} days ago"
     }
   },
   "routes": {
@@ -42,11 +42,21 @@
       }
     },
     "home": {
-      "chooseTheme": "Choose your theme",
-      "systemTheme": "System",
-      "lightTheme": "Light",
-      "darkTheme": "Dark",
-      "settings": "Settings",
+      "title": "Home",
+      "chooseTheme": {
+        "title": "Choose your theme",
+        "systemTheme": "System",
+        "lightTheme": "Light",
+        "darkTheme": "Dark"
+      },
+      "showcase": "Showcase",
+      "settings": {
+        "title": "Settings",
+        "accessibility": "Accessibility",
+        "account": "Account",
+        "appearance": "Appearance",
+        "language": "Language"
+      },
       "profiles": "Profiles"
     },
     "screens": {

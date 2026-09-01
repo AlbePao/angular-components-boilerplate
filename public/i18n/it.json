@@ -13,8 +13,8 @@
   "layouts": {
     "mainLayout": {
       "sidebar": {
-        "themeLight": "Light mode",
-        "themeDark": "Dark mode"
+        "themeLight": "Modalità chiara",
+        "themeDark": "Modalità scura"
       }
     },
     "horizontalLayout": {
@@ -42,16 +42,26 @@
       }
     },
     "home": {
-      "chooseTheme": "Seleziona il tema",
-      "systemTheme": "Sistema",
-      "lightTheme": "Chiaro",
-      "darkTheme": "Scuro",
-      "settings": "Impostazioni",
+      "title": "Home",
+      "chooseTheme": {
+        "title": "Seleziona il tema",
+        "systemTheme": "Sistema",
+        "lightTheme": "Chiaro",
+        "darkTheme": "Scuro"
+      },
+      "showcase": "Showcase",
+      "settings": {
+        "title": "Impostazioni",
+        "accessibility": "Accessibilità",
+        "account": "Account",
+        "appearance": "Aspetto",
+        "language": "Lingua"
+      },
       "profiles": "Profili"
     },
     "screens": {
-      "notFound": "La pagina che stai cercando non è stata trovata",
-      "goHome": "Vai alla home"
+      "notFound": "La pagina che stavi cercando non è stata trovata",
+      "goHome": "Torna alla home"
     },
     "user": {
       "profile": {
@@ -67,7 +77,7 @@
   "forms": {
     "controls": {
       "errors": {
-        "autocompleteInputInvalid": "Inserire un valore valido",
+        "autocompleteInputInvalid": "Inserisci un valore valido",
         "required": "Campo obbligatorio"
       }
     }

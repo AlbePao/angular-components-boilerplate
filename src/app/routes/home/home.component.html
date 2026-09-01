@@ -1,77 +1,74 @@
 <section>
-  <h1>Home</h1>
+  <h1>{{ 'routes.home.title' | translate }}</h1>
 
-  <h2 class="mb-4">{{ 'routes.home.chooseTheme' | translate }}</h2>
-
-  <div class="mb-6 flex flex-wrap gap-3">
+  <h2>{{ 'routes.home.chooseTheme.title' | translate }}</h2>
+  <div class="flex flex-wrap gap-3">
     <button
       type="button"
       class="min-w-36 btn {{ currentTheme() === 'system' ? 'btn-primary' : 'btn-secondary' }}"
       (click)="handleThemeChange('system')"
     >
-      <app-icon class="icon-20">monitor</app-icon> {{ 'routes.home.systemTheme' | translate }}
+      <app-icon class="icon-20">monitor</app-icon> {{ 'routes.home.chooseTheme.systemTheme' | translate }}
     </button>
     <button
       type="button"
       class="min-w-36 btn {{ currentTheme() === 'light' ? 'btn-primary' : 'btn-secondary' }}"
       (click)="handleThemeChange('light')"
     >
-      <app-icon class="icon-20">light_mode</app-icon> {{ 'routes.home.lightTheme' | translate }}
+      <app-icon class="icon-20">light_mode</app-icon> {{ 'routes.home.chooseTheme.lightTheme' | translate }}
     </button>
     <button
       type="button"
       class="min-w-36 btn {{ currentTheme() === 'dark' ? 'btn-primary' : 'btn-secondary' }}"
       (click)="handleThemeChange('dark')"
     >
-      <app-icon class="icon-20">dark_mode</app-icon> {{ 'routes.home.darkTheme' | translate }}
+      <app-icon class="icon-20">dark_mode</app-icon> {{ 'routes.home.chooseTheme.darkTheme' | translate }}
     </button>
   </div>
 
-  <div class="mt-12">
-    <h3 class="h5">Showcase</h3>
-    <ul>
-      @for (item of showcaseItems; track $index) {
-        <li>
-          <a class="link text-sm" [routerLink]="item.link">{{ item.label }}</a>
-        </li>
-      }
-    </ul>
-  </div>
+  <h2>{{ 'routes.home.showcase' | translate }}</h2>
+  <ul>
+    @for (item of showcaseItems; track $index) {
+      <li>
+        <a class="link text-sm" [routerLink]="item.link">{{ item.label }}</a>
+      </li>
+    }
+  </ul>
 
-  <div class="mt-12">
-    <h3 class="h5">
-      {{ 'routes.home.settings' | translate }}
-    </h3>
-    <ul>
-      <li>
-        <a class="link text-sm" routerLink="/settings/accessibility">Accessibility</a>
-      </li>
-      <li>
-        <a class="link text-sm" routerLink="/settings/account">Account</a>
-      </li>
-      <li>
-        <a class="link text-sm" routerLink="/settings/appearance">Appearance</a>
-      </li>
-      <li>
-        <a class="link text-sm" routerLink="/settings/language">Language</a>
-      </li>
-    </ul>
-  </div>
+  <h2>
+    {{ 'routes.home.settings.title' | translate }}
+  </h2>
+  <ul>
+    <li>
+      <a class="link text-sm" routerLink="/settings/accessibility">
+        {{ 'routes.home.settings.accessibility' | translate }}
+      </a>
+    </li>
+    <li>
+      <a class="link text-sm" routerLink="/settings/account">{{ 'routes.home.settings.account' | translate }}</a>
+    </li>
+    <li>
+      <a class="link text-sm" routerLink="/settings/appearance">
+        {{ 'routes.home.settings.appearance' | translate }}
+      </a>
+    </li>
+    <li>
+      <a class="link text-sm" routerLink="/settings/language">{{ 'routes.home.settings.language' | translate }}</a>
+    </li>
+  </ul>
 
-  <div class="mt-6">
-    <h3 class="h5">
-      {{ 'routes.home.profiles' | translate }}
-    </h3>
-    <ul>
-      <li>
-        <a class="link text-sm" routerLink="/users/maria" text-sm>Maria</a>
-      </li>
-      <li>
-        <a class="link text-sm" routerLink="/users/pedro" text-sm>Pedro</a>
-      </li>
-      <li>
-        <a class="link text-sm" routerLink="/users/sara" text-sm>Sara</a>
-      </li>
-    </ul>
-  </div>
+  <h2>
+    {{ 'routes.home.profiles' | translate }}
+  </h2>
+  <ul>
+    <li>
+      <a class="link text-sm" routerLink="/users/maria" text-sm>Maria</a>
+    </li>
+    <li>
+      <a class="link text-sm" routerLink="/users/pedro" text-sm>Pedro</a>
+    </li>
+    <li>
+      <a class="link text-sm" routerLink="/users/sara" text-sm>Sara</a>
+    </li>
+  </ul>
 </section>
