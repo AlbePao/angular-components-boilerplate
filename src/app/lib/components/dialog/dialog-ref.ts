@@ -6,7 +6,10 @@ export class DialogRef<R = unknown, C = unknown> {
   private readonly _destroy$ = new Subject<void>();
   private readonly _closed$ = new Subject<R | void>();
 
-  readonly componentInstance: C | null = null;
+  get componentInstance(): C | null {
+    return this._componentInstance;
+  }
+  private _componentInstance: C | null = null;
 
   closed = this._closed$.asObservable();
 
@@ -29,7 +32,15 @@ export class DialogRef<R = unknown, C = unknown> {
     this._closed$.next(result);
     this._destroy$.next();
     this._destroy$.complete();
-    (this as { componentInstance: C | null }).componentInstance = null;
+    this._componentInstance = null;
     this._overlay.dispose();
+  }
+
+  setComponentInstance(instance: C): void {
+    if (this._componentInstance) {
+      throw new Error('Component instance is already set.');
+    }
+
+    this._componentInstance = instance;
   }
 }

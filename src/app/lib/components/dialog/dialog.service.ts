@@ -26,7 +26,7 @@ export class DialogService {
     const dialogPortal = new ComponentPortal(component, null, injector);
 
     const componentRef = overlayRef.attach(dialogPortal);
-    (dialogRef as { componentInstance: C }).componentInstance = componentRef.instance;
+    dialogRef.setComponentInstance(componentRef.instance);
 
     return dialogRef;
   }
