@@ -1,7 +1,7 @@
 <h1>Input</h1>
 
 <h2>Reactive forms</h2>
-<form [formGroup]="form" class="mb-10">
+<form [formGroup]="form">
   <app-form-field>
     <input appInput type="text" formControlName="firstInputControl" />
     <app-label>Input Control Example</app-label>
@@ -16,7 +16,6 @@
 </form>
 
 <h2>Template driven</h2>
-
 <app-form-field>
   <app-label>Input Example</app-label>
   <input appInput type="text" (change)="logInputChange($event)" />
