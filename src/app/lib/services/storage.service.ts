@@ -2,6 +2,7 @@ import { inject, Service } from '@angular/core';
 import { LOCAL_STORAGE } from '@lib/tokens/local-storage';
 import { SESSION_STORAGE } from '@lib/tokens/session-storage';
 import { StorageObjectData, StorageObjectType } from '@lib/types/storage';
+import { safeJsonParse } from '@lib/utils/safeJsonParse';
 
 interface StorageOptions {
   api?: 'LocalStorage' | 'SessionStorage';
@@ -20,7 +21,7 @@ export class StorageService {
   getItem<T extends StorageObjectType>(item: T, options?: StorageOptions): StorageObjectData<T>['data'] | null {
     const api = this._getStorageApi(options?.api ?? 'LocalStorage');
     const data = api.getItem(item.toString());
-    return data ? (JSON.parse(data) as StorageObjectData<T>['data']) : null;
+    return data ? safeJsonParse<StorageObjectData<T>['data']>(data) : null;
   }
 
   setItem<T extends StorageObjectType>(
