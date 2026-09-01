@@ -17,32 +17,26 @@
           </div>
         }
       </th>
-      @if (isMultipleSelection) {
-        <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
-          cdk-cell
-          *cdkCellDef="let row; let index = index"
-        >
+      <td
+        class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+        cdk-cell
+        *cdkCellDef="let row; let index = index"
+      >
+        @if (isMultipleSelection) {
           <app-checkbox
             (click)="stopPropagation($event)"
             (valueChange)="toggleRowCheckbox(row)"
             [checked]="selection.isSelected(row)"
           />
-        </td>
-      } @else if (isSingleSelection) {
-        <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
-          cdk-cell
-          *cdkCellDef="let row; let index = index"
-        >
+        } @else if (isSingleSelection) {
           <app-radio-button
             (click)="stopPropagation($event)"
             (valueChange)="toggleRowRadioButton(row)"
             [name]="radioButtonName"
             [checked]="selection.isSelected(row)"
           />
-        </td>
-      }
+        }
+      </td>
     </ng-container>
   }
   @for (column of columns; track column.key) {
@@ -246,32 +240,26 @@
           </div>
         }
       </th>
-      @if (isMultipleSelection) {
-        <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
-          cdk-cell
-          *cdkCellDef="let row; let index = index"
-        >
+      <td
+        class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
+        cdk-cell
+        *cdkCellDef="let row; let index = index"
+      >
+        @if (isMultipleSelection) {
           <app-checkbox
             (click)="stopPropagation($event)"
             (valueChange)="toggleRowCheckbox(row)"
             [checked]="selection.isSelected(row)"
           />
-        </td>
-      } @else if (isSingleSelection) {
-        <td
-          class="border-gray group-hover:bg-gray-lighter/80 backdrop-blur-sm-xs h-20 border-b border-solid bg-white/80 whitespace-pre-line backdrop-opacity-100 first-of-type:pl-5 last-of-type:pr-5"
-          cdk-cell
-          *cdkCellDef="let row; let index = index"
-        >
+        } @else if (isSingleSelection) {
           <app-radio-button
             (click)="stopPropagation($event)"
             (valueChange)="toggleRowRadioButton(row)"
             [name]="radioButtonName"
             [checked]="selection.isSelected(row)"
           />
-        </td>
-      }
+        }
+      </td>
     </ng-container>
   }
 

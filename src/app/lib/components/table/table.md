@@ -34,7 +34,7 @@ The table bases its behaviour on [Angular CDK table](https://material.angular.io
 Used to define the type of cells of the defined column
 
 ```typescript
-export type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu';
+type ColumnTypes = 'number' | 'text' | 'date' | 'icon' | 'pill' | 'currency' | 'button' | 'menu';
 ```
 
 ### `SortDirection`
