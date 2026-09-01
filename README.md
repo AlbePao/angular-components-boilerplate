@@ -4,6 +4,10 @@ This boilerplate is an Angular v22 project with a collection of custom component
 
 The architecture of the project is inspired from [angular-boilerplate](https://github.com/ju4n97/angular-boilerplate) by [ju4n97](https://github.com/ju4n97)
 
+## Demo
+
+You can view a live demo of the Angular Components Boilerplate project [here](https://angular-components-boilerplate.netlify.app/).
+
 ## Features
 
 - [Angular v22](https://angular.dev/)
