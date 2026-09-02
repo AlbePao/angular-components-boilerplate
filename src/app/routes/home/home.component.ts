@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@lib/components/icon';
-import { SHOWCASE_ITEMS } from '@lib/layouts/main-layout/sidebar/sidebar-items';
+import { SHOWCASE_ITEMS } from '@lib/layouts/main-layout/main-sidebar/main-sidebar-items';
 import { ThemeService } from '@lib/services/theme.service';
 import { AppTheme } from '@lib/types/theme';
 import { TranslatePipe } from '@ngx-translate/core';

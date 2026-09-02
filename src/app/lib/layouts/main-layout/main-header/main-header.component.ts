@@ -7,14 +7,14 @@ import { LogoComponent } from '@lib/layouts/horizontal-layout/logo/logo.componen
 import { AuthService } from '@lib/services/auth.service';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-main-header',
   imports: [LogoComponent, RouterLink, ButtonModule, IconComponent, MenuModule],
-  templateUrl: './header.component.html',
+  templateUrl: './main-header.component.html',
   host: {
     class: 'block',
   },
 })
-export class HeaderComponent {
+export class MainHeaderComponent {
   private readonly _authService = inject(AuthService);
 
   menuItems: MenuItem<'logout'>[] = [

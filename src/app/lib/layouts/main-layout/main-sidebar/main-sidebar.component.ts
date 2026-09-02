@@ -4,16 +4,16 @@ import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
 import { debounceSignal } from '@lib/utils/debounceSignal';
 import { TranslatePipe } from '@ngx-translate/core';
-import { SHOWCASE_ITEMS } from './sidebar-items';
+import { SHOWCASE_ITEMS } from './main-sidebar-items';
 import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'app-main-sidebar',
   imports: [TranslatePipe, RouterLink, RouterLinkActive, ButtonModule, IconComponent, ToggleThemeComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
-export class SidebarComponent {
+export class MainSidebarComponent {
   readonly sidebarItems = SHOWCASE_ITEMS;
 
   readonly isOpen = signal<boolean>(true);
