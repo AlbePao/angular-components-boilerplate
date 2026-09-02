@@ -26,12 +26,12 @@
   "pipes": {
     "relativeTime": {
       "justNow": "in questo momento",
-      "minuteAgo":"un minuto fa",
-      "minutesAgo":"{{minutes}} minuti fa",
-      "hourAgo":"un ora fa",
-      "hoursAgo":"{{hours}} ore fa",
-      "dayAgo":"un giorno fa",
-      "daysAgo":"{{days}} giorni fa"
+      "minuteAgo": "un minuto fa",
+      "minutesAgo": "{{minutes}} minuti fa",
+      "hourAgo": "un ora fa",
+      "hoursAgo": "{{hours}} ore fa",
+      "dayAgo": "un giorno fa",
+      "daysAgo": "{{days}} giorni fa"
     }
   },
   "routes": {
