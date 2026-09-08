@@ -202,7 +202,7 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
   }
   set rows(rows: InputRow[] | null) {
     this._rows = rows ?? [];
-    this.setDataSource(this._rows);
+    this._dataSource.set(this._rows);
   }
   private _rows: InputRow[] = [];
 
@@ -343,10 +343,6 @@ export class TableComponent<InputRow extends TableRow, OutputRow = InputRow> {
 
   getListTooltipText(listTooltip: string[]): string[] {
     return listTooltip.slice(1);
-  }
-
-  setDataSource(rows: InputRow[]): void {
-    this._dataSource.set(rows);
   }
 
   sortDataSource(rows: InputRow[], sorting: TableColumnSort): void {
