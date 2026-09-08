@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer';
+import { NavbarComponent } from './navbar';
 
 @Component({
   selector: 'app-horizontal-layout',

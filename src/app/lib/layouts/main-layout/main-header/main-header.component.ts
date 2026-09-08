@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
+import { LogoComponent } from '@lib/components/logo';
 import { MenuItem, MenuModule } from '@lib/components/menu';
-import { LogoComponent } from '@lib/layouts/horizontal-layout/logo/logo.component';
 import { AuthService } from '@lib/services/auth.service';
 
 @Component({

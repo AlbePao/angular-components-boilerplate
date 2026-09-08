@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormFieldModule } from '@lib/components/form-field';
-import { IconComponent } from '@lib/components/icon/icon.component';
+import { IconComponent } from '@lib/components/icon';
 import { InputDirective } from '@lib/components/input';
 import { TranslatePipe } from '@ngx-translate/core';
 

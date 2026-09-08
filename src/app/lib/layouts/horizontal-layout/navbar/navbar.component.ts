@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { IconComponent } from '@lib/components/icon';
+import { LogoComponent } from '@lib/components/logo';
 import { AuthService } from '@lib/services/auth.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'app-navbar',

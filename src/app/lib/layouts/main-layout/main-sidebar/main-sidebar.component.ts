@@ -5,13 +5,13 @@ import { IconComponent } from '@lib/components/icon';
 import { debounceSignal } from '@lib/utils/debounceSignal';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SHOWCASE_ITEMS } from './main-sidebar-items';
-import { ToggleThemeComponent } from './toggle-theme/toggle-theme.component';
+import { ToggleThemeComponent } from './toggle-theme';
 
 @Component({
   selector: 'app-main-sidebar',
   imports: [TranslatePipe, RouterLink, RouterLinkActive, ButtonModule, IconComponent, ToggleThemeComponent],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css',
+  templateUrl: './main-sidebar.component.html',
+  styleUrl: './main-sidebar.component.css',
 })
 export class MainSidebarComponent {
   readonly sidebarItems = SHOWCASE_ITEMS;

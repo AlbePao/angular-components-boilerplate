@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ButtonModule } from '@lib/components/button';
 import { IconComponent } from '@lib/components/icon';
-import { TOAST_DATA } from '@lib/components/toast/toast-config';
-import { ToastRef } from '@lib/components/toast/toast-ref';
 import { TranslatePipe } from '@ngx-translate/core';
+import { TOAST_DATA } from './toast-config';
+import { ToastRef } from './toast-ref';
 
 @Component({
   selector: 'app-toast',
